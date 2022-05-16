@@ -33,6 +33,12 @@
     <ClInclude Include="InterlocutorComercialV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Direccion.cpp">
@@ -54,6 +60,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="InterlocutorComercialRN.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

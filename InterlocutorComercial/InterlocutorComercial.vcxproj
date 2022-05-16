@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.h" />
+    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.h" />
     <ClInclude Include="Direccion.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="InterlocutorComercial.h" />
@@ -135,6 +137,8 @@
     <ClInclude Include="InterlocutorComercialV.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.cpp" />
+    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.cpp" />
     <ClCompile Include="Direccion.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="InterlocutorComercial.cpp" />
