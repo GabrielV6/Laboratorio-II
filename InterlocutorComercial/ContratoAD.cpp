@@ -83,6 +83,7 @@ Contrato ContratoAD::getContratoArchivo(long idContrato)
 	archivo.close();
 	return contrato;
 }
+
 vector<Contrato> ContratoAD::getContratosArchivo()
 {
 	Contrato contrato;
@@ -94,9 +95,7 @@ vector<Contrato> ContratoAD::getContratosArchivo()
 	while (archivo.read((char*)&contrato, sizeof(InterlocutorComercial)))
 	{
 		if (!archivo.eof())
-		{
 			contratos.push_back(contrato);
-		}
 	}
 	return contratos;
 }

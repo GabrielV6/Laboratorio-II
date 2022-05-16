@@ -1,11 +1,10 @@
 #pragma once
 #include "ContratoAD.h"
-#include "InterlocutorComercialRN.h"
 
 class ContratoRN
 {
 public:
-	ContratoRN();
+	ContratoRN(string nombreArchivo);
 	~ContratoRN();
 	Contrato BuscarContrato(long idContrato);
 	bool ControlModificacion(Contrato& contrato);
@@ -14,9 +13,9 @@ public:
 	string getNombreArchivo();
 	vector<Contrato> getContratos(bool soloActivos);
 	void setNombreArchivo(string nombre);	
+	bool InterlocutorOK(InterlocutorComercial interlocutorComercial);
 
 private:
 	ContratoAD contratoAD;
-	string nombreArchivo;
-	bool InterlocutorOK(InterlocutorComercial interlocutorComercial);
+	string nombreArchivo;	
 };

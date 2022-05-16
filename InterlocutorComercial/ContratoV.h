@@ -6,15 +6,19 @@ Crear un clase ContratoV.h que contenga todos los atributos y métodos que permi
 class ContratoV
 {
 private:
+	string nombreArchivo;
 	InterlocutorComercial InterlocutorComercial;
 	Contrato Contrato;
 public:
-	ContratoV(InterlocutorComercial interlocutorComercial = InterlocutorComercial(), Contrato contrato);
+	ContratoV();
+	ContratoV(string nombreArchivo, InterlocutorComercial& interCom, Contrato contrato);
 	~ContratoV();
+	void setNombreArchivo(string nombreArchivo);
+	string getNombreArchivo();
 	void setInterlocutorComercial(InterlocutorComercial& interCom);
-	InterlocutorComercial& getInterlocutorComercial();
+	InterlocutorComercial getInterlocutorComercial();
 	void setContrato(Contrato& contrato);
-	Contrato& getContrato();
+	Contrato getContrato();
 	void MenuContrato();
 	bool NuevoContrato();
 	bool ModificarContrato();

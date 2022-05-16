@@ -13,7 +13,7 @@
 -Consumo promedio
 */
 #include <iostream>
-#include "InterlocutorComercial.h"
+#include "InterlocutorComercialRN.h"
 
 class Contrato
 {
