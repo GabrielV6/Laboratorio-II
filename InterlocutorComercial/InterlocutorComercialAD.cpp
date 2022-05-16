@@ -118,8 +118,7 @@ vector<InterlocutorComercial> InterlocutorComercialAD::getInterlocutoresArchivo(
 	{
 		if (!archivo.eof())
 		{
-			if (intComAD.getActivo())
-				interlocutores.push_back(intComAD);
+			interlocutores.push_back(intComAD);
 		}
 	}
 	return interlocutores;

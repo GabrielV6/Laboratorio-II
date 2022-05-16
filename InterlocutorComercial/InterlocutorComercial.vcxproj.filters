@@ -33,10 +33,16 @@
     <ClInclude Include="InterlocutorComercialV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.h">
+    <ClInclude Include="ContratoRN.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.h">
+    <ClInclude Include="ContratoAD.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Contrato.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ContratoV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,10 +68,16 @@
     <ClCompile Include="InterlocutorComercialRN.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\Contrato.cpp">
+    <ClCompile Include="ContratoAD.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\InterlocutorComercialCapas\InterlocutorComercial\InterlocutorComercial\ContratoV.cpp">
+    <ClCompile Include="Contrato.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="ContratoV.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="ContratoRN.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

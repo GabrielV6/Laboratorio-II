@@ -5,7 +5,7 @@ Implementar todos los metodos de la clase contrato.h
 Contrato::Contrato()
 {
     this->idContrato = 0;
-    this->idInterlocutorComercial = 0;
+    this->interlocutorComercial = InterlocutorComercial();
     this->idCuentaContrato = 0;
     this->idMedidor = 0;
     this->idInstalacion = 0;
@@ -14,11 +14,13 @@ Contrato::Contrato()
     this->fechaBajaContrato = Fecha();
     this->tarifas = 0;
     this->consumoPromedio = 0;
+    this->posicionArchivo = 0;
+    this->activo = false;
 }
-Contrato::Contrato(int idContrato, long idInterlocutorComercial, int idCuentaContrato, int idMedidor, int idInstalacion, string zona, Fecha fecAlta, Fecha fecBaja, float tarifas, float consumoPromedio)
+Contrato::Contrato(int idContrato, InterlocutorComercial& interlocutorComercial, int idCuentaContrato, int idMedidor, int idInstalacion, string zona, Fecha fecAlta, Fecha fecBaja, float tarifas, float consumoPromedio, long posicionArchivo, bool activo)
 {
     this->idContrato = idContrato;
-    this->idInterlocutorComercial = idInterlocutorComercial;
+    this->interlocutorComercial = interlocutorComercial;
     this->idCuentaContrato = idCuentaContrato;
     this->idMedidor = idMedidor;
     this->idInstalacion = idInstalacion;
@@ -27,6 +29,8 @@ Contrato::Contrato(int idContrato, long idInterlocutorComercial, int idCuentaCon
     this->fechaBajaContrato = fecBaja;
     this->tarifas = tarifas;
     this->consumoPromedio = consumoPromedio;
+    this->posicionArchivo = posicionArchivo;
+    this->activo = activo;
 }
 void Contrato::setIdContrato(int idContrato)
 {
@@ -36,13 +40,13 @@ int Contrato::getIdContrato()
 {
     return this->idContrato;
 }
-void Contrato::setIdInterlocutorComercial(long idInterlocutorComercial)
+void Contrato::setIdInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
-    this->idInterlocutorComercial = idInterlocutorComercial;
+    this->interlocutorComercial = interlocutorComercial;
 }
-long Contrato::getIdInterlocutorComercial()
+InterlocutorComercial& Contrato::getIdInterlocutorComercial()
 {
-    return this->idInterlocutorComercial;
+    return this->interlocutorComercial;
 }
 void Contrato::setIdCuentaContrato(int idCuentaContrato)
 {
@@ -108,15 +112,32 @@ float Contrato::getConsumoPromedio()
 {
     return this->consumoPromedio;
 }
+void Contrato::setPoscicionArchivo(long posicionArchivo)
+{
+    this->posicionArchivo = posicionArchivo;
+}
+long Contrato::getPosicionArchivo()
+{
+    return this->posicionArchivo;
+}
+void Contrato::setActivo(bool activo)
+{
+    this->activo = activo;
+}
+bool Contrato::getActivo()
+{
+    return this->activo;
+}
 string Contrato::toStringContrato()
 {
     string toStr;
     toStr +=  "ID Contrato: " + to_string(this->idContrato) + "\n";
-    toStr +=  "ID Interlocutor Comercial: " + to_string(this->idInterlocutorComercial) + "\n";
+    toStr +=  "ID Interlocutor Comercial: " + to_string(this->interlocutorComercial.getDni()) + "\n";
     toStr +=  "ID Cuenta Contrato: " + to_string(this->idCuentaContrato) + "\n";
     toStr +=  "ID Medidor: " + to_string(this->idMedidor) + "\n";
     toStr +=  "ID Instalacion: " + to_string(this->idInstalacion) + "\n";
     toStr +=  "Zona: " + this->getZona() + "\n";
     toStr +=  "Tarifas: " + to_string(this->tarifas) + "\n";
     toStr +=  "Consumo Promedio: " + to_string(this->consumoPromedio) + "\n";
+    return toStr;
 }   

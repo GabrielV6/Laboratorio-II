@@ -2,8 +2,11 @@
 implementación de todos los métodos de la clase ContratoV.h
 */
 #include "ContratoV.h"
-ContratoV::ContratoV()
+
+ContratoV::ContratoV(InterlocutorComercial interlocutorComercial, Contrato contrato)
 {
+    this->InterlocutorComercial = interlocutorComercial;
+    this->Contrato = contrato;
 }
 void ContratoV::setInterlocutorComercial(InterlocutorComercial interCom)
 {
@@ -21,6 +24,7 @@ Contrato ContratoV::getContrato()
 {
     return this->Contrato;
 }
+
 void ContratoV::MenuContrato()
 {
     int opcion;
@@ -61,6 +65,7 @@ void ContratoV::MenuContrato()
         }
     } while (opcion != 3);
 }
+
 bool ContratoV::NuevoContrato()
 {
     InterlocutorComercial interCom;
