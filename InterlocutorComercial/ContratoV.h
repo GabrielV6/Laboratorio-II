@@ -1,6 +1,7 @@
 /*
 Crear un clase ContratoV.h que contenga todos los atributos y métodos que permitan cargar un contrato.h
 */
+#pragma once
 #include "ContratoRN.h"
 
 class ContratoV

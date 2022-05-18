@@ -12,6 +12,7 @@
 -Tarifas
 -Consumo promedio
 */
+#pragma once
 #include <iostream>
 #include "InterlocutorComercialRN.h"
 

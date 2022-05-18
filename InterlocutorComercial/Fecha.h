@@ -3,6 +3,7 @@
 //Crear los métodos getDia, getMes y getAnio para obtener los valores de los atributos.
 //Crear el método toString que devuelva una cadena de texto con el formato dd/mm/aaaa.
 //Crear el método destructor.
+#pragma once
 #include <iostream>
 #include <string>
 using namespace std;

@@ -1,3 +1,4 @@
+#pragma once
 #include "InterlocutorComercialAD.h"
 class InterlocutorComercialRN
 {
