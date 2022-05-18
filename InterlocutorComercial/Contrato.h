@@ -18,19 +18,7 @@
 
 class Contrato
 {
-private:
-	int idContrato;
-	InterlocutorComercial interlocutorComercial;
-	int idCuentaContrato;
-	int idMedidor;
-	int idInstalacion;
-	char zona[40];
-	Fecha fechaAltaContrato;
-	Fecha fechaBajaContrato;
-	float tarifas;
-	float consumoPromedio;
-	float posicionArchivo;
-	bool activo;
+
 public:
 	Contrato();
 	Contrato(int idContrato, InterlocutorComercial& interlocutorComercial, int idCuentaContrato, int idMedidor, int idInstalacion, string zona, Fecha fecAlta, Fecha fecBaja, float tarifas, float consumoPromedio, long posicionArchivo, bool activo);
@@ -59,4 +47,18 @@ public:
 	void setActivo(bool activo);
 	bool getActivo();
 	string toStringContrato();
+
+private:
+	int idContrato;
+	InterlocutorComercial interlocutorComercial;
+	int idCuentaContrato;
+	int idMedidor;
+	int idInstalacion;
+	char zona[40];
+	Fecha fechaAltaContrato;
+	Fecha fechaBajaContrato;
+	float tarifas;
+	float consumoPromedio;
+	float posicionArchivo;
+	bool activo;
 };

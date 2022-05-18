@@ -6,27 +6,41 @@ implementación de todos los métodos de la clase ContratoV.h
 ContratoV::ContratoV()
 {
     this->nombreArchivo = "";
-    this->InterlocutorComercial = InterlocutorComercial();
+    this->InterlocutorComercial =(InterlocutorComercial)InterlocutorComercial();
     this->Contrato = Contrato();
 }
+
 ContratoV::ContratoV(string nombreArchivo, InterlocutorComercial& interCom, Contrato contrato)
 {
     this->nombreArchivo = nombreArchivo;
     this->InterlocutorComercial = interCom;
     this->Contrato = contrato;
 }
+
+void ContratoV::setNombreArchivo(string nombreArchivo)
+{
+    this->nombreArchivo = nombreArchivo;
+}
+
+void ContratoV::setInterlocutorComercial(InterlocutorComercial& interCom)
+{
+    this->InterlocutorComercial = interCom;
+}
 void ContratoV::setInterlocutorComercial(InterlocutorComercial interCom)
 {
     this->InterlocutorComercial = interCom;
 }
-InterlocutorComercial ContratoV::getInterlocutorComercial()
-{
-    return this->InterlocutorComercial;
-}
+
 void ContratoV::setContrato(Contrato contrato)
 {
     this->Contrato = contrato;
 }
+
+InterlocutorComercial ContratoV::getInterlocutorComercial()
+{
+    return this->InterlocutorComercial;
+}
+
 Contrato ContratoV::getContrato()
 {
     return this->Contrato;
@@ -75,7 +89,7 @@ void ContratoV::MenuContrato()
 
 bool ContratoV::NuevoContrato()
 {
-    Contrato contrato;
+    Contrato contratoNuevo;
     bool cargado = false;
     int opcion;
     do
@@ -87,7 +101,7 @@ bool ContratoV::NuevoContrato()
         switch (opcion)
         {
         case 1:
-            if (contrato.NuevoContrato())
+            if (contratoNuevo.NuevoContrato())
             {
                 cout << "Contrato cargado correctamente" << endl;
             }
@@ -103,16 +117,16 @@ bool ContratoV::NuevoContrato()
             break;
         }
     } while (opcion != 0);
-    if (contrato.getIdContrato() != 0)
+    if (contratoNuevo.getIdContrato() != 0)
     {
-        this->setContrato(contrato);
+        this->setContrato(contratoNuevo);
         cargado = true;
     }
     return cargado;
 }
 bool ContratoV::ModificarContrato()
 {
-    Contrato contrato;
+    Contrato contratoModif;
     bool modificado = false;
     int opcion;
     do
@@ -124,7 +138,7 @@ bool ContratoV::ModificarContrato()
         switch (opcion)
         {
         case 1:
-            if (contrato.ModificarContrato())
+            if (contratoModif.ModificarContrato())
             {
                 cout << "Contrato modificado correctamente" << endl;
             }
@@ -140,9 +154,9 @@ bool ContratoV::ModificarContrato()
             break;
         }
     } while (opcion != 3);
-    if (contrato.getIdContrato() != 0)
+    if (contratoModif.getIdContrato() != 0)
     {
-        this->setContrato(contrato);
+        this->setContrato(contratoModif);
         modificado = true;
     }
     return modificado;
