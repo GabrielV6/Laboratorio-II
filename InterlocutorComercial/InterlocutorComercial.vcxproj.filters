@@ -45,6 +45,12 @@
     <ClInclude Include="ContratoV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="CuentaContrato.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CuentaContratoAD.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Direccion.cpp">
@@ -78,6 +84,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="ContratoRN.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="CuentaContrato.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="CuentaContratoAD.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

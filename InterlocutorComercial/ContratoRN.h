@@ -14,6 +14,7 @@ public:
 	vector<Contrato> getContratos(bool soloActivos);
 	void setNombreArchivo(string nombre);	
 	bool InterlocutorOK(InterlocutorComercial interlocutorComercial);
+	long IdContratoNuevo();
 
 private:
 	ContratoAD contratoAD;

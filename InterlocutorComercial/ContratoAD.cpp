@@ -1,6 +1,6 @@
 #include "ContratoAD.h"
 
-ContratoAD::ContratoAD(string nombreArchivo = "")
+ContratoAD::ContratoAD(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
 }

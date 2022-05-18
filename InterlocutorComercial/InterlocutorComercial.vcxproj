@@ -131,6 +131,8 @@
     <ClInclude Include="ContratoAD.h" />
     <ClInclude Include="ContratoRN.h" />
     <ClInclude Include="ContratoV.h" />
+    <ClInclude Include="CuentaContrato.h" />
+    <ClInclude Include="CuentaContratoAD.h" />
     <ClInclude Include="Direccion.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="InterlocutorComercial.h" />
@@ -143,6 +145,8 @@
     <ClCompile Include="ContratoAD.cpp" />
     <ClCompile Include="ContratoRN.cpp" />
     <ClCompile Include="ContratoV.cpp" />
+    <ClCompile Include="CuentaContrato.cpp" />
+    <ClCompile Include="CuentaContratoAD.cpp" />
     <ClCompile Include="Direccion.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="InterlocutorComercial.cpp" />

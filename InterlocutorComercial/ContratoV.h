@@ -8,19 +8,19 @@ class ContratoV
 {
 public:
 	ContratoV();
-	ContratoV(string nombreArchivo, InterlocutorComercial& interCom, Contrato contrato);
+	ContratoV(string nombreArchivo);
 	~ContratoV();
-	void setNombreArchivo(string nombreArchivo);	
-	void setInterlocutorComercial(InterlocutorComercial& interCom);
+	void setNombreArchivo(string nombreArchivo);
 	void setContrato(Contrato& contrato);
 	string getNombreArchivo();
-	InterlocutorComercial getInterlocutorComercial();	
 	Contrato getContrato();
+	InterlocutorComercial BuscarInterlocutorComercialPorID();
+	Contrato BuscarContrato();
 	void MenuContrato();
 	bool NuevoContrato();
 	bool ModificarContrato();
 private:
 	string nombreArchivo;
-	InterlocutorComercial InterlocutorComercial;
-	Contrato Contrato;
+	InterlocutorComercial interlocutorComercial;
+	Contrato contrato;
 };

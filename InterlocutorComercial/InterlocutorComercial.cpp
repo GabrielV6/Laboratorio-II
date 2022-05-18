@@ -8,7 +8,7 @@ InterlocutorComercial::InterlocutorComercial()
 	strcpy_s(this->email, "");
 	this->fechaIngresoID = Fecha();
 	this->direccionID = Direccion();
-	this->activo = true;
+	this->activo = false;
 	this->numPosicionArch = -1;
 	strcpy_s(this->nombreArchivo, "");
 }
@@ -22,7 +22,7 @@ InterlocutorComercial::InterlocutorComercial(string nombreArchivo)
 	strcpy_s(this->email, "");
 	this->fechaIngresoID = Fecha();
 	this->direccionID = Direccion();
-	this->activo = true;
+	this->activo = false;
 	this->numPosicionArch = -1;
 }
 InterlocutorComercial::~InterlocutorComercial()

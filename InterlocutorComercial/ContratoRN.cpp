@@ -17,6 +17,7 @@ bool ContratoRN::ControlModificacion(Contrato& contrato)
 }
 bool ContratoRN::AltaContrato(Contrato& contrato)
 {
+	//Validar todas las caracteristicas para un contranto nuevo
 	return true;
 }
 long ContratoRN::CantidadContratos(bool soloActivos)
@@ -57,4 +58,10 @@ bool ContratoRN::InterlocutorOK(InterlocutorComercial interlocutor)
 {
 	//Validacion sobre el interlocutor
 	return true;
+}
+long ContratoRN::IdContratoNuevo()
+{
+	ContratoAD contratoAD(this->nombreArchivo);
+	long totalContratos = contratoAD.TotalContratosEnArchivo();
+	return totalContratos++;
 }

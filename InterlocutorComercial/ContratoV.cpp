@@ -6,15 +6,15 @@ implementación de todos los métodos de la clase ContratoV.h
 ContratoV::ContratoV()
 {
     this->nombreArchivo = "";
-    this->InterlocutorComercial =(InterlocutorComercial)InterlocutorComercial();
-    this->Contrato = Contrato();
+    this->interlocutorComercial = InterlocutorComercial();
+    this->contrato = Contrato();
 }
 
-ContratoV::ContratoV(string nombreArchivo, InterlocutorComercial& interCom, Contrato contrato)
+ContratoV::ContratoV(string nombreArchivo)
 {
     this->nombreArchivo = nombreArchivo;
-    this->InterlocutorComercial = interCom;
-    this->Contrato = contrato;
+    this->interlocutorComercial = InterlocutorComercial();
+    this->contrato = Contrato();
 }
 
 void ContratoV::setNombreArchivo(string nombreArchivo)
@@ -22,28 +22,19 @@ void ContratoV::setNombreArchivo(string nombreArchivo)
     this->nombreArchivo = nombreArchivo;
 }
 
-void ContratoV::setInterlocutorComercial(InterlocutorComercial& interCom)
+void ContratoV::setContrato(Contrato &contrato)
 {
-    this->InterlocutorComercial = interCom;
-}
-void ContratoV::setInterlocutorComercial(InterlocutorComercial interCom)
-{
-    this->InterlocutorComercial = interCom;
+    this->contrato = contrato;
 }
 
-void ContratoV::setContrato(Contrato contrato)
+string ContratoV::getNombreArchivo()
 {
-    this->Contrato = contrato;
-}
-
-InterlocutorComercial ContratoV::getInterlocutorComercial()
-{
-    return this->InterlocutorComercial;
+    return this->nombreArchivo;
 }
 
 Contrato ContratoV::getContrato()
 {
-    return this->Contrato;
+    return this->contrato;
 }
 
 void ContratoV::MenuContrato()
@@ -90,33 +81,34 @@ void ContratoV::MenuContrato()
 bool ContratoV::NuevoContrato()
 {
     Contrato contratoNuevo;
+    ContratoRN contratoRN(this->nombreArchivo);
+    InterlocutorComercial interComContrato = BuscarInterlocutorComercialPorID();
     bool cargado = false;
-    int opcion;
-    do
-    {        
-        cout << "1. Cargar Contrato" << endl;
-        cout << "0. Salir" << endl;
-        cout << "Ingrese una opcion: ";
-        cin >> opcion;
-        switch (opcion)
-        {
-        case 1:
-            if (contratoNuevo.NuevoContrato())
-            {
-                cout << "Contrato cargado correctamente" << endl;
-            }
-            else
-            {
-                cout << "Error al cargar el contrato" << endl;
-            }
-            break;
-        case 0:
-            break;
-        default:
-            cout << "Opcion incorrecta" << endl;
-            break;
-        }
-    } while (opcion != 0);
+    long datoId, opcion;
+
+    contratoNuevo.setIdInterlocutorComercial(interComContrato);
+    //Buscar cuenta contrato
+    datoId = contratoRN.IdContratoNuevo();
+    contratoNuevo.setIdCuentaContrato(datoId);
+    //Buscar medidior
+    contratoNuevo.setIdMedidor(datoId);
+    //Crear fecha alta contrato 
+    contratoNuevo.setFechaAltaContrato(Fecha());
+    //Poner una fecha estimativa de terminacion
+    contratoNuevo.setFechaBajaContrato(Fecha());
+    //Busacar id de instalacion
+    contratoNuevo.setIdInstalacion(datoId);
+
+    //contratoNuevo.setTarifas(Tarifas());
+
+    if (contratoRN.AltaContrato(contratoNuevo))
+    {
+        cout << "Contrato cargado correctamente" << endl;
+    }
+    else
+    {
+        cout << "Error al cargar el contrato" << endl;
+    }
     if (contratoNuevo.getIdContrato() != 0)
     {
         this->setContrato(contratoNuevo);
@@ -124,8 +116,33 @@ bool ContratoV::NuevoContrato()
     }
     return cargado;
 }
+
+InterlocutorComercial ContratoV::BuscarInterlocutorComercialPorID()
+{
+    InterlocutorComercialRN interComRN(this->nombreArchivo);
+    InterlocutorComercial interCom;
+    int datoId, opcion;
+    do
+    {
+        cout << "Ingrese el Id del interlocutor comercial: ";
+        cin >> datoId;
+        interCom = interComRN.BuscarInterlocutorComercial(datoId);
+        if (!interCom.getActivo())
+        {
+            cout << "El interlocutor comercial no existe" << endl;
+            cout << "Desea ingresar unevamente el Id del interlocutor comercial? (1. Si, 2. No): ";
+            cin >> opcion;
+        }
+        else
+            break;
+
+    } while (opcion != 2);
+    return interCom;
+}
+
 bool ContratoV::ModificarContrato()
 {
+    ContratoRN contratoRN(this->nombreArchivo);
     Contrato contratoModif;
     bool modificado = false;
     int opcion;
@@ -138,7 +155,8 @@ bool ContratoV::ModificarContrato()
         switch (opcion)
         {
         case 1:
-            if (contratoModif.ModificarContrato())
+            contratoModif = BuscarContrato();
+            if (contratoModif.getActivo())
             {
                 cout << "Contrato modificado correctamente" << endl;
             }
@@ -161,6 +179,31 @@ bool ContratoV::ModificarContrato()
     }
     return modificado;
 }
+
+Contrato ContratoV::BuscarContrato()
+{
+    InterlocutorComercialRN interComRN(this->nombreArchivo);
+    ContratoRN contratRN(this->nombreArchivo);
+    Contrato contrato;
+    int datoId, opcion;
+    do
+    {
+        cout << "Ingrese el Id del contrato: ";
+        cin >> datoId;
+        contrato = contratRN.BuscarContrato(datoId);
+        if (!contrato.getActivo())
+        {
+            cout << "El contrato no existe" << endl;
+            cout << "Desea ingresar unevamente el Id del contrato? (1. Si, 2. No): ";
+            cin >> opcion;
+        }
+        else
+            break;
+
+    } while (opcion != 2);
+    return contrato;
+}
+
 ContratoV::~ContratoV()
 {
 }
