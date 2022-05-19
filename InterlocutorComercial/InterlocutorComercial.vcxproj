@@ -139,6 +139,10 @@
     <ClInclude Include="InterlocutorComercialAD.h" />
     <ClInclude Include="InterlocutorComercialRN.h" />
     <ClInclude Include="InterlocutorComercialV.h" />
+    <ClInclude Include="Usuario.h" />
+    <ClInclude Include="UsuarioAD.h" />
+    <ClInclude Include="UsuarioRN.h" />
+    <ClInclude Include="UsuarioV.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Contrato.cpp" />
@@ -154,6 +158,10 @@
     <ClCompile Include="InterlocutorComercialRN.cpp" />
     <ClCompile Include="InterlocutorComercialV.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Usuario.cpp" />
+    <ClCompile Include="UsuarioAD.cpp" />
+    <ClCompile Include="UsuarioRN.cpp" />
+    <ClCompile Include="UsuarioV.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
