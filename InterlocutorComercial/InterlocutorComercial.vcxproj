@@ -141,6 +141,10 @@
     <ClInclude Include="InterlocutorComercialAD.h" />
     <ClInclude Include="InterlocutorComercialRN.h" />
     <ClInclude Include="InterlocutorComercialV.h" />
+    <ClInclude Include="Tarifa.h" />
+    <ClInclude Include="TarifaAD.h" />
+    <ClInclude Include="TarifaRN.h" />
+    <ClInclude Include="TarifaV.h" />
     <ClInclude Include="Usuario.h" />
     <ClInclude Include="UsuarioAD.h" />
     <ClInclude Include="UsuarioRN.h" />

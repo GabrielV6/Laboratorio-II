@@ -34,7 +34,7 @@ public:
 	/// <summary>
 	/// Funci�n que devuleve todas tarifas del archivo en un vector ordenado por codigo de tarifa
 	/// </summary>
-	vector<Tarifas> getTarifasArchivo();
+	vector<Tarifa> getTarifasArchivo();
 private:
 	string nombreArchivo;
 	Tarifa tarifa;
