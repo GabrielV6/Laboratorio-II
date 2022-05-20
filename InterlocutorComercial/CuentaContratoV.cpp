@@ -97,11 +97,13 @@ void CuentaContratoV::MenuModificarCuentaContrato()
 		switch (opcion)
 		{
 		case 1:
-            Direccion direccion;
+		{
+			Direccion direccion;
 			cout << "Ingrese la nueva direccion : ";
 			direccion.CargarDireccion();
-            this->cuentaContrato.setDireccionId(direccion);
+			this->cuentaContrato.setDireccionId(direccion);
 			break;
+		}
 		case 0:
 			break;
 		default:
@@ -137,7 +139,7 @@ void CuentaContratoV::MenuCuentaContrato()
 		switch (opcion)
 		{
 		case 1:
-			this->NuevoCuentaContrato();
+			this->NuevaCuentaContrato();
 			break;
 		case 2:
 			this->ListarCuentaContrato();
