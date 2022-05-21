@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Contrato">
+    <Position X="25.75" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>kAOCABAAAJEQAYjAMAAhoIQAAQRACAE0AAJAIAAACgA=</HashCode>
+      <FileName>Contrato.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CuentaContrato">
+    <Position X="36.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAFAIIAIAoAAABEAgAAAIABAmgQAgQBYQAQMgAACEA=</HashCode>
+      <FileName>CuentaContrato.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CuentaContratoAD">
+    <Position X="39.75" Y="8.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAGAAAAEAAAAAAIAAAAQAAAIABBAFA=</HashCode>
+      <FileName>CuentaContratoAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CuentaContratoRN">
+    <Position X="36" Y="8.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAEAAAAAACAACAAIAAgQBAAAAAAAGg=</HashCode>
+      <FileName>CuentaContratoRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CuentaContratoV">
+    <Position X="33" Y="8.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAQAIIAAAGAAAAAAAAgAAQAAAAQAABAAAACEA=</HashCode>
+      <FileName>CuentaContratoV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Direccion">
+    <Position X="46.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAGAIACBAAAAECAACQIQAACIABAAAAAIiEIAAEAUAA=</HashCode>
+      <FileName>Direccion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fecha">
+    <Position X="49" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAAAEAAAEQASZAAAAAAAJAAAAAAAAAEAA=</HashCode>
+      <FileName>Fecha.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Instalacion">
+    <Position X="59.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACKAAiCCAAAAAAAAgAAgIAAAAAAAAAgAAAAAABAAAQA=</HashCode>
+      <FileName>Instalacion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InstalacionAD">
+    <Position X="62.5" Y="4.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQAAEAAAEAAAAAAAIIAAAQAAASAAAAAAABAA=</HashCode>
+      <FileName>InstalacionAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InstalacionRN">
+    <Position X="59.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAgAAAACAAEAAAAAAASAAgAIRAAQAAAAAACAEA=</HashCode>
+      <FileName>InstalacionRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InstalacionV">
+    <Position X="55.25" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABCAAAAEoAACAAAEAAAABIgAQABAAAAAEEA=</HashCode>
+      <FileName>InstalacionV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Medidor">
+    <Position X="69.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AiAABAAAEAAAAAAAACBCAIIAAAAAAQAIgAAAAIAgRAA=</HashCode>
+      <FileName>Medidor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedidorAD">
+    <Position X="71.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAARAAAAgEgAAAAAIAAAAAEAgAQAAAAAAABAA=</HashCode>
+      <FileName>MedidorAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedidorRN">
+    <Position X="69.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAkAAACAAASAIAAIRAAQAAAAAAQAEA=</HashCode>
+      <FileName>MedidorRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedidorV">
+    <Position X="67.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgQACAgAEAAAAAAgAQCBBADAAAEA=</HashCode>
+      <FileName>MedidorV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tarifa">
+    <Position X="77" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAIQAQIAAAIAAAEAUMAgAAgAAAAAACAAIgIAAAAAAI=</HashCode>
+      <FileName>Tarifa.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TarifaAD">
+    <Position X="79.5" Y="5.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAACAEAABAACAIAAgAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>TarifaAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TarifaRN">
+    <Position X="76.75" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEQAABAkAAAAAAAAAgRACAAACAAEA=</HashCode>
+      <FileName>TarifaRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TarifaV">
+    <Position X="74.25" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEBAAAAAQAAEAoEAAAAAAAAAAAAAQGAAAAAAAEA=</HashCode>
+      <FileName>TarifaV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContratoV">
+    <Position X="22.25" Y="9.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AgAAgAAAAAgAAAAEAAAAEIEEAACAAAgAQIBAAAAAAEA=</HashCode>
+      <FileName>ContratoV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContratoRN">
+    <Position X="26.5" Y="9.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAACAEAAAACAAGQAAAIBQAQAAAEAAAAEA=</HashCode>
+      <FileName>ContratoRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContratoAD">
+    <Position X="29.25" Y="9.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAACAAAAAEAAAgAAAAAACIAAAIQAAQAAABAEA=</HashCode>
+      <FileName>ContratoAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterlocutorComercial">
+    <Position X="4.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAAUCIADAAwAAAjkAgBAwAAJAkAQAAQBQAAAIAAECEA=</HashCode>
+      <FileName>InterlocutorComercial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterlocutorComercialAD">
+    <Position X="8.25" Y="8.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>ABEAAAgAAAAAABAEAAAAAgAEAAAAAAAAQABEAAAAAEA=</HashCode>
+      <FileName>InterlocutorComercialAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterlocutorComercialRN">
+    <Position X="4.25" Y="8.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAoAAEAAAEAAAACAAAAAAgQAACAAAAAEA=</HashCode>
+      <FileName>InterlocutorComercialRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InterlocutorComercialV">
+    <Position X="0.5" Y="8.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAAAAAAAAAAEACAAAAAABAAAAUAAQAhAAAAACEQ=</HashCode>
+      <FileName>InterlocutorComercialV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Usuario">
+    <Position X="15.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAUIAABAgQAAAjkAgAAwAAJAEAQAAQBQAAMIAAECGA=</HashCode>
+      <FileName>Usuario.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsuarioAD">
+    <Position X="18.75" Y="8.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAQAEAACIAAAAAAIAAAQAQIAAACAAAEA=</HashCode>
+      <FileName>UsuarioAD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsuarioRN">
+    <Position X="15.75" Y="8.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQCAAAAIAEAIAAAAAAAIAAIAAgQAAIAAAAAEA=</HashCode>
+      <FileName>UsuarioRN.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsuarioV">
+    <Position X="13.25" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAABIAAAAAEAAEgAAAAAAAAAAQAQAAAAAAJAGA=</HashCode>
+      <FileName>UsuarioV.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
