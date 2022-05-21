@@ -35,8 +35,11 @@ int Fecha::getAnio()
 }
 void Fecha::cargarFecha()
 {
+    //Validar todos los datos de tipo numericos
+    string dato;
     cout << "Ingrese el dia: ";
-    cin >> this->dia;
+    cin >> dato;    
+   // this->dia= dato;
     cout << "Ingrese el mes: ";
     cin >> this->mes;
     cout << "Ingrese el anio: ";

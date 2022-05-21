@@ -51,6 +51,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 	direccion.CargarDireccion();
 	this->interlocutorComercial.setDireccionId(direccion);
 	// this->GuardarEnArchivo();
+	this->interlocutorComercialRN.AltaInterlocutorComercial(this->interlocutorComercial);
 }
 /// <summary>
 /// Funci�n global para listar todos los interlocutores del archivo.
