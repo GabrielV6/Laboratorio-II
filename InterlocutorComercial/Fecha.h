@@ -14,6 +14,7 @@ private:
 	int dia;
 	int mes;
 	int anio;
+	string IngresoDato(string nombreDato);
 public:
 	Fecha(int dia = 1, int mes = 1, int anio = 1900);
 	void setDia(int dia);

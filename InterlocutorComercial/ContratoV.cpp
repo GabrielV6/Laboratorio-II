@@ -84,7 +84,7 @@ bool ContratoV::NuevoContrato()
     ContratoRN contratoRN(this->nombreArchivo);
     InterlocutorComercial interComContrato = BuscarInterlocutorComercialPorID();
     bool cargado = false;
-    long datoId, opcion;
+    long datoId;
 
     contratoNuevo.setIdInterlocutorComercial(interComContrato.getId_ic());
     //Buscar cuenta contrato

@@ -1,12 +1,12 @@
 #include "Direccion.h"
 
 Direccion::Direccion()
-{	
-	this->setCalle("");	
-	this->setNumero(0);	
-	this->setCasaDpto("");	
-	this->setCodPostal("");	
-	this->setLocalidad("");	
+{
+	this->setCalle("");
+	this->setNumero(0);
+	this->setDescripcion("");
+	this->setCodPostal("");
+	this->setLocalidad("");
 	this->setProvincia("");
 }
 Direccion::~Direccion()
@@ -16,13 +16,13 @@ void Direccion::setCalle(string calle)
 {
 	strcpy_s(this->calle, calle.c_str());
 }
-void Direccion::setNumero(int numero)
+void Direccion::setNumero(unsigned int numero)
 {
 	this->numero = numero;
 }
-void Direccion::setCasaDpto(string casaDpto)
+void Direccion::setDescripcion(string descripcion)
 {
-	strcpy_s(this->casaDpto, casaDpto.c_str());
+	strcpy_s(this->descripcion, descripcion.c_str());
 }
 void Direccion::setCodPostal(string codPostal)
 {
@@ -40,13 +40,13 @@ string Direccion::getCalle()
 {
 	return this->calle;
 }
-int Direccion::getNumero()
+unsigned int Direccion::getNumero()
 {
 	return this->numero;
 }
-string Direccion::getCasaDpto()
+string Direccion::getDescripcion()
 {
-	return this->casaDpto;
+	return this->descripcion;
 }
 string Direccion::getCodPostal()
 {
@@ -62,21 +62,42 @@ string Direccion::getProvincia()
 }
 void Direccion::CargarDireccion()
 {
-	cout << "Ingrese la calle: ";
-	cin >> this->calle;
-	cout << "Ingrese el numero: ";
-	cin >> this->numero;
-	cout << "Ingrese descripcion casa departamento: ";
-	cin >> this->casaDpto;
-	cout << "Ingrese el codigo postal: ";
-	cin >> this->codPostal;
-	cout << "Ingrese la localidad: ";
-	cin >> this->loclidad;
-	cout << "Ingrese la provincia: ";
-	cin >> this->provincia;
+	string dato = IngresoDato("Calle");
+	this->setCalle(dato);
+
+	dato = IngresoDato("Numero");
+	this->numero = stoi(dato);
+	
+	dato = IngresoDato("Descripcion");
+	this->setDescripcion(dato);
+	
+	dato = IngresoDato("Codigo Postal");
+	this->setCodPostal(dato);
+
+	dato = IngresoDato("Localidad");
+	this->setLocalidad(dato);
+
+	dato = IngresoDato("Provincia");
+	this->setProvincia(dato);
 }
+
 string Direccion::toStringDireccion()
 {
-	return "Calle: " + this->getCalle() + ", numero: " + to_string(this->numero) + ", Desc. Casa Dpto: " + this->getCasaDpto() +
+	return "Calle: " + this->getCalle() + ", numero: " + to_string(this->numero) + ", Desc. Casa Dpto: " + this->getDescripcion() +
 		", Cod. Postal: " + this->getCodPostal() + ", localidad: " + this->getLocalidad() + ", provincia: " + this->getProvincia();
+}
+
+string Direccion::IngresoDato(string nombreDato)
+{
+	string dato = "";
+	do
+	{
+		cout << "Ingrese " + nombreDato + " : ";
+		cin >> dato;
+		if (dato == "")
+			cout << "Dato obligatorio " + nombreDato + " no puede quedar en blanco\nPor favor, ingrese nuevamente" << endl;
+		else
+			break;
+	} while (true);
+	return dato;
 }

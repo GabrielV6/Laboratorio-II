@@ -3,7 +3,6 @@
 #include "Direccion.h"
 #include "Fecha.h"
 
-
 class CuentaContrato
 {
 private:

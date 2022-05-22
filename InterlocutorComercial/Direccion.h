@@ -7,23 +7,24 @@ class Direccion
 {
 private:
 	char calle[30];
-	int numero;
-	char casaDpto[50];
+	unsigned int numero;
+	char descripcion[50];
 	char codPostal[20];
 	char loclidad[30];
 	char provincia[30];
+	string IngresoDato(string nombreDato);
 public:
 	Direccion();
 	~Direccion();
 	void setCalle(string calle);
-	void setNumero(int numero);
-	void setCasaDpto(string casaDpto);
+	void setNumero(unsigned int numero);
+	void setDescripcion(string descripcion);
 	void setCodPostal(string codPostal);
 	void setLocalidad(string localidad);
 	void setProvincia(string provincia);
 	string getCalle();
-	int getNumero();
-	string getCasaDpto();
+	unsigned int getNumero();
+	string getDescripcion();
 	string getCodPostal();
 	string getLocalidad();
 	string getProvincia();

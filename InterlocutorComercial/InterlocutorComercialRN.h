@@ -8,10 +8,12 @@ private:
 public:
 	InterlocutorComercialRN(string nombreArchivo = "");
 	~InterlocutorComercialRN();
+	bool ExisteInterlocutorComercial(long dni);
 	InterlocutorComercial BuscarInterlocutorComercial(long dni);
-	bool ControlModificaciones(InterlocutorComercial& interlocutorComercial);
+	string ControlModificaciones(InterlocutorComercial& interlocutorComercial);
 	bool AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
-	long CantidadInterLocutoresEnSistema();
+	bool ModificaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
+	long CantidadInterlocutoresEnSistema();
 	string getNombreArchivo();
 	vector<InterlocutorComercial> VectorInterlocutores();
 	void setNombreArchivo(string nombreArchivo);

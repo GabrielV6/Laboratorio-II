@@ -34,25 +34,37 @@ void InterlocutorComercialV::NuevoInterlocutor()
 			break;
 	} while (true);
 	this->interlocutorComercial.setDni(dni);
-	cout << "Nombre: ";
-	cin >> datos;
-	this->interlocutorComercial.setNombre(datos);
-	cout << "Apellido: ";
-	cin >> datos;
-	this->interlocutorComercial.setApellido(datos);
-	cout << "Correo electronico: ";
-	cin >> datos;
-	this->interlocutorComercial.setEmail(datos);
-	Fecha fechaIngreso;
-	cout << "Fecha Alta: ";
-	fechaIngreso.cargarFecha();
-	this->interlocutorComercial.setFechaIngresoId(fechaIngreso);
-	Direccion direccion;
-	cout << "Direccion: ";
-	direccion.CargarDireccion();
-	this->interlocutorComercial.setDireccionId(direccion);
-	// this->GuardarEnArchivo();
-	this->interlocutorComercialRN.AltaInterlocutorComercial(this->interlocutorComercial);
+	do
+	{
+		cout << "Nombre: ";
+		cin >> datos;
+		this->interlocutorComercial.setNombre(datos);
+		cout << "Apellido: ";
+		cin >> datos;
+		this->interlocutorComercial.setApellido(datos);
+		cout << "Correo electronico: ";
+		cin >> datos;
+		this->interlocutorComercial.setEmail(datos);
+		Fecha fechaIngreso;
+		cout << "Fecha Alta: ";
+		fechaIngreso.cargarFecha();
+		this->interlocutorComercial.setFechaIngresoId(fechaIngreso);
+		Direccion direccion;
+		cout << "Direccion: ";
+		direccion.CargarDireccion();
+		this->interlocutorComercial.setDireccionId(direccion);
+		datos = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
+		if (datos == "OK")
+		{
+			this->interlocutorComercialRN.AltaInterlocutorComercial(this->interlocutorComercial);
+			break;
+		}
+		else
+		{
+			cout << datos << endl;
+			cout << "Ingrese todo los datos correctamente" << endl;
+		}
+	} while (true);
 }
 /// <summary>
 /// Funci�n global para listar todos los interlocutores del archivo.
@@ -70,6 +82,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 {
 	long dni;
 	int opcion;
+	string control = "";
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -81,6 +94,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		if (this->interlocutorComercial.getDni() == dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado no esta dado de alta!!!" << endl;
+			system("pause");
 			system("cls");
 		}
 		else
@@ -94,6 +108,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "1. Modificar nombre" << endl;
 		cout << "2. Modificar apellido" << endl;
 		cout << "3. Modificar e-mail" << endl;
+		cout << "4. Modificar estado (Activo)" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "Opcion: ";
@@ -102,20 +117,34 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		switch (opcion)
 		{
 		case 1:
+		{
 			cout << "Nombre: ";
 			cin >> datos;
 			this->interlocutorComercial.setNombre(datos);
 			break;
+		}
 		case 2:
+		{
 			cout << "Apellido: ";
 			cin >> datos;
 			this->interlocutorComercial.setApellido(datos);
 			break;
+		}
 		case 3:
+		{
 			cout << "E-mail: ";
 			cin >> datos;
 			this->interlocutorComercial.setEmail(datos);
 			break;
+		}
+		case 4:
+		{
+			cout << "Modificar estado 'S' o 'N' : ";
+			cin >> datos;
+			if (datos == "S")
+				this->interlocutorComercial.setActivo(!this->interlocutorComercial.getActivo());
+			break;
+		}
 		case 0:
 
 			break;
@@ -123,7 +152,19 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			cout << "Opcion invalida!!!" << endl;
 			break;
 		}
+		control = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
+		if (control == "OK")
+		{
+			if (!this->interlocutorComercialRN.ModificaInterlocutorComercial(this->interlocutorComercial))
+				cout << "Fallo la modificación intente nuevamante" << endl;
+			else
+				cout << "Modificación correcta" << endl;
+		}
+		else
+			cout << control << endl;
+
 	} while (opcion != 0);
+
 }
 void InterlocutorComercialV::ModificarInterlocutor()
 {
@@ -178,7 +219,7 @@ string InterlocutorComercialV::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-void InterlocutorComercialV::setInterlocutorComercial(InterlocutorComercial &interlocutorComercial)
+void InterlocutorComercialV::setInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
 	this->interlocutorComercial = interlocutorComercial;
 }

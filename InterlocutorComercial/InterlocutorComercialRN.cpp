@@ -12,6 +12,17 @@ bool InterlocutorComercialRN::AltaInterlocutorComercial(InterlocutorComercial& i
 	interlocutorComercial.setId_ic(interlocutorComercial.getDni());
 	return this->interlocutorComercialAD.GuardarEnArchivoInterlocutor(interlocutorComercial);
 }
+bool InterlocutorComercialRN::ModificaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
+{
+	return this->interlocutorComercialAD.ActualizarEnArchivoIneterlocurtor(interlocutorComercial);
+}
+bool InterlocutorComercialRN::ExisteInterlocutorComercial(long dni)
+{
+	InterlocutorComercial intlocutorExiste = this->BuscarInterlocutorComercial(dni);
+	if (intlocutorExiste.getNombre() != "" || intlocutorExiste.getApellido() != "")
+		return false;
+	return true;
+}
 InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(long dni)
 {
 	InterlocutorComercial intComAD = this->interlocutorComercialAD.getInterlocutorArchivo(dni);
@@ -19,12 +30,20 @@ InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(long 
 		return intComAD;
 	return InterlocutorComercial();
 }
-bool InterlocutorComercialRN::ControlModificaciones(InterlocutorComercial& interlocutorComercial)
-{
-	///Hacer la validadciones correspondientes al interlocutor pasado por parametro
-	return true;
+string InterlocutorComercialRN::ControlModificaciones(InterlocutorComercial& interlocutorComercial)
+{	
+	if (interlocutorComercial.getNombre() == "")
+		return "No se cargo nombre al inerlocutor comercial\n";
+	if (interlocutorComercial.getApellido() == "")
+		return "No se cargo apellido al inerlocutor comercial\n";;
+	string correo = interlocutorComercial.getEmail();
+	string letra = "@";
+	if (!strstr(correo.c_str(), letra.c_str()))
+		return "No se cargo correctamente el correo al inerlocutor comercial\n";;
+
+	return "OK";
 }
-long InterlocutorComercialRN::CantidadInterLocutoresEnSistema()
+long InterlocutorComercialRN::CantidadInterlocutoresEnSistema()
 {
 	return this->interlocutorComercialAD.TotalInterlocutoresEnArchivo();
 }

@@ -59,6 +59,6 @@ private:
 	Fecha fechaBajaContrato;
 	unsigned int codigoTarifa;
 	float consumoPromedio;
-	float posicionArchivo;
+	long posicionArchivo;
 	bool activo;
 };

@@ -27,7 +27,7 @@ long ContratoAD::TotalContratosEnArchivo()
 	Contrato contatoAD;
 	long cantidad = 0;
 	archivo.seekg(0, ios::end);
-	long pos = archivo.tellg();
+	int pos = archivo.tellg();
 	cantidad = pos / sizeof(Contrato);
 	archivo.close();
 	return cantidad;
