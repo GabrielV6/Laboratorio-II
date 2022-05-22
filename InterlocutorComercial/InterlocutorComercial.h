@@ -6,38 +6,38 @@
 class InterlocutorComercial
 {
 private:
-	long id_ic;
+	unsigned int id_ic;
 	char nombre[30];
 	char apellido[30];
-	long dni;
+	unsigned int dni;
 	char email[50];
 	Fecha fechaIngresoID;
 	Direccion direccionID;
-	long numPosicionArch;
+	unsigned int numPosicionArch;
 	char nombreArchivo[30];
 	bool activo;
 public:
 	InterlocutorComercial();
 	InterlocutorComercial(string nombreArchivo);
 	~InterlocutorComercial();
-	void setId_ic(long id_ic);
+	void setId_ic(unsigned int id_ic);
 	void setNombre(string nombre);
 	void setApellido(string apellido);
-	void setDni(long dni);
+	void setDni(unsigned int dni);
 	void setEmail(string email);
 	void setFechaIngresoId(Fecha fechaIn);
 	void setDireccionId(Direccion direccionId);
-	void setNumPosicionArchivo(long numPosArch);
+	void setNumPosicionArchivo(unsigned int numPosArch);
 	void setNombreArchivo(string nomArch);
 	void setActivo(bool activo);
-	long getId_ic();
+	unsigned int getId_ic();
 	string getNombre();
 	string getApellido();
-	long getDni();
+	unsigned int getDni();
 	string getEmail();
 	Fecha getFechaIngresoId();
 	Direccion getDireccionId();
-	long getNumPosicionArhivo();
+	unsigned int getNumPosicionArhivo();
 	string getNombreArchivo();
 	bool getActivo();
 	string toStringInterlocutor();	

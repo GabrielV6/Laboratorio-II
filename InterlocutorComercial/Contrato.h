@@ -15,31 +15,31 @@
 #pragma once
 #include <iostream>
 #include "InterlocutorComercialRN.h"
+#include "TarifaRN.h"
 
 class Contrato
 {
 
 public:
-	Contrato();
-	Contrato(int idContrato, InterlocutorComercial& interlocutorComercial, int idCuentaContrato, int idMedidor, int idInstalacion, string zona, Fecha fecAlta, Fecha fecBaja, float tarifas, float consumoPromedio, long posicionArchivo, bool activo);
+	Contrato();	
 	void setIdContrato(int idContrato);
-	int getIdContrato();
-	void setIdInterlocutorComercial(InterlocutorComercial& idInterlocutorComercial);
-	InterlocutorComercial& getIdInterlocutorComercial();
+	unsigned int getIdContrato();
+	void setIdInterlocutorComercial(unsigned int idInterlocutorComercial);
+	unsigned int getIdInterlocutorComercial();
 	void setIdCuentaContrato(int idCuentaContrato);
-	int getIdCuentaContrato();
+	unsigned int getIdCuentaContrato();
 	void setIdMedidor(int idMedidor);
-	int getIdMedidor();
+	unsigned int getIdMedidor();
 	void setIdInstalacion(int idInstalacion);
-	int getIdInstalacion();
+	unsigned int getIdInstalacion();
 	void setZona(string zona);
 	string getZona();
 	void setFechaAltaContrato(Fecha fecAlta);
 	Fecha getFechaAltaContrato();
 	void setFechaBajaContrato(Fecha fecBaja);
 	Fecha getFechaBajaContrato();
-	void setTarifas(float tarifas);
-	float getTarifas();
+	void setCodigoTarifa(unsigned int codTarifa);
+	unsigned int getCodigoTarifa();
 	void setConsumoPromedio(float consumoPromedio);
 	float getConsumoPromedio();
 	void setPoscicionArchivo(long posicionArchivo);
@@ -49,15 +49,15 @@ public:
 	string toStringContrato();
 
 private:
-	int idContrato;
-	InterlocutorComercial interlocutorComercial;
-	int idCuentaContrato;
-	int idMedidor;
-	int idInstalacion;
+	unsigned int idContrato;
+	unsigned int IdInterlocutorComercial;
+	unsigned int idCuentaContrato;
+	unsigned int idMedidor;
+	unsigned int idInstalacion;
 	char zona[40];
 	Fecha fechaAltaContrato;
 	Fecha fechaBajaContrato;
-	float tarifas;
+	unsigned int codigoTarifa;
 	float consumoPromedio;
 	float posicionArchivo;
 	bool activo;

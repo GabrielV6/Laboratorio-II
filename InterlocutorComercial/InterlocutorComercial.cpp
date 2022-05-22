@@ -27,7 +27,7 @@ InterlocutorComercial::InterlocutorComercial(string nombreArchivo)
 }
 InterlocutorComercial::~InterlocutorComercial()
 {}
-void InterlocutorComercial::setId_ic(long id_ic)
+void InterlocutorComercial::setId_ic(unsigned int id_ic)
 {
 	this->id_ic = id_ic;
 }
@@ -39,7 +39,7 @@ void InterlocutorComercial::setApellido(string apellido)
 {
 	strcpy_s(this->apellido, apellido.c_str());
 }
-void InterlocutorComercial::setDni(long dni)
+void InterlocutorComercial::setDni(unsigned int dni)
 {
 	this->dni = dni;
 }
@@ -55,7 +55,7 @@ void InterlocutorComercial::setDireccionId(Direccion direccionId)
 {
 	this->direccionID = direccionID;
 }
-void InterlocutorComercial::setNumPosicionArchivo(long numPosArch)
+void InterlocutorComercial::setNumPosicionArchivo(unsigned int numPosArch)
 {
 	this->numPosicionArch = numPosArch;
 }
@@ -67,7 +67,7 @@ void InterlocutorComercial::setActivo(bool activo)
 {
 	this->activo = activo;
 }
-long InterlocutorComercial::getId_ic()
+unsigned int InterlocutorComercial::getId_ic()
 {
 	return this->id_ic;
 }
@@ -79,7 +79,7 @@ string InterlocutorComercial::getApellido()
 {
 	return this->apellido;
 }
-long InterlocutorComercial::getDni()
+unsigned int InterlocutorComercial::getDni()
 {
 	return this->dni;
 }
@@ -95,7 +95,7 @@ Direccion InterlocutorComercial::getDireccionId()
 {
 	return this->direccionID;
 }
-long InterlocutorComercial::getNumPosicionArhivo()
+unsigned int InterlocutorComercial::getNumPosicionArhivo()
 {
 	return this->numPosicionArch;
 }

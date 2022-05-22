@@ -141,6 +141,7 @@
     <ClInclude Include="InstalacionAD.h" />
     <ClInclude Include="InstalacionRN.h" />
     <ClInclude Include="InstalacionV.h" />
+    <ClInclude Include="InterfaceSalida.h" />
     <ClInclude Include="InterlocutorComercial.h" />
     <ClInclude Include="InterlocutorComercialAD.h" />
     <ClInclude Include="InterlocutorComercialRN.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="CuentaContratoV.cpp" />
     <ClCompile Include="Direccion.cpp" />
     <ClCompile Include="Fecha.cpp" />
+    <ClCompile Include="InterfaceSalida.cpp" />
     <ClCompile Include="InterlocutorComercial.cpp" />
     <ClCompile Include="InterlocutorComercialAD.cpp" />
     <ClCompile Include="InterlocutorComercialRN.cpp" />
@@ -180,7 +182,7 @@
     <ClCompile Include="UsuarioV.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

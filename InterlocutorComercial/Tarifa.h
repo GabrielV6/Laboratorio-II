@@ -23,7 +23,7 @@ public:
 	float getCargovariable();
 	float getImpuestos();
 	int getCodigoDeTarifa();
-	bool tipoDeTarifa();
+	bool getTipoDeTarifa();
 	
 	void cargarTarifa();
 	string toStringTarifa();

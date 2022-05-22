@@ -86,7 +86,7 @@ bool ContratoV::NuevoContrato()
     bool cargado = false;
     long datoId, opcion;
 
-    contratoNuevo.setIdInterlocutorComercial(interComContrato);
+    contratoNuevo.setIdInterlocutorComercial(interComContrato.getId_ic());
     //Buscar cuenta contrato
     datoId = contratoRN.IdContratoNuevo();
     contratoNuevo.setIdCuentaContrato(datoId);
@@ -121,11 +121,14 @@ InterlocutorComercial ContratoV::BuscarInterlocutorComercialPorID()
 {
     InterlocutorComercialRN interComRN(this->nombreArchivo);
     InterlocutorComercial interCom;
-    int datoId, opcion;
+    unsigned int datoId;
+    int opcion;
+    string dato;
     do
     {
         cout << "Ingrese el Id del interlocutor comercial: ";
-        cin >> datoId;
+        cin >> dato;
+        datoId = stoi(dato);
         interCom = interComRN.BuscarInterlocutorComercial(datoId);
         if (!interCom.getActivo())
         {

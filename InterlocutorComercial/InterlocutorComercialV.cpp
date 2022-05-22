@@ -15,14 +15,16 @@ InterlocutorComercialV::~InterlocutorComercialV()
 void InterlocutorComercialV::NuevoInterlocutor()
 {
 	this->interlocutorComercial = InterlocutorComercial(this->nombreArchivo);
-	long dni;
+	unsigned int dni;
+	string datos;
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del Interlocutor comercial" << endl;
 		cout << "--------------------------------------------------" << endl;
 		cout << "Documento Nr.: ";
-		cin >> dni;
+		cin >> datos;
+		dni = stoi(datos);//Usar para pasar de string a int
 		if (this->interlocutorComercialRN.BuscarInterlocutorComercial(dni).getDni() == dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
@@ -32,7 +34,6 @@ void InterlocutorComercialV::NuevoInterlocutor()
 			break;
 	} while (true);
 	this->interlocutorComercial.setDni(dni);
-	string datos;
 	cout << "Nombre: ";
 	cin >> datos;
 	this->interlocutorComercial.setNombre(datos);

@@ -8,6 +8,8 @@ InterlocutorComercialRN::~InterlocutorComercialRN()
 {}
 bool InterlocutorComercialRN::AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
+	//Ver si se hace una busqueda en el archivo de interlocutores para asignar el númerador de id
+	interlocutorComercial.setId_ic(interlocutorComercial.getDni());
 	return this->interlocutorComercialAD.GuardarEnArchivoInterlocutor(interlocutorComercial);
 }
 InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(long dni)
