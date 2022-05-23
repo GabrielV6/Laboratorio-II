@@ -48,6 +48,7 @@ bool InterlocutorComercialAD::GuardarEnArchivoInterlocutor(InterlocutorComercial
 		return false;
 	//Busca cuantos interlocutores hay en el archivo y le asigna esa cantidad a la posicion relativa del interlocutor en el archivo.	
 	long posArchivo = TotalInterlocutoresEnArchivo();
+	intComAD.setNumPosicionArchivo(++posArchivo);
 	archivo.write((char*)&intComAD, sizeof(InterlocutorComercial));
 	archivo.close();
 	return true;

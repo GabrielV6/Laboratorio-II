@@ -91,7 +91,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "Documento Nr.: ";
 		cin >> dni;
 		this->interlocutorComercial = this->interlocutorComercialRN.BuscarInterlocutorComercial(dni);
-		if (this->interlocutorComercial.getDni() == dni) // LLamar metodo de regla de negocio que valida si existe el DNI
+		if (this->interlocutorComercial.getDni() != dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado no esta dado de alta!!!" << endl;
 			system("pause");
