@@ -15,14 +15,16 @@ UsuarioV::~UsuarioV()
 void UsuarioV::NuevoUsuario()
 {
 	this->usuario = Usuario(this->nombreArchivo);
-	long dni;
+	unsigned int dni;
+	string datos;	
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del usuario" << endl;
 		cout << "--------------------------------------------------" << endl;
 		cout << "Documento Nr.: ";
-		cin >> dni;
+		cin >> datos;
+		dni = stoi(datos);//Usar para pasar de string a int
 		if (this->usuarioRN.BuscarUsuario(dni).getDni() == dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
@@ -32,6 +34,7 @@ void UsuarioV::NuevoUsuario()
 			break;
 	} while (true);
 	this->usuario.setDni(dni);
+	do{
 	string datos;
 	cout << "Nombre: ";
 	cin >> datos;
@@ -50,7 +53,19 @@ void UsuarioV::NuevoUsuario()
 	cout << "Direccion: ";
 	direccion.CargarDireccion();
 	this->usuario.setDireccionId(direccion);
-	// this->GuardarEnArchivo();
+	datos = this->usuarioRN.ControlModificaciones(this->usuario);
+	if (datos == "OK")
+	{
+		this->usuarioRN.AltaUsuario(this->usuario);
+		break;
+	}
+	else
+	{
+		cout << datos << endl;
+		cout << "Ingrese todo los datos correctamente" << endl;
+	}
+} while (true);
+
 }
 /// <summary>
 /// Funcion global para listar todos los usuarios del archivo.
@@ -68,6 +83,7 @@ void UsuarioV::MenuModificarUsuario()
 {
 	long dni;
 	int opcion;
+	string control = "";
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -121,6 +137,16 @@ void UsuarioV::MenuModificarUsuario()
 			cout << "Opcion invalida!!!" << endl;
 			break;
 		}
+		control = this->usuarioRN.ControlModificaciones(this->usuario);
+		if (control == "OK")
+		{
+			if (!this->usuarioRN.ModificaUsuario(this->usuario))
+				cout << "Fallo la modificación intente nuevamante" << endl;
+			else
+				cout << "Modificación correcta" << endl;
+		}
+		else
+			cout << control << endl;
 	} while (opcion != 0);
 }
 void UsuarioV::ModificarUsuario()

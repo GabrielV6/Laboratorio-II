@@ -7,8 +7,20 @@ UsuarioRN::UsuarioRN(string nombreArchivo)
 UsuarioRN::~UsuarioRN()
 {}
 bool UsuarioRN::AltaUsuario(Usuario& usuario)
-{
+{	//Ver si se hace una busqueda en el archivo de usuarioss para asignar el númerador de id
+	usuario.setId_us(usuario.getDni());
 	return this->usuarioAD.GuardarEnArchivoUsuario(usuario);
+}
+bool UsuarioRN::ModificaUsuario(Usuario& usuario)
+{
+	return this->usuarioAD.ActualizarEnArchivoUsuario(usuario);
+}
+bool UsuarioRN::ExisteUsuario(long dni)
+{
+	Usuario usuarioExiste = this->BuscarUsuario(dni);
+	if (usuarioExiste.getNombre() != "" || usuarioExiste.getApellido() != "")
+		return false;
+	return true;
 }
 Usuario UsuarioRN::BuscarUsuario(long dni)
 {
@@ -17,10 +29,18 @@ Usuario UsuarioRN::BuscarUsuario(long dni)
 		return usuarioAD;
 	return Usuario();
 }
-bool UsuarioRN::ControlModificaciones(Usuario& usuario)
+string UsuarioRN::ControlModificaciones(Usuario& usuario)
 {
-	///Hacer la validadciones correspondientes al usuario pasado por parametro
-	return true;
+	if (usuario.getNombre() == "")
+		return "No se cargo el nombre al usuario\n";
+	if (usuario.getApellido() == "")
+		return "No se cargo el apellido al usuario\n";;
+	string correo = usuario.getEmail();
+	string letra = "@";
+	if (!strstr(correo.c_str(), letra.c_str()))
+		return "No se cargo correctamente el correo al usuario\n";;
+
+	return "OK";
 }
 long UsuarioRN::CantidadUsuariosEnSistema()
 {

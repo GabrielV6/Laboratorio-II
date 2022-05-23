@@ -8,9 +8,11 @@ private:
 public:
 	UsuarioRN(string nombreArchivo = "");
 	~UsuarioRN();
+	bool ExisteUsuario(long dni);
 	Usuario BuscarUsuario(long dni);
-	bool ControlModificaciones(Usuario& usuario);
+	string ControlModificaciones(Usuario& usuario);
 	bool AltaUsuario(Usuario& usuario);
+	bool ModificaUsuario(Usuario& usuario);
 	long CantidadUsuariosEnSistema();
 	string getNombreArchivo();
 	vector<Usuario> VectorUsuarios();
