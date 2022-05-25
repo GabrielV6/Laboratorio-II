@@ -48,11 +48,10 @@ bool InterlocutorComercialAD::GuardarEnArchivoInterlocutor(InterlocutorComercial
 		return false;
 	//Busca cuantos interlocutores hay en el archivo y le asigna esa cantidad a la posicion relativa del interlocutor en el archivo.	
 	long posArchivo = TotalInterlocutoresEnArchivo();
-	intComAD.setNumPosicionArchivo(++posArchivo);
+	intComAD.setNumPosicionArchivo(posArchivo);
 	archivo.write((char*)&intComAD, sizeof(InterlocutorComercial));
 	archivo.close();
 	return true;
-
 }
 /// <summary>
 /// Este método permite modificar en el archivo el interlocutor enviado por parametro
@@ -61,15 +60,12 @@ bool InterlocutorComercialAD::GuardarEnArchivoInterlocutor(InterlocutorComercial
 /// <returns></returns>
 bool InterlocutorComercialAD::ActualizarEnArchivoIneterlocurtor(InterlocutorComercial& interlocutor)
 {
-
 	fstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::binary | ios::in | ios::out);
-	archivo.seekg(0);
+	archivo.seekg(0); //se ubica en el inicio del archivo
 	if (archivo.fail())
 		return false;
-	int pos = 0;
-	int cantidad = 0;
-	cantidad = TotalInterlocutoresEnArchivo();
+	
 	archivo.seekp(interlocutor.getNumPosicionArhivo() * sizeof(InterlocutorComercial), ios::cur);
 
 	//cout << "Posicion: " << to_string(archivo.tellp()) << endl;

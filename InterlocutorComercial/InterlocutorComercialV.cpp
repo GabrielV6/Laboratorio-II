@@ -6,6 +6,7 @@ InterlocutorComercialV::InterlocutorComercialV(string nombreArchivo)
 	this->nombreArchivo = nombreArchivo;
 	this->interlocutorComercialRN = InterlocutorComercialRN(nombreArchivo);
 }
+
 InterlocutorComercialV::~InterlocutorComercialV()
 {
 }
@@ -82,7 +83,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 {
 	long dni;
 	int opcion;
-	string control = "";
+	
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -102,6 +103,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 	} while (true);
 	do
 	{
+		string control = "";
 		cout << "-------------------------------------------------" << endl;
 		cout << "Interlocutor: " << this->interlocutorComercial.toStringInterlocutor() << endl;
 		cout << "-------------------------------------------------" << endl;
@@ -109,7 +111,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "2. Modificar apellido" << endl;
 		cout << "3. Modificar e-mail" << endl;
 		cout << "4. Modificar estado (Activo)" << endl;
-		cout << "0. Salir" << endl;
+		cout << "0. Volver al menú anteriror" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "Opcion: ";
 		cin >> opcion;
@@ -152,8 +154,9 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			cout << "Opcion invalida!!!" << endl;
 			break;
 		}
-		control = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
-		if (control == "OK")
+		if (opcion > 0)
+			control = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
+		if (control == "OK" && opcion != 0)
 		{
 			if (!this->interlocutorComercialRN.ModificaInterlocutorComercial(this->interlocutorComercial))
 				cout << "Fallo la modificación intente nuevamante" << endl;
@@ -162,10 +165,10 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		}
 		else
 			cout << control << endl;
-
+		system("pause");
 	} while (opcion != 0);
-
 }
+
 void InterlocutorComercialV::ModificarInterlocutor()
 {
 	MenuModificarInterlocutor();
@@ -185,7 +188,7 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 		cout << "1. Nuevo Interlocutor" << endl;
 		cout << "2. Listar Interlocutores" << endl;
 		cout << "3. Modificar Interlocutor" << endl;
-		cout << "0. Salir" << endl;
+		cout << "0. Salir del menú interlocutor" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
 		cout << "Ingrese una opcion: ";
