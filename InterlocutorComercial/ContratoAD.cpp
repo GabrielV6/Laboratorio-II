@@ -39,6 +39,9 @@ bool ContratoAD::GuardarEnArchivoContrato(Contrato& contrato)
 	archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
+	//Busca cuantos interlocutores hay en el archivo y le asigna esa cantidad a la posicion relativa del interlocutor en el archivo.	
+	long posArchivo = TotalContratosEnArchivo();
+	contrato.setPoscicionArchivo(posArchivo);
 	archivo.write((char*)&contrato, sizeof(InterlocutorComercial));
 	archivo.close();
 	return true;
@@ -51,13 +54,8 @@ bool ContratoAD::ActualizarEnArchivoContrato(Contrato& contrato)
 	archivo.seekg(0);
 	if (archivo.fail())
 		return false;
-	int pos = 0;
-	int cantidad = 0;
-	cantidad = TotalContratosEnArchivo();
-	
+	//Se ubica en la posicion que debe actualizar del archivo
 	archivo.seekp(contrato.getPosicionArchivo() * sizeof(InterlocutorComercial), ios::cur);
-
-	//cout << "Posicion: " << to_string(archivo.tellp()) << endl;
 	archivo.write((char*)&contrato, sizeof(InterlocutorComercial));
 	archivo.close();
 	return true;
