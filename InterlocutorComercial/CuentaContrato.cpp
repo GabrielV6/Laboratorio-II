@@ -11,14 +11,14 @@ CuentaContrato::CuentaContrato()
 	this->direccionID = Direccion();
 	this->activo = true;
 	this->numPosicionArch = -1;
-	strcpy_s(this->nombreArchivo, "");
+	strcpy(this->nombreArchivo, "");
 }
 CuentaContrato::CuentaContrato(string nombreArchivo)
 {
-	strcpy_s(this->nombreArchivo, nombreArchivo.c_str());
+	strcpy(this->nombreArchivo, nombreArchivo.c_str());
 	this->id_cc = 0;
 	this->id_ic = 0;
-	strcpy_s(this->formaDePago, "");
+	strcpy(this->formaDePago, "");
 	this->categoriaDeCliente = false;
     this->tipoDeInteres = false;
 	this->fechaIngresoID = Fecha();
@@ -38,7 +38,7 @@ void CuentaContrato::setId_ic(long id_ic)
 }
 void CuentaContrato::setFormaDePago(string formaDePago)
 {
-	strcpy_s(this->formaDePago, formaDePago.c_str());
+	strcpy(this->formaDePago, formaDePago.c_str());
 }
 void CuentaContrato::setCategoriaDeCliente(bool categoriaDeCliente)
 {
@@ -62,7 +62,7 @@ void CuentaContrato::setNumPosicionArchivo(long numPosArch)
 }
 void CuentaContrato::setNombreArchivo(string nomArch)
 {
-	strcpy_s(this->nombreArchivo, nomArch.c_str());
+	strcpy(this->nombreArchivo, nomArch.c_str());
 }
 void CuentaContrato::setActivo(bool activo)
 {

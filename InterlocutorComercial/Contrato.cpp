@@ -9,7 +9,7 @@ Contrato::Contrato()
     this->idCuentaContrato = 0;
     this->idMedidor = 0;
     this->idInstalacion = 0;
-    strcpy_s(this->zona, "");
+    strcpy(this->zona, "");
     this->fechaAltaContrato = Fecha();
     this->fechaBajaContrato = Fecha();
     this->codigoTarifa = 0;
@@ -59,7 +59,7 @@ unsigned int Contrato::getIdInstalacion()
 }
 void Contrato::setZona(string zona)
 {
-    strcpy_s(this->zona, zona.c_str());
+    strcpy(this->zona, zona.c_str());
 }
 string Contrato::getZona()
 {

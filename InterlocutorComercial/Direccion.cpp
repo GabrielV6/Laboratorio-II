@@ -14,7 +14,7 @@ Direccion::~Direccion()
 }
 void Direccion::setCalle(string calle)
 {
-	strcpy_s(this->calle, calle.c_str());
+	strcpy(this->calle, calle.c_str());
 }
 void Direccion::setNumero(unsigned int numero)
 {
@@ -22,19 +22,19 @@ void Direccion::setNumero(unsigned int numero)
 }
 void Direccion::setDescripcion(string descripcion)
 {
-	strcpy_s(this->descripcion, descripcion.c_str());
+	strcpy(this->descripcion, descripcion.c_str());
 }
 void Direccion::setCodPostal(string codPostal)
 {
-	strcpy_s(this->codPostal, codPostal.c_str());
+	strcpy(this->codPostal, codPostal.c_str());
 }
 void Direccion::setLocalidad(string localidad)
 {
-	strcpy_s(this->loclidad, localidad.c_str());
+	strcpy(this->loclidad, localidad.c_str());
 }
 void Direccion::setProvincia(string provincia)
 {
-	strcpy_s(this->provincia, provincia.c_str());
+	strcpy(this->provincia, provincia.c_str());
 }
 string Direccion::getCalle()
 {

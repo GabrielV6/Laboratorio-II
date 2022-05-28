@@ -3,23 +3,23 @@ Usuario::Usuario()
 {
 	this->id_us = 0;
 	this->dni = 0;
-	strcpy_s(this->nombre, "");
-	strcpy_s(this->apellido, "");
-	strcpy_s(this->email, "");
+	strcpy(this->nombre, "");
+	strcpy(this->apellido, "");
+	strcpy(this->email, "");
 	this->fechaIngresoID = Fecha();
 	this->direccionID = Direccion();
 	this->activo = false;
 	this->numPosicionArch = -1;
-	strcpy_s(this->nombreArchivo, "");
+	strcpy(this->nombreArchivo, "");
 }
 Usuario::Usuario(string nombreArchivo)
 {
-	strcpy_s(this->nombreArchivo, nombreArchivo.c_str());
+	strcpy(this->nombreArchivo, nombreArchivo.c_str());
 	this->id_us = 0;
 	this->dni = 0;
-	strcpy_s(this->nombre, "");
-	strcpy_s(this->apellido, "");
-	strcpy_s(this->email, "");
+	strcpy(this->nombre, "");
+	strcpy(this->apellido, "");
+	strcpy(this->email, "");
 	this->fechaIngresoID = Fecha();
 	this->direccionID = Direccion();
 	this->activo = false;
@@ -33,11 +33,11 @@ void Usuario::setId_us(long id_us)
 }
 void Usuario::setNombre(string nombre)
 {
-	strcpy_s(this->nombre, nombre.c_str());
+	strcpy(this->nombre, nombre.c_str());
 }
 void Usuario::setApellido(string apellido)
 {
-	strcpy_s(this->apellido, apellido.c_str());
+	strcpy(this->apellido, apellido.c_str());
 }
 void Usuario::setDni(long dni)
 {
@@ -45,7 +45,7 @@ void Usuario::setDni(long dni)
 }
 void Usuario::setEmail(string email)
 {
-	strcpy_s(this->email, email.c_str());
+	strcpy(this->email, email.c_str());
 }
 void Usuario::setFechaIngresoId(Fecha fechaIn)
 {
@@ -61,7 +61,7 @@ void Usuario::setNumPosicionArchivo(long numPosArch)
 }
 void Usuario::setNombreArchivo(string nomArch)
 {
-	strcpy_s(this->nombreArchivo, nomArch.c_str());
+	strcpy(this->nombreArchivo, nomArch.c_str());
 }
 void Usuario::setActivo(bool activo)
 {
