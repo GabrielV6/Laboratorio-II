@@ -29,7 +29,7 @@ long CuentaContratoAD::TotalCuentaContratoEnArchivo()
 	long cantidad = 0;
 	archivo.seekg(0, ios::end);
 	int pos = archivo.tellg();
-	cantidad = pos / sizeof(intComAd);
+	cantidad = pos / sizeof(intComAD);
 	archivo.close();
 	return cantidad;
 }
@@ -46,7 +46,7 @@ bool CuentaContratoAD::GuardarEnArchivoCuentaContrato(CuentaContrato& contrato)
 		return false;
 	//Busca cuantas cuenta contrato hay en el archivo y le asigna esa cantidad a la posicion relativa del contrato en el archivo.	
 	long posArchivo = TotalCuentaContratoEnArchivo();
-	contrato.setPoscicionArchivo(posArchivo);
+	intComAD.setNumPosicionArchivo(posArchivo);
 	archivo.write((char*)&intComAD, sizeof(CuentaContrato));
 	archivo.close();
 	return true;
@@ -67,7 +67,7 @@ bool CuentaContratoAD::ActualizarEnArchivoCuentaContrato(CuentaContrato& contrat
 		return false;
 	
 	//cout << "Posicion: " << to_string(archivo.tellp()) << endl;
-	archivo.seekp(contrato.getPosicionArchivo() * sizeof(CuentaContrato), ios::cur);
+	archivo.seekp(contrato.getNumPosicionArhivo() * sizeof(CuentaContrato), ios::cur);
 	archivo.write((char*)&contrato, sizeof(CuentaContrato));
 	archivo.close();
 	return true;

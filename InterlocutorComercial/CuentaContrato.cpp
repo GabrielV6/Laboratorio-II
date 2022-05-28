@@ -4,7 +4,7 @@ CuentaContrato::CuentaContrato()
 {
 	this->id_cc = 0;
 	this->id_ic = 0;
-	strcpy_s(this->formaDePago, "");
+	strcat(this->formaDePago, "");
 	this->categoriaDeCliente = false;
     this->tipoDeInteres = false;
 	this->fechaIngresoID = Fecha();
