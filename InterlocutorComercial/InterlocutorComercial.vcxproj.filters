@@ -33,18 +33,6 @@
     <ClInclude Include="InterlocutorComercialV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ContratoRN.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ContratoAD.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Contrato.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ContratoV.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="CuentaContrato.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -132,18 +120,6 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="InterlocutorComercialRN.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ContratoAD.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Contrato.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ContratoV.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ContratoRN.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CuentaContrato.cpp">

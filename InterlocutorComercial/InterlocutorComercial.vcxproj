@@ -127,10 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Contrato.h" />
-    <ClInclude Include="ContratoAD.h" />
-    <ClInclude Include="ContratoRN.h" />
-    <ClInclude Include="ContratoV.h" />
     <ClInclude Include="CuentaContrato.h" />
     <ClInclude Include="CuentaContratoAD.h" />
     <ClInclude Include="CuentaContratoRN.h" />
@@ -161,10 +157,6 @@
     <ClInclude Include="Validaciones.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Contrato.cpp" />
-    <ClCompile Include="ContratoAD.cpp" />
-    <ClCompile Include="ContratoRN.cpp" />
-    <ClCompile Include="ContratoV.cpp" />
     <ClCompile Include="CuentaContrato.cpp" />
     <ClCompile Include="CuentaContratoAD.cpp" />
     <ClCompile Include="CuentaContratoRN.cpp" />

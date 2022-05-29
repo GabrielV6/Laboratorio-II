@@ -10,6 +10,4 @@ public:
 	static string DatoObligarorioCad(string nombreDato);
 	static int DatoObligarorioNum(string nombreDato);
 
-private:
-
 };

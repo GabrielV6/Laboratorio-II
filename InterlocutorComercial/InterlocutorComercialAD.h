@@ -13,7 +13,7 @@ public:
 	/// Método que devuelve la cantidad de interlocutores comerciales que hay en el archivo de datos.
 	/// </summary>
 	/// <returns>entero largo</returns>
-	long TotalInterlocutoresEnArchivo();
+	int TotalInterlocutoresEnArchivo();
 	/// <summary>
 	/// Método que guarda el interlocutor en el archivo de datos y devuelve verdadero cuando resulta correto la grabación.
 	/// </summary>
@@ -30,7 +30,7 @@ public:
 	/// </summary>
 	/// <param name="posicion"></param>
 	/// <returns>InterlocutorComercial</returns>
-	InterlocutorComercial getInterlocutorArchivo(long dni);
+	InterlocutorComercial getInterlocutorArchivo(int dni);
 	/// <summary>
 	/// Función que devuleve todos los interlocutores del archivo en un vector
 	/// </summary>

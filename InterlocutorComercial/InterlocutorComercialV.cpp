@@ -56,9 +56,9 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		direccion.CargarDireccion();
 		this->interlocutorComercial.setDireccionId(direccion);
 		cout << "Datos ingresados:" << endl;
-		cout << interlocutorComercial.toStringInterlocutor() << endl;
-		cout << "Dar de alta Si = 'S' || No = 'N'";
-		datos = Validaciones::DatoObligarorioCad("Dar de alta");
+		cout << interlocutorComercial.toStringInterlocutor() << endl << endl;
+		cout << "Dar de alta " << endl;
+		datos = Validaciones::DatoObligarorioCad("Si = 'S' || No = 'N'");
 		if (datos == "S")
 		{
 			this->interlocutorComercialRN.AltaInterlocutorComercial(this->interlocutorComercial);

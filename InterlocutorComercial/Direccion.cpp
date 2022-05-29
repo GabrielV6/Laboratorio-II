@@ -1,4 +1,5 @@
 #include "Direccion.h"
+#include "Validaciones.h"
 
 Direccion::Direccion()
 {
@@ -62,22 +63,21 @@ string Direccion::getProvincia()
 }
 void Direccion::CargarDireccion()
 {
-	string dato = IngresoDato("Calle");
+	string dato = Validaciones::DatoObligarorioCad("Calle");
 	this->setCalle(dato);
-
-	dato = IngresoDato("Numero");
-	this->numero = stoi(dato);
+	int num  = Validaciones::DatoObligarorioNum("Numero");
+	this->numero = num;
 	
-	dato = IngresoDato("Descripcion");
+	dato = Validaciones::DatoObligarorioCad("Descripcion");
 	this->setDescripcion(dato);
 	
-	dato = IngresoDato("Codigo Postal");
+	dato = Validaciones::DatoObligarorioCad("Codigo Postal");
 	this->setCodPostal(dato);
 
-	dato = IngresoDato("Localidad");
+	dato = Validaciones::DatoObligarorioCad("Localidad");
 	this->setLocalidad(dato);
 
-	dato = IngresoDato("Provincia");
+	dato = Validaciones::DatoObligarorioCad("Provincia");
 	this->setProvincia(dato);
 }
 
@@ -85,19 +85,4 @@ string Direccion::toStringDireccion()
 {
 	return "Calle: " + this->getCalle() + ", numero: " + to_string(this->numero) + ", Desc. Casa Dpto: " + this->getDescripcion() +
 		", Cod. Postal: " + this->getCodPostal() + ", localidad: " + this->getLocalidad() + ", provincia: " + this->getProvincia();
-}
-
-string Direccion::IngresoDato(string nombreDato)
-{
-	string dato = "";
-	do
-	{
-		cout << "Ingrese " + nombreDato + " : ";
-		cin >> dato;
-		if (dato == "")
-			cout << "Dato obligatorio " + nombreDato + " no puede quedar en blanco\nPor favor, ingrese nuevamente" << endl;
-		else
-			break;
-	} while (true);
-	return dato;
 }

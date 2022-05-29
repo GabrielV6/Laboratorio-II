@@ -19,20 +19,16 @@ string InterlocutorComercialAD::getNombreArchivo()
 /// Método que devuelve la cantidad de interlocutores comerciales que hay en el archivo de datos.
 /// </summary>
 /// <returns>entero largo</returns>
-long InterlocutorComercialAD::TotalInterlocutoresEnArchivo()
+int InterlocutorComercialAD::TotalInterlocutoresEnArchivo()
 {
 	ifstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::in);
 	if (archivo.fail())
 		return -1;
-	InterlocutorComercial intComAD;
 	long cantidad = 0;
-	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
-	{
-		if (!archivo.eof())
-			cantidad++;
-	}
-	archivo.close();
+	archivo.seekg(0, ios::end);
+	int pos = archivo.tellg();
+	cantidad = pos / sizeof(InterlocutorComercial);
 	return cantidad;
 }
 /// <summary>
@@ -78,7 +74,7 @@ bool InterlocutorComercialAD::ActualizarEnArchivoIneterlocurtor(InterlocutorCome
 /// </summary>
 /// <param name="posicion"></param>
 /// <returns>InterlocutorComercial</returns>
-InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(long dni)
+InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(int dni)
 {
 	InterlocutorComercial intComAD;
 	ifstream archivo;

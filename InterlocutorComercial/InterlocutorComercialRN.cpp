@@ -9,28 +9,30 @@ InterlocutorComercialRN::~InterlocutorComercialRN()
 bool InterlocutorComercialRN::AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
 	//Ver si se hace una busqueda en el archivo de interlocutores para asignar el númerador de id
-	interlocutorComercial.setId_ic(interlocutorComercial.getDni());
+	//Busca el total de interlocuteres, le suma 1 y lo multiplica por 1000 para establecer el id del interlocutor
+	int id = (this->interlocutorComercialAD.TotalInterlocutoresEnArchivo() + 1) * 1000;
+	interlocutorComercial.setId_ic(id);
 	return this->interlocutorComercialAD.GuardarEnArchivoInterlocutor(interlocutorComercial);
 }
 bool InterlocutorComercialRN::ModificaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
 	return this->interlocutorComercialAD.ActualizarEnArchivoIneterlocurtor(interlocutorComercial);
 }
-bool InterlocutorComercialRN::ExisteInterlocutorComercial(long dni)
+bool InterlocutorComercialRN::ExisteInterlocutorComercial(int dni)
 {
 	InterlocutorComercial intlocutorExiste = this->BuscarInterlocutorComercial(dni);
-	if (intlocutorExiste.getNombre() != "" || intlocutorExiste.getApellido() != "")
+	if (intlocutorExiste.getNombre() == "" && intlocutorExiste.getApellido() == "")
 		return false;
 	return true;
 }
-InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(long dni)
+InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(int dni)
 {
 	InterlocutorComercial intComAD = this->interlocutorComercialAD.getInterlocutorArchivo(dni);
 	if (intComAD.getDni() == dni)
 		return intComAD;
 	return InterlocutorComercial();
 }
-long InterlocutorComercialRN::CantidadInterlocutoresEnSistema()
+int InterlocutorComercialRN::CantidadInterlocutoresEnSistema()
 {
 	return this->interlocutorComercialAD.TotalInterlocutoresEnArchivo();
 }

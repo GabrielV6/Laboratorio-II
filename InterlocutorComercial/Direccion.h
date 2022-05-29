@@ -12,7 +12,6 @@ private:
 	char codPostal[20];
 	char loclidad[30];
 	char provincia[30];
-	string IngresoDato(string nombreDato);
 public:
 	Direccion();
 	~Direccion();
