@@ -158,6 +158,7 @@
     <ClInclude Include="UsuarioAD.h" />
     <ClInclude Include="UsuarioRN.h" />
     <ClInclude Include="UsuarioV.h" />
+    <ClInclude Include="Validaciones.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Contrato.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="UsuarioAD.cpp" />
     <ClCompile Include="UsuarioRN.cpp" />
     <ClCompile Include="UsuarioV.cpp" />
+    <ClCompile Include="Validaciones.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

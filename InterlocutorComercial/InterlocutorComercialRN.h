@@ -10,7 +10,6 @@ public:
 	~InterlocutorComercialRN();
 	bool ExisteInterlocutorComercial(long dni);
 	InterlocutorComercial BuscarInterlocutorComercial(long dni);
-	string ControlModificaciones(InterlocutorComercial& interlocutorComercial);
 	bool AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
 	bool ModificaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
 	long CantidadInterlocutoresEnSistema();

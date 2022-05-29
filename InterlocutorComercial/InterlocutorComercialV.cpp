@@ -1,4 +1,5 @@
 #include "InterlocutorComercialV.h"
+#include "Validaciones.h"
 
 InterlocutorComercialV::InterlocutorComercialV(string nombreArchivo)
 {
@@ -26,7 +27,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		cout << "Documento Nr.: ";
 		cin >> datos;
 		dni = stoi(datos);//Usar para pasar de string a int
-		if (this->interlocutorComercialRN.BuscarInterlocutorComercial(dni).getDni() == dni) // LLamar metodo de regla de negocio que valida si existe el DNI
+		if (this->interlocutorComercialRN.ExisteInterlocutorComercial(dni)) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
 			system("cls");
@@ -37,12 +38,12 @@ void InterlocutorComercialV::NuevoInterlocutor()
 	this->interlocutorComercial.setDni(dni);
 	do
 	{
-		cout << "Nombre: ";
-		cin >> datos;
+		datos = Validaciones::DatoObligarorioCad("Nombre");
 		this->interlocutorComercial.setNombre(datos);
-		cout << "Apellido: ";
-		cin >> datos;
+		
+		datos = Validaciones::DatoObligarorioCad("Apellido");
 		this->interlocutorComercial.setApellido(datos);
+
 		cout << "Correo electronico: ";
 		cin >> datos;
 		this->interlocutorComercial.setEmail(datos);
@@ -54,16 +55,14 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		cout << "Direccion: ";
 		direccion.CargarDireccion();
 		this->interlocutorComercial.setDireccionId(direccion);
-		datos = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
-		if (datos == "OK")
+		cout << "Datos ingresados:" << endl;
+		cout << interlocutorComercial.toStringInterlocutor() << endl;
+		cout << "Dar de alta Si = 'S' || No = 'N'";
+		datos = Validaciones::DatoObligarorioCad("Dar de alta");
+		if (datos == "S")
 		{
 			this->interlocutorComercialRN.AltaInterlocutorComercial(this->interlocutorComercial);
 			break;
-		}
-		else
-		{
-			cout << datos << endl;
-			cout << "Ingrese todo los datos correctamente" << endl;
 		}
 	} while (true);
 }
@@ -103,7 +102,6 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 	} while (true);
 	do
 	{
-		string control = "";
 		cout << "-------------------------------------------------" << endl;
 		cout << "Interlocutor: " << this->interlocutorComercial.toStringInterlocutor() << endl;
 		cout << "-------------------------------------------------" << endl;
@@ -120,15 +118,13 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		{
 		case 1:
 		{
-			cout << "Nombre: ";
-			cin >> datos;
+			 datos = Validaciones::DatoObligarorioCad("Nombre");
 			this->interlocutorComercial.setNombre(datos);
 			break;
 		}
 		case 2:
 		{
-			cout << "Apellido: ";
-			cin >> datos;
+			datos = Validaciones::DatoObligarorioCad("Nombre");
 			this->interlocutorComercial.setApellido(datos);
 			break;
 		}
@@ -154,17 +150,14 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			cout << "Opcion invalida!!!" << endl;
 			break;
 		}
-		if (opcion > 0)
-			control = this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
-		if (control == "OK" && opcion != 0)
+		
+		if (opcion != 0)
 		{
 			if (!this->interlocutorComercialRN.ModificaInterlocutorComercial(this->interlocutorComercial))
 				cout << "Fallo la modificación intente nuevamante" << endl;
 			else
 				cout << "Modificación correcta" << endl;
 		}
-		else
-			cout << control << endl;
 		system("pause");
 	} while (opcion != 0);
 }
@@ -172,7 +165,6 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 void InterlocutorComercialV::ModificarInterlocutor()
 {
 	MenuModificarInterlocutor();
-	this->interlocutorComercialRN.ControlModificaciones(this->interlocutorComercial);
 }
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de interlocutores.

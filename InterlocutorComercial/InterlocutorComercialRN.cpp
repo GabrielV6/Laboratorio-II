@@ -30,19 +30,6 @@ InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(long 
 		return intComAD;
 	return InterlocutorComercial();
 }
-string InterlocutorComercialRN::ControlModificaciones(InterlocutorComercial& interlocutorComercial)
-{	
-	if (interlocutorComercial.getNombre() == "")
-		return "No se cargo nombre al inerlocutor comercial\n";
-	if (interlocutorComercial.getApellido() == "")
-		return "No se cargo apellido al inerlocutor comercial\n";;
-	string correo = interlocutorComercial.getEmail();
-	string letra = "@";
-	if (!strstr(correo.c_str(), letra.c_str()))
-		return "No se cargo correctamente el correo al inerlocutor comercial\n";;
-
-	return "OK";
-}
 long InterlocutorComercialRN::CantidadInterlocutoresEnSistema()
 {
 	return this->interlocutorComercialAD.TotalInterlocutoresEnArchivo();

@@ -1,5 +1,6 @@
 //implementar todos los metodos de la clase Fecha.h
 #include "Fecha.h"
+#include "Validaciones.h"
 
 Fecha::Fecha(int dia, int mes, int anio)
 {
@@ -36,28 +37,15 @@ int Fecha::getAnio()
 void Fecha::cargarFecha()
 {
 	//Validar todos los datos de tipo numericos
-	string dato;
-	dato = IngresoDato("Dia");
-	this->dia = stoi(dato);
-	dato = IngresoDato("Mes");
-	this->mes = stoi(dato);
-	dato = IngresoDato("Año");
-	this->anio = stoi(dato);
+	int dato;
+	dato = Validaciones::DatoObligarorioNum("Dia");
+	this->dia = dato;
+	dato = Validaciones::DatoObligarorioNum("Mes");
+	this->mes = dato;
+	dato = Validaciones::DatoObligarorioNum("Año");
+	this->anio = dato;
 }
-string Fecha::IngresoDato(string nombreDato)
-{
-	string dato = "";
-	do
-	{
-		cout << "Ingrese el " + nombreDato + " : ";
-		cin >> dato;
-		if (dato == "")
-			cout << "Dato obligatorio " + nombreDato + " no puede quedar en blanco\nPor favor, ingrese nuevamente" << endl;
-		else
-			break;
-	} while (true);
-	return dato;
-}
+
 string Fecha::toStringFecha()
 {
 	return to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio);
