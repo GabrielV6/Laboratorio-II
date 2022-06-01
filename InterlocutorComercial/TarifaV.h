@@ -2,13 +2,14 @@
 #include "TarifaRN.h"
 
 class TarifaV
-{   
+{
     private:
     Tarifa tarifa;
     string nombreArchivo;
     TarifaRN tarifaRN;
     public:
     TarifaV(string nombreArchivo);
+    TarifaV();
     ~TarifaV();
     void NuevaTarifa();
     void ListarTarifa();
