@@ -1,10 +1,35 @@
 #include "Tarifa.h"
+#include <cstring>
+
 
 Tarifa::Tarifa()
 {
- // hacer constructor
+   this->id_tarifa = 0;
+   this->cargoFijo = 0;
+   this->cargoVariable = 0;
+   this->impuestos = 0;
+   this->tipoDeTarifa = true;
+   this->estado = false;
+   this->numPosicionArch = -1;
+   this->nombreDeArchivo=  "";
+}
+
+Tarifa::Tarifa(string nombreArchivo)
+{
+	this-> nombreDeArchivo = nombreDeArchivo;
+	this->id_tarifa = 0;
+    this->cargoFijo = 0;
+    this->cargoVariable = 0;
+    this->impuestos = 0;
+    this->tipoDeTarifa = true;
+	this->estado = false;
+	this->numPosicionArch = -1;
 }
 // setters
+void Tarifa::setIdTarifa(int id_tarifa)
+{
+        this->id_tarifa = id_tarifa;
+}
 void Tarifa::setCargoFijo(float cargoFijo)
 {
         this->cargoFijo = cargoFijo;
@@ -17,15 +42,26 @@ void Tarifa::setImpuestos(float impuestos)
 {
     this->impuestos = impuestos;
 }
-void Tarifa::setCodigoDeTarifa(int codigoDeTarifa)
-{
-    this->codigoDeTarifa = codigoDeTarifa;
-}
-void Tarifa::setTipoDeTarifa(int tipoDeTarifa)
+
+void Tarifa::setTipoDeTarifa(bool tipoDeTarifa)
 {
     this->tipoDeTarifa = tipoDeTarifa;
 }
+
+void Tarifa::setNumPosicionArchivo(long numPosArch)
+{
+	this->numPosicionArch = numPosArch;
+}
+
+void Tarifa::setEstado(bool estado)
+{
+    this->estado = estado;
+}
 // getters
+int Tarifa::getIdTarifa()
+{
+    return this->id_tarifa;
+}
 float Tarifa::getCargoFijo()
 {
     return this->cargoFijo;
@@ -38,13 +74,9 @@ float Tarifa::getImpuestos()
 {
     return this->impuestos;
 }
-int Tarifa::getCodigoDeTarifa()
+bool Tarifa::getEstado()
 {
-    return this->codigoDeTarifa;
-}
-bool Tarifa::getCodigoDeTarifa()
-{
-    return this->codigoDeTarifa;
+    return this->estado;
 }
 
 void Tarifa::cargarTarifa()
@@ -55,14 +87,17 @@ void Tarifa::cargarTarifa()
     cin >> this->cargoVariable;
     cout << "Ingrese los Impuestos: ";
     cin >> this->impuestos;
-    cout << "Ingrese el Codigo de tarifa: ";
-    cin >> this->codigoDeTarifa;
     cout << "Ingrese el Tipo de tarifa: ";
     cin >> this->tipoDeTarifa;
 }
+
+long Tarifa::getNumPosicionArhivo()
+{
+	return this->numPosicionArch;
+}
 string Tarifa::toStringTarifa()
 {
-    return to_string(this->cargoFijo) + "/" + to_string(this->cargoVariable) + "/" + to_string(this->impuestos) + "/" + to_string(this->codigoDeTarifa) + "/" + to_string(this->tipoDeTarifa);
+    return to_string(this->cargoFijo) + "/" + to_string(this->cargoVariable) + "/" + to_string(this->impuestos)  + "/" + to_string(this->tipoDeTarifa);
 }
 Tarifa::~Tarifa()
 {
