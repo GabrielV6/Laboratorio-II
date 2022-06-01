@@ -2,38 +2,23 @@
 
 TarifaV::TarifaV(string nombreArchivo)
 {
-	this->tarifa = tarifa(nombreArchivo);
+	this->tarifa = Tarifa();
 	this->nombreArchivo = nombreArchivo;
-	this->tarifaRN = TarifaRN(nombreArchivo);
+	this->tarifaRN = TarifaRN();
 }
+
 TarifaV::~TarifaV()
 {
 }
 
 void TarifaV::NuevaTarifa()
 {
-	this->tarifa = Tarifa(this->nombreArchivo);
-	long id_tarifa;
-	do
-	{
+	this->tarifa = Tarifa();
+
 		cout << "-------------------------------------------------" << endl;
 		cout << "Ingreso de nueva tarifa " << endl;
 		cout << "--------------------------------------------------" << endl;
-		cout << "Ingrese el Id de la nueva tarifa: ";
-		cin >> id_tarifa;
-
-		if (this->tarifaRN.BuscarTarifa(id_tarifa).getId_tarifa() == id_tarifa) // LLamar metodo de RN que valide si existe ese ID de Tarifa 
-		{
-            tarifa.cargarTarifa();
-	        this->GuardarEnArchivo();
-            system("cls");
-			break;
-		}
-		else
-            cout << "Ya existe una Tarifa con ese Id" << endl;
-			system("cls");
-			break;
-	} while (true);
+		tarifa.cargarTarifa();
 
 }
 /// <summary>
@@ -60,7 +45,7 @@ void TarifaV::MenuModificarTarifa()
 		cout << "Id de la Tarifa: ";
 		cin >> id_tarifa;
 		this->tarifa = this->tarifaRN.BuscarTarifa(id_tarifa);
-		if (this->tarifa.getId_tarifa() == id_tarifa) // LLamar metodo de RN que valida si existe el Id de la Tarifa
+		if (this->tarifa.getIdTarifa() != id_tarifa)
 		{
 			cout << "No existe Tarifa con el Id ingresado. " << endl;
 			system("cls");
@@ -76,8 +61,8 @@ void TarifaV::MenuModificarTarifa()
 		cout << "1. Modificar Cargo Fijo" << endl;
         cout << "2. Modificar Cargo Variable" << endl;
         cout << "3. Modificar Impuestos" << endl;
-        cout << "4. Modificar Codigo de Tarifa" << endl;
-        cout << "5. Modificar Tipo de Tarifa" << endl;
+        cout << "4. Modificar Tipo de Tarifa" << endl;
+        cout << "5. Modificar Estado de Tarifa" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "Opcion: ";
@@ -89,35 +74,45 @@ void TarifaV::MenuModificarTarifa()
 		{
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo Cargo Fijo : ";
-			tarifa.setCargoFijo();
+			float cargo;
+			cin>>cargo;
+			tarifa.setCargoFijo(cargo);
 			break;
 		}
 		case 2:
 		{
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo Cargo Variable : ";
-			tarifa.setCargoVariable();
+			float cargo;
+			cin>>cargo;
+			tarifa.setCargoVariable(cargo);
 			break;
 		}
         case 3:
 		{
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo monto de Impuestos : ";
-			tarifa.setImpuestos();
+			float impuestos;
+			cin>>impuestos;
+			tarifa.setImpuestos(impuestos);
 			break;
 		}
         case 4:
 		{
 			Tarifa tarifa;
-			cout << "Ingrese el nuevo Codigo de Tarifa : ";
-			tarifa.setCodigoDeTarifa();
+			cout << "Ingrese el nuevo Tipo de Tarifa : ";
+			bool n;
+			cin >> n;
+			tarifa.setTipoDeTarifa(n);
 			break;
 		}
-        case 5:
+		case 5:
 		{
 			Tarifa tarifa;
-			cout << "Ingrese el nuevo Tipo de Tarifa : ";
-			tarifa.setTipoDeTarifa();
+			cout << "Ingrese el nuevo Estado  de la  Tarifa : ";
+			bool n;
+			cin >> n;
+			tarifa.setEstado(n);
 			break;
 		}
         case 0:
@@ -132,7 +127,7 @@ void TarifaV::MenuModificarTarifa()
 void TarifaV::ModificarTarifa()
 {
 	MenuModificarTarifa();
-	this->tarifaRN.ControlModificaciones(this->tarifa);
+
 }
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de Tarifas.
