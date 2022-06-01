@@ -169,6 +169,10 @@
     <ClCompile Include="InterlocutorComercialRN.cpp" />
     <ClCompile Include="InterlocutorComercialV.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Tarifa.cpp" />
+    <ClCompile Include="TarifaAD.cpp" />
+    <ClCompile Include="TarifaRN.cpp" />
+    <ClCompile Include="TarifaV.cpp" />
     <ClCompile Include="Usuario.cpp" />
     <ClCompile Include="UsuarioAD.cpp" />
     <ClCompile Include="UsuarioRN.cpp" />
