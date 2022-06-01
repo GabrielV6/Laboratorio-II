@@ -20,8 +20,4 @@ private:
 	string nombreArchivo;
 	Tarifa tarifa;
 };
-	vector<Tarifa> getTarifasArchivo();
-private:
-	string nombreArchivo;
-	Tarifa tarifa;
-};
+
