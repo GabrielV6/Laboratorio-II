@@ -6,12 +6,17 @@ private:
 	TarifaAD tarifaAD;
 	string nombreArchivo;
 public:
-	TarifaRN(string nombreArchivo = "");
+	TarifaRN(string nombreArchivo);
+	TarifaRN();
 	~TarifaRN();
 	Tarifa BuscarTarifa(int codigoDeTarifa);
-	bool ControlModificaciones(Tarifa& tarifa);
-	bool AltaCuentaTarifa(Tarifa& tarifa);
-	long CantidadTarifaEnSistema();
+
+	bool AltaTarifa(Tarifa& tarifa);
+	int CantidadTarifaEnSistema();
+    bool ModificarTarifa(Tarifa& tarifa);
+    bool ExisteTarifa(int id_tarifa);
+
+
 	string getNombreArchivo();
 	vector<Tarifa> VectorTarifa();
 	void setNombreArchivo(string nombreArchivo);
