@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 
+using namespace std;
+
 class Medidor {
 private:
     int _id;

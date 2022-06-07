@@ -20,3 +20,4 @@ private:
     vector<Medidor> _medidores;
 };
 
+
