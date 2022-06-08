@@ -2,7 +2,7 @@
 
 
 Medidor::~Medidor() {
-    cout << "Destructor de medidor" << endl;
+   
 }
 
 Medidor::Medidor(int id, bool estado, float erc, float eri, float eat, float ert, float erp) {

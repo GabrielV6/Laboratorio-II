@@ -14,29 +14,5 @@ string MedidorAD::getNombreArchivo() {
     return this->_nombreArchivo;
 }
 
-long MedidorAD::TotalMedidoresEnArchivo()
-{
 
-   
-}
-
-bool MedidorAD::GuardarEnArchivoMedidor(Medidor& medidor)
-{
-    
-}
-
-bool MedidorAD::ActualizarEnArchivoMedidor(Medidor& medidor)
-{
-    
-}
-
-Medidor MedidorAD::getMedidorArchivo(long dni)
-{
-    
-}
-
-vector<Medidor> MedidorAD::getMedidoresArchivo()
-{
-    
-}
 
