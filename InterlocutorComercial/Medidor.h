@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 
+#include <fstream>
+
 using namespace std;
 
 class Medidor {
@@ -31,6 +33,6 @@ public:
     float getEat();
     float getErt();
     float getErp();
-
+   
 
 };
