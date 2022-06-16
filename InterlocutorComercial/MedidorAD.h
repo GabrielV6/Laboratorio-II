@@ -13,7 +13,7 @@ public:
     long TotalMedidoresEnArchivo();
     bool GuardarEnArchivoMedidor(Medidor& medidor);
     bool ActualizarEnArchivoMedidor(Medidor& medidor);
-    Medidor getMedidorArchivo(long dni);
+    Medidor getMedidorArchivo(int id);
     vector<Medidor> getMedidoresArchivo();
 private:
     string _nombreArchivo;

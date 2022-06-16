@@ -105,3 +105,13 @@ float Medidor::getErt() {
 float Medidor::getErp() {
     return this->_erp;
 }
+
+void Medidor::setNumPosicionArchivo(int numPosArch)
+{
+    this->numPosicionArch = numPosArch;
+}
+
+int Medidor::getNumPosicionArhivo()
+{
+    return this->numPosicionArch;
+}

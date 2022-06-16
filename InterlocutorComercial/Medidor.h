@@ -15,6 +15,7 @@ private:
     float _eat;
     float _ert;
     float _erp;
+    int numPosicionArch;
 public:
     Medidor(int id, bool estado, float erc, float eri, float eat, float ert, float erp);
     Medidor();
@@ -33,6 +34,8 @@ public:
     float getEat();
     float getErt();
     float getErp();
-   
+
+    void setNumPosicionArchivo(int numPosArch);
+    int getNumPosicionArhivo();
 
 };

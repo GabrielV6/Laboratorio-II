@@ -171,6 +171,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Medidor.cpp" />
     <ClCompile Include="MedidorAD.cpp" />
+    <ClCompile Include="MedidorRN.cpp" />
     <ClCompile Include="Tarifa.cpp" />
     <ClCompile Include="TarifaAD.cpp" />
     <ClCompile Include="TarifaRN.cpp" />

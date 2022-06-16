@@ -10,14 +10,13 @@ public:
 	MedidorRN(string nombreArchivo);
 	~MedidorRN();
 	Medidor BuscarCMedidor(long idMedidor);
-	bool ControlModificacion(Medidor& medidor);
 	bool AltaMedidor(Medidor& medidor);
-	long CantidadMedidores(bool soloActivos);
+	int CantidadMedidores();
 	string getNombreArchivo();
 	vector<Medidor> getMedidores(bool soloActivos);
 	void setNombreArchivo(string nombre);
-	bool InterlocutorOK(InterlocutorComercial interlocutorComercial);
-	long IdContratoNuevo();
+	
+	
 
 private:
 	MedidorAD medidorAD;
