@@ -99,6 +99,18 @@
     <ClInclude Include="Validaciones.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Documento.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentoAD.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentoRN.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentoV.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Direccion.cpp">
@@ -171,6 +183,18 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="MedidorRN.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Documento.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentoAD.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentoRN.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentoV.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
