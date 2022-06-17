@@ -40,7 +40,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 	{
 		datos = Validaciones::DatoObligarorioCad("Nombre");
 		this->interlocutorComercial.setNombre(datos);
-		
+
 		datos = Validaciones::DatoObligarorioCad("Apellido");
 		this->interlocutorComercial.setApellido(datos);
 
@@ -69,20 +69,115 @@ void InterlocutorComercialV::NuevoInterlocutor()
 /// <summary>
 /// Funci�n global para listar todos los interlocutores del archivo.
 /// </summary>
-void InterlocutorComercialV::ListarInterlocutores()
+void InterlocutorComercialV::ListarInterlocutores(int opcion)
 {
+	string separador = "-----------------------------------------------------------";
 	vector<InterlocutorComercial> interlocutores = this->interlocutorComercialRN.VectorInterlocutores();
+	system("cls");
+	cout << separador << endl;
 	for (auto intLoc : interlocutores)
 	{
-		cout << intLoc.toStringInterlocutor() << endl;
+		switch (opcion)
+		{
+		case 1:
+		{
+			cout << intLoc.toStringInterlocutor() << endl;
+			break;
+		}
+		case 2:
+		{
+			if (intLoc.getActivo())
+				cout << intLoc.toStringInterlocutor() << endl;
+			break;
+		}
+		case 3:
+		{
+			if (!intLoc.getActivo())
+				cout << intLoc.toStringInterlocutor() << endl;
+			break;
+		}
+		case 5:
+		{
+			cout << intLoc.getNombre() + "\t" + intLoc.getApellido() + "\t" + to_string(intLoc.getDni()) + "\t" + intLoc.getEmail() << endl;
+			break;
+		}
+		case 6:
+		{
+			if (intLoc.getActivo())
+				cout << intLoc.getNombre() + "\t" + intLoc.getApellido() + "\t" + to_string(intLoc.getDni()) + "\t" + intLoc.getEmail() << endl;
+			break;
+		}
+		case 7:
+		{
+			if (intLoc.getActivo())
+				cout << intLoc.getNombre() + "\t" + intLoc.getApellido() + "\t" + to_string(intLoc.getDni()) + "\t" + intLoc.getEmail() << endl;
+			break;
+		}
+		default:
+			break;
+		}
 	}
+	cout << separador << endl;
+	system("pause");
 }
+
+int InterlocutorComercialV::MenuListarInerlocutor()
+{
+	int opcion;
+	do
+	{
+		system("cls");
+		cout << "-------------------------------------------------" << endl;
+		cout << "Opciones de Listado de Interlocutor Comercial" << endl;
+		cout << "-------------------------------------------------" << endl;
+		cout << "1. Listar todos los Interlocutroes" << endl;
+		cout << "2. Listar Interlocutores activos" << endl;
+		cout << "3. Listar Interlocutores inactivos" << endl;
+		cout << "0. Salir de las opciones de interlocutor" << endl;
+		cout << "-------------------------------------------------" << endl;
+
+		cout << "Ingrese una opcion: ";
+		opcion = Validaciones::DatoObligarorioNum("Opcion");
+		if (opcion >= 0 && opcion <= 4)
+			break;
+
+	} while (true);
+	cout << "Listar Interlocutores solo resumen ingrese 'R' modo completo ingrese 'C'" << endl;
+	string tipo;
+	tipo = Validaciones::DatoObligarorioCad("'R' o 'C'");
+
+	switch (opcion)
+	{
+	case 1:
+	{
+		if (tipo == "R")
+			opcion = 5;
+		break;
+	}
+	case 2:
+	{
+		if (tipo == "R")
+			opcion = 6;
+		break;
+	}
+	case 3:
+	{
+		if (tipo == "R")
+			opcion = 7;
+		break;
+	}
+	default:
+		break;
+	}
+	return opcion;
+}
+
 
 void InterlocutorComercialV::MenuModificarInterlocutor()
 {
 	long dni;
 	int opcion;
-	
+
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -118,7 +213,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		{
 		case 1:
 		{
-			 datos = Validaciones::DatoObligarorioCad("Nombre");
+			datos = Validaciones::DatoObligarorioCad("Nombre");
 			this->interlocutorComercial.setNombre(datos);
 			break;
 		}
@@ -150,7 +245,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			cout << "Opcion invalida!!!" << endl;
 			break;
 		}
-		
+
 		if (opcion != 0)
 		{
 			if (!this->interlocutorComercialRN.ModificaInterlocutorComercial(this->interlocutorComercial))
@@ -188,14 +283,21 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 		switch (opcion)
 		{
 		case 1:
+		{
 			this->NuevoInterlocutor();
 			break;
+		}
 		case 2:
-			this->ListarInterlocutores();
+		{
+			int opcion = this->MenuListarInerlocutor();
+			this->ListarInterlocutores(opcion);
 			break;
+		}
 		case 3:
+		{
 			this->ModificarInterlocutor();
 			break;
+		}
 		case 0:
 			salir = true;
 			break;

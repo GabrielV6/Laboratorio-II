@@ -11,11 +11,12 @@ class InterlocutorComercialV
     InterlocutorComercialV(string nombreArchivo);
     ~InterlocutorComercialV();
     void NuevoInterlocutor();
-    void ListarInterlocutores();
+    void ListarInterlocutores(int opcion);
     void ModificarInterlocutor();
     void MenuModificarInterlocutor();
     void MenuInterlocutorComecial();
     void setNombreArchivo(string nombreArchivo);
     string getNombreArchivo();
     void setInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
+    int MenuListarInerlocutor();
 };
