@@ -7,6 +7,7 @@ class InterlocutorComercialV
     InterlocutorComercial interlocutorComercial;
     string nombreArchivo;
     InterlocutorComercialRN interlocutorComercialRN;
+    string separador = "-------------------------------------------------------------------------------";
     public:
     InterlocutorComercialV(string nombreArchivo);
     ~InterlocutorComercialV();
@@ -19,4 +20,5 @@ class InterlocutorComercialV
     string getNombreArchivo();
     void setInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
     int MenuListarInerlocutor();
+    string DarDatosListado(InterlocutorComercial intLoc, int num);
 };

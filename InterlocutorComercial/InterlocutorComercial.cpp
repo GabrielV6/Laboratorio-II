@@ -114,6 +114,7 @@ bool InterlocutorComercial::getActivo()
 /// <returns>Cadena</returns>
 string InterlocutorComercial::toStringInterlocutor()
 {
-	return "Nombre: " + this->getNombre() + ", Apellido: " + this->getApellido() + ", DNI: " + to_string(this->getDni()) + ", Email: " + this->getEmail() +
+	return "Id: " + to_string(this->id_ic) + ", Nombre: " + this->getNombre() + ", Apellido: " + this->getApellido() 
+		+ ", DNI: " + to_string(this->getDni()) + ", Email: " + this->getEmail() +
 		", Fecha Alta:" + this->getFechaIngresoId().toStringFecha() + ", Direccion: " + this->getDireccionId().toStringDireccion();
 }
