@@ -112,9 +112,14 @@ bool InterlocutorComercial::getActivo()
 /// Método que devuelve una cadena con todos los datos del interlocutor
 /// </summary>
 /// <returns>Cadena</returns>
-string InterlocutorComercial::toStringInterlocutor()
+string InterlocutorComercial::toStringInterlocutor(bool verId, bool verDir)
 {
-	return "Id: " + to_string(this->id_ic) + ", Nombre: " + this->getNombre() + ", Apellido: " + this->getApellido() 
+	string cadena = "Nombre: " + this->getNombre() + ", Apellido: " + this->getApellido()
 		+ ", DNI: " + to_string(this->getDni()) + ", Email: " + this->getEmail() +
-		", Fecha Alta:" + this->getFechaIngresoId().toStringFecha() + ", Direccion: " + this->getDireccionId().toStringDireccion();
+		", Fecha Alta: " + this->getFechaIngresoId().toStringFecha();
+	if (verId)
+		cadena = "Id: " + to_string(this->id_ic) + ", " + cadena;
+	if (verDir)
+		cadena = cadena + "\nDireccion: " + this->getDireccionId().toStringDireccion();
+	return cadena;
 }

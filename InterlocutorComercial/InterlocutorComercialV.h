@@ -7,7 +7,7 @@ class InterlocutorComercialV
     InterlocutorComercial interlocutorComercial;
     string nombreArchivo;
     InterlocutorComercialRN interlocutorComercialRN;
-    string separador = "-------------------------------------------------------------------------------";
+    string separador = "-------------------------------------------------------------------------------------------------------------";
     public:
     InterlocutorComercialV(string nombreArchivo);
     ~InterlocutorComercialV();

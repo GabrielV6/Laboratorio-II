@@ -40,5 +40,5 @@ public:
 	int getNumPosicionArhivo();
 	string getNombreArchivo();
 	bool getActivo();
-	string toStringInterlocutor();	
+	string toStringInterlocutor(bool verId = false, bool verDir = false);
 };

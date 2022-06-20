@@ -9,8 +9,11 @@ InterlocutorComercialRN::~InterlocutorComercialRN()
 bool InterlocutorComercialRN::AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
 	//Ver si se hace una busqueda en el archivo de interlocutores para asignar el númerador de id
-	//Busca el total de interlocuteres, le suma 1 y lo multiplica por 1000 para establecer el id del interlocutor
-	int id = (this->interlocutorComercialAD.TotalInterlocutoresEnArchivo() * 1000) + 1;
+	//Busca el total de interlocuteres, lo incrementa en 1 y le suma 1000 
+	int id = this->interlocutorComercialAD.TotalInterlocutoresEnArchivo();
+	if (id == -1)
+		id = 0;
+	id += 1001;
 	interlocutorComercial.setId_ic(id);
 	return this->interlocutorComercialAD.GuardarEnArchivoInterlocutor(interlocutorComercial);
 }
