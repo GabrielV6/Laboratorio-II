@@ -312,11 +312,12 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 		cout << "1. Nuevo Interlocutor" << endl;
 		cout << "2. Listar Interlocutores" << endl;
 		cout << "3. Modificar Interlocutor" << endl;
-		cout << "0. Salir del menú interlocutor" << endl;
+		cout << "0. Salir del menu interlocutor" << endl;
 		cout << this->separador << endl;
 		int opcion;
-		cout << "Ingrese una opcion: ";
-		cin >> opcion;
+		//cout << "Ingrese una opcion: ";
+		opcion = Validaciones::DatoObligarorioNum("una opcion");
+		//cin >> opcion;
 		switch (opcion)
 		{
 		case 1:

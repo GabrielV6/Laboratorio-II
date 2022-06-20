@@ -3,16 +3,26 @@
 int Validaciones::DatoObligarorioNum(string nombreDato)
 {
 	string dato = "";
+	int valorRetorno = 0;
 	do
 	{
 		cout << "Ingrese " + nombreDato + " : ";
 		cin >> dato;
-		if (dato == "")
+		try
+		{
+			valorRetorno = stoi(dato);
+			break;
+		}
+		catch (const std::exception&)
+		{
+			cout << "Dato obligatorio " + nombreDato + " incorrecta\nPor favor, ingrese nuevamente" << endl;
+		}
+		/*if (dato.c_str() == "")
 			cout << "Dato obligatorio " + nombreDato + " no puede quedar en blanco\nPor favor, ingrese nuevamente" << endl;
 		else
-			break;
+			break;*/
 	} while (true);
-	return stoi(dato);
+	return valorRetorno;
 }
 
 char Validaciones::DatoObligarorioChar(string nombreDato)

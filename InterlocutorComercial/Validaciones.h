@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <wchar.h>
+#include <locale.h>
 using namespace std;
 
 static class Validaciones
