@@ -19,6 +19,7 @@ private:
 	int idTar;//id tarifa
 	int numPosicionarch;
 	bool pago = false; ///nace en false
+	///CONSUMO, HACER METODO -> SERIA LA RESTA DEL LECT ACTUAL CON LA ANTERIOR, TENGO
 public:
 	Documento();
 	Documento(string d);/// VER QUE PARAMETRO POR OMISION CONSTRUCTOR USA 
