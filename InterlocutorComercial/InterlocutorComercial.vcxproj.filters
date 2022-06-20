@@ -39,18 +39,6 @@
     <ClInclude Include="CuentaContratoAD.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Usuario.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="UsuarioAD.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="UsuarioRN.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="UsuarioV.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="CuentaContratoRN.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -138,18 +126,6 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CuentaContratoAD.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Usuario.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="UsuarioAD.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="UsuarioRN.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="UsuarioV.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="CuentaContratoRN.cpp">

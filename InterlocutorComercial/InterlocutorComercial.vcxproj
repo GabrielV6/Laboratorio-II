@@ -154,10 +154,6 @@
     <ClInclude Include="TarifaAD.h" />
     <ClInclude Include="TarifaRN.h" />
     <ClInclude Include="TarifaV.h" />
-    <ClInclude Include="Usuario.h" />
-    <ClInclude Include="UsuarioAD.h" />
-    <ClInclude Include="UsuarioRN.h" />
-    <ClInclude Include="UsuarioV.h" />
     <ClInclude Include="Validaciones.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,10 +180,6 @@
     <ClCompile Include="TarifaAD.cpp" />
     <ClCompile Include="TarifaRN.cpp" />
     <ClCompile Include="TarifaV.cpp" />
-    <ClCompile Include="Usuario.cpp" />
-    <ClCompile Include="UsuarioAD.cpp" />
-    <ClCompile Include="UsuarioRN.cpp" />
-    <ClCompile Include="UsuarioV.cpp" />
     <ClCompile Include="Validaciones.cpp" />
   </ItemGroup>
   <ItemGroup>
