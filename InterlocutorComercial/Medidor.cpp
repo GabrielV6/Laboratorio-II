@@ -20,6 +20,15 @@ void Medidor::setId(int id) {
     this->_id = id;
 }
 
+Medidor::Medidor()
+{
+    this->_id = 0;
+    this->_idCuentaContrato = 0;
+    this->_estado = true;
+    this->_consumo = 0;
+    this->_numPosicionArch = 0;
+}
+
 void Medidor::setIdCuentaContrato(int idCuentaContrato)
 {
     this->_idCuentaContrato = idCuentaContrato;

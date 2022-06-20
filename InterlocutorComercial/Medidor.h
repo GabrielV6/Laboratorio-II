@@ -15,6 +15,7 @@ private:
     int _numPosicionArch;
 public:
     Medidor(int id,int idCuentaContrato, bool estado, float consumo,int nPosicion);
+    Medidor();
     ~Medidor();
     void setId(int id);
     void setIdCuentaContrato(int idCuentaContrato);
