@@ -9,31 +9,21 @@ using namespace std;
 class Medidor {
 private:
     int _id;
+    int _idCuentaContrato;
     bool _estado;
-    float _erc;
-    float _eri;
-    float _eat;
-    float _ert;
-    float _erp;
-    int numPosicionArch;
+    float _consumo; 
+    int _numPosicionArch;
 public:
-    Medidor(int id, bool estado, float erc, float eri, float eat, float ert, float erp);
-    Medidor();
+    Medidor(int id,int idCuentaContrato, bool estado, float consumo,int nPosicion);
     ~Medidor();
     void setId(int id);
+    void setIdCuentaContrato(int idCuentaContrato);
     void setEstado(bool estado);
-    void setErc(float erc);
-    void setEri(float eri);
-    void setEat(float eat);
-    void setErt(float ert);
-    void setErp(float erp);
+    void setConsumo(float consumo);
     int getId();
+    int getIdCuentaContrato();
     bool getEstado();
-    float getErc();
-    float getEri();
-    float getEat();
-    float getErt();
-    float getErp();
+    float getConsumo();
 
     void setNumPosicionArchivo(int numPosArch);
     int getNumPosicionArhivo();
