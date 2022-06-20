@@ -30,6 +30,9 @@ public:
 	InterlocutorComercial getInterlocutorComercial(int id, string nomarch);
 	//METODO QUE BUSCA POR ID CUENTA CONTRATO
 	CuentaContrato getCuentaContrato(int id, string nomarch);
+	///METODO QUE CALCULE EL CONSUMO TRAIGO LECTURA ANTERIOR MEDIDOR POR ID, 
+	//CARGO POR PANTALLA LECTURA ACTUAL 
+
 
 
 };

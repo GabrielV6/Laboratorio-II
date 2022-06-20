@@ -20,6 +20,7 @@ private:
 	int numPosicionarch;
 	bool pago = false; ///nace en false
 	///CONSUMO, HACER METODO -> SERIA LA RESTA DEL LECT ACTUAL CON LA ANTERIOR, TENGO
+	///cargo fijo, cargo variable, impuesto, importeTotal
 public:
 	Documento();
 	Documento(string d);/// VER QUE PARAMETRO POR OMISION CONSTRUCTOR USA 

@@ -34,9 +34,11 @@ void DocumentoV::NuevoDocumento()
 		cin >> id;
 		//hacer un metodo validar id de medidor VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
 		this->documento = this->documentoRN.BuscarDocumento(id);
+
 		if (this->documento.getIdmed() != id) // LLamar metodo de regla de negocio que valida si existe el ID
 		{
 			cout << "ID medidor no encontrado!!!" << endl;
+			system("pause");
 			system("cls");
 		}
 		else
