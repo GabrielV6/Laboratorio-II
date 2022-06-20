@@ -13,7 +13,7 @@ Documento::Documento()
 	this->idCC = 0;  //id cuenta contrato
 	this->idMed = 0;//id medidor
 	this->idTar = 0;
-
+	this->pago = false;
 }
 Documento::Documento(string d)
 {
@@ -79,6 +79,11 @@ Documento::Documento(string d)
 		this->numPosicionarch = pos;
 
 	}
+	void Documento::setPago(bool p)
+	{
+		this->pago = p;
+	}
+
 	
 	string Documento::getId()
 	{
@@ -124,6 +129,11 @@ Documento::Documento(string d)
 
 		return this->numPosicionarch;
 	}
+	bool Documento::getPago()
+	{
+		return this->pago;
+	}
+
 	/*void Documento::cargarDocumento()
 	{
 		cout << "Ingrese el Cargo Fijo: ";

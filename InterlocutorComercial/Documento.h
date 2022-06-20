@@ -18,6 +18,7 @@ private:
 	int idMed;//id medidor
 	int idTar;//id tarifa
 	int numPosicionarch;
+	bool pago = false; ///nace en false
 public:
 	Documento();
 	Documento(string d);/// VER QUE PARAMETRO POR OMISION CONSTRUCTOR USA 
@@ -33,6 +34,7 @@ public:
 	void setIdmed(int id);
 	void setIdtar(int id);
 	void setPosicionarch(int pos);
+	void setPago(bool);
 	string getId();
 	char getCodigo();
 	char getLetra();
@@ -44,6 +46,7 @@ public:
 	int getIdmed();
 	int getIdtar();
 	int getPosicionarch();
+	bool getPago();
 	string toStringDocumento();
 
 };

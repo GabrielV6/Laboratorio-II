@@ -18,25 +18,45 @@ DocumentoV::~DocumentoV()
 /// M�todo que permite dar de alta un Documento y lo graba en el archivo que contiene los documentos.
 /// </summary>
 void DocumentoV::NuevoDocumento()
-{
+{	
+	/// <summary>
+	/// DEBE INGRESAR UN NUMERO DE ID DE MEDIDOR, CON ESE ID ME TRAE EL ID DEL INTERLOCUTOR PARA LLENAR EL DOCUMENTO PARA ESE INTER
+	/// VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
+	/// </summary>
 	this->documento = Documento(this->nombreArchivo);
-	string id;
+	int id;
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del Documento " << endl;
 		cout << "--------------------------------------------------" << endl;
-		cout << "Id Nr.: ";
+		cout << "Ingrese el Id del Medidor: ";
 		cin >> id;
-		if (this->documentoRN.BuscarDocumento(id).getId() == id) // LLamar metodo de regla de negocio que valida si existe el ID
+		//hacer un metodo validar id de medidor VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
+		this->documento = this->documentoRN.BuscarDocumento(id);
+		if (this->documento.getIdmed() != id) // LLamar metodo de regla de negocio que valida si existe el ID
 		{
-			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
+			cout << "ID medidor no encontrado!!!" << endl;
 			system("cls");
 		}
 		else
+			
 			break;
 	} while (true);
-	this->documento.setId(id);
+	char tipo;
+	float consumo;
+	//char f;
+	do {
+		cout << "Ingrese el tipo de Documento (Factura=f, Nota credito=c, Nota debito=d, Remito=r) "; ///ver si es necesario remito
+		cin >> tipo;
+		//if(tipo==f)
+		cout << "Ingrese el tipo de factura(a, b) ";
+		cin >> tipo;
+		cout << "Ingrese el consumo: ";
+		cin >> consumo;
+		///FALTA METODO DE CARGA AUTOMATICA DE N° SERIE (0002,0005),numero(88888888)
+
+	} while (true);
 	//string id;
 	//cout << "Id: ";
 	//cin >> id;
@@ -118,7 +138,7 @@ void DocumentoV::MenuDocumento()
 		cout << "Menu Documento" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "1. Nuevo Documento" << endl;
-		cout << "2. Listar Documentoes" << endl;
+		cout << "2. Listar Documentos" << endl;
 		cout << "3. Modificar Documento" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
