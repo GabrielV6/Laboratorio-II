@@ -12,20 +12,20 @@ private:
     int _id;
     int _idCuentaContrato;
     bool _estado;
-    float _consumo; 
+    float _lectura; 
     int _numPosicionArch;
 public:
-    Medidor(int id,int idCuentaContrato, bool estado, float consumo,int nPosicion);
+    Medidor(int id,int idCuentaContrato, bool estado, float lectura,int nPosicion);
     Medidor();
     ~Medidor();
     void setId(int id);
     void setIdCuentaContrato(int idCuentaContrato);
     void setEstado(bool estado);
-    void setConsumo(float consumo);
+    void setLectura(float lectura);
     int getId();
     int getIdCuentaContrato();
     bool getEstado();
-    float getConsumo();
+    float getLectura();
 
     string toStringMedidor();
 

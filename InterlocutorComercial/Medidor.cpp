@@ -2,12 +2,12 @@
 
 
 
-Medidor::Medidor(int id, int idCuentaContrato, bool estado, float consumo, int nPosicion)
+Medidor::Medidor(int id, int idCuentaContrato, bool estado, float lectura, int nPosicion)
 {
     this->_id = id;
     this->_idCuentaContrato = idCuentaContrato;
     this->_estado = estado;
-    this->_consumo = consumo;
+    this->_lectura = lectura;
     this->_numPosicionArch = nPosicion;
 
 }
@@ -17,7 +17,7 @@ Medidor::Medidor()
     this->_id = 0;
     this->_idCuentaContrato = 0;
     this->_estado = false;
-    this->_consumo = 0;
+    this->_lectura = 0;
     this->_numPosicionArch = 0;
 }
 
@@ -40,8 +40,8 @@ void Medidor::setEstado(bool estado) {
     this->_estado = estado;
 }
 
-void Medidor::setConsumo(float consumo) {
-    this->_consumo = consumo;
+void Medidor::setLectura(float lectura) {
+    this->_lectura = lectura;
 }
 
 void Medidor::setNumPosicionArchivo(int numPosArch)
@@ -52,7 +52,7 @@ void Medidor::setNumPosicionArchivo(int numPosArch)
 string Medidor::toStringMedidor()
 {
     string cadena = "ID: " + to_string(this->getId()) + ", Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
-        + ", Consumo: " + to_string(this->getConsumo());
+        + ", Lectura: " + to_string(this->getLectura());
 
     return cadena;
  
@@ -70,8 +70,8 @@ bool Medidor::getEstado() {
     return this->_estado;
 }
 
-float Medidor::getConsumo() {
-    return this->_consumo;
+float Medidor::getLectura() {
+    return this->_lectura;
 }
 
 int Medidor::getNumPosicionArhivo()
