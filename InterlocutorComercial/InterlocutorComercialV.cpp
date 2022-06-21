@@ -51,7 +51,8 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		this->interlocutorComercial.setEmail(datos);
 		Fecha fechaIngreso;
 		cout << "Fecha Alta: ";
-		fechaIngreso.cargarFecha();
+		fechaIngreso.cargarFechaActual();
+		cout << fechaIngreso.toStringFecha() << endl;
 		this->interlocutorComercial.setFechaIngresoId(fechaIngreso);
 		Direccion direccion;
 		cout << "Direccion: ";

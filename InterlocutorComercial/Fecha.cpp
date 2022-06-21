@@ -46,6 +46,16 @@ void Fecha::cargarFecha()
 	this->anio = dato;
 }
 
+void Fecha::cargarFechaActual()
+{
+	std::time_t t = std::time(0); // get time now 
+	std::tm* now = std::localtime(&t); 
+	this->setAnio(now->tm_year + 1900);
+	this->setMes(now->tm_mon + 1);
+	this->setDia(now->tm_mday);
+	//std::cout << (now->tm_year + 1900) << '-' << (now->tm_mon + 1) << '-' << now->tm_mday << "\n";
+}
+
 string Fecha::toStringFecha()
 {
 	return to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio);

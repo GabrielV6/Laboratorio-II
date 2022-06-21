@@ -6,6 +6,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 class Fecha
@@ -23,6 +24,7 @@ public:
 	int getMes();
 	int getAnio();
 	void cargarFecha();
+	void cargarFechaActual();
 	string toStringFecha();
 	~Fecha();
 };
