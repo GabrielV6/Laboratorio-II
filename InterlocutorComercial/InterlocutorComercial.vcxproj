@@ -137,10 +137,6 @@
     <ClInclude Include="DocumentoRN.h" />
     <ClInclude Include="DocumentoV.h" />
     <ClInclude Include="Fecha.h" />
-    <ClInclude Include="Instalacion.h" />
-    <ClInclude Include="InstalacionAD.h" />
-    <ClInclude Include="InstalacionRN.h" />
-    <ClInclude Include="InstalacionV.h" />
     <ClInclude Include="InterfaceSalida.h" />
     <ClInclude Include="InterlocutorComercial.h" />
     <ClInclude Include="InterlocutorComercialAD.h" />
@@ -176,6 +172,7 @@
     <ClCompile Include="Medidor.cpp" />
     <ClCompile Include="MedidorAD.cpp" />
     <ClCompile Include="MedidorRN.cpp" />
+    <ClCompile Include="MedidorV.cpp" />
     <ClCompile Include="Tarifa.cpp" />
     <ClCompile Include="TarifaAD.cpp" />
     <ClCompile Include="TarifaRN.cpp" />

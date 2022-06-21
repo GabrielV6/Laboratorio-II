@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -25,6 +26,8 @@ public:
     int getIdCuentaContrato();
     bool getEstado();
     float getConsumo();
+
+    string toStringMedidor();
 
     void setNumPosicionArchivo(int numPosArch);
     int getNumPosicionArhivo();

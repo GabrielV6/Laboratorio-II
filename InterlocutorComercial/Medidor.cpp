@@ -1,6 +1,7 @@
 #include "Medidor.h"
 
 
+
 Medidor::Medidor(int id, int idCuentaContrato, bool estado, float consumo, int nPosicion)
 {
     this->_id = id;
@@ -11,23 +12,23 @@ Medidor::Medidor(int id, int idCuentaContrato, bool estado, float consumo, int n
 
 }
 
+Medidor::Medidor()
+{
+    this->_id = 0;
+    this->_idCuentaContrato = 0;
+    this->_estado = false;
+    this->_consumo = 0;
+    this->_numPosicionArch = 0;
+}
+
 Medidor::~Medidor() {
    
 }
-
 
 void Medidor::setId(int id) {
     this->_id = id;
 }
 
-Medidor::Medidor()
-{
-    this->_id = 0;
-    this->_idCuentaContrato = 0;
-    this->_estado = true;
-    this->_consumo = 0;
-    this->_numPosicionArch = 0;
-}
 
 void Medidor::setIdCuentaContrato(int idCuentaContrato)
 {
@@ -46,6 +47,15 @@ void Medidor::setConsumo(float consumo) {
 void Medidor::setNumPosicionArchivo(int numPosArch)
 {
     this->_numPosicionArch = numPosArch;
+}
+
+string Medidor::toStringMedidor()
+{
+    string cadena = "ID: " + to_string(this->getId()) + ", Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
+        + ", Consumo: " + to_string(this->getConsumo());
+
+    return cadena;
+ 
 }
 
 int Medidor::getId() {

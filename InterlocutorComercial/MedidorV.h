@@ -4,21 +4,26 @@
 
 class MedidorV
 {
+private:
+	Medidor medidor;
+	MedidorRN medidorRN;
+	string nombreArchivo;
+	string separador = "-------------------------------------------------------------------------------------------------------------";
+
 public:
-	MedidorV();
 	MedidorV(string nombreArchivo);
 	~MedidorV();
-	void setNombreArchivo(string nombreArchivo);
+	
 	void setMedidor(Medidor& medidor);
+	void setNombreArchivo(string nombreArchivo);
+
 	string getNombreArchivo();
 	Medidor getMedidor();
-	InterlocutorComercial BuscarInterlocutorComercialPorID();
-	Medidor BuscarContrato();
+	Medidor BuscarMedidorPorID();
+
 	void MenuMedidor();
-	bool NuevoMedidor();
+	void NuevoMedidor();
+	void ListarMedidor();
 	bool ModificarMedidor();
-private:
-	string nombreArchivo;
-	InterlocutorComercial interlocutorComercial;
-	Medidor medidor;
+
 };

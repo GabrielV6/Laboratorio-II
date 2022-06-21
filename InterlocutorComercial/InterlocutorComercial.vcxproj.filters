@@ -57,18 +57,6 @@
     <ClInclude Include="TarifaV.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Instalacion.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InstalacionAD.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InstalacionRN.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InstalacionV.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Medidor.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -171,6 +159,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="DocumentoV.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="MedidorV.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

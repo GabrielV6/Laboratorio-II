@@ -84,19 +84,19 @@ Medidor MedidorAD::getMedidorArchivo(int id)
 vector<Medidor> MedidorAD::getMedidoresArchivo()
 {
 	Medidor intComAD;
-	vector<Medidor> interlocutores;
+	vector<Medidor> medidores;
 	ifstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::in);
 	if (archivo.fail())
-		return interlocutores;
+		return medidores;
 	while (archivo.read((char*)&intComAD, sizeof(Medidor)))
 	{
 		if (!archivo.eof())
 		{
-			interlocutores.push_back(intComAD);
+			medidores.push_back(intComAD);
 		}
 	}
-	return interlocutores;
+	return medidores;
 }
 
 

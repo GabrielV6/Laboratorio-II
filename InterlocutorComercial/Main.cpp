@@ -1,4 +1,5 @@
 #include "InterlocutorComercialV.h"
+#include "MedidorV.h"
 #include "Validaciones.h"
 
 /// <summary>
@@ -6,11 +7,18 @@
 /// </summary>
 /// <returns></returns>
 const string NOMBRE_ARCH = "interlocutores.dat";
+const string NOMBRE_ARCH_MED = "medidores.dat";
+
 int main()
 {
-	//Prueba de conexion Gabriel v.1
+	
 	setlocale(LC_CTYPE, "Spanish");
-	InterlocutorComercialV interVista(NOMBRE_ARCH);
-	interVista.MenuInterlocutorComecial();
+	//InterlocutorComercialV interVista(NOMBRE_ARCH);
+	//interVista.MenuInterlocutorComecial();
+
+	MedidorV medidor(NOMBRE_ARCH_MED);
+	medidor.MenuMedidor();
+
+
 	return EXIT_SUCCESS;
 }
