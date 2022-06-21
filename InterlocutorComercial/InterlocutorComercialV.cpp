@@ -3,7 +3,7 @@
 
 InterlocutorComercialV::InterlocutorComercialV(string nombreArchivo)
 {
-	this->interlocutorComercial = InterlocutorComercial(nombreArchivo);
+	this->interlocutorComercial = InterlocutorComercial();
 	this->nombreArchivo = nombreArchivo;
 	this->interlocutorComercialRN = InterlocutorComercialRN(nombreArchivo);
 }
@@ -17,7 +17,7 @@ InterlocutorComercialV::~InterlocutorComercialV()
 /// </summary>
 void InterlocutorComercialV::NuevoInterlocutor()
 {
-	this->interlocutorComercial = InterlocutorComercial(this->nombreArchivo);
+	this->interlocutorComercial = InterlocutorComercial();
 	unsigned int dni;
 	string datos;
 	char dato;
@@ -195,7 +195,6 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	return opcion;
 }
 
-
 void InterlocutorComercialV::MenuModificarInterlocutor()
 {
 	long dni;
@@ -206,8 +205,9 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << this->separador << endl;
 		cout << "Modificar datos del Interlocutor comercial" << endl;
 		cout << this->separador << endl;
-		cout << "Documento Nr.: ";
-		cin >> dni;
+		cout << "Documento ";
+		dni = Validaciones::DatoObligarorioNum("Nro");
+		//cin >> dni;
 		this->interlocutorComercial = this->interlocutorComercialRN.BuscarInterlocutorComercial(dni);
 		if (this->interlocutorComercial.getDni() != dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
@@ -231,8 +231,9 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "5. Modificar direccion" << endl;
 		cout << "0. Volver al menú anteriror" << endl;
 		cout << this->separador << endl;
-		cout << "Opcion: ";
-		cin >> opcion;
+		//cout << "Opcion: ";
+		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		//cin >> opcion;
 		string datos;
 		char dato;
 		switch (opcion)
