@@ -10,20 +10,6 @@ InterlocutorComercial::InterlocutorComercial()
 	this->direccionID = Direccion();
 	this->activo = false;
 	this->numPosicionArch = -1;
-	strcpy(this->nombreArchivo, "");
-}
-InterlocutorComercial::InterlocutorComercial(string nombreArchivo)
-{
-	strcpy(this->nombreArchivo, nombreArchivo.c_str());
-	this->id_ic = 0;
-	this->dni = 0;
-	strcpy(this->nombre, "");
-	strcpy(this->apellido, "");
-	strcpy(this->email, "");
-	this->fechaIngresoID = Fecha();
-	this->direccionID = Direccion();
-	this->activo = false;
-	this->numPosicionArch = -1;
 }
 InterlocutorComercial::~InterlocutorComercial()
 {}
@@ -58,10 +44,6 @@ void InterlocutorComercial::setDireccionId(Direccion& direccionId)
 void InterlocutorComercial::setNumPosicionArchivo(int numPosArch)
 {
 	this->numPosicionArch = numPosArch;
-}
-void InterlocutorComercial::setNombreArchivo(string nomArch)
-{
-	strcpy(this->nombreArchivo, nomArch.c_str());
 }
 void InterlocutorComercial::setActivo(bool activo)
 {
@@ -98,10 +80,6 @@ Direccion& InterlocutorComercial::getDireccionId()
 int InterlocutorComercial::getNumPosicionArhivo()
 {
 	return this->numPosicionArch;
-}
-string InterlocutorComercial::getNombreArchivo()
-{
-	return this->nombreArchivo;
 }
 bool InterlocutorComercial::getActivo()
 {

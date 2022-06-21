@@ -14,11 +14,9 @@ private:
 	Fecha fechaIngresoID;
 	Direccion direccionID;
 	int numPosicionArch;
-	char nombreArchivo[30];
 	bool activo;
 public:
 	InterlocutorComercial();
-	InterlocutorComercial(string nombreArchivo);
 	~InterlocutorComercial();
 	void setId_ic(int id_ic);
 	void setNombre(string nombre);
@@ -28,7 +26,6 @@ public:
 	void setFechaIngresoId(Fecha fechaIn);
 	void setDireccionId(Direccion& direccionId);
 	void setNumPosicionArchivo(int numPosArch);
-	void setNombreArchivo(string nomArch);
 	void setActivo(bool activo);
 	int getId_ic();
 	string getNombre();
@@ -38,7 +35,6 @@ public:
 	Fecha getFechaIngresoId();
 	Direccion& getDireccionId();
 	int getNumPosicionArhivo();
-	string getNombreArchivo();
 	bool getActivo();
 	string toStringInterlocutor(bool verId = false, bool verDir = false);
 };
