@@ -25,6 +25,11 @@ Medidor MedidorRN::BuscarCMedidor(long idMedidor)
 	return Medidor();
 }
 
+bool MedidorRN::ModificaMedidor(Medidor& medidor)
+{
+	return this->medidorAD.ActualizarEnArchivoMedidor(medidor);
+}
+
 
 bool MedidorRN::AltaMedidor(Medidor& medidor)
 {	

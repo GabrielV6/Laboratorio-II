@@ -11,6 +11,7 @@ public:
 	MedidorRN();
 	~MedidorRN();
 	Medidor BuscarCMedidor(long idMedidor);
+	bool ModificaMedidor(Medidor& medidor);
 	bool AltaMedidor(Medidor& medidor);
 	int IdMedidor(Medidor& medidor);
 	int CantidadMedidores();
