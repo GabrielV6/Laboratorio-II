@@ -3,6 +3,7 @@
 #include "InterlocutorComercialAD.h"
 #include "MedidorAD.h"
 #include "CuentaContratoAD.h"
+#include "MedidorV.h"
 
 class DocumentoRN
 {
@@ -32,6 +33,7 @@ public:
 	CuentaContrato getCuentaContrato(int id, string nomarch);
 	///METODO QUE CALCULE EL CONSUMO TRAIGO LECTURA ANTERIOR MEDIDOR POR ID, 
 	//CARGO POR PANTALLA LECTURA ACTUAL 
+	///LISTAR MEDIDORES
 
 
 

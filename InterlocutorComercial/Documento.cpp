@@ -4,9 +4,9 @@
 Documento::Documento()
 {
 	strcpy(this->id, "");
-	this->codigo = ' ';
-	this->letra = ' ';
-	this->serie = 0;
+	//this->codigo = ' ';
+	//this->letra = ' ';
+	//this->serie = 0;
 	this->numero = 0;
 	this->fecha = Fecha();
 	this->idInter = 0;
@@ -19,9 +19,9 @@ Documento::Documento(string d)
 {
 	
 	strcpy(this->id,d.c_str());
-	this->codigo = ' ';
-	this->letra = ' ';
-	this->serie = 0;
+	//this->codigo = ' ';
+	///this->letra = ' ';
+	//this->serie = 0;
 	this->numero = 0;
 	this->fecha = Fecha();
 	this->idInter = 0;
@@ -36,7 +36,7 @@ Documento::Documento(string d)
 		strcpy(this->id, id.c_str());
 		
 	}
-	void Documento::setCodigo(char codigo)
+	/*void Documento::setCodigo(char codigo)
 	{
 		this->codigo = codigo;
 	}
@@ -48,6 +48,7 @@ Documento::Documento(string d)
 	{
 		this->serie = serie;
 	}
+	*/
 	void Documento::setNumero(int numero)
 	{
 		this->numero = numero;
@@ -89,7 +90,7 @@ Documento::Documento(string d)
 	{
 		return this->id;
 	}
-	char Documento::getCodigo()
+	/*char Documento::getCodigo()
 	{
 		return this->codigo;
 	}
@@ -101,6 +102,7 @@ Documento::Documento(string d)
 	{
 		return this->serie;
 	}
+	*/
 	int Documento::getNumero()
 	{
 		return this->numero;
@@ -168,7 +170,7 @@ Documento::Documento(string d)
 	int numPosicionarch;
 	string Documento::toStringDocumento()
 	{
-		return this->getId() + "/" + to_string(this->codigo) + "/" + to_string(this->letra) + "/" + to_string(this->serie) + "/" + to_string(this->numero)
+		return this->getId() + "/" + "/" + to_string(this->numero)
 			+ "/" + this->fecha.toStringFecha() + "/" + to_string(this->idInter)+ "/" + to_string(this->idMed)+ "/" + to_string(this->idTar);
 	}
 	Documento::~Documento()

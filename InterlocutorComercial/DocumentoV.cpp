@@ -5,6 +5,7 @@
 
 
 
+
 DocumentoV::DocumentoV(string nombreArchivo)
 {
 	this->documento = Documento(nombreArchivo);
@@ -46,6 +47,7 @@ void DocumentoV::NuevoDocumento()
 			break;
 	} while (true);
 	char tipo;
+	char tipoF;
 	float consumo;
 	//char f;
 	do {
@@ -53,9 +55,11 @@ void DocumentoV::NuevoDocumento()
 		cin >> tipo;
 		//if(tipo==f)
 		cout << "Ingrese el tipo de factura(a, b) ";
-		cin >> tipo;
+		cin >> tipoF;
 		cout << "Ingrese el consumo: ";
 		cin >> consumo;
+		
+		
 		///FALTA METODO DE CARGA AUTOMATICA DE N° SERIE (0002,0005),numero(88888888)
 
 	} while (true);
@@ -142,6 +146,7 @@ void DocumentoV::MenuDocumento()
 		cout << "1. Nuevo Documento" << endl;
 		cout << "2. Listar Documentos" << endl;
 		cout << "3. Modificar Documento" << endl;
+		cout << "4. Listar medidores activos" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
@@ -157,6 +162,9 @@ void DocumentoV::MenuDocumento()
 			break;
 		case 3:
 			this->ModificarDocumento();
+			break;
+		case 4:
+			//this->ListarMedidor();
 			break;
 		case 0:
 			salir = true;

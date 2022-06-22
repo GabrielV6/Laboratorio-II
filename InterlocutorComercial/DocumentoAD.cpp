@@ -19,20 +19,16 @@ string DocumentoAD::getNombreArchivo()
 /// M�todo que devuelve la cantidad de interlocutores comerciales que hay en el archivo de datos.
 /// </summary>
 /// <returns>entero largo</returns>
-long DocumentoAD::TotalDocumentosEnArchivo()
+int DocumentoAD::TotalDocumentosEnArchivo()
 {
 	ifstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::in);
 	if (archivo.fail())
 		return -1;
-	Documento documentoAD;
 	long cantidad = 0;
-	while (archivo.read((char*)&documentoAD, sizeof(Documento)))
-	{
-		if (!archivo.eof())
-			cantidad++;
-	}
-	archivo.close();
+	archivo.seekg(0, ios::end);
+	int pos = archivo.tellg();
+	cantidad = pos / sizeof(Documento);
 	return cantidad;
 }
 /// <summary>

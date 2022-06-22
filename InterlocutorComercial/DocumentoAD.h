@@ -15,7 +15,7 @@ public:
 	/// M�todo que devuelve la cantidad de documentos  que hay en el archivo de datos.
 	/// </summary>
 	/// <returns>entero largo</returns>
-	long TotalDocumentosEnArchivo();
+	int TotalDocumentosEnArchivo();
 	/// <summary>
 	/// M�todo que guarda el documento en el archivo de datos y devuelve verdadero cuando resulta correto la grabaci�n.
 	/// </summary>

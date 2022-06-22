@@ -8,6 +8,7 @@ private:
 	Documento documento;
 	string nombreArchivo;
 	DocumentoRN documentoRN;
+	
 public:
 	DocumentoV(string nombreArchivo);
 	~DocumentoV();
@@ -21,5 +22,6 @@ public:
 	Documento getDocumento();
 	void setDocumento(Documento& documento);
 	DocumentoRN getDocumentoRN();
+	
 
 };
