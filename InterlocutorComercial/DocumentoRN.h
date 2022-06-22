@@ -4,6 +4,7 @@
 #include "MedidorAD.h"
 #include "CuentaContratoAD.h"
 #include "MedidorV.h"
+#include "TarifaAD.h"
 
 class DocumentoRN
 {
@@ -12,6 +13,8 @@ private:
 	string nombreArchivo;
 	InterlocutorComercial interlocutorComercial;
 	Medidor medidor;
+	CuentaContrato cc;
+	Tarifa tarifa;
 
 	//DECLARAR UN INTERLOCUTOR Y UN MEDIDOR
 public:
@@ -31,6 +34,7 @@ public:
 	InterlocutorComercial getInterlocutorComercial(int id, string nomarch);
 	//METODO QUE BUSCA POR ID CUENTA CONTRATO
 	CuentaContrato getCuentaContrato(int id, string nomarch);
+	Tarifa getTarifa(int id, string nomarch);
 	///METODO QUE CALCULE EL CONSUMO TRAIGO LECTURA ANTERIOR MEDIDOR POR ID, 
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES
