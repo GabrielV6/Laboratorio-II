@@ -22,7 +22,7 @@ public:
     void setIdCuentaContrato(int idCuentaContrato);
     void setEstado(bool estado);
     void setLectura(float lectura);
-    int getId();
+    long getId();
     int getIdCuentaContrato();
     bool getEstado();
     float getLectura();

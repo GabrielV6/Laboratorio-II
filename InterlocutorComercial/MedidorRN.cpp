@@ -17,13 +17,15 @@ MedidorRN::~MedidorRN()
 }
 
 
-Medidor MedidorRN::BuscarCMedidor(long idMedidor)
+Medidor MedidorRN::BuscarCMedidor(int idMedidor)
 {
 	Medidor intComAD = this->medidorAD.getMedidorArchivo(idMedidor);
 	if (intComAD.getId() == idMedidor)
 		return intComAD;
 	return Medidor();
 }
+
+
 
 bool MedidorRN::ModificaMedidor(Medidor& medidor)
 {

@@ -122,26 +122,22 @@ void MedidorV::ListarMedidor()
 
 void MedidorV::ModificarMedidor()
 {
-	long id;
-	long cc;
+	
 	int opcion;
 
 	do
-	{
+	{	
+		long id=0;
+		system("cls");
 		cout << this->separador << endl;
-		cout << "Modificar datos del Medidor" << endl;
+		cout << "Modificar datos del Medidor " << endl;
 		cout << this->separador << endl;
-		cout << "Ingrese 0 - para buscar por Cuenta contrato o 1 - para buscar por ID: " << endl;
-		cin >> opcion;
-		if (opcion == 1) {
-			cout << "ID:  ";
-			id = Validaciones::DatoObligarorioNum("Nro");
-			//cin >> dni;
-			this->medidor = this->medidorRN.BuscarCMedidor(id);
+		id=Validaciones::DatoObligarorioNum("ID o 0 - Para salir");
+		
+		if (id == 0) {
+			return;
 		}
-		else {
-
-		}
+		this->medidor = this->medidorRN.BuscarCMedidor(id);
 		
 		if (this->medidor.getId() != id) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
@@ -158,14 +154,12 @@ void MedidorV::ModificarMedidor()
 		cout << this->separador << endl;
 		cout << "Medidor : " << this->medidor.toStringMedidor() << endl;
 		cout << this->separador << endl;
-		cout << "1. Modificar Cuenta Contrato" << endl;
-		cout << "2. Modificar estado (Activo/Inactivo)" << endl;
-		cout << "3. Modificar Lectura" << endl;
+		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
 		cout << "0. Volver al menú anteriror" << endl;
 		cout << this->separador << endl;
-		//cout << "Opcion: ";
+		
 		opcion = Validaciones::DatoObligarorioNum("Opcion:");
-		//cin >> opcion;
+		
 		string datos;
 		char dato;
 		long cc;
@@ -173,23 +167,10 @@ void MedidorV::ModificarMedidor()
 		{
 		case 1:
 		{
-			cc = Validaciones::DatoObligarorioNum("Cuenta contrato:");
-			this->medidor.setIdCuentaContrato(cc);
-			break;
-		}
-		case 2:
-		{
 			cout << "Modificar estado ";
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S')
 				this->medidor.setEstado(!this->medidor.getEstado());
-			break;
-		}
-		case 3:
-		{
-			cout << "Lectura: ";
-			cin >> cc;
-			this->medidor.setLectura(cc);
 			break;
 		}
 		case 0:

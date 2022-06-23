@@ -52,13 +52,13 @@ void Medidor::setNumPosicionArchivo(int numPosArch)
 string Medidor::toStringMedidor()
 {
     string cadena = "ID: " + to_string(this->getId()) + ", Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
-        + ", Lectura: " + to_string(this->getLectura());
+        + ", Lectura: " + to_string(this->getLectura()) + ", Estado: " + to_string(this->getEstado());
 
     return cadena;
  
 }
 
-int Medidor::getId() {
+long Medidor::getId() {
     return this->_id;
 }
 

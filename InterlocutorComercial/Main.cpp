@@ -17,11 +17,11 @@ int main()
 	setlocale(LC_CTYPE, "Spanish");
 	//InterlocutorComercialV interVista(NOMBRE_ARCH);
 	//interVista.MenuInterlocutorComecial();
-	DocumentoV documento(NOMBRE_ARCH);
-	documento.MenuDocumento();
+	//DocumentoV documento(NOMBRE_ARCH);
+	//documento.MenuDocumento();
 
-	//MedidorV medidor(NOMBRE_ARCH_MED);
-	//medidor.MenuMedidor();
+	MedidorV medidor(NOMBRE_ARCH_MED);
+	medidor.MenuMedidor();
 
 
 	return EXIT_SUCCESS;
