@@ -75,12 +75,13 @@ InterlocutorComercial DocumentoRN::getInterlocutorComercial(int id, string nomar
 	return interlocutorAD.getInterlocutorArchivo(id);
 }
 //MERTODO QUE BUSCA INTERLOCUTOR POR ID Y DEVUELVE EL NOMBRE
-CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
+/*CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
 {
 	InterlocutorComercial interlocutor(nomarch);
 	return getNombre();
 	
 }
+*/
 //METODO QUE BUSCA UNA CUENTA CONTRATO POR ID
 CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
 {	
