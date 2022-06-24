@@ -39,15 +39,16 @@ int TarifaAD::TotalTarifaEnArchivo()
 /// <returns>Booleano</returns>
 bool TarifaAD::GuardarEnArchivoTarifa(Tarifa& tarifa)
 {
-	Tarifa tarifaAD = tarifa;
+	//Medidor medidorAD = medidor; 
 	ofstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
-
-	int posArchivo = TotalTarifaEnArchivo();
-	tarifaAD.setNumPosicionArchivo(posArchivo);
-	archivo.write((char*)&tarifaAD, sizeof(Tarifa));
+	//Busca cuantos medidores hay en el archivo y le asigna esa cantidad a la posicion relativa del medidor en el archivo.	
+	long posArchivo = TotalTarifaEnArchivo();
+	tarifa.setNumPosicionArchivo(posArchivo);
+	// se convierte la direccion de memoria a un puntero de char
+	archivo.write((char*)&tarifa, sizeof(Tarifa));
 	archivo.close();
 	return true;
 }
@@ -101,20 +102,27 @@ Tarifa TarifaAD::getTarifaArchivo(int id_tarifa)
 /// <summary>
 /// Funci�n que devuleve todas las Tarifa  del archivo en un vector
 /// </summary>
-vector<Tarifa> TarifaAD::getTarifaArchivo()
+vector<Tarifa> TarifaAD::getTarifasArchivo()
 {
-	Tarifa tarifa;
-	vector<Tarifa> tarifas;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
-		return tarifas;
-	while (archivo.read((char*)&tarifa, sizeof(Tarifa)))
+	Tarifa intComAD;
+	vector<Tarifa> tarifa;
+	//ifstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo(), ios::in);
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
+	//if (archivo.fail())
+	if (archivo == NULL)
+		return tarifa;
+	//while (archivo.read((char*)&intComAD, sizeof(Medidor)))
+	while (fread((char*)&intComAD, sizeof(Tarifa), 1, archivo))
 	{
-		if (!archivo.eof())
+		//if (!archivo.eof())
+		if (!archivo == NULL)
 		{
-			tarifas.push_back(tarifa);
+			tarifa.push_back(intComAD);
 		}
 	}
-	return tarifas;
+	//archivo.close();
+	fclose(archivo);
+	return tarifa;
 }

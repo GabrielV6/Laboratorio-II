@@ -59,43 +59,61 @@ bool MedidorAD::ActualizarEnArchivoMedidor(Medidor& medidor)
 	return true;
 }
 
+//Se reemplazara ifstream por FILE * ya que no se lee la totalidad del archivo
+
 Medidor MedidorAD::getMedidorArchivo(int id)
 {
 	Medidor intComAD;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
+	//ifstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo(), ios::in);
+	archivo = fopen("medidores.dat", "rb");
+	//if (archivo.fail())
+	if (archivo == NULL)
 		return intComAD;
 
-	while (archivo.read((char*)&intComAD, sizeof(Medidor)))
+	//while (archivo.read((char*)&intComAD, sizeof(Medidor)))
+	while (fread((char*)&intComAD, sizeof(Medidor), 1, archivo))
 	{
-		if (!archivo.eof())
+		//if (!archivo.eof())
+		if (!archivo == NULL)
 			if (intComAD.getId() == id)
 			{
-				archivo.close();
+				//archivo.close();
+				fclose(archivo);
 				return intComAD;
 			}
 	}
-	archivo.close();
+	//archivo.close();
+	fclose(archivo);
 	intComAD = Medidor();
 	return intComAD;
 }
 
+//Se reemplazara ifstream por FILE * ya que no se lee la totalidad del archivo
+
 vector<Medidor> MedidorAD::getMedidoresArchivo()
-{
+{	
 	Medidor intComAD;
 	vector<Medidor> medidores;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
+	//ifstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo(), ios::in);
+	archivo = fopen("medidores.dat", "rb");
+	//if (archivo.fail())
+	  if(archivo==NULL)
 		return medidores;
-	while (archivo.read((char*)&intComAD, sizeof(Medidor)))
+	//while (archivo.read((char*)&intComAD, sizeof(Medidor)))
+	  while (fread((char*)&intComAD, sizeof(Medidor), 1, archivo))
 	{
-		if (!archivo.eof())
+		//if (!archivo.eof())
+		  if(!archivo == NULL)
 		{
 			medidores.push_back(intComAD);
 		}
 	}
+	//archivo.close();
+	fclose(archivo);
 	return medidores;
 }
 

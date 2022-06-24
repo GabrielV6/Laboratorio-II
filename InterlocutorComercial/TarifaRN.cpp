@@ -1,18 +1,41 @@
 #include "TarifaRN.h"
+const int RANGO_NUMERICO = 1;
 
 TarifaRN::TarifaRN(string nombreArchivo)
 {
 	this->tarifaAD = TarifaAD(nombreArchivo);
 }
-TarifaRN::TarifaRN(){}
+
 TarifaRN::~TarifaRN()
 {}
+
 bool TarifaRN::AltaTarifa(Tarifa& tarifa)
 {
-	//Asignar ID
-	int id = (this->tarifaAD.TotalTarifaEnArchivo() + 1);
+	
+	if (tarifa.getIdTarifa() != 0) {
+		int id = this->tarifaAD.TotalTarifaEnArchivo();
+		if (id == -1) {
+			id = 0;
+		}
+		id += RANGO_NUMERICO;
+		
+		tarifa.setIdTarifa(id);
+		return this->tarifaAD.GuardarEnArchivoTarifa(tarifa);
+	}
+
+	return false;	
+}
+int TarifaRN::IdTarifa(Tarifa& tarifa)
+{	
+
+	int id = this->tarifaAD.TotalTarifaEnArchivo();
+	if (id == -1) {
+		id = 0;
+	}
+	id += RANGO_NUMERICO;
+
 	tarifa.setIdTarifa(id);
-	return this->tarifaAD.GuardarEnArchivoTarifa(tarifa);
+	return tarifa.getIdTarifa();
 }
 bool TarifaRN::ModificarTarifa(Tarifa& tarifa)
 {
@@ -42,9 +65,9 @@ string TarifaRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-vector<Tarifa> TarifaRN::VectorTarifa()
+vector<Tarifa> TarifaRN::VectorTarifas()
 {
-	return this->tarifaAD.getTarifaArchivo();
+	return this->tarifaAD.getTarifasArchivo();
 }
 void TarifaRN::setNombreArchivo(string nombreArchivo)
 {

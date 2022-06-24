@@ -86,7 +86,7 @@ void InterlocutorComercialV::ListarInterlocutores(int opcion)
 	cout << separador << endl;
 	cout << "Listado de Interlocutor Comercial " + tipo << endl;
 	cout << separador << endl;
-	for (auto intLoc : interlocutores)
+	for (auto &intLoc : interlocutores)
 	{
 		switch (opcion)
 		{

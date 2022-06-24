@@ -23,7 +23,7 @@ public:
 
 	void MenuMedidor();
 	void NuevoMedidor();
-	void ListarMedidor();
+	void ListarMedidor(bool estado);
 	void ModificarMedidor();
 
 };

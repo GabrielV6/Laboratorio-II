@@ -5,7 +5,7 @@
 #include <locale.h>
 using namespace std;
 
-static class Validaciones
+class Validaciones
 {
 public:
 	static char DatoObligarorioChar(string nombreDato);

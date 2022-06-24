@@ -3,12 +3,14 @@
 
 class TarifaV
 {
-    private:
+ private:
     Tarifa tarifa;
     string nombreArchivo;
     TarifaRN tarifaRN;
-    public:
-    TarifaV(string nombreArchivo);
+    string separador = "-------------------------------------------------------------------------------------------------------------";
+    
+public:
+    TarifaV(string nombreArchivo="");
     TarifaV();
     ~TarifaV();
     void NuevaTarifa();

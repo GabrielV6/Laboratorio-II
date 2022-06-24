@@ -44,8 +44,9 @@ void MedidorV::MenuMedidor()
 		cout << "Menu Medidor" << endl;
 		cout << this->separador << endl;
 		cout << "1. Nuevo Medidor" << endl;
-		cout << "2. Listar Medidor" << endl;
-		cout << "3. Modificar Medidor" << endl;
+		cout << "2. Listar Medidores Instalados" << endl;
+		cout << "3. Listar Medidor Desinstalados" << endl;
+		cout << "4. Modificar Medidor" << endl;
 		cout << "0. Salir del menu Medidor" << endl;
 		cout << this->separador << endl;
 		int opcion;
@@ -61,15 +62,20 @@ void MedidorV::MenuMedidor()
 		}
 		case 2:
 		{
-			ListarMedidor();
+			ListarMedidor(true);
 			
 			break;
 		}
 		case 3:
 		{
+			ListarMedidor(false);
 			
+			break;
+		}
+		case 4:
+		{
 			this->ModificarMedidor();
-			
+
 			break;
 		}
 		case 0:
@@ -86,34 +92,43 @@ void MedidorV::MenuMedidor()
 void MedidorV::NuevoMedidor()
 {
 	this->medidor = Medidor();
-	unsigned int id;
+	int id = 0;
 	string datos;
 	char dato;
 
 	do
-	{
+	{	
+		system("cls");
 		cout << this->separador << endl;
-		cout << "Nuevo dato Medidor" << endl;
+		cout << "Nuevo ID Medidor asignar: "<< medidorRN.IdMedidor(medidor) << endl;
 		cout << this->separador << endl;
-
-		cout << medidorRN.IdMedidor(medidor) << endl << endl;
-		cout << "Dar de alta " << endl;
+		cout << "Dar de alta " << endl << endl;
 		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
 		if (toupper(dato) == 'S')
 		{
 			this->medidorRN.AltaMedidor(this->medidor);
+			cout << this->separador << endl;
+			cout << "ALTA EXITOSA" << endl;
+			cout << this->separador << endl;
+			system("pause");
 			break;
+		}
+		else {
+			return;
 		}
 	} while (true);
 }
 
 
-void MedidorV::ListarMedidor()
+void MedidorV::ListarMedidor(bool estado)
 {
-	vector<Medidor> medidores = this->medidorRN.getMedidores(false);
+	vector<Medidor> medidores = this->medidorRN.getMedidores();
 	
 	for (int i = 0; i < medidores.size(); i++) {
-		cout << medidores[i].toStringMedidor() << endl;
+		if (medidores[i].getEstado() == estado) {
+			cout << medidores[i].toStringMedidor() << endl;
+		}
+		
 	}
 
 	system("pause");
@@ -123,11 +138,11 @@ void MedidorV::ListarMedidor()
 void MedidorV::ModificarMedidor()
 {
 	
-	int opcion;
+	int opcion=0;
 
 	do
 	{	
-		long id=0;
+		int id=0;
 		system("cls");
 		cout << this->separador << endl;
 		cout << "Modificar datos del Medidor " << endl;
@@ -162,7 +177,7 @@ void MedidorV::ModificarMedidor()
 		
 		string datos;
 		char dato;
-		long cc;
+		
 		switch (opcion)
 		{
 		case 1:

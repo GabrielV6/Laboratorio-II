@@ -1,4 +1,5 @@
 #include "MedidorRN.h"
+const int Rango_Numerico = 10001;
 
 MedidorRN::MedidorRN(string nombreArchivo)
 {
@@ -35,7 +36,6 @@ bool MedidorRN::ModificaMedidor(Medidor& medidor)
 
 bool MedidorRN::AltaMedidor(Medidor& medidor)
 {	
-	const int Rango_Numerico = 10001;
 
 	if (medidor.getId() != 0) {
 		int id = this->medidorAD.TotalMedidoresEnArchivo();
@@ -57,7 +57,7 @@ int MedidorRN::IdMedidor(Medidor& medidor)
 	if (id == -1) {
 		id = 0;
 	}
-	id += 10001;
+	id += Rango_Numerico;
 
 	medidor.setId(id);
 	return medidor.getId();
@@ -73,7 +73,7 @@ string MedidorRN::getNombreArchivo()
 	return this->nombreArchivo;
 }
 
-vector<Medidor> MedidorRN::getMedidores(bool soloActivos)
+vector<Medidor> MedidorRN::getMedidores()
 {
 	return this->medidorAD.getMedidoresArchivo();
 }
