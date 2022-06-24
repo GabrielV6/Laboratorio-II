@@ -6,7 +6,7 @@ TarifaRN::TarifaRN(string nombreArchivo)
 	this->tarifaAD = TarifaAD(nombreArchivo);
 }
 
-TarifaRN::TarifaRN(){}
+
 TarifaRN::~TarifaRN()
 {}
 

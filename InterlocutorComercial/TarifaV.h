@@ -10,7 +10,7 @@ class TarifaV
     string separador = "-------------------------------------------------------------------------------------------------------------";
     
 public:
-    TarifaV(string nombreArchivo);
+    TarifaV(string nombreArchivo="");
     TarifaV();
     ~TarifaV();
     void NuevaTarifa();

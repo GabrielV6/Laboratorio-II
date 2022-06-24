@@ -97,7 +97,8 @@ long Tarifa::getNumPosicionArhivo()
 }
 string Tarifa::toStringTarifa()
 {
-    return to_string(this->cargoFijo) + "/" + to_string(this->cargoVariable) + "/" + to_string(this->impuestos)  + "/" + to_string(this->tipoDeTarifa);
+    return to_string(this->cargoFijo) + "," + to_string(this->cargoVariable) + "," + to_string(this->impuestos) 
+        + "," + to_string(this->tipoDeTarifa)+"," + to_string(this->id_tarifa);
 }
 Tarifa::~Tarifa()
 {

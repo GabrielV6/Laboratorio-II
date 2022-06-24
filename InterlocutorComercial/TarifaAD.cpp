@@ -48,7 +48,7 @@ bool TarifaAD::GuardarEnArchivoTarifa(Tarifa& tarifa)
 	long posArchivo = TotalTarifaEnArchivo();
 	tarifa.setNumPosicionArchivo(posArchivo);
 	// se convierte la direccion de memoria a un puntero de char
-	archivo.write((char*)&tarifa, sizeof(tarifa));
+	archivo.write((char*)&tarifa, sizeof(Tarifa));
 	archivo.close();
 	return true;
 }
@@ -109,7 +109,7 @@ vector<Tarifa> TarifaAD::getTarifaArchivo()
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("tarifas.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)
 		return tarifa;

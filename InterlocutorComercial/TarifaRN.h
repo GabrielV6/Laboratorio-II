@@ -6,8 +6,8 @@ private:
 	TarifaAD tarifaAD;
 	string nombreArchivo;
 public:
-	TarifaRN(string nombreArchivo);
-	TarifaRN();
+	TarifaRN(string nombreArchivo="");
+	
 	~TarifaRN();
 	Tarifa BuscarTarifa(int codigoDeTarifa);
 
