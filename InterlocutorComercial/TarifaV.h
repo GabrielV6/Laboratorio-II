@@ -11,7 +11,6 @@ class TarifaV
     
 public:
     TarifaV(string nombreArchivo="");
-    TarifaV();
     ~TarifaV();
     void NuevaTarifa();
     void ListarTarifa();

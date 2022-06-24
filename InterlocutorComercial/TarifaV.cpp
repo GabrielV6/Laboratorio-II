@@ -49,13 +49,17 @@ void TarifaV::NuevaTarifa()
 /// </summary>
 void TarifaV::ListarTarifa()
 {
-	vector<Tarifa> tarifas = this->tarifaRN.VectorTarifas();
+	//vector<Tarifa> tarifas = this->tarifaRN.VectorTarifas();
+	int totalTarifas = this->tarifaRN.CantidadTarifaEnSistema();
+	Tarifa* tarifas = new Tarifa[totalTarifas];
+	if (tarifas == NULL)
+		return;
+	for (int i = 0; i < totalTarifas; i++) {
 
-	for (int i = 0; i < tarifas.size(); i++) {
-
+		tarifas[i] = this->tarifaRN.BuscarTarifa(i+1);
 		cout << tarifas[i].toStringTarifa() << endl;
 	}
-
+	delete tarifas;
 	system("pause");
 }
 

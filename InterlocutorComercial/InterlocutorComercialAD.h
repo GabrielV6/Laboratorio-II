@@ -29,7 +29,7 @@ public:
 	/// Método que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos
 	/// </summary>
 	/// <param name="posicion"></param>
-	/// <returns>InterlocutorComercial</returns>
+	/// <returns>InterlocutorComercial</returns> 
 	InterlocutorComercial getInterlocutorArchivo(int dni);
 	/// <summary>
 	/// Función que devuleve todos los interlocutores del archivo en un vector

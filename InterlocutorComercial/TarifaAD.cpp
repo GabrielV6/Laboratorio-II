@@ -105,24 +105,24 @@ Tarifa TarifaAD::getTarifaArchivo(int id_tarifa)
 vector<Tarifa> TarifaAD::getTarifasArchivo()
 {
 	Tarifa intComAD;
-	vector<Tarifa> tarifa;
+	vector<Tarifa> tarifas;
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
 	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)
-		return tarifa;
+		return tarifas;
 	//while (archivo.read((char*)&intComAD, sizeof(Medidor)))
 	while (fread((char*)&intComAD, sizeof(Tarifa), 1, archivo))
 	{
 		//if (!archivo.eof())
 		if (!archivo == NULL)
 		{
-			tarifa.push_back(intComAD);
+			tarifas.push_back(intComAD);
 		}
 	}
 	//archivo.close();
 	fclose(archivo);
-	return tarifa;
+	return tarifas;
 }

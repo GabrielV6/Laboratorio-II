@@ -103,26 +103,12 @@ vector<InterlocutorComercial> InterlocutorComercialAD::getInterlocutoresArchivo(
 {
 	InterlocutorComercial intComAD;
 	vector<InterlocutorComercial> interlocutores;
-	/*
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
-		return interlocutores;
-	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
-	{
-		if (!archivo.eof())
-		{
-			interlocutores.push_back(intComAD);
-		}
-	}
-	*/
 	FILE* archivo;
 	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	if (archivo == NULL)
 		return interlocutores;
 	while (fread((char*)&intComAD, sizeof(InterlocutorComercial), 1, archivo))
 	{
-		//if (!archivo.eof())
 		if (!archivo == NULL)
 		{
 			interlocutores.push_back(intComAD);
