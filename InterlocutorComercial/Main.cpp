@@ -23,11 +23,12 @@ int main()
 	DocumentoV documento(NOMBRE_ARCH);
 	documento.MenuDocumento();
 
-	InterfaceSalida intSal;
-	intSal.LeeTextosEntrada("MedidorCsv.csv");
+//GENERA LOS ARCHIVOS CSV Y LOS GUARDA EN .DAT
+	//InterfaceSalida intSal;
+	//intSal.LeeTextosEntrada("MedidorCsv.csv");
 
-	//MedidorV medidor(NOMBRE_ARCH_MED);
-	//medidor.MenuMedidor();
+	MedidorV medidor(NOMBRE_ARCH_MED);
+	medidor.MenuMedidor();
 
 
 	return EXIT_SUCCESS;

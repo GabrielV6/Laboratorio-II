@@ -168,7 +168,8 @@ void DocumentoV::MenuDocumento()
 		case 4:
 		{
 			MedidorV medidorV("medidores.dat");
-			medidorV.ListarMedidor();
+			//Le pasas false para traer los medidores desinstalados=Disponibles
+			medidorV.ListarMedidor(false);
 
 			break;
 		}
