@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -16,6 +18,7 @@ public:
 	vector<string> getTestoSalida();
 	bool GrabarTextosSalida(vector<string> textos, string nombreArchivo);
 	void MostrarTextosSalida(vector<string> textos, string tituloTexo);
+	bool LeeTextosEntrada(string nombreArchivo);
 private:
 	string textoSalida;
 	vector<string> textosSalida;
