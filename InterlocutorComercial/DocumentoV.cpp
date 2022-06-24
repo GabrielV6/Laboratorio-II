@@ -1,6 +1,9 @@
 #include "DocumentoV.h"
 #include "Fecha.h"
 #include "Validaciones.h"
+#include "MedidorV.h"
+
+
 
 
 
@@ -45,17 +48,20 @@ void DocumentoV::NuevoDocumento()
 			
 			break;
 	} while (true);
-	char tipo;
-	float consumo;
+	
+	int lecturaActual;
 	//char f;
 	do {
-		cout << "Ingrese el tipo de Documento (Factura=f, Nota credito=c, Nota debito=d, Remito=r) "; ///ver si es necesario remito
-		cin >> tipo;
-		//if(tipo==f)
-		cout << "Ingrese el tipo de factura(a, b) ";
-		cin >> tipo;
-		cout << "Ingrese el consumo: ";
-		cin >> consumo;
+		
+		cout << "Ingrese la lectura actual: ";
+		cin >> lecturaActual;
+		/// <summary>
+		/// MOSTRAR UN CARTEL QUE DIGA "SE VA GENERAR UNA FACTURA, PARA EL CLIENTE (NOMBRE APELLIDO) PARA ESTE
+		/// CONSUMO (MOSTRAR EL CALCULO DE CONSUMO). DESEA CONTINUAR? SI / NO.  
+		/// 
+		/// 
+		/// </summary>
+	
 		///FALTA METODO DE CARGA AUTOMATICA DE N° SERIE (0002,0005),numero(88888888)
 
 	} while (true);
@@ -142,6 +148,7 @@ void DocumentoV::MenuDocumento()
 		cout << "1. Nuevo Documento" << endl;
 		cout << "2. Listar Documentos" << endl;
 		cout << "3. Modificar Documento" << endl;
+		cout << "4. Listar medidores disponibles" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
@@ -158,6 +165,13 @@ void DocumentoV::MenuDocumento()
 		case 3:
 			this->ModificarDocumento();
 			break;
+		case 4:
+		{
+			MedidorV medidorV("medidores.dat");
+			medidorV.ListarMedidor();
+
+			break;
+		}
 		case 0:
 			salir = true;
 			break;

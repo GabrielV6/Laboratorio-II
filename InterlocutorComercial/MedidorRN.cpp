@@ -17,7 +17,7 @@ MedidorRN::~MedidorRN()
 }
 
 
-Medidor MedidorRN::BuscarCMedidor(long idMedidor)
+Medidor MedidorRN::BuscarCMedidor(int idMedidor)
 {
 	Medidor intComAD = this->medidorAD.getMedidorArchivo(idMedidor);
 	if (intComAD.getId() == idMedidor)
@@ -26,14 +26,23 @@ Medidor MedidorRN::BuscarCMedidor(long idMedidor)
 }
 
 
+
+bool MedidorRN::ModificaMedidor(Medidor& medidor)
+{
+	return this->medidorAD.ActualizarEnArchivoMedidor(medidor);
+}
+
+
 bool MedidorRN::AltaMedidor(Medidor& medidor)
 {	
+	const int Rango_Numerico = 10001;
+
 	if (medidor.getId() != 0) {
 		int id = this->medidorAD.TotalMedidoresEnArchivo();
 		if (id == -1) {
 			id = 0;
 		}
-		id += 10001;
+		id += Rango_Numerico;
 
 		medidor.setId(id);
 		return this->medidorAD.GuardarEnArchivoMedidor(medidor);

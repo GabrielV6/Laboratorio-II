@@ -24,6 +24,6 @@ public:
 	void MenuMedidor();
 	void NuevoMedidor();
 	void ListarMedidor();
-	bool ModificarMedidor();
+	void ModificarMedidor();
 
 };

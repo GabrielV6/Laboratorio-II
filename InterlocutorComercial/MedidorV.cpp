@@ -67,9 +67,9 @@ void MedidorV::MenuMedidor()
 		}
 		case 3:
 		{
-			/*
-			this->ModificarInterlocutor();
-			*/
+			
+			this->ModificarMedidor();
+			
 			break;
 		}
 		case 0:
@@ -118,4 +118,76 @@ void MedidorV::ListarMedidor()
 
 	system("pause");
 
+}
+
+void MedidorV::ModificarMedidor()
+{
+	
+	int opcion;
+
+	do
+	{	
+		long id=0;
+		system("cls");
+		cout << this->separador << endl;
+		cout << "Modificar datos del Medidor " << endl;
+		cout << this->separador << endl;
+		id=Validaciones::DatoObligarorioNum("ID o 0 - Para salir");
+		
+		if (id == 0) {
+			return;
+		}
+		this->medidor = this->medidorRN.BuscarCMedidor(id);
+		
+		if (this->medidor.getId() != id) // LLamar metodo de regla de negocio que valida si existe el DNI
+		{
+			cout << "ID ingresado no existe " << endl;
+			system("pause");
+			system("cls");
+		}
+		else
+			break;
+	} while (true);
+	do
+	{
+		system("cls");
+		cout << this->separador << endl;
+		cout << "Medidor : " << this->medidor.toStringMedidor() << endl;
+		cout << this->separador << endl;
+		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "0. Volver al menú anteriror" << endl;
+		cout << this->separador << endl;
+		
+		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		
+		string datos;
+		char dato;
+		long cc;
+		switch (opcion)
+		{
+		case 1:
+		{
+			cout << "Modificar estado ";
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S')
+				this->medidor.setEstado(!this->medidor.getEstado());
+			break;
+		}
+		case 0:
+
+			break;
+		default:
+			cout << "Opcion invalida!!!" << endl;
+			break;
+		}
+
+		if (opcion != 0)
+		{
+			if (!this->medidorRN.ModificaMedidor(this->medidor))
+				cout << "Fallo la modificación intente nuevamante" << endl;
+			else
+				cout << "Modificación correcta" << endl;
+		}
+		system("pause");
+	} while (opcion != 0);
 }

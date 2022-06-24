@@ -1,4 +1,6 @@
 #include "DocumentoRN.h"
+#include "MedidorV.h"
+#include "TarifaAD.h"
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
@@ -21,14 +23,16 @@ Documento DocumentoRN::BuscarDocumento(string id)
 Documento DocumentoRN::BuscarDocumento(int id)
 {	
 	Documento documento;
-	Medidor medidor = this->getMedidor(id,"medidores.dat");
+	this->medidor = this->getMedidor(id,"medidores.dat");
 	if (medidor.getId() != id)
 		return documento;
-	CuentaContrato cuentaContrato = this->getCuentaContrato(medidor.getId(), "cuentascontrato.dat");///FALTA GET ID CUENTA CONTRATO
-	InterlocutorComercial interlocutorComercial = this->getInterlocutorComercial(cuentaContrato.getId_ic(), "interlocutores.dat");
+	this->cc = this->getCuentaContrato(medidor.getId(), "cuentascontrato.dat");///FALTA GET ID CUENTA CONTRATO
+	this->interlocutorComercial = this->getInterlocutorComercial(cc.getId_ic(), "interlocutores.dat");
+	//this->tarifa = this->getTarifa(cc.getIdTarifa(), "tarifa.dat");///FALTA ID TARIFA, CTA CONTRATO
 	documento.setIdinter(interlocutorComercial.getId_ic());
-	documento.setIdcc(cuentaContrato.getId_cc());
+	documento.setIdcc(cc.getId_cc());
 	documento.setIdmed(medidor.getId());
+	//documento.setId(tarifa.getIdTarifa());
 			
 	return documento;
 }
@@ -54,6 +58,7 @@ void DocumentoRN::setNombreArchivo(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
 }
+///METODO QUE LISTA MEDIDORES
 
 //METODO QUE BUSCA UN MEDIDOR POR ID
 Medidor DocumentoRN::getMedidor(int id, string nomarch)

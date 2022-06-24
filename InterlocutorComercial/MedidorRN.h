@@ -10,7 +10,8 @@ public:
 	MedidorRN(string nombreArchivo);
 	MedidorRN();
 	~MedidorRN();
-	Medidor BuscarCMedidor(long idMedidor);
+	Medidor BuscarCMedidor(int idMedidor);
+	bool ModificaMedidor(Medidor& medidor);
 	bool AltaMedidor(Medidor& medidor);
 	int IdMedidor(Medidor& medidor);
 	int CantidadMedidores();
