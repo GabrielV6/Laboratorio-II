@@ -20,8 +20,9 @@ private:
 public:
 	DocumentoRN(string nombreArchivo = "");
 	~DocumentoRN();
-	Documento BuscarDocumento(string id);
+	Documento BuscarDocumento(string id);///VER ESTO
 	Documento BuscarDocumento(int id);
+	float CalcularConsumo(float lectura);
 	bool ControlModificaciones(Documento& documento);
 	bool AltaDocumento(Documento& documento);
 	long CantidadDocumentosEnSistema();
@@ -38,7 +39,8 @@ public:
 	///METODO QUE CALCULE EL CONSUMO TRAIGO LECTURA ANTERIOR MEDIDOR POR ID, 
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES
-
+	//Metodo que valida el id ingresado del medidor
+	bool validarIdMedidor(int id);
 
 
 };

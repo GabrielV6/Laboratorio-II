@@ -147,6 +147,7 @@ Documento::Documento(string d)
 		cout << "Ingrese el Tipo de tarifa: ";
 		cin >> this->tipoDeTarifa;
 	}
+	*/
 	/// <summary>
 	/// /VER ESTO
 	/// </summary>

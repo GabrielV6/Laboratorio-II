@@ -6,6 +6,7 @@
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
+	
 }
 DocumentoRN::~DocumentoRN()
 {
@@ -63,25 +64,20 @@ void DocumentoRN::setNombreArchivo(string nombreArchivo)
 
 //METODO QUE BUSCA UN MEDIDOR POR ID
 Medidor DocumentoRN::getMedidor(int id, string nomarch)
-{	
-	MedidorAD medidorAD(nomarch);
-	return medidorAD.getMedidorArchivo(id);
+{
+	MedidorAD medidorAd(nomarch);
+	return medidorAd.getMedidorArchivo(id);
 
 }
 //METODO QUE BUSQUE UN INTERLOCUTOR POR ID
 InterlocutorComercial DocumentoRN::getInterlocutorComercial(int id, string nomarch)
 {
 	InterlocutorComercialAD interlocutorAD(nomarch);
-	return interlocutorAD.getInterlocutorArchivo(id);
+	return interlocutorAD.getInterlocutorArchivoId(id);
 }
 //MERTODO QUE BUSCA INTERLOCUTOR POR ID Y DEVUELVE EL NOMBRE
-/*CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
-{
-	InterlocutorComercial interlocutor(nomarch);
-	return getNombre();
-	
-}
-*/
+
+
 //METODO QUE BUSCA UNA CUENTA CONTRATO POR ID
 CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
 {	
@@ -89,4 +85,27 @@ CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
 	return cuentaContratoAD.getCuentaContratoArchivo(id);
 }
 
+float DocumentoRN::CalcularConsumo(float lectura)
+{	
+	float consumo = 0;
+	//this->medidor=getMedidor();
+	consumo = lectura - this->medidor.getLectura();
+	/// <summary>
+	/// cargo fijo, cargo variable, 
+	/// </summary>
+	/// <param name="lectura"></param>
+	/// <returns></returns>
 
+	return consumo;
+}
+
+//BUSCO EL MEDIDOR Y LO VALIDO PARA SABER QUE ESTA CORRECTO
+bool DocumentoRN::validarIdMedidor(int id)
+{
+	this->medidor = this->getMedidor(id, "nombre del archivo medidores");
+	if (this->medidor.getId() != id && this->medidor.getIdCuentaContrato()>0)
+		return false;
+	this->cc = this->getCuentaContrato(this->medidor.getIdCuentaContrato(), "nombredelarchvoctacto");
+	this->interlocutorComercial = this->getInterlocutorComercial(this->medidor.getIdCuentaContrato(), "nombredelarchivointerlocu");
+	this->tarifa=this->getTarifa(this->cc.get)
+}

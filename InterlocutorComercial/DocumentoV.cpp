@@ -35,8 +35,11 @@ void DocumentoV::NuevoDocumento()
 		cout << "--------------------------------------------------" << endl;
 		cout << "Ingrese el Id del Medidor: ";
 		cin >> id;
+		//VALIDAR SI EL NUMERO DE ID ES CORRECTO
+		
 		//hacer un metodo validar id de medidor VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
 		this->documento = this->documentoRN.BuscarDocumento(id);
+	
 
 		if (this->documento.getIdmed() != id) // LLamar metodo de regla de negocio que valida si existe el ID
 		{
@@ -56,7 +59,7 @@ void DocumentoV::NuevoDocumento()
 		cout << "Ingrese la lectura actual: ";
 		cin >> lecturaActual;
 		{
-			cout << "Se va a generar una factura nueva, para el cliente para el consumo"<<" "<<lecturaActual << endl;
+			cout << "Se va a generar una factura nueva, para el cliente para el consumo"<<" "<<documentoRN.CalcularConsumo(lecturaActual) << endl;
 			cout << "Desea continuar?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S')
