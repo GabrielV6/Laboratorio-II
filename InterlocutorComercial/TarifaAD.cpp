@@ -102,7 +102,7 @@ Tarifa TarifaAD::getTarifaArchivo(int id_tarifa)
 /// <summary>
 /// Funci�n que devuleve todas las Tarifa  del archivo en un vector
 /// </summary>
-vector<Tarifa> TarifaAD::getTarifaArchivo()
+vector<Tarifa> TarifaAD::getTarifasArchivo()
 {
 	Tarifa intComAD;
 	vector<Tarifa> tarifa;

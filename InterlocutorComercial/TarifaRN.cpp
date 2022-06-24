@@ -6,7 +6,6 @@ TarifaRN::TarifaRN(string nombreArchivo)
 	this->tarifaAD = TarifaAD(nombreArchivo);
 }
 
-
 TarifaRN::~TarifaRN()
 {}
 
@@ -24,9 +23,7 @@ bool TarifaRN::AltaTarifa(Tarifa& tarifa)
 		return this->tarifaAD.GuardarEnArchivoTarifa(tarifa);
 	}
 
-	return false;
-	
-	
+	return false;	
 }
 int TarifaRN::IdTarifa(Tarifa& tarifa)
 {	
@@ -68,9 +65,9 @@ string TarifaRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-vector<Tarifa> TarifaRN::VectorTarifa()
+vector<Tarifa> TarifaRN::VectorTarifas()
 {
-	return this->tarifaAD.getTarifaArchivo();
+	return this->tarifaAD.getTarifasArchivo();
 }
 void TarifaRN::setNombreArchivo(string nombreArchivo)
 {

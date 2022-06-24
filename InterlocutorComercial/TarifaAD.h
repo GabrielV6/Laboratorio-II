@@ -15,7 +15,7 @@ public:
 	bool GuardarEnArchivoTarifa(Tarifa& tarifa);
 	bool ActualizarEnArchivoTarifa(Tarifa& tarifa);
 	Tarifa getTarifaArchivo(int codigoDeTarifa);
-	vector<Tarifa> getTarifaArchivo();
+	vector<Tarifa> getTarifasArchivo();
 private:
 	string nombreArchivo;
 	Tarifa tarifa;

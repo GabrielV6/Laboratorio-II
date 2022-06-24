@@ -13,7 +13,7 @@ TarifaV::~TarifaV()
 }
 
 void TarifaV::NuevaTarifa()
-{	
+{
 	char dato;
 
 	this->tarifa = Tarifa();
@@ -21,40 +21,39 @@ void TarifaV::NuevaTarifa()
 
 		system("cls");
 		cout << this->separador << endl;
-		cout << "Nuevo ID de tarifa asignar: " <<tarifaRN.IdTarifa(tarifa) << endl;
+		cout << "Nuevo ID de tarifa asignar: " << tarifaRN.IdTarifa(tarifa) << endl;
 		cout << this->separador << endl;
 		cout << "Dar de alta " << endl << endl;
 		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
 		if (toupper(dato) == 'S')
 		{
-		this->tarifaRN.AltaTarifa(this->tarifa);
-		cout << this->separador << endl;
-		cout << "ALTA EXITOSA" << endl;
-		cout << this->separador << endl;
-		system("pause");
-		break;
+			this->tarifaRN.AltaTarifa(this->tarifa);
+			cout << this->separador << endl;
+			cout << "ALTA EXITOSA" << endl;
+			cout << this->separador << endl;
+			system("pause");
+			break;
 		}
 		else {
 			system("cls");
 			system("pause");
 			return;
-		
+
 		}
-		
+
 	} while (true);
-	
+
 }
 /// <summary>
 /// Funci�n global para listar todas las Tarifas del archivo.
 /// </summary>
 void TarifaV::ListarTarifa()
 {
-	vector<Tarifa> tarifa = this->tarifaRN.VectorTarifa();
+	vector<Tarifa> tarifas = this->tarifaRN.VectorTarifas();
 
-	for (int i = 0; i < tarifa.size(); i++) {
-		
-			cout << tarifa[i].toStringTarifa() << endl;
+	for (int i = 0; i < tarifas.size(); i++) {
 
+		cout << tarifas[i].toStringTarifa() << endl;
 	}
 
 	system("pause");
@@ -86,10 +85,10 @@ void TarifaV::MenuModificarTarifa()
 		cout << "Tarifa: " << this->tarifa.toStringTarifa() << endl;
 		cout << this->separador << endl;
 		cout << "1. Modificar Cargo Fijo" << endl;
-        cout << "2. Modificar Cargo Variable" << endl;
-        cout << "3. Modificar Impuestos" << endl;
-        cout << "4. Modificar Tipo de Tarifa ('Industrial' 1, 'Domestico' 0)" << endl;
-        cout << "5. Modificar Estado de Tarifa ('Activo' 1, 'Inactivo' 0)" << endl;
+		cout << "2. Modificar Cargo Variable" << endl;
+		cout << "3. Modificar Impuestos" << endl;
+		cout << "4. Modificar Tipo de Tarifa ('Industrial' 1, 'Domestico' 0)" << endl;
+		cout << "5. Modificar Estado de Tarifa ('Activo' 1, 'Inactivo' 0)" << endl;
 		cout << "0. Salir" << endl;
 		cout << this->separador << endl;
 		cout << "Opcion: ";
@@ -102,7 +101,7 @@ void TarifaV::MenuModificarTarifa()
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo Cargo Fijo : ";
 			float cargo;
-			cin>>cargo;
+			cin >> cargo;
 			tarifa.setCargoFijo(cargo);
 			break;
 		}
@@ -111,20 +110,20 @@ void TarifaV::MenuModificarTarifa()
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo Cargo Variable : ";
 			float cargo;
-			cin>>cargo;
+			cin >> cargo;
 			tarifa.setCargoVariable(cargo);
 			break;
 		}
-        case 3:
+		case 3:
 		{
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo monto de Impuestos : ";
 			float impuestos;
-			cin>>impuestos;
+			cin >> impuestos;
 			tarifa.setImpuestos(impuestos);
 			break;
 		}
-        case 4:
+		case 4:
 		{
 			Tarifa tarifa;
 			cout << "Ingrese el nuevo Tipo de Tarifa : ('Industrial' 1, 'Domestico' 0)";
@@ -142,7 +141,7 @@ void TarifaV::MenuModificarTarifa()
 			tarifa.setEstado(n);
 			break;
 		}
-        case 0:
+		case 0:
 			break;
 		default:
 			cout << "Opcion invalida." << endl;
@@ -204,7 +203,7 @@ string TarifaV::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-void TarifaV::setTarifa(Tarifa &tarifa)
+void TarifaV::setTarifa(Tarifa& tarifa)
 {
 	this->tarifa = tarifa;
 }

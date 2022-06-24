@@ -18,8 +18,8 @@ int main()
 {
 	
 	setlocale(LC_CTYPE, "Spanish");
-	//InterlocutorComercialV interVista(NOMBRE_ARCH);
-	//interVista.MenuInterlocutorComecial();
+	/*InterlocutorComercialV interVista(NOMBRE_ARCH);
+	interVista.MenuInterlocutorComecial();*/
 	//DocumentoV documento(NOMBRE_ARCH);
 	//documento.MenuDocumento();
 
