@@ -12,6 +12,7 @@ public:
 	Tarifa BuscarTarifa(int codigoDeTarifa);
 
 	bool AltaTarifa(Tarifa& tarifa);
+	int IdTarifa(Tarifa& tarifa);
 	int CantidadTarifaEnSistema();
     bool ModificarTarifa(Tarifa& tarifa);
     bool ExisteTarifa(int id_tarifa);

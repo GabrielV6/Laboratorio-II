@@ -1,10 +1,11 @@
 #include "TarifaV.h"
+#include "Validaciones.h"
 
 TarifaV::TarifaV(string nombreArchivo)
 {
 	this->tarifa = Tarifa();
 	this->nombreArchivo = nombreArchivo;
-	this->tarifaRN = TarifaRN();
+	this->tarifaRN = TarifaRN(nombreArchivo);
 }
 
 TarifaV::~TarifaV()
@@ -12,14 +13,36 @@ TarifaV::~TarifaV()
 }
 
 void TarifaV::NuevaTarifa()
-{
+{	
+	char dato;
+
 	this->tarifa = Tarifa();
+	do {
 
-		cout << "-------------------------------------------------" << endl;
-		cout << "Ingreso de nueva tarifa " << endl;
-		cout << "--------------------------------------------------" << endl;
-		tarifa.cargarTarifa();
-
+		system("cls");
+		cout << this->separador << endl;
+		cout << "Nuevo ID de tarifa asignar: " <<tarifaRN.IdTarifa(tarifa) << endl;
+		cout << this->separador << endl;
+		cout << "Dar de alta " << endl << endl;
+		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
+		if (toupper(dato) == 'S')
+		{
+		this->tarifaRN.AltaTarifa(this->tarifa);
+		cout << this->separador << endl;
+		cout << "ALTA EXITOSA" << endl;
+		cout << this->separador << endl;
+		system("pause");
+		break;
+		}
+		else {
+			system("cls");
+			system("pause");
+			return;
+		
+		}
+		
+	} while (true);
+	
 }
 /// <summary>
 /// Funci�n global para listar todas las Tarifas del archivo.
@@ -27,10 +50,14 @@ void TarifaV::NuevaTarifa()
 void TarifaV::ListarTarifa()
 {
 	vector<Tarifa> tarifa = this->tarifaRN.VectorTarifa();
-	for (auto tarifa : tarifa)
-	{
-		cout << tarifa.toStringTarifa() << endl;
+
+	for (int i = 0; i < tarifa.size(); i++) {
+		
+			cout << tarifa[i].toStringTarifa() << endl;
+
 	}
+
+	system("pause");
 }
 
 void TarifaV::MenuModificarTarifa()
@@ -39,9 +66,9 @@ void TarifaV::MenuModificarTarifa()
 	int opcion;
 	do
 	{
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "Modificar datos de la Tarifa" << endl;
-		cout << "--------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "Id de la Tarifa: ";
 		cin >> id_tarifa;
 		this->tarifa = this->tarifaRN.BuscarTarifa(id_tarifa);
@@ -55,16 +82,16 @@ void TarifaV::MenuModificarTarifa()
 	} while (true);
 	do
 	{
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "Tarifa: " << this->tarifa.toStringTarifa() << endl;
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "1. Modificar Cargo Fijo" << endl;
         cout << "2. Modificar Cargo Variable" << endl;
         cout << "3. Modificar Impuestos" << endl;
         cout << "4. Modificar Tipo de Tarifa ('Industrial' 1, 'Domestico' 0)" << endl;
         cout << "5. Modificar Estado de Tarifa ('Activo' 1, 'Inactivo' 0)" << endl;
 		cout << "0. Salir" << endl;
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "Opcion: ";
 		cin >> opcion;
 		string datos;

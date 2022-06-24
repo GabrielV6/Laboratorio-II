@@ -20,15 +20,18 @@ int main()
 	setlocale(LC_CTYPE, "Spanish");
 	//InterlocutorComercialV interVista(NOMBRE_ARCH);
 	//interVista.MenuInterlocutorComecial();
-	DocumentoV documento(NOMBRE_ARCH);
-	documento.MenuDocumento();
+	//DocumentoV documento(NOMBRE_ARCH);
+	//documento.MenuDocumento();
 
 //GENERA LOS ARCHIVOS CSV Y LOS GUARDA EN .DAT
 	//InterfaceSalida intSal;
 	//intSal.LeeTextosEntrada("MedidorCsv.csv");
 
-	MedidorV medidor(NOMBRE_ARCH_MED);
-	medidor.MenuMedidor();
+	//MedidorV medidor(NOMBRE_ARCH_MED);
+	//medidor.MenuMedidor();
+
+	TarifaV tarifa(NOMBRE_ARCH_TAR);
+	tarifa.MenuTarifa();
 
 
 	return EXIT_SUCCESS;
