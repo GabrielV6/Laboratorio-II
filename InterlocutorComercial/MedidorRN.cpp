@@ -35,12 +35,14 @@ bool MedidorRN::ModificaMedidor(Medidor& medidor)
 
 bool MedidorRN::AltaMedidor(Medidor& medidor)
 {	
+	const int Rango_Numerico = 10001;
+
 	if (medidor.getId() != 0) {
 		int id = this->medidorAD.TotalMedidoresEnArchivo();
 		if (id == -1) {
 			id = 0;
 		}
-		id += 10001;
+		id += Rango_Numerico;
 
 		medidor.setId(id);
 		return this->medidorAD.GuardarEnArchivoMedidor(medidor);
