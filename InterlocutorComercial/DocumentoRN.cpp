@@ -1,6 +1,7 @@
 #include "DocumentoRN.h"
 #include "MedidorV.h"
 #include "TarifaAD.h"
+#include "InterlocutorComercialAD.h"
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
@@ -73,11 +74,18 @@ InterlocutorComercial DocumentoRN::getInterlocutorComercial(int id, string nomar
 	InterlocutorComercialAD interlocutorAD(nomarch);
 	return interlocutorAD.getInterlocutorArchivo(id);
 }
-
+//MERTODO QUE BUSCA INTERLOCUTOR POR ID Y DEVUELVE EL NOMBRE
+CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
+{
+	InterlocutorComercial interlocutor(nomarch);
+	return getNombre();
+	
+}
 //METODO QUE BUSCA UNA CUENTA CONTRATO POR ID
 CuentaContrato DocumentoRN::getCuentaContrato(int id, string nomarch)
 {	
 	CuentaContratoAD cuentaContratoAD(nomarch);
 	return cuentaContratoAD.getCuentaContratoArchivo(id);
 }
+
 

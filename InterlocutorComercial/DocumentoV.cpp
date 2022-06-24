@@ -50,11 +50,19 @@ void DocumentoV::NuevoDocumento()
 	} while (true);
 	
 	int lecturaActual;
-	//char f;
+	char dato;
 	do {
 		
 		cout << "Ingrese la lectura actual: ";
 		cin >> lecturaActual;
+		{
+			cout << "Se va a generar una factura nueva, para el cliente "<<<<"para el consumo"<<" "<<lecturaActual << endl;
+			cout << "Desea continuar?" << endl;
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S')
+				///this->(!this->Documento.getActivo());
+			break;
+		}
 		/// <summary>
 		/// MOSTRAR UN CARTEL QUE DIGA "SE VA GENERAR UNA FACTURA, PARA EL CLIENTE (NOMBRE APELLIDO) PARA ESTE
 		/// CONSUMO (MOSTRAR EL CALCULO DE CONSUMO). DESEA CONTINUAR? SI / NO.  
