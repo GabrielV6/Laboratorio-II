@@ -3,7 +3,7 @@ const int RANGO_NUMERICO = 1;
 
 TarifaRN::TarifaRN(string nombreArchivo)
 {
-	this->tarifaAD = TarifaAD(nombreArchivo);
+	this->tarifaAD = TarifaADBis(nombreArchivo);
 }
 
 TarifaRN::~TarifaRN()

@@ -1,12 +1,12 @@
 #pragma once
 #include <vector>
+#include <fstream>
 #include "Tarifa.h"
-class TarifaAD
+class TarifaADBis
 {
 public:
-
-	TarifaAD(string nombreArchivo = "");
-	~TarifaAD();
+	TarifaADBis(string nombreArchivo = "");
+	~TarifaADBis();
 	void setNombreArchivo(string nombreArchivo);
 	string getNombreArchivo();
 	int TotalTarifaEnArchivo();

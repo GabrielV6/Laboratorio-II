@@ -1,9 +1,9 @@
 #pragma once
-#include "TarifaAD.h"
+#include "TarifaADBis.h"
 class TarifaRN
 {
 private:
-	TarifaAD tarifaAD;
+	TarifaADBis tarifaAD;
 	string nombreArchivo;
 public:
 	TarifaRN(string nombreArchivo="");	
