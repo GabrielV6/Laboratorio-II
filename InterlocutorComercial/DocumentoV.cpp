@@ -56,7 +56,7 @@ void DocumentoV::NuevoDocumento()
 		cout << "Ingrese la lectura actual: ";
 		cin >> lecturaActual;
 		{
-			cout << "Se va a generar una factura nueva, para el cliente "<<<<"para el consumo"<<" "<<lecturaActual << endl;
+			cout << "Se va a generar una factura nueva, para el cliente para el consumo"<<" "<<lecturaActual << endl;
 			cout << "Desea continuar?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S')

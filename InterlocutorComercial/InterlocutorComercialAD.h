@@ -31,6 +31,7 @@ public:
 	/// <param name="posicion"></param>
 	/// <returns>InterlocutorComercial</returns> 
 	InterlocutorComercial getInterlocutorArchivo(int dni);
+	InterlocutorComercial getInterlocutorArchivoId(int id);
 	/// <summary>
 	/// Función que devuleve todos los interlocutores del archivo en un vector
 	/// </summary>
