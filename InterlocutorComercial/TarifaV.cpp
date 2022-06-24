@@ -61,8 +61,8 @@ void TarifaV::MenuModificarTarifa()
 		cout << "1. Modificar Cargo Fijo" << endl;
         cout << "2. Modificar Cargo Variable" << endl;
         cout << "3. Modificar Impuestos" << endl;
-        cout << "4. Modificar Tipo de Tarifa" << endl;
-        cout << "5. Modificar Estado de Tarifa" << endl;
+        cout << "4. Modificar Tipo de Tarifa ('Industrial' 1, 'Domestico' 0)" << endl;
+        cout << "5. Modificar Estado de Tarifa ('Activo' 1, 'Inactivo' 0)" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "Opcion: ";
@@ -100,7 +100,7 @@ void TarifaV::MenuModificarTarifa()
         case 4:
 		{
 			Tarifa tarifa;
-			cout << "Ingrese el nuevo Tipo de Tarifa : ";
+			cout << "Ingrese el nuevo Tipo de Tarifa : ('Industrial' 1, 'Domestico' 0)";
 			bool n;
 			cin >> n;
 			tarifa.setTipoDeTarifa(n);
@@ -109,7 +109,7 @@ void TarifaV::MenuModificarTarifa()
 		case 5:
 		{
 			Tarifa tarifa;
-			cout << "Ingrese el nuevo Estado  de la  Tarifa : ";
+			cout << "Ingrese el nuevo Estado  de la  Tarifa : ('Activo' 1, 'Inactivo' 0)";
 			bool n;
 			cin >> n;
 			tarifa.setEstado(n);
