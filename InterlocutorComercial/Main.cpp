@@ -23,6 +23,9 @@ int main()
 	DocumentoV documento(NOMBRE_ARCH);
 	documento.MenuDocumento();
 
+	InterfaceSalida intSal;
+	intSal.LeeTextosEntrada("MedidorCsv.csv");
+
 	//MedidorV medidor(NOMBRE_ARCH_MED);
 	//medidor.MenuMedidor();
 
