@@ -148,6 +148,7 @@
     <ClInclude Include="MedidorV.h" />
     <ClInclude Include="Tarifa.h" />
     <ClInclude Include="TarifaAD.h" />
+    <ClInclude Include="TarifaADBis.h" />
     <ClInclude Include="TarifaRN.h" />
     <ClInclude Include="TarifaV.h" />
     <ClInclude Include="Validaciones.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="MedidorV.cpp" />
     <ClCompile Include="Tarifa.cpp" />
     <ClCompile Include="TarifaAD.cpp" />
+    <ClCompile Include="TarifaADBis.cpp" />
     <ClCompile Include="TarifaRN.cpp" />
     <ClCompile Include="TarifaV.cpp" />
     <ClCompile Include="Validaciones.cpp" />
