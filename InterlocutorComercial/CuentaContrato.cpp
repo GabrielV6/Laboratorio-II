@@ -5,11 +5,13 @@ CuentaContrato::CuentaContrato()
 	this->id_cc = 0;
 	this->id_ic = 0;
 	this->id_tarifa = 0;
-	this->activo = true;
-	this->numPosicionArch = -1;
+	this->numPosicionArch = 0;
+	this->activo = false;
 }
 CuentaContrato::~CuentaContrato()
-{}
+{
+
+}
 void CuentaContrato::setId_cc(int id_cc)
 {
 	this->id_ic = id_cc;
@@ -53,12 +55,11 @@ bool CuentaContrato::getActivo()
 	return this->activo;
 }
 
-/// <summary>
-/// Método que devuelve una cadena con todos los datos de la Cuenta Contrato
-/// </summary>
-/// <returns>Cadena</returns>
+
 string CuentaContrato::toStringCuentaContrato()
 {
-	return "ID Cuenta Contrato: " + to_string(this->getId_cc()) + ", ID Interlocutor Comercial: " + to_string(this->getId_ic())
+	string cadena = "ID Cuenta Contrato: " + to_string(this->getId_cc()) + ", ID Interlocutor Comercial: " + to_string(this->getId_ic())
 		+ ", ID Tarifa: " + to_string(this->getId_Tarifa());
+
+	return cadena;
 }

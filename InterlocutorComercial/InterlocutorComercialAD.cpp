@@ -16,7 +16,7 @@ string InterlocutorComercialAD::getNombreArchivo()
 	return this->nombreArchivo;
 }
 /// <summary>
-/// Método que devuelve la cantidad de interlocutores comerciales que hay en el archivo de datos.
+/// Mï¿½todo que devuelve la cantidad de interlocutores comerciales que hay en el archivo de datos.
 /// </summary>
 /// <returns>entero largo</returns>
 int InterlocutorComercialAD::TotalInterlocutoresEnArchivo()
@@ -32,7 +32,7 @@ int InterlocutorComercialAD::TotalInterlocutoresEnArchivo()
 	return cantidad;
 }
 /// <summary>
-/// Método que guarda el interlocutor en el archivo de datos y devuelve verdadero cuando resulta correto la grabación.
+/// Mï¿½todo que guarda el interlocutor en el archivo de datos y devuelve verdadero cuando resulta correto la grabaciï¿½n.
 /// </summary>
 /// <returns>Booleano</returns>
 bool InterlocutorComercialAD::GuardarEnArchivoInterlocutor(InterlocutorComercial& interlocuror)
@@ -50,7 +50,7 @@ bool InterlocutorComercialAD::GuardarEnArchivoInterlocutor(InterlocutorComercial
 	return true;
 }
 /// <summary>
-/// Este método permite modificar en el archivo el interlocutor enviado por parametro
+/// Este mï¿½todo permite modificar en el archivo el interlocutor enviado por parametro
 /// </summary>
 /// <param name="interlocutor"></param>
 /// <returns></returns>
@@ -70,7 +70,7 @@ bool InterlocutorComercialAD::ActualizarEnArchivoIneterlocurtor(InterlocutorCome
 	return true;
 }
 /// <summary>
-/// Método que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos
+/// Mï¿½todo que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos
 /// </summary>
 /// <param name="posicion"></param>
 /// <returns>InterlocutorComercial</returns>
@@ -96,7 +96,7 @@ InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(int dni)
 	return intComAD;
 }
 /// <summary>
-/// Método que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos busca por id
+/// Mï¿½todo que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos busca por id
 /// </summary>
 /// <param name="id"></param>
 /// <returns>InterlocutorComercial</returns>
@@ -123,7 +123,7 @@ InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivoId(int id)
 }
 
 /// <summary>
-/// Función que devuleve todos los interlocutores del archivo en un vector
+/// Funciï¿½n que devuleve todos los interlocutores del archivo en un vector
 /// </summary>
 vector<InterlocutorComercial> InterlocutorComercialAD::getInterlocutoresArchivo()
 {
@@ -135,7 +135,7 @@ vector<InterlocutorComercial> InterlocutorComercialAD::getInterlocutoresArchivo(
 		return interlocutores;
 	while (fread((char*)&intComAD, sizeof(InterlocutorComercial), 1, archivo))
 	{
-		if (!archivo == NULL)
+		if (!(archivo == NULL))
 		{
 			interlocutores.push_back(intComAD);
 		}

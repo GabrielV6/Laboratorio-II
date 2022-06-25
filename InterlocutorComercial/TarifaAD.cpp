@@ -79,7 +79,7 @@ Tarifa TarifaAD::getTarifaArchivo(int id)
 	while (fread((char*)&intComAD, sizeof(Tarifa), 1, archivo))
 	{
 		//if (!archivo.eof())
-		if (!archivo == NULL)
+		if (!(archivo == NULL))
 			if (intComAD.getIdTarifa() == id)
 			{
 				//archivo.close();
