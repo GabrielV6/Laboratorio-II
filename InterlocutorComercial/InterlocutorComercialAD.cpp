@@ -95,6 +95,32 @@ InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(int dni)
 	intComAD = InterlocutorComercial();
 	return intComAD;
 }
+/// <summary>
+/// Método que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos busca por id
+/// </summary>
+/// <param name="id"></param>
+/// <returns>InterlocutorComercial</returns>
+InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivoId(int id)
+{
+	InterlocutorComercial intComAD;
+	ifstream archivo;
+	archivo.open(this->getNombreArchivo(), ios::in);
+	if (archivo.fail())
+		return intComAD;
+
+	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
+	{
+		if (!archivo.eof())
+			if (intComAD.getId_ic() == id)
+			{
+				archivo.close();
+				return intComAD;
+			}
+	}
+	archivo.close();
+	intComAD = InterlocutorComercial();
+	return intComAD;
+}
 
 /// <summary>
 /// Función que devuleve todos los interlocutores del archivo en un vector
@@ -103,13 +129,13 @@ vector<InterlocutorComercial> InterlocutorComercialAD::getInterlocutoresArchivo(
 {
 	InterlocutorComercial intComAD;
 	vector<InterlocutorComercial> interlocutores;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
+	FILE* archivo;
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
+	if (archivo == NULL)
 		return interlocutores;
-	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
+	while (fread((char*)&intComAD, sizeof(InterlocutorComercial), 1, archivo))
 	{
-		if (!archivo.eof())
+		if (!archivo == NULL)
 		{
 			interlocutores.push_back(intComAD);
 		}

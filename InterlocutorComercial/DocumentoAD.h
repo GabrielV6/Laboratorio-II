@@ -32,7 +32,7 @@ public:
 	/// </summary>
 	/// <param name="posicion"></param>
 	/// <returns>Documento</returns>
-	Documento getDocumentoArchivo(string id);
+	Documento getDocumentoArchivo(int id);
 	/// <summary>
 	/// Funci�n que devuleve todos los documentos del archivo en un vector
 	/// </summary>

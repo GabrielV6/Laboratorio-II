@@ -1,77 +1,72 @@
 #include "TarifaRN.h"
-const int RANGO_NUMERICO = 1;
+const int Rango_Numerico = 1;
 
 TarifaRN::TarifaRN(string nombreArchivo)
 {
 	this->tarifaAD = TarifaAD(nombreArchivo);
+	this->nombreArchivo = nombreArchivo;
 }
 
-TarifaRN::TarifaRN(){}
 TarifaRN::~TarifaRN()
-{}
+{
+}
+
+Tarifa TarifaRN::BuscarTarifa(int codigoDeTarifa)
+{
+	Tarifa intComAD = this->tarifaAD.getTarifaArchivo(codigoDeTarifa);
+	if (intComAD.getIdTarifa() == codigoDeTarifa)
+		return intComAD;
+	return Tarifa();
+}
+
+bool TarifaRN::ModificarTarifa(Tarifa& tarifa)
+{
+	return this->tarifaAD.ActualizarEnArchivoTarifa(tarifa);
+}
 
 bool TarifaRN::AltaTarifa(Tarifa& tarifa)
 {
-	
 	if (tarifa.getIdTarifa() != 0) {
-		int id = this->tarifaAD.TotalTarifaEnArchivo();
+		int id = this->tarifaAD.TotalTarifasEnArchivo();
 		if (id == -1) {
 			id = 0;
 		}
-		id += RANGO_NUMERICO;
-		
+		id += Rango_Numerico;
+
 		tarifa.setIdTarifa(id);
 		return this->tarifaAD.GuardarEnArchivoTarifa(tarifa);
 	}
 
 	return false;
-	
-	
 }
-int TarifaRN::IdTarifa(Tarifa& tarifa)
-{	
 
-	int id = this->tarifaAD.TotalTarifaEnArchivo();
+int TarifaRN::IdTarifa(Tarifa& tarifa)
+{
+	int id = this->tarifaAD.TotalTarifasEnArchivo();
 	if (id == -1) {
 		id = 0;
 	}
-	id += RANGO_NUMERICO;
+	id += Rango_Numerico;
 
 	tarifa.setIdTarifa(id);
 	return tarifa.getIdTarifa();
 }
-bool TarifaRN::ModificarTarifa(Tarifa& tarifa)
-{
-	return this->tarifaAD.ActualizarEnArchivoTarifa(tarifa);
-}
-bool TarifaRN::ExisteTarifa(int id_tarifa)
-{
-	Tarifa tarifa= this->BuscarTarifa(id_tarifa);
-	if (tarifa.getIdTarifa() == id_tarifa )
-		return true;
-	else
-        return false;
-}
-Tarifa TarifaRN::BuscarTarifa(int id_tarifa)
-{
-	Tarifa tarifa = this->tarifaAD.getTarifaArchivo(id_tarifa);
-	if (tarifa.getIdTarifa() == id_tarifa)
-		return tarifa;
-	return Tarifa();
-}
 
 int TarifaRN::CantidadTarifaEnSistema()
 {
-	return this->tarifaAD.TotalTarifaEnArchivo();
+	return this->tarifaAD.TotalTarifasEnArchivo();
 }
+
 string TarifaRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-vector<Tarifa> TarifaRN::VectorTarifa()
+
+vector<Tarifa> TarifaRN::getTarifas()
 {
-	return this->tarifaAD.getTarifaArchivo();
+	return this->tarifaAD.getTarifasArchivo();
 }
+
 void TarifaRN::setNombreArchivo(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;

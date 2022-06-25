@@ -10,7 +10,7 @@
 
 DocumentoV::DocumentoV(string nombreArchivo)
 {
-	this->documento = Documento(nombreArchivo);
+	this->documento = Documento();
 	this->nombreArchivo = nombreArchivo;
 	this->documentoRN = DocumentoRN(nombreArchivo);
 }
@@ -26,35 +26,52 @@ void DocumentoV::NuevoDocumento()
 	/// DEBE INGRESAR UN NUMERO DE ID DE MEDIDOR, CON ESE ID ME TRAE EL ID DEL INTERLOCUTOR PARA LLENAR EL DOCUMENTO PARA ESE INTER
 	/// VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
 	/// </summary>
-	this->documento = Documento(this->nombreArchivo);
+	this->documento = Documento();
 	int id;
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del Documento " << endl;
 		cout << "--------------------------------------------------" << endl;
-		cout << "Ingrese el Id del Medidor: ";
-		cin >> id;
-		//hacer un metodo validar id de medidor VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
-		this->documento = this->documentoRN.BuscarDocumento(id);
-
-		if (this->documento.getIdmed() != id) // LLamar metodo de regla de negocio que valida si existe el ID
+		//cout << "Ingrese el Id del Medidor: ";
+		//cin >> id;
+		id = Validaciones::DatoObligarorioNum("Id del Medidor : ");
+		//VALIDA EL ID QUE EXISTA EN EL ARCHIVO MEDIDORES Y CARGA EL RESTO DE LOS OBJETOS PARA EL DOCUMENTO
+		if (!this->documentoRN.validarIdMedidor(id))
 		{
-			cout << "ID medidor no encontrado!!!" << endl;
+			cout << "El ID ingresado no es valido" << endl;
 			system("pause");
 			system("cls");
+			continue;
 		}
+		
 		else
-			
+		{
 			break;
+		}			
+			
 	} while (true);
 	
-	int lecturaActual;
-	//char f;
+	float lecturaActual;
+	char dato;
 	do {
 		
-		cout << "Ingrese la lectura actual: ";
-		cin >> lecturaActual;
+		lecturaActual= Validaciones::DatoObligarorioNum("la lectura actual:");
+		///LLAMAR A METODO CALCULAR CONSUMO
+		float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
+		if(consumo>=0)
+		{	
+			cout << "Se va a generar una factura nueva, para el cliente: " << endl;
+			cout << this->documentoRN.getInterlocutorComercial().getNombre();
+			cout << this->documentoRN.getInterlocutorComercial().getApellido();
+			cout << " con el consumo: " << consumo << endl;
+			cout << "Desea continuar?" << endl;
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S')
+				///this->(!this->Documento.getActivo());
+				///generar el documento. 
+			break;
+		}
 		/// <summary>
 		/// MOSTRAR UN CARTEL QUE DIGA "SE VA GENERAR UNA FACTURA, PARA EL CLIENTE (NOMBRE APELLIDO) PARA ESTE
 		/// CONSUMO (MOSTRAR EL CALCULO DE CONSUMO). DESEA CONTINUAR? SI / NO.  
@@ -62,7 +79,7 @@ void DocumentoV::NuevoDocumento()
 		/// 
 		/// </summary>
 	
-		///FALTA METODO DE CARGA AUTOMATICA DE N° SERIE (0002,0005),numero(88888888)
+		///FALTA METODO DE CARGA AUTOMATICA DE numero(88888888)
 
 	} while (true);
 	//string id;
@@ -82,58 +99,6 @@ void DocumentoV::ListarDocumentos()
 	}
 }
 
-void DocumentoV::MenuModificarDocumento()
-{
-	string id;
-	int opcion;
-
-	do
-	{
-		cout << "-------------------------------------------------" << endl;
-		cout << "Modificar datos del Documento " << endl;
-		cout << "--------------------------------------------------" << endl;
-		cout << "Documento Id.: ";
-		cin >> id;
-		this->documento = this->documentoRN.BuscarDocumento(id);
-		if (this->documento.getId() == id) // LLamar metodo de regla de negocio que valida si existe el ID
-		{
-			cout << "Documento ingresado no esta dado de alta!!!" << endl;
-			system("cls");
-		}
-		else
-			break;
-	} while (true);
-	do
-	{
-		cout << "-------------------------------------------------" << endl;
-		cout << "Documento: " << this->documento.toStringDocumento() << endl;
-		cout << "-------------------------------------------------" << endl;
-		cout << "1. Modificar id" << endl;
-		cout << "0. Salir" << endl;
-		cout << "-------------------------------------------------" << endl;
-		cout << "Opcion: ";
-		cin >> opcion;
-		string id;
-		switch (opcion)
-		{
-		case 1:
-			id = Validaciones::DatoObligarorioCad("ID");
-			this->documento.setId(id);
-			break;
-		case 0:
-
-			break;
-		default:
-			cout << "Opcion invalida!!!" << endl;
-			break;
-		}
-	} while (opcion != 0);
-}
-void DocumentoV::ModificarDocumento()
-{
-	MenuModificarDocumento();
-	this->documentoRN.ControlModificaciones(this->documento);
-}
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de documentos.
 /// </summary>
@@ -147,8 +112,7 @@ void DocumentoV::MenuDocumento()
 		cout << "-------------------------------------------------" << endl;
 		cout << "1. Nuevo Documento" << endl;
 		cout << "2. Listar Documentos" << endl;
-		cout << "3. Modificar Documento" << endl;
-		cout << "4. Listar medidores disponibles" << endl;
+		cout << "3. Listar medidores disponibles" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
@@ -162,10 +126,8 @@ void DocumentoV::MenuDocumento()
 		case 2:
 			this->ListarDocumentos();
 			break;
+		
 		case 3:
-			this->ModificarDocumento();
-			break;
-		case 4:
 		{
 			MedidorV medidorV("medidores.dat");
 			//Le pasas false para traer los medidores desinstalados=Disponibles
@@ -175,6 +137,7 @@ void DocumentoV::MenuDocumento()
 		}
 		case 0:
 			salir = true;
+			system("cls");
 			break;
 		default:
 			cout << "Opcion no valida" << endl;

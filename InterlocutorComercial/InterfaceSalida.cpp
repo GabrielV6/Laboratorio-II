@@ -1,6 +1,15 @@
 #include "InterfaceSalida.h"
 #include "CuentaContratoAD.h"
 #include "MedidorAD.h"
+#include "Validaciones.h"
+#include "InterlocutorComercialV.h"
+#include "MedidorV.h"
+#include "Validaciones.h"
+#include "DocumentoV.h"
+#include "TarifaV.h"
+#include "CuentaContratoV.h"
+
+
 
 InterfaceSalida::InterfaceSalida()
 {}
@@ -86,7 +95,7 @@ bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 				break;
 			}
 			indice++;
-			posInit = posFound + 1;	
+			posInit = posFound + 1;
 		}
 		MedidorAD medAD("medidores.dat");
 		medAD.GuardarEnArchivoMedidor(medArch);
@@ -98,10 +107,96 @@ bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 
 void InterfaceSalida::MostrarTextosSalida(vector<string> textos, string tituloTexo)
 {
-	cout << "--------------------------------------------------------------------------" << endl;
+	cout << this->separador << endl;
 	cout << tituloTexo << endl;
-	cout << "--------------------------------------------------------------------------" << endl;
+	cout << this->separador << endl;
 	for (auto& texto : textos)
 		cout << texto << endl;
-	cout << "--------------------------------------------------------------------------" << endl;
+	cout << this->separador << endl;
+}
+
+void InterfaceSalida::MenuPrincipal()
+{
+	int opcion = 0;
+	do
+	{
+		cout << this->separador << endl;
+		cout << "SITEMA DE GESTION ENERGETICA" << endl;
+		cout << this->separador << endl;
+		cout << "|1. Para menú Interlocutor Comercial" << endl;
+		cout << "|2. Para menú Cuenta Contrato" << endl;
+		cout << "|3. Para menú Medidor" << endl;
+		cout << "|4. Para menú Tarifa" << endl;
+		cout << "|5. Para menú Faturacion" << endl;
+		cout << "|6. Para menú Consultas" << endl;
+		cout << "|0. Para Salir" << endl;
+		cout << this->separador << endl;
+		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+
+		if (opcion == 0)
+		{
+			char salir;
+			cout << "Desa salir del sistema " << endl;
+			salir = Validaciones::DatoObligarorioChar(" S para salir");
+			if (toupper(salir) == 'S')
+			{
+				system("cls");
+				cout << "GRACIAS POR USAR EL SISTEMA DE GESTION ENERGETICA!!!" << endl;
+				system("pause");
+				exit(1);
+			}
+		}
+		
+
+
+		system("cls");
+		switch (opcion)
+		{
+		case 1:
+		{	
+			system("cls");
+			InterlocutorComercialV interVista(NOMBRE_ARCH_IC);
+			interVista.MenuInterlocutorComecial();
+
+
+
+			break;
+		}
+		case 2:
+		{	
+			system("cls");
+			CuentaContratoV cuentaContratoV(NOMBRE_ARCH_CC);
+			cuentaContratoV.MenuCuentaContrato();
+			break;
+		}
+		case 3:
+		{
+			MedidorV medidor(NOMBRE_ARCH_MED);
+			medidor.MenuMedidor();
+			break;
+		}
+		case 4:
+		{
+
+			TarifaV tarifa(NOMBRE_ARCH_TAR);
+			tarifa.MenuTarifa();
+			break;
+		}
+		case 5:
+		{
+			DocumentoV documento(NOMBRE_ARCH_DOC);
+			documento.MenuDocumento();
+			break;
+		}
+		case 6:
+		{
+			//GENERA LOS ARCHIVOS CSV Y LOS GUARDA EN .DAT
+			InterfaceSalida intSal;
+			intSal.LeeTextosEntrada("MedidorCsv.csv");
+
+		}
+		default:
+			break;
+		}
+	} while (true);
 }

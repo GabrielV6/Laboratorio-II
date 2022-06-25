@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "InterlocutorComercial.h"
+
 class InterlocutorComercialAD
 {
 public:
@@ -29,8 +30,9 @@ public:
 	/// Método que devuleve un objeto tipo interlocutor comercial que este dentro del archivo de datos
 	/// </summary>
 	/// <param name="posicion"></param>
-	/// <returns>InterlocutorComercial</returns>
+	/// <returns>InterlocutorComercial</returns> 
 	InterlocutorComercial getInterlocutorArchivo(int dni);
+	InterlocutorComercial getInterlocutorArchivoId(int id);
 	/// <summary>
 	/// Función que devuleve todos los interlocutores del archivo en un vector
 	/// </summary>

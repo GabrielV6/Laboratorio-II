@@ -1,10 +1,16 @@
 #pragma once
 #include "CuentaContratoAD.h"
+#include "InterlocutorComercialAD.h"
+#include "TarifaAD.h"
+#include "Validaciones.h"
+
 class CuentaContratoRN
 {
 private:
 	CuentaContratoAD cuentaContratoAD;
 	string nombreArchivo;
+	InterlocutorComercial interlocutorComercial;
+	Tarifa tarifa;
 public:
 	CuentaContratoRN(string nombreArchivo = "");
 	~CuentaContratoRN();

@@ -1,5 +1,6 @@
 #include "Validaciones.h"
 
+
 int Validaciones::DatoObligarorioNum(string nombreDato)
 {
 	string dato = "";

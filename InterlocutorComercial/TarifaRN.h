@@ -1,24 +1,25 @@
 #pragma once
+
+#include "Tarifa.h"
 #include "TarifaAD.h"
-class TarifaRN
-{
+
+class TarifaRN {
 private:
 	TarifaAD tarifaAD;
 	string nombreArchivo;
-public:
-	TarifaRN(string nombreArchivo);
-	TarifaRN();
-	~TarifaRN();
-	Tarifa BuscarTarifa(int codigoDeTarifa);
 
+public:
+
+	TarifaRN(string nombreArchivo = "");
+	~TarifaRN();
+
+	Tarifa BuscarTarifa(int codigoDeTarifa);
+	bool ModificarTarifa(Tarifa& tarifa);
 	bool AltaTarifa(Tarifa& tarifa);
 	int IdTarifa(Tarifa& tarifa);
 	int CantidadTarifaEnSistema();
-    bool ModificarTarifa(Tarifa& tarifa);
-    bool ExisteTarifa(int id_tarifa);
-
 
 	string getNombreArchivo();
-	vector<Tarifa> VectorTarifa();
+	vector<Tarifa> getTarifas();
 	void setNombreArchivo(string nombreArchivo);
 };

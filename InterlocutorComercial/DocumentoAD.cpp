@@ -79,7 +79,7 @@ bool DocumentoAD::ActualizarEnArchivoDocumento(Documento& documento)
 /// </summary>
 /// <param name="posicion"></param>
 /// <returns>Documento</returns>
-Documento DocumentoAD::getDocumentoArchivo(string id)
+Documento DocumentoAD::getDocumentoArchivo(int id)
 {
 	Documento documentoAD;
 	ifstream archivo;
@@ -90,7 +90,7 @@ Documento DocumentoAD::getDocumentoArchivo(string id)
 	while (archivo.read((char*)&documentoAD, sizeof(Documento)))
 	{
 		if (!archivo.eof())
-			if (documentoAD.getId() == id)
+			if (documentoAD.getNumero() == id)
 			{
 				archivo.close();
 				return documentoAD;

@@ -12,24 +12,24 @@ private:
     int _id;
     int _idCuentaContrato;
     bool _estado;
-    float _lectura; 
+    float _lectura;
     int _numPosicionArch;
 public:
-    Medidor(int id,int idCuentaContrato, bool estado, float lectura,int nPosicion);
+    Medidor(int id, int idCuentaContrato, bool estado, float lectura, int nPosicion);
     Medidor();
     ~Medidor();
     void setId(int id);
     void setIdCuentaContrato(int idCuentaContrato);
     void setEstado(bool estado);
     void setLectura(float lectura);
-    long getId();
+    void setNumPosicionArchivo(int numPosArch);
+
+    int getId();
     int getIdCuentaContrato();
     bool getEstado();
     float getLectura();
+    int getNumPosicionArhivo();
 
     string toStringMedidor();
-
-    void setNumPosicionArchivo(int numPosArch);
-    int getNumPosicionArhivo();
 
 };

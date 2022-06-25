@@ -6,39 +6,24 @@
 class CuentaContrato
 {
 private:
-	long id_cc;
-    long id_ic;
-	char formaDePago[30];
-	bool categoriaDeCliente;
-    bool tipoDeInteres;
-	Fecha fechaIngresoID;
-	Direccion direccionID;
+	int id_cc;
+    int id_ic;
+	int id_tarifa;
 	long numPosicionArch;
-	char nombreArchivo[30];
 	bool activo;
 public:
 	CuentaContrato();
-	CuentaContrato(string nombreArchivo);
 	~CuentaContrato();
-    void setId_cc(long id_cc);
-	void setId_ic(long id_ic);
-	void setFormaDePago(string formaDePago);
-    void setCategoriaDeCliente(bool categoriaDeCliente);
-    void setTipoDeInteres(bool tipoDeInteres);
-	void setFechaIngresoId(Fecha fechaIn);
-	void setDireccionId(Direccion direccionId);
-	void setNumPosicionArchivo(long numPosArch);
+    void setId_cc(int id_cc);
+	void setId_ic(int id_ic);
+	void setId_tarifa(int id_tarifa);
+	void setNumPosicionArchivo(int numPosArch);
 	void setNombreArchivo(string nomArch);
 	void setActivo(bool activo);
-	long getId_cc();
-    long getId_ic();
-	string getFormaDePago();
-    bool getCategoriaDeCliente();
-    bool getTipoDeInteres();
-	Fecha getFechaIngresoId();
-	Direccion getDireccionId();
-	long getNumPosicionArhivo();
-	string getNombreArchivo();
+	int getId_cc();
+    int getId_ic();
+	int getId_Tarifa();
+	int getNumPosicionArhivo();
 	bool getActivo();
 	string toStringCuentaContrato();	
 };

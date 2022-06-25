@@ -10,7 +10,7 @@ public:
     ~MedidorAD();
     void setNombreArchivo(string nombreArchivo);
     string getNombreArchivo();
-    long TotalMedidoresEnArchivo();
+    int TotalMedidoresEnArchivo();
     bool GuardarEnArchivoMedidor(Medidor& medidor);
     bool ActualizarEnArchivoMedidor(Medidor& medidor);
     Medidor getMedidorArchivo(int id);
