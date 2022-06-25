@@ -169,7 +169,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << "Cuenta Contrato : " << this->cuentaContrato.toStringCuentaContrato() << endl;
 		cout << this->separador << endl;
 		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
-		cout << "0. Volver al menú anteriror" << endl;
+		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
 		opcion = Validaciones::DatoObligarorioNum("Opcion:");
@@ -182,10 +182,16 @@ void CuentaContratoV::ModificarCuentaContrato()
 		case 1:
 		{
 			cout << "Modificar estado ";
+			cout << "El estado de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getEstado() << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			
 			if (toupper(dato) == 'S')
 				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
 			break;
+
+			cout << "El actual estado de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getEstado() << endl;
 		}
 		case 0:
 
@@ -198,7 +204,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		if (opcion != 0)
 		{
 			if (!this->cuentaContratoRN.ModificarCuentaContrato(this->cuentaContrato))
-				cout << "Fallo la modificación, intente nuevamante" << endl;
+				cout << "Falló la modificación, intente nuevamante" << endl;
 			else
 				cout << "Modificación realizada correctamente" << endl;
 		}

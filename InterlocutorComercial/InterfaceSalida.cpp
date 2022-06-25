@@ -34,7 +34,7 @@ vector<string> InterfaceSalida::getTestoSalida()
 
 
 /// <summary>
-/// Método que graba el texto que estan en el vecotr dentro de archivo indicado en el parametro nombreArchivo.
+/// Mï¿½todo que graba el texto que estan en el vecotr dentro de archivo indicado en el parametro nombreArchivo.
 /// </summary>
 /// <returns>Booleano</returns>
 bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArchivo)
@@ -121,14 +121,14 @@ void InterfaceSalida::MenuPrincipal()
 	do
 	{
 		cout << this->separador << endl;
-		cout << "SITEMA DE GESTION ENERGETICA" << endl;
+		cout << "SISTEMA DE GESTION ENERGETICA" << endl;
 		cout << this->separador << endl;
-		cout << "|1. Para menú Interlocutor Comercial" << endl;
-		cout << "|2. Para menú Cuenta Contrato" << endl;
-		cout << "|3. Para menú Medidor" << endl;
-		cout << "|4. Para menú Tarifa" << endl;
-		cout << "|5. Para menú Faturacion" << endl;
-		cout << "|6. Para menú Consultas" << endl;
+		cout << "|1. Para menï¿½ Interlocutor Comercial" << endl;
+		cout << "|2. Para menï¿½ Cuenta Contrato" << endl;
+		cout << "|3. Para menï¿½ Medidor" << endl;
+		cout << "|4. Para menï¿½ Tarifa" << endl;
+		cout << "|5. Para menï¿½ Facturacion" << endl;
+		cout << "|6. Para menï¿½ Consultas" << endl;
 		cout << "|0. Para Salir" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion:");
@@ -136,7 +136,7 @@ void InterfaceSalida::MenuPrincipal()
 		if (opcion == 0)
 		{
 			char salir;
-			cout << "Desa salir del sistema " << endl;
+			cout << "Desea salir del sistema " << endl;
 			salir = Validaciones::DatoObligarorioChar(" S para salir");
 			if (toupper(salir) == 'S')
 			{

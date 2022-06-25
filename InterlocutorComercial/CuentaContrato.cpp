@@ -5,6 +5,7 @@ CuentaContrato::CuentaContrato()
 	this->id_cc = 0;
 	this->id_ic = 0;
 	this->id_tarifa = 0;
+	this->id_medidor = 0;
 	this->numPosicionArch = 0;
 	this->estado = false;
 }
@@ -23,6 +24,10 @@ void CuentaContrato::setId_ic(int id_ic)
 void CuentaContrato::setId_tarifa(int id_ta)
 {
 	this->id_tarifa = id_ta;
+}
+void CuentaContrato::setId_medidor(int id_med)
+{
+	this->id_medidor = id_med;
 }
 void CuentaContrato::setNumPosicionArchivo(int numPosArch)
 {
@@ -45,6 +50,11 @@ int CuentaContrato::getId_Tarifa()
 	return this->id_tarifa;
 }
 
+int CuentaContrato::getId_Medidor()
+{
+	return this->id_medidor;
+}
+
 int CuentaContrato::getNumPosicionArhivo()
 {
 	return this->numPosicionArch;
@@ -59,7 +69,7 @@ bool CuentaContrato::getEstado()
 string CuentaContrato::toStringCuentaContrato()
 {
 	string cadena = "ID Cuenta Contrato: " + to_string(this->getId_cc()) + ", ID Interlocutor Comercial: " + to_string(this->getId_ic())
-		+ ", ID Tarifa: " + to_string(this->getId_Tarifa());
+		+ ", ID Tarifa: " + to_string(this->getId_Tarifa()) + ", ID Medidor: " + to_string(this->getId_Medidor()) + ", Estado: " + to_string(this->getEstado());
 
 	return cadena;
 }

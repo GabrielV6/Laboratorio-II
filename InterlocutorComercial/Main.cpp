@@ -14,9 +14,9 @@
 int main()
 {
 	
-	//setlocale(LC_CTYPE, "Spanish");
-	//InterfaceSalida interSalida;
-	//interSalida.MenuPrincipal();
+	setlocale(LC_CTYPE, "Spanish");
+	InterfaceSalida interSalida;
+	interSalida.MenuPrincipal();
 	
 
 
