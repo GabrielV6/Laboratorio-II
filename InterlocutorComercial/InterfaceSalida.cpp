@@ -153,7 +153,7 @@ void InterfaceSalida::MenuPrincipal()
 		{
 		case 1:
 		{
-			InterlocutorComercialV interVista(NOMBRE_ARCH);
+			InterlocutorComercialV interVista(NOMBRE_ARCH_IC);
 			interVista.MenuInterlocutorComecial();
 
 
@@ -181,7 +181,7 @@ void InterfaceSalida::MenuPrincipal()
 		}
 		case 5:
 		{
-			DocumentoV documento(NOMBRE_ARCH);
+			DocumentoV documento(NOMBRE_ARCH_DOC);
 			documento.MenuDocumento();
 			break;
 		}

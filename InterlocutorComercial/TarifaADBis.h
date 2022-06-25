@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include "Tarifa.h"
+
 class TarifaADBis
 {
 public:

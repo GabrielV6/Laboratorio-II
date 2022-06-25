@@ -3,7 +3,7 @@
 
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
 {
-	this->cuentaContrato = CuentaContrato(nombreArchivo);
+	this->cuentaContrato = CuentaContrato();
 	this->nombreArchivo = nombreArchivo;
 	this->cuentaContratoRN = CuentaContratoRN(nombreArchivo);
 }
@@ -15,7 +15,7 @@ CuentaContratoV::~CuentaContratoV()
 /// </summary>
 void CuentaContratoV::NuevaCuentaContrato()
 {
-	this->cuentaContrato = CuentaContrato(this->nombreArchivo);
+	this->cuentaContrato = CuentaContrato();
 	long id_ic;
 	do
 	{
@@ -83,13 +83,8 @@ void CuentaContratoV::MenuModificarCuentaContrato()
 		switch (opcion)
 		{
 		case 1:
-		{
-			Direccion direccion;
-			cout << "Ingrese la nueva direccion : ";
-			direccion.CargarDireccion();
-			this->cuentaContrato.setDireccionId(direccion);
+			cout << "No vale" << endl;
 			break;
-		}
 		case 0:
 			break;
 		default:
@@ -98,6 +93,7 @@ void CuentaContratoV::MenuModificarCuentaContrato()
 		}
 	} while (opcion != 0);
 }
+
 void CuentaContratoV::ModificarCuentaContrato()
 {
 	MenuModificarCuentaContrato();
@@ -151,7 +147,7 @@ string CuentaContratoV::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-void CuentaContratoV::setCuentaContrato(CuentaContrato &cuentaContrato)
+void CuentaContratoV::setCuentaContrato(CuentaContrato& cuentaContrato)
 {
 	this->cuentaContrato = cuentaContrato;
 }

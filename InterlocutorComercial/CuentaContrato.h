@@ -13,7 +13,6 @@ private:
 	bool activo;
 public:
 	CuentaContrato();
-	CuentaContrato(string nombreArchivo);
 	~CuentaContrato();
     void setId_cc(int id_cc);
 	void setId_ic(int id_ic);

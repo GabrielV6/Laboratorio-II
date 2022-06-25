@@ -1,5 +1,4 @@
 #include "CuentaContratoRN.h"
-#include "Validaciones.h"
 
 CuentaContratoRN::CuentaContratoRN(string nombreArchivo)
 {

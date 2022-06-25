@@ -2,6 +2,7 @@
 #include "CuentaContratoAD.h"
 #include "InterlocutorComercialAD.h"
 #include "TarifaAD.h"
+#include "Validaciones.h"
 
 class CuentaContratoRN
 {

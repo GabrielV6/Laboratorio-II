@@ -1,5 +1,6 @@
 #pragma once
 #include "TarifaADBis.h"
+
 class TarifaRN
 {
 private:

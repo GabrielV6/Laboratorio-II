@@ -116,7 +116,7 @@ bool DocumentoRN::validarIdMedidor(int id)
 	if (this->medidor.getId() != id || this->medidor.getIdCuentaContrato()==0)
 		return false;
 	this->cc = this->getCuentaContratoArchivo(this->medidor.getIdCuentaContrato(), NOMBRE_ARCH_CC);
-	this->interlocutorComercial = this->getInterlocutorComercialArchivo(this->medidor.getIdCuentaContrato(), NOMBRE_ARCH);
+	this->interlocutorComercial = this->getInterlocutorComercialArchivo(this->medidor.getIdCuentaContrato(), NOMBRE_ARCH_IC);
 	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR);
 	return true;
 }

@@ -1,4 +1,5 @@
 #include "TarifaRN.h"
+
 const int RANGO_NUMERICO = 1;
 
 TarifaRN::TarifaRN(string nombreArchivo)
