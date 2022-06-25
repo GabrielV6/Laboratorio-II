@@ -58,7 +58,7 @@ string Medidor::toStringMedidor()
  
 }
 
-long Medidor::getId() {
+int Medidor::getId() {
     return this->_id;
 }
 

@@ -140,6 +140,7 @@ void InterfaceSalida::MenuPrincipal()
 			salir = Validaciones::DatoObligarorioChar(" S para salir");
 			if (toupper(salir) == 'S')
 			{
+				system("cls");
 				cout << "GRACIAS POR USAR EL SISTEMA DE GESTION ENERGETICA!!!" << endl;
 				system("pause");
 				exit(1);
@@ -148,11 +149,12 @@ void InterfaceSalida::MenuPrincipal()
 		
 
 
-
+		system("cls");
 		switch (opcion)
 		{
 		case 1:
-		{
+		{	
+			system("cls");
 			InterlocutorComercialV interVista(NOMBRE_ARCH_IC);
 			interVista.MenuInterlocutorComecial();
 
@@ -161,7 +163,8 @@ void InterfaceSalida::MenuPrincipal()
 			break;
 		}
 		case 2:
-		{
+		{	
+			system("cls");
 			CuentaContratoV cuentaContratoV(NOMBRE_ARCH_CC);
 			cuentaContratoV.MenuCuentaContrato();
 			break;

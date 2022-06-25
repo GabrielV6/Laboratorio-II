@@ -19,7 +19,7 @@ public:
 
 	string getNombreArchivo();
 	Medidor getMedidor();
-	Medidor BuscarMedidorPorID();
+	//Medidor BuscarMedidorPorID();
 
 	void MenuMedidor();
 	void NuevoMedidor();

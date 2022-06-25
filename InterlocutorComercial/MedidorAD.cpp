@@ -14,7 +14,7 @@ string MedidorAD::getNombreArchivo() {
     return this->_nombreArchivo;
 }
 
-long MedidorAD::TotalMedidoresEnArchivo()
+int MedidorAD::TotalMedidoresEnArchivo()
 {
 	ifstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::in);

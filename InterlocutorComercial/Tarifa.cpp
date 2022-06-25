@@ -1,105 +1,95 @@
 #include "Tarifa.h"
-#include <cstring>
 
-
-Tarifa::Tarifa()
+Tarifa::Tarifa(int id, float cargoFijo, float cargoVar, float impuestos, bool tipoTarifa, int numPosicion, bool estado)
 {
-   this->id_tarifa = 0;
-   this->cargoFijo = 0;
-   this->cargoVariable = 0;
-   this->impuestos = 0;
-   this->tipoDeTarifa = true;
-   this->estado = false;
-   this->numPosicionArch = -1;
-   this->nombreDeArchivo=  "";
+    this->_idTarifa = id;
+    this->_cargoFijo = cargoFijo;
+    this->_cargoVariable = cargoVar;
+    this->_impuestos = impuestos;
+    this->_tipoDeTarifa = tipoTarifa;
+    this->_numPosicionArch = numPosicion;
+    this->_estado = estado;
 }
 
-Tarifa::Tarifa(string nombreArchivo)
+Tarifa::~Tarifa()
 {
-	this-> nombreDeArchivo = nombreDeArchivo;
-	this->id_tarifa = 0;
-    this->cargoFijo = 0;
-    this->cargoVariable = 0;
-    this->impuestos = 0;
-    this->tipoDeTarifa = true;
-	this->estado = false;
-	this->numPosicionArch = -1;
 }
-// setters
-void Tarifa::setIdTarifa(int id_tarifa)
+
+void Tarifa::setIdTarifa(int idTarifa)
 {
-        this->id_tarifa = id_tarifa;
+    this->_idTarifa = idTarifa;
 }
+
 void Tarifa::setCargoFijo(float cargoFijo)
 {
-        this->cargoFijo = cargoFijo;
+    this->_cargoFijo = cargoFijo;
 }
+
 void Tarifa::setCargoVariable(float cargoVariable)
 {
-        this->cargoVariable = cargoVariable;
+    this->_cargoVariable = cargoVariable;
 }
+
 void Tarifa::setImpuestos(float impuestos)
 {
-    this->impuestos = impuestos;
+    this->_impuestos = impuestos;
 }
 
 void Tarifa::setTipoDeTarifa(bool tipoDeTarifa)
 {
-    this->tipoDeTarifa = tipoDeTarifa;
+    this->_tipoDeTarifa = tipoDeTarifa;
 }
 
-void Tarifa::setNumPosicionArchivo(long numPosArch)
+void Tarifa::setNumPosicionArchivo(int numPosArch)
 {
-	this->numPosicionArch = numPosArch;
+    this->_numPosicionArch = numPosArch;
 }
 
 void Tarifa::setEstado(bool estado)
 {
-    this->estado = estado;
+    this->_estado = estado;
 }
-// getters
+
 int Tarifa::getIdTarifa()
 {
-    return this->id_tarifa;
+    return this->_idTarifa;
 }
+
 float Tarifa::getCargoFijo()
 {
-    return this->cargoFijo;
+    return this->_cargoFijo;;
 }
+
 float Tarifa::getCargoVariable()
 {
-    return this->cargoVariable;
+    return this->_cargoVariable;
 }
+
 float Tarifa::getImpuestos()
 {
-    return this->impuestos;
+    return this->_impuestos;
 }
+
+bool Tarifa::getTipoDeTarifa()
+{
+    return this->_tipoDeTarifa;
+}
+
+int Tarifa::getNumPosicionArhivo()
+{
+    return this->_numPosicionArch;
+}
+
 bool Tarifa::getEstado()
 {
-    return this->estado;
+    return this->_estado;
 }
 
-void Tarifa::cargarTarifa()
-{
-    cout << "Ingrese el Cargo Fijo: ";
-    cin >> this->cargoFijo;
-    cout << "Ingrese el Cargo Variable: ";
-    cin >> this->cargoVariable;
-    cout << "Ingrese los Impuestos: ";
-    cin >> this->impuestos;
-    cout << "Ingrese el Tipo de tarifa: ";
-    cin >> this->tipoDeTarifa;
-}
-
-long Tarifa::getNumPosicionArhivo()
-{
-	return this->numPosicionArch;
-}
 string Tarifa::toStringTarifa()
 {
-    return to_string(this->cargoFijo) + "," + to_string(this->cargoVariable) + "," + to_string(this->impuestos) 
-        + "," + to_string(this->tipoDeTarifa)+"," + to_string(this->id_tarifa);
-}
-Tarifa::~Tarifa()
-{
+    string cadena = "ID: " + to_string(this->getIdTarifa()) + ", Cargo Fijo: " + to_string(this->getCargoFijo())
+        + ", Cargo Variable: " + to_string(this->getCargoVariable()) + ", Impuesto: " + to_string(this->getImpuestos())
+        + ", Tipo de Tarifa: " + to_string(this->getTipoDeTarifa()) + " Estado: " + to_string(this->getEstado());
+
+    return cadena;
 }

@@ -1,23 +1,26 @@
 #pragma once
+
 #include "TarifaRN.h"
 
-class TarifaV
-{
- private:
+class TarifaV {
+private:
     Tarifa tarifa;
-    string nombreArchivo;
     TarifaRN tarifaRN;
+    string nombreArchivo;
     string separador = "-------------------------------------------------------------------------------------------------------------";
-    
 public:
-    TarifaV(string nombreArchivo="");
+    TarifaV(string nombreArchivo = "");
     ~TarifaV();
+
+    void setTarifa(Tarifa& tarifa);
+    void setNombreArchivo(string nombreArchivo);
+
+    string getNombreArchivo();
+    Tarifa getTarifa();
+
+    void MenuTarifa();
     void NuevaTarifa();
     void ListarTarifa();
     void ModificarTarifa();
-    void MenuModificarTarifa();
-    void MenuTarifa();
-    void setNombreArchivo(string nombreArchivo);
-    string getNombreArchivo();
-    void setTarifa(Tarifa& tarifa);
+
 };

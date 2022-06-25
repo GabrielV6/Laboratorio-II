@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,34 +7,32 @@ using namespace std;
 class Tarifa
 {
 private:
-    int id_tarifa;
-    string nombreDeArchivo;
-	float cargoFijo;
-	float cargoVariable;
-	float impuestos;
-	bool tipoDeTarifa; // Domestico (true) o Industrial
-	long numPosicionArch;
-	bool estado;
+	int _idTarifa;
+	float _cargoFijo;
+	float _cargoVariable;
+	float _impuestos;
+	bool _tipoDeTarifa; // Domestico (true) o Industrial (false)
+	int _numPosicionArch;
+	bool _estado;
 public:
-	Tarifa();
-	Tarifa(string nombreArchivo);
+
+	Tarifa(int id = 0, float cargoFijo = 0, float cargoVar = 0, float impuesto = 0, bool tipoTarifa = true, int numPosicion = 0, bool estado = false);
+	~Tarifa();
 	void setIdTarifa(int idTarifa);
 	void setCargoFijo(float cargoFijo);
 	void setCargoVariable(float cargoVariable);
 	void setImpuestos(float impuestos);
-	void setTipoDeTarifa (bool tipoDeTarifa);
-	void setNumPosicionArchivo(long numPosArch);
+	void setTipoDeTarifa(bool tipoDeTarifa);
+	void setNumPosicionArchivo(int numPosArch);
 	void setEstado(bool estado);
 
-    int getIdTarifa();
+	int getIdTarifa();
 	float getCargoFijo();
 	float getCargoVariable();
 	float getImpuestos();
 	bool getTipoDeTarifa();
-	long getNumPosicionArhivo();
-    bool getEstado();
+	int getNumPosicionArhivo();
+	bool getEstado();
 
-	void cargarTarifa();
 	string toStringTarifa();
-	~Tarifa();
 };

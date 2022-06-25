@@ -340,6 +340,7 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 			break;
 		}
 		case 0:
+			system("cls");
 			salir = true;
 			break;
 		default:

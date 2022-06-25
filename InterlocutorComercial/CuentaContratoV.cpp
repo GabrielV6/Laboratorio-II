@@ -131,6 +131,7 @@ void CuentaContratoV::MenuCuentaContrato()
 			break;
 		case 0:
 			salir = true;
+			system("cls");
 			break;
 		default:
 			cout << "Opcion no valida" << endl;
