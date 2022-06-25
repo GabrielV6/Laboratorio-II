@@ -1,4 +1,5 @@
 #include "CuentaContratoV.h"
+#include "Validaciones.h"
 
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
 {
@@ -21,8 +22,7 @@ void CuentaContratoV::NuevaCuentaContrato()
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos de la Cuenta Contrato" << endl;
 		cout << "--------------------------------------------------" << endl;
-		cout << "Ingrese el Id de su cuenta de Interlocutor Comercial: ";
-		cin >> id_ic;
+		id_ic = Validaciones::DatoObligarorioNum("Id. Interlocutor Comercial");
 		if (this->cuentaContratoRN.BuscarCuentaContrato(id_ic).getId_ic() == id_ic) // LLamar metodo de regla de negocio que valide si existe el ID de Interlocutor Comercial para asociar
 		{
 			cout << "Debe poseer una cuenta de Interlocutor Comercial" << endl;
@@ -33,21 +33,7 @@ void CuentaContratoV::NuevaCuentaContrato()
 	} while (true);
 
 	this->cuentaContrato.setId_cc(id_ic); // el Id de la Cuenta Contrato es la misma que id_cc ?
-	
-	Fecha fechaIngreso;
-	cout << "Fecha Alta: ";
-	fechaIngreso.cargarFecha();
-	this->cuentaContrato.setFechaIngresoId(fechaIngreso);
-	Direccion direccion;
-	cout << "Direccion: ";
-	direccion.CargarDireccion();
-	this->cuentaContrato.setDireccionId(direccion);
-    /* el resto de los atributos de la Cuenta Contrato deberian provenir
-    de la cuenta de Interlocutor Comercial asociada a la misma:
-    char formaDePago
-    bool categoriaDeCliente
-    bool tipoDeInteres
-    */
+
 
 	//this->GuardarEnArchivo();
 }

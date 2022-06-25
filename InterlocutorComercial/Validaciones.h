@@ -5,6 +5,12 @@
 #include <locale.h>
 using namespace std;
 
+const string NOMBRE_ARCH_IC = "interlocutores.dat";
+const string NOMBRE_ARCH_MED = "medidores.dat";
+const string NOMBRE_ARCH_DOC = "documentos.dat";
+const string NOMBRE_ARCH_TAR = "tarifas.dat";
+const string NOMBRE_ARCH_CC = "cuentasContrato.dat";
+
 const string NOMBRE_ARCH = "interlocutores.dat";
 const string NOMBRE_ARCH_MED = "medidores.dat";
 const string NOMBRE_ARCH_DOC = "documentos.dat";
