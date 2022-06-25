@@ -3,10 +3,7 @@
 
 Documento::Documento()
 {
-	strcpy(this->id, "");
-	//this->codigo = ' ';
-	//this->letra = ' ';
-	//this->serie = 0;
+	
 	this->numero = 0;
 	this->fecha = Fecha();
 	this->idInter = 0;
@@ -14,41 +11,10 @@ Documento::Documento()
 	this->idMed = 0;//id medidor
 	this->idTar = 0;
 	this->pago = false;
+	this->importe = 0;
 }
-Documento::Documento(string d)
-{
+
 	
-	strcpy(this->id,d.c_str());
-	//this->codigo = ' ';
-	///this->letra = ' ';
-	//this->serie = 0;
-	this->numero = 0;
-	this->fecha = Fecha();
-	this->idInter = 0;
-	this->idCC = 0;  //id cuenta contrato
-	this->idMed = 0;//id medidor
-	this->idTar = 0;
-
-}
-
-	void Documento::setId(string id)
-	{
-		strcpy(this->id, id.c_str());
-		
-	}
-	/*void Documento::setCodigo(char codigo)
-	{
-		this->codigo = codigo;
-	}
-	void Documento::setLetra(char letra)
-	{
-		this->letra = letra;
-	}
-	void Documento::setSerie(int serie)
-	{
-		this->serie = serie;
-	}
-	*/
 	void Documento::setNumero(int numero)
 	{
 		this->numero = numero;
@@ -84,25 +50,19 @@ Documento::Documento(string d)
 	{
 		this->pago = p;
 	}
+	void Documento::setImporte(float i)
+	{
+		this->importe = i;
+	}
+	void Documento::setConsumo(float c)
+	{
+		this->consumo = c;
+	}
+	void Documento::setTipo(char t)
+	{
+		this->tipo = t;
+	}
 
-	
-	string Documento::getId()
-	{
-		return this->id;
-	}
-	/*char Documento::getCodigo()
-	{
-		return this->codigo;
-	}
-	char Documento::getLetra()
-	{
-		return this->letra;
-	}
-	int Documento::getSerie()
-	{
-		return this->serie;
-	}
-	*/
 	int Documento::getNumero()
 	{
 		return this->numero;
@@ -135,44 +95,21 @@ Documento::Documento(string d)
 	{
 		return this->pago;
 	}
-
-	/*void Documento::cargarDocumento()
+	float Documento::getImporte()
 	{
-		cout << "Ingrese el Cargo Fijo: ";
-		cin >> this->cargoFijo;
-		cout << "Ingrese el Cargo Variable: ";
-		cin >> this->cargoVariable;
-		cout << "Ingrese los Impuestos: ";
-		cin >> this->impuestos;
-		cout << "Ingrese el Tipo de tarifa: ";
-		cin >> this->tipoDeTarifa;
+		return this->importe;
 	}
-	*/
-	/// <summary>
-	/// /VER ESTO
-	/// </summary>
-	/// <returns></returns>
-	long Documento::getNumPosicionArhivo()
+	float Documento::getConsumo()
 	{
-		return this->numPosicionArch;
+		return this->consumo;
 	}
-	*/
-
-	char id[14]; ////vector de char: codigo (F,C,D,R), tipo(A,B,R), serie(0002,0005), numero(88888888)
-	char codigo; // (documento=f, nota credito=c, nota debito=d, remito=r)
-	char letra; // a b r
-	int serie; //numero de documento, remito etc
-	int numero;
-	Fecha fecha;
-	int idInter;//id interlocutor comercial
-	int idCC;  //id cuenta contrato
-	int idMed;//id medidor
-	int idTar;//id tarifa
-	int numPosicionarch;
+	char Documento::getTipo()
+	{
+		return this->tipo;
+	}
 	string Documento::toStringDocumento()
 	{
-		return this->getId() + "/" + "/" + to_string(this->numero)
-			+ "/" + this->fecha.toStringFecha() + "/" + to_string(this->idInter)+ "/" + to_string(this->idMed)+ "/" + to_string(this->idTar);
+		return to_string(this->numero)+ "," + this->fecha.toStringFecha() + "," + to_string(this->idInter)+ "," + to_string(this->idMed)+ "," + to_string(this->idTar);
 	}
 	Documento::~Documento()
 	{

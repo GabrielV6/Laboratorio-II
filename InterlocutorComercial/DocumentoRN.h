@@ -9,19 +9,21 @@
 class DocumentoRN
 {
 private:
+	Documento documento;
 	DocumentoAD documentoAD;
 	string nombreArchivo;
 	InterlocutorComercial interlocutorComercial;
 	Medidor medidor;
 	CuentaContrato cc;
 	Tarifa tarifa;
+	Medidor getMedidorArchivo(int id, string nomarch);///AGREGAR LOS GET "ARCHIVO"
 
 	//DECLARAR UN INTERLOCUTOR Y UN MEDIDOR
 public:
 	DocumentoRN(string nombreArchivo = "");
 	~DocumentoRN();
-	Documento BuscarDocumento(string id);///VER ESTO
-	Documento BuscarDocumento(int id);
+	Documento BuscarDocumento(int id);///VER ESTO
+	//Documento BuscarDocumento(int id);
 	float CalcularConsumo(float lectura);
 	bool ControlModificaciones(Documento& documento);
 	bool AltaDocumento(Documento& documento);
@@ -30,12 +32,16 @@ public:
 	vector<Documento> VectorDocumentos();
 	void setNombreArchivo(string nombreArchivo);
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
-	Medidor getMedidor(int id, string nomarch);
+	
+	Medidor getMedidor();
 	//METODO QUE BUSQUE UN INTERLOCUTOR POR ID
-	InterlocutorComercial getInterlocutorComercial(int id, string nomarch);
+	InterlocutorComercial getInterlocutorComercialArchivo(int id, string nomarch);
+	InterlocutorComercial getInterlocutorComercial();
 	//METODO QUE BUSCA POR ID CUENTA CONTRATO
-	CuentaContrato getCuentaContrato(int id, string nomarch);
-	Tarifa getTarifa(int id, string nomarch);
+	CuentaContrato getCuentaContratoArchivo(int id, string nomarch);
+	CuentaContrato getCuentaContrato();
+	Tarifa getTarifaArchivo(int id, string nomarch);
+	Tarifa getTarifa();
 	///METODO QUE CALCULE EL CONSUMO TRAIGO LECTURA ANTERIOR MEDIDOR POR ID, 
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES

@@ -14,8 +14,8 @@ public:
 	~DocumentoV();
 	void NuevoDocumento();
 	void ListarDocumentos();
-	void ModificarDocumento();
-	void MenuModificarDocumento();
+	//void ModificarDocumento();
+	//void MenuModificarDocumento();
 	void MenuDocumento();
 	void setNombreArchivo(string nombreArchivo);
 	string getNombreArchivo();
