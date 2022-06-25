@@ -44,7 +44,7 @@ void DocumentoV::NuevoDocumento()
 			system("cls");
 			continue;
 		}
-		///LLAMAR A METODO CALCULAR CONSUMO
+		
 		else
 		{
 			break;
@@ -57,12 +57,13 @@ void DocumentoV::NuevoDocumento()
 	do {
 		
 		lecturaActual= Validaciones::DatoObligarorioNum("la lectura actual:");
+		///LLAMAR A METODO CALCULAR CONSUMO
 		float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
 		if(consumo>=0)
 		{	
 			cout << "Se va a generar una factura nueva, para el cliente: " << endl;
-			cout << this->documentoRN.getInterlocutorComercial().getNombre();//AGRAGAR APELLIDO
-			
+			cout << this->documentoRN.getInterlocutorComercial().getNombre();
+			cout << this->documentoRN.getInterlocutorComercial().getApellido();
 			cout << " con el consumo: " << consumo << endl;
 			cout << "Desea continuar?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
@@ -78,7 +79,7 @@ void DocumentoV::NuevoDocumento()
 		/// 
 		/// </summary>
 	
-		///FALTA METODO DE CARGA AUTOMATICA DE N° SERIE (0002,0005),numero(88888888)
+		///FALTA METODO DE CARGA AUTOMATICA DE numero(88888888)
 
 	} while (true);
 	//string id;

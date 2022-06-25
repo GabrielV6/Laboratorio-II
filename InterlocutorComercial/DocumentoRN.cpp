@@ -2,6 +2,7 @@
 #include "MedidorV.h"
 #include "TarifaAD.h"
 #include "InterlocutorComercialAD.h"
+#include "Validaciones.h"
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
@@ -110,12 +111,12 @@ float DocumentoRN::CalcularConsumo(float lectura)
 //BUSCO EL MEDIDOR Y LO VALIDO PARA SABER QUE ESTA CORRECTO
 bool DocumentoRN::validarIdMedidor(int id)
 {	
-	MedidorRN medidor; 
-	this->medidor = this->getMedidorArchivo(id, medidor.getNombreArchivo());
-	if (this->medidor.getId() != id && this->medidor.getIdCuentaContrato()>0)
+	 
+	this->medidor = this->getMedidorArchivo(id, NOMBRE_ARCH_MED);
+	if (this->medidor.getId() != id || this->medidor.getIdCuentaContrato()==0)
 		return false;
-	this->cc = this->getCuentaContratoArchivo(this->medidor.getIdCuentaContrato(), "nombredelarchvoctacto");
-	this->interlocutorComercial = this->getInterlocutorComercialArchivo(this->medidor.getIdCuentaContrato(), "nombredelarchivointerlocu");
-	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), "nombredelarchivotarifa");
+	this->cc = this->getCuentaContratoArchivo(this->medidor.getIdCuentaContrato(), NOMBRE_ARCH_CC);
+	this->interlocutorComercial = this->getInterlocutorComercialArchivo(this->medidor.getIdCuentaContrato(), NOMBRE_ARCH);
+	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR);
 	return true;
 }
