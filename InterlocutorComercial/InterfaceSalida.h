@@ -19,8 +19,9 @@ public:
 	bool GrabarTextosSalida(vector<string> textos, string nombreArchivo);
 	void MostrarTextosSalida(vector<string> textos, string tituloTexo);
 	bool LeeTextosEntrada(string nombreArchivo);
+	void MenuPrincipal();
 private:
 	string textoSalida;
 	vector<string> textosSalida;
-
+	string separador = "-------------------------------------------------------------------------------------------------------------";
 };
