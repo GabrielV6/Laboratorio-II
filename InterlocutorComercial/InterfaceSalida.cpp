@@ -123,12 +123,13 @@ void InterfaceSalida::MenuPrincipal()
 		cout << this->separador << endl;
 		cout << "SISTEMA DE GESTION ENERGETICA" << endl;
 		cout << this->separador << endl;
-		cout << "|1. Para men� Interlocutor Comercial" << endl;
-		cout << "|2. Para men� Cuenta Contrato" << endl;
-		cout << "|3. Para men� Medidor" << endl;
-		cout << "|4. Para men� Tarifa" << endl;
-		cout << "|5. Para men� Facturacion" << endl;
-		cout << "|6. Para men� Consultas" << endl;
+		cout << "|1. Para menu Interlocutor Comercial" << endl;
+		cout << "|2. Para menu Cuenta Contrato" << endl;
+		cout << "|3. Para menu Medidor" << endl;
+		cout << "|4. Para menu Tarifa" << endl;
+		cout << "|5. Para menu Facturacion" << endl;
+		cout << "|6. Para menu Consultas" << endl;
+		cout << "|7. Para generar archiv CVS" << endl;
 		cout << "|0. Para Salir" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion:");
@@ -190,9 +191,14 @@ void InterfaceSalida::MenuPrincipal()
 		}
 		case 6:
 		{
+		
+
+		}
+		case 7:
+		{
 			//GENERA LOS ARCHIVOS CSV Y LOS GUARDA EN .DAT
-			InterfaceSalida intSal;
-			intSal.LeeTextosEntrada("MedidorCsv.csv");
+			//InterfaceSalida intSal;
+			//intSal.LeeTextosEntrada("MedidorCsv.csv");
 
 		}
 		default:
