@@ -76,7 +76,7 @@ Medidor MedidorAD::getMedidorArchivo(int id)
 	while (fread((char*)&intComAD, sizeof(Medidor), 1, archivo))
 	{
 		//if (!archivo.eof())
-		if (!archivo == NULL)
+		if (!(archivo == NULL))
 			if (intComAD.getId() == id)
 			{
 				//archivo.close();
@@ -107,7 +107,7 @@ vector<Medidor> MedidorAD::getMedidoresArchivo()
 	  while (fread((char*)&intComAD, sizeof(Medidor), 1, archivo))
 	{
 		//if (!archivo.eof())
-		  if(!archivo == NULL)
+		  if(!(archivo == NULL))
 		{
 			medidores.push_back(intComAD);
 		}

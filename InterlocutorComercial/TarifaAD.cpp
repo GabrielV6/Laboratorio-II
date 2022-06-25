@@ -117,7 +117,7 @@ vector<Tarifa> TarifaAD::getTarifaArchivo()
 	while (fread((char*)&intComAD, sizeof(Tarifa), 1, archivo))
 	{
 		//if (!archivo.eof())
-		if (!archivo == NULL)
+		if (!(archivo == NULL))
 		{
 			tarifa.push_back(intComAD);
 		}
