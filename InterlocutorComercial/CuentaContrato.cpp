@@ -6,7 +6,7 @@ CuentaContrato::CuentaContrato()
 	this->id_ic = 0;
 	this->id_tarifa = 0;
 	this->numPosicionArch = 0;
-	this->activo = false;
+	this->estado = false;
 }
 CuentaContrato::~CuentaContrato()
 {
@@ -14,7 +14,7 @@ CuentaContrato::~CuentaContrato()
 }
 void CuentaContrato::setId_cc(int id_cc)
 {
-	this->id_ic = id_cc;
+	this->id_cc = id_cc;
 }
 void CuentaContrato::setId_ic(int id_ic)
 {
@@ -28,9 +28,9 @@ void CuentaContrato::setNumPosicionArchivo(int numPosArch)
 {
 	this->numPosicionArch = numPosArch;
 }
-void CuentaContrato::setActivo(bool activo)
+void CuentaContrato::setEstado(bool estado)
 {
-	this->activo = activo;
+	this->estado = estado;
 }
 int CuentaContrato::getId_cc()
 {
@@ -49,10 +49,10 @@ int CuentaContrato::getNumPosicionArhivo()
 {
 	return this->numPosicionArch;
 }
-bool CuentaContrato::getActivo()
+bool CuentaContrato::getEstado()
 {
 
-	return this->activo;
+	return this->estado;
 }
 
 

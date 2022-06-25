@@ -14,7 +14,7 @@ private:
     int id_ic;
 	int id_tarifa;
 	int numPosicionArch;
-	bool activo;
+	bool estado;
 public:
 	CuentaContrato();
 	~CuentaContrato();
@@ -22,12 +22,13 @@ public:
 	void setId_ic(int id_ic);
 	void setId_tarifa(int id_tarifa);
 	void setNumPosicionArchivo(int numPosArch);
-	void setActivo(bool activo);
+	void setEstado(bool activo);
 
 	int getId_cc();
     int getId_ic();
 	int getId_Tarifa();
 	int getNumPosicionArhivo();
-	bool getActivo();
+	bool getEstado();
+
 	string toStringCuentaContrato();	
 };

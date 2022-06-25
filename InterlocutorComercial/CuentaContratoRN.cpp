@@ -3,40 +3,86 @@
 CuentaContratoRN::CuentaContratoRN(string nombreArchivo)
 {
 	this->cuentaContratoAD = CuentaContratoAD(nombreArchivo);
+	this-> nombreArchivo= nombreArchivo;
 }
-CuentaContratoRN::~CuentaContratoRN()
-{}
-bool CuentaContratoRN::AltaCuentaContrato(CuentaContrato& cuentaContrato)
-{
-	return this->cuentaContratoAD.GuardarEnArchivoCuentaContrato(cuentaContrato);
-}
-CuentaContrato CuentaContratoRN::BuscarCuentaContrato(long id_cc)
-{
-	InterlocutorComercialAD interlocutorComercialAD(NOMBRE_ARCH_IC);
-	this->interlocutorComercial = interlocutorComercialAD.getInterlocutorArchivoId(id_cc);
 
-	CuentaContrato intComAD = this->cuentaContratoAD.getCuentaContratoArchivo(id_cc);
-	if (intComAD.getId_cc() == id_cc)
-		return intComAD;
+CuentaContratoRN::CuentaContratoRN()
+{
+
+}
+
+CuentaContratoRN::~CuentaContratoRN()
+{
+
+}
+
+
+CuentaContrato CuentaContratoRN::BuscarCuentaContrato(int id_cc)
+{
+	CuentaContrato cuentaContrato = this->cuentaContratoAD.getCuentaContratoArchivo(id_cc);
+
+	if (cuentaContrato.getId_cc() == id_cc)
+		return cuentaContrato;
+
 	return CuentaContrato();
 }
-bool CuentaContratoRN::ControlModificaciones(CuentaContrato& cuentaContrato)
+
+bool CuentaContratoRN::ModificarCuentaContrato(CuentaContrato& cuentaContrato)
 {
-	///Hacer la validaciones correspondientes a la Cuenta Contrato pasada por parametro
-	return true;
+	return this->cuentaContratoAD.ActualizarEnArchivoCuentaContrato(cuentaContrato);
 }
-long CuentaContratoRN::CantidadCuentaContratoEnSistema()
+
+bool CuentaContratoRN::AltaCuentaContrato(CuentaContrato& cuentaContrato)
+{
+	//modificar para que el ID de CC sea el mismo que del Interlocutor Comercial
+	if (cuentaContrato.getId_cc() != 0) {
+		
+		int id = this->cuentaContratoAD.TotalCuentaContratoEnArchivo();
+		
+		if (id == -1) {
+			id = 0;
+		}
+		
+		id++;
+
+		cuentaContrato.setId_cc(id);
+		
+		return this->cuentaContratoAD.GuardarEnArchivoCuentaContrato(cuentaContrato);
+	}
+	
+	return false;
+}
+
+int CuentaContratoRN::IdCuentaContrato(CuentaContrato& cuentaContrato)
+{
+	//modificar para que el ID de CC sea el mismo que del Interlocutor Comercial
+	int id = this->cuentaContratoAD.TotalCuentaContratoEnArchivo();
+    
+	if (id == -1) {
+		id = 0;
+	}
+	id++;
+
+	cuentaContrato.setId_cc(id);
+	
+	return cuentaContrato.getId_cc();
+}
+
+int CuentaContratoRN::CantidadCuentaContrato()
 {
 	return this->cuentaContratoAD.TotalCuentaContratoEnArchivo();
 }
+
 string CuentaContratoRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-vector<CuentaContrato> CuentaContratoRN::VectorCuentaContrato()
+
+vector<CuentaContrato> CuentaContratoRN::getCuentaContrato()
 {
 	return this->cuentaContratoAD.getCuentasContratoArchivo();
 }
+
 void CuentaContratoRN::setNombreArchivo(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;

@@ -4,135 +4,74 @@
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
 {
 	this->cuentaContrato = CuentaContrato();
-	this->nombreArchivo = nombreArchivo;
 	this->cuentaContratoRN = CuentaContratoRN(nombreArchivo);
 }
 CuentaContratoV::~CuentaContratoV()
 {
 }
-/// <summary>
-/// M�todo que permite dar de alta una Cuenta Contrato y la graba en el archivo que contiene las Cuenta Contrato.
-/// </summary>
-void CuentaContratoV::NuevaCuentaContrato()
+
+void CuentaContratoV::setCuentaContrato(CuentaContrato& cuentaContrato)
 {
-	this->cuentaContrato = CuentaContrato();
-	long id_ic;
-	do
-	{
-		cout << "-------------------------------------------------" << endl;
-		cout << "Nuevo ingreso de datos de la Cuenta Contrato" << endl;
-		cout << "--------------------------------------------------" << endl;
-		id_ic = Validaciones::DatoObligarorioNum("Id. Interlocutor Comercial");
-		if (this->cuentaContratoRN.BuscarCuentaContrato(id_ic).getId_ic() == id_ic) // LLamar metodo de regla de negocio que valide si existe el ID de Interlocutor Comercial para asociar
-		{
-			cout << "Debe poseer una cuenta de Interlocutor Comercial" << endl;
-			system("cls");
-		}
-		else
-			break;
-	} while (true);
-
-	this->cuentaContrato.setId_cc(id_ic); // el Id de la Cuenta Contrato es la misma que id_cc ?
-
-
-	//this->GuardarEnArchivo();
-}
-/// <summary>
-/// Funci�n global para listar todas las Cuenta Contrato del archivo.
-/// </summary>
-void CuentaContratoV::ListarCuentaContrato()
-{
-	vector<CuentaContrato> cuentaContrato = this->cuentaContratoRN.VectorCuentaContrato();
-	for (auto intLoc : cuentaContrato)
-	{
-		cout << intLoc.toStringCuentaContrato() << endl;
-	}
+	this->cuentaContrato = cuentaContrato;
 }
 
-void CuentaContratoV::MenuModificarCuentaContrato()
+void CuentaContratoV::setNombreArchivo(string nombreArchivo)
 {
-	long id_cc;
-	int opcion;
-	do
-	{
-		cout << "-------------------------------------------------" << endl;
-		cout << "Modificar datos de la Cuenta Contrato" << endl;
-		cout << "--------------------------------------------------" << endl;
-		cout << "Id de la Cuenta Contrato: ";
-		cin >> id_cc;
-		this->cuentaContrato = this->cuentaContratoRN.BuscarCuentaContrato(id_cc);
-		if (this->cuentaContrato.getId_cc() == id_cc) // LLamar metodo de regla de negocio que valida si existe el Id de la Cuenta Contrato
-		{
-			cout << "No existe Cuenta Contrato con el Id ingresado. " << endl;
-			system("cls");
-		}
-		else
-			break;
-	} while (true);
-	do
-	{
-		cout << "-------------------------------------------------" << endl;
-		cout << "Cuenta Contrato: " << this->cuentaContrato.toStringCuentaContrato() << endl;
-		cout << "-------------------------------------------------" << endl;
-		cout << "1. Modificar direccion" << endl;
-		cout << "0. Salir" << endl;
-		cout << "-------------------------------------------------" << endl;
-		cout << "Opcion: ";
-		cin >> opcion;
-		string datos;
-		switch (opcion)
-		{
-		case 1:
-			cout << "No vale" << endl;
-			break;
-		case 0:
-			break;
-		default:
-			cout << "Opcion invalida!" << endl;
-			break;
-		}
-	} while (opcion != 0);
+	this->nombreArchivo = nombreArchivo;
 }
 
-void CuentaContratoV::ModificarCuentaContrato()
+string CuentaContratoV::getNombreArchivo()
 {
-	MenuModificarCuentaContrato();
-	this->cuentaContratoRN.ControlModificaciones(this->cuentaContrato);
+	return this->nombreArchivo;
 }
-/// <summary>
-/// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de Cuentas Contrato.
-/// </summary>
+
+CuentaContrato CuentaContratoV::getCuentaContrato()
+{
+	return CuentaContrato();
+}
+
 void CuentaContratoV::MenuCuentaContrato()
 {
 	bool salir = false;
 	do
 	{
-		cout << "-------------------------------------------------" << endl;
+		system("clear");
+		cout << this->separador << endl;
 		cout << "Menu Cuenta Contrato" << endl;
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		cout << "1. Nueva Cuenta Contrato" << endl;
-		cout << "2. Listar Cuenta Contrato" << endl;
-		cout << "3. Modificar Cuenta Contrato" << endl;
+		cout << "2. Listar Cuentas Contrato Activas" << endl;
+		cout << "3. Listar Cuentas Contrato Inactivas" << endl;
+		cout << "4. Modificar Cuenta Contrato" << endl;
 		cout << "0. Salir" << endl;
-		cout << "-------------------------------------------------" << endl;
+		cout << this->separador << endl;
 		int opcion;
-		cout << "Ingrese una opcion: ";
-		cin >> opcion;
+
+		opcion = Validaciones::DatoObligarorioNum("una opcion");
+
 		switch (opcion)
 		{
 		case 1:
 			this->NuevaCuentaContrato();
 			break;
+
 		case 2:
-			this->ListarCuentaContrato();
+			ListarCuentaContrato(true);
 			break;
+		
 		case 3:
+			ListarCuentaContrato(false);
+			break;
+
+		case 4:
 			this->ModificarCuentaContrato();
 			break;
+
 		case 0:
 			salir = true;
-			system("cls");
+			system("clear");
 			break;
+
 		default:
 			cout << "Opcion no valida" << endl;
 			break;
@@ -140,15 +79,136 @@ void CuentaContratoV::MenuCuentaContrato()
 	} while (salir == false);
 }
 
-void CuentaContratoV::setNombreArchivo(string nombreArchivo)
+void CuentaContratoV::NuevaCuentaContrato()
 {
-	this->nombreArchivo = nombreArchivo;
+	this->cuentaContrato = CuentaContrato();
+	int id = 0; 
+	string datos; 
+	char dato;
+
+	do
+	{
+		system("clear");
+		cout << this->separador << endl;
+		cout << "Nuevo ID de Cuenta Contrato asignar: " << cuentaContratoRN.IdCuentaContrato(cuentaContrato) << endl;
+		cout << this->separador << endl;
+		cout << "Dar de alta? " << endl << endl;
+		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
+
+		if (toupper(dato) == 'S')
+		{
+			if (this->cuentaContratoRN.AltaCuentaContrato(this->cuentaContrato)) {
+				cout << this->separador << endl;
+				cout << "Alta realizada" << endl;
+				cout << this->separador << endl;
+				system("pause");
+				break;
+			}
+			else {
+				cout << this->separador << endl;
+				cout << "Alta no exitosa" << endl;
+				cout << this->separador << endl;
+				system("pause");
+				break;
+			}
+
+		}
+		else {
+			return;
+		}
+	} while (true);
 }
-string CuentaContratoV::getNombreArchivo()
+
+void CuentaContratoV::ListarCuentaContrato(bool estado)
 {
-	return this->nombreArchivo;
+	vector<CuentaContrato> cuentaContrato = this->cuentaContratoRN.getCuentaContrato();
+	
+	for (int i = 0; i < cuentaContrato.size(); i++) {
+
+		if (cuentaContrato[i].getEstado() == estado){
+			cout << cuentaContrato[i].toStringCuentaContrato() << endl;
+		}
+		
+	}
+
+	system("pause");
 }
-void CuentaContratoV::setCuentaContrato(CuentaContrato& cuentaContrato)
+
+void CuentaContratoV::ModificarCuentaContrato()
 {
-	this->cuentaContrato = cuentaContrato;
+	int opcion = 0;
+
+	do
+	{
+		int id = 0;
+		system("cls");
+		cout << this->separador << endl;
+		cout << "Modificar Cuenta Contrato " << endl;
+		cout << this->separador << endl;
+		id = Validaciones::DatoObligarorioNum("ID o 0 - Para salir");
+
+		if (id == 0) {
+			return;
+		}
+		this->cuentaContrato = this->cuentaContratoRN.BuscarCuentaContrato(id);
+
+		if (this->cuentaContrato.getId_cc() != id) // Valida si existe una CC con ese Id
+		{
+			cout << "No existe Cuenta Contrato con ese ID " << endl;
+			system("pause");
+			system("cls");
+		}
+		else
+			break;
+	} while (true);
+
+	do
+	{
+		system("clear");
+		cout << this->separador << endl;
+		cout << "Cuenta Contrato : " << this->cuentaContrato.toStringCuentaContrato() << endl;
+		cout << this->separador << endl;
+		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "0. Volver al menú anteriror" << endl;
+		cout << this->separador << endl;
+
+		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+
+		string datos;
+		char dato;
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			cout << "Modificar estado ";
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S')
+				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
+			break;
+		}
+		case 0:
+
+			break;
+		default:
+			cout << "Opcion invalida." << endl;
+			break;
+		}
+
+		if (opcion != 0)
+		{
+			if (!this->cuentaContratoRN.ModificarCuentaContrato(this->cuentaContrato))
+				cout << "Fallo la modificación, intente nuevamante" << endl;
+			else
+				cout << "Modificación realizada correctamente" << endl;
+		}
+
+		system("pause");
+
+	} while (opcion != 0);	
 }
+
+
+
+
+

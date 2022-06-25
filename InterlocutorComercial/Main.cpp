@@ -3,6 +3,8 @@
 #include "TarifaV.h"
 #include "CuentaContratoV.h"
 
+
+
 /// <summary>
 /// Incio solo para probar la clase no se debe poner para el resto del proyecto.
 /// </summary>
@@ -15,8 +17,8 @@ int main()
 	//setlocale(LC_CTYPE, "Spanish");
 	//InterfaceSalida interSalida;
 	//interSalida.MenuPrincipal();
-	//CuentaContratoV cuentaC;
-	//cuentaC.MenuCuentaContrato();
+	
+
 
 	return EXIT_SUCCESS;
 }

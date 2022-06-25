@@ -3,19 +3,24 @@
 
 class CuentaContratoV
 {   
-    private:
+private:
     CuentaContrato cuentaContrato;
-    string nombreArchivo;
     CuentaContratoRN cuentaContratoRN;
-    public:
+    string nombreArchivo;
+    string separador = "-------------------------------------------------------------------------------------------------------------";
+public:
     CuentaContratoV(string nombreArchivo);
     ~CuentaContratoV();
-    void NuevaCuentaContrato();
-    void ListarCuentaContrato();
-    void ModificarCuentaContrato();
-    void MenuModificarCuentaContrato();
-    void MenuCuentaContrato();
-    void setNombreArchivo(string nombreArchivo);
-    string getNombreArchivo();
+
     void setCuentaContrato(CuentaContrato& cuentaContrato);
+    void setNombreArchivo(string nombreArchivo);
+
+    string getNombreArchivo();
+    CuentaContrato getCuentaContrato();
+
+    void MenuCuentaContrato();
+    void NuevaCuentaContrato();
+    void ListarCuentaContrato(bool activo);
+    void ModificarCuentaContrato();
+      
 };

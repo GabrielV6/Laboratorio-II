@@ -4,65 +4,81 @@ CuentaContratoAD::CuentaContratoAD(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
 }
+
 CuentaContratoAD::~CuentaContratoAD()
 {
+	this->cuentasC.clear();
 }
+
 void CuentaContratoAD::setNombreArchivo(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
 }
+
 string CuentaContratoAD::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-/// <summary>
-/// M�todo que devuelve la cantidad de cuentas contrato que hay en el archivo de datos.
-/// </summary>
-/// <returns>entero largo</returns>
-long CuentaContratoAD::TotalCuentaContratoEnArchivo()
+
+int CuentaContratoAD::TotalCuentaContratoEnArchivo()
 {
 	ifstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::in);
 	if (archivo.fail())
 		return -1;
-	CuentaContrato intComAD;
-	long cantidad = 0;
+	
+	CuentaContrato cuenta;
+	int cantidad = 0;
+	
 	archivo.seekg(0, ios::end);
+	
 	int pos = archivo.tellg();
-	cantidad = pos / sizeof(intComAD);
+	
+	cantidad = pos / sizeof(cuenta);
+	
 	archivo.close();
+	
 	return cantidad;
 }
-/// <summary>
-/// M�todo que guarda la cuenta contrato en el archivo de datos y devuelve verdadero cuando resulta correto la grabaci�n.
-/// </summary>
-/// <returns>Booleano</returns>
+
+
 bool CuentaContratoAD::GuardarEnArchivoCuentaContrato(CuentaContrato& contrato)
 {
-	CuentaContrato intComAD = contrato;
-	ofstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
-	if (archivo.fail())
+	//ofstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
+	archivo = fopen("cuentasContrato.dat", "ab");
+	
+	//if (archivo.fail())
+	if (archivo == NULL)
 		return false;
-	//Busca cuantas cuenta contrato hay en el archivo y le asigna esa cantidad a la posicion relativa del contrato en el archivo.	
-	long posArchivo = TotalCuentaContratoEnArchivo();
-	intComAD.setNumPosicionArchivo(posArchivo);
-	archivo.write((char*)&intComAD, sizeof(CuentaContrato));
-	archivo.close();
+	bool primerRegistro= true;
+
+	if(primerRegistro==false){
+		
+		int posArchivo = TotalCuentaContratoEnArchivo();
+		contrato.setNumPosicionArchivo(posArchivo);
+
+	} else {
+		contrato.setNumPosicionArchivo(1);
+		primerRegistro= false;
+	}
+	
+	//archivo.write((char*)&contrato, sizeof(CuentaContrato));
+	fwrite(&contrato, sizeof contrato , 1, archivo);
+	//archivo.close();
+	fclose(archivo);
 	return true;
 
 }
-/// <summary>
-/// Este m�todo permite modificar en el archivo de la cuenta contrato enviado por parametro
-/// </summary>
-/// <param name="contrato"></param>
-/// <returns></returns>
+
 bool CuentaContratoAD::ActualizarEnArchivoCuentaContrato(CuentaContrato& contrato)
 {
 
 	fstream archivo;
 	archivo.open(this->getNombreArchivo(), ios::binary | ios::in | ios::out);
 	archivo.seekg(0);
+	
 	if (archivo.fail())
 		return false;
 	
@@ -70,52 +86,67 @@ bool CuentaContratoAD::ActualizarEnArchivoCuentaContrato(CuentaContrato& contrat
 	archivo.seekp(contrato.getNumPosicionArhivo() * sizeof(CuentaContrato), ios::cur);
 	archivo.write((char*)&contrato, sizeof(CuentaContrato));
 	archivo.close();
+	
 	return true;
 }
-/// <summary>
-/// M�todo que devuleve un objeto tipo cuenta contrato que este dentro del archivo de datos
-/// </summary>
-/// <param name="posicion"></param>
-/// <returns>CuentaContrato</returns>
-CuentaContrato CuentaContratoAD::getCuentaContratoArchivo(long id_cc)
-{
-	CuentaContrato intComAD;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
-		return intComAD;
 
-	while (archivo.read((char*)&intComAD, sizeof(CuentaContrato)))
+CuentaContrato CuentaContratoAD::getCuentaContratoArchivo(int id_cc)
+{
+	CuentaContrato contrato;
+	//ifstream archivo;
+	FILE* archivo;
+
+	//archivo.open(this->getNombreArchivo(), ios::in);
+	archivo = fopen("cuentasContrato.dat", "rb");
+
+	//if (archivo.fail())
+	if (archivo == NULL)
+		return contrato;
+
+	//while (archivo.read((char*)&contrato, sizeof(CuentaContrato)))
+	while (fread((char*)&contrato, sizeof(CuentaContrato), 1, archivo))
 	{
-		if (!archivo.eof())
-			if (intComAD.getId_cc() == id_cc)
+		//if (!archivo.eof())
+		if (!(archivo == NULL))
+			if (contrato.getId_cc() == id_cc)
 			{
-				archivo.close();
-				return intComAD;
+				//archivo.close();
+				fclose(archivo);
+				return contrato;
 			}
 	}
-	archivo.close();
-	intComAD = CuentaContrato();
-	return intComAD;
+	//archivo.close();
+
+	fclose(archivo);
+	contrato = CuentaContrato();
+
+	return contrato;
 }
 
-/// <summary>
-/// Funci�n que devuleve todas las cuenta contrato del archivo en un vector
-/// </summary>
+
 vector<CuentaContrato> CuentaContratoAD::getCuentasContratoArchivo()
 {
-	CuentaContrato intComAD;
+	CuentaContrato contrato;
 	vector<CuentaContrato> contratos;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
+	//ifstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo(), ios::in);
+	archivo = fopen("cuentasContrato.dat", "rb");
+
+	//if (archivo.fail())
+	if(archivo==NULL)
 		return contratos;
-	while (archivo.read((char*)&intComAD, sizeof(CuentaContrato)))
+
+	//while (archivo.read((char*)&intComAD, sizeof(CuentaContrato)))
+	 while (fread((char*)&contrato, sizeof(CuentaContrato), 1, archivo))
 	{
-		if (!archivo.eof())
+		//if (!archivo.eof())
+		if(!(archivo == NULL))
 		{
-			contratos.push_back(intComAD);
+			contratos.push_back(contrato);
 		}
 	}
+	//archivo.close();
+	fclose(archivo);
 	return contratos;
 }

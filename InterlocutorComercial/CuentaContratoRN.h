@@ -1,7 +1,8 @@
 #pragma once
+
+#include "CuentaContrato.h"
 #include "CuentaContratoAD.h"
-#include "InterlocutorComercialAD.h"
-#include "TarifaAD.h"
+
 #include "Validaciones.h"
 
 class CuentaContratoRN
@@ -9,16 +10,18 @@ class CuentaContratoRN
 private:
 	CuentaContratoAD cuentaContratoAD;
 	string nombreArchivo;
-	InterlocutorComercial interlocutorComercial;
-	Tarifa tarifa;
+
 public:
-	CuentaContratoRN(string nombreArchivo = "");
+	CuentaContratoRN(string nombreArchivo);
+	CuentaContratoRN();
 	~CuentaContratoRN();
-	CuentaContrato BuscarCuentaContrato(long id_cc);
-	bool ControlModificaciones(CuentaContrato& cuentaContrato);
-	bool AltaCuentaContrato(CuentaContrato& cuentaContrato);
-	long CantidadCuentaContratoEnSistema();
+	
+	CuentaContrato BuscarCuentaContrato(int id_cc);
+	bool ModificarCuentaContrato(CuentaContrato& CuentaContrato);
+	bool AltaCuentaContrato(CuentaContrato& CuentaContrato);
+	int IdCuentaContrato(CuentaContrato& CuentaContrato);
+	int CantidadCuentaContrato();
 	string getNombreArchivo();
-	vector<CuentaContrato> VectorCuentaContrato();
-	void setNombreArchivo(string nombreArchivo);
+	vector<CuentaContrato> getCuentaContrato();
+	void setNombreArchivo(string nombre);
 };
