@@ -9,11 +9,7 @@
 #include "TarifaV.h"
 #include "CuentaContratoV.h"
 
-const string NOMBRE_ARCH = "interlocutores.dat";
-const string NOMBRE_ARCH_MED = "medidores.dat";
-const string NOMBRE_ARCH_DOC = "documentos.dat";
-const string NOMBRE_ARCH_TAR = "tarifas.dat";
-const string NOMBRE_ARCH_CC = "cuentasContrato.dat";
+
 
 InterfaceSalida::InterfaceSalida()
 {}
@@ -149,10 +145,6 @@ void InterfaceSalida::MenuPrincipal()
 				exit(1);
 			}
 		}
-		if (opcion >= 1 && opcion <= 6)
-			break;
-
-
 
 		switch (opcion)
 		{

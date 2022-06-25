@@ -1,4 +1,5 @@
 #include "CuentaContratoRN.h"
+#include "Validaciones.h"
 
 CuentaContratoRN::CuentaContratoRN(string nombreArchivo)
 {
@@ -12,6 +13,9 @@ bool CuentaContratoRN::AltaCuentaContrato(CuentaContrato& cuentaContrato)
 }
 CuentaContrato CuentaContratoRN::BuscarCuentaContrato(long id_cc)
 {
+	InterlocutorComercialAD interlocutorComercialAD(NOMBRE_ARCH_IC);
+	this->interlocutorComercial = interlocutorComercialAD.getInterlocutorArchivoId(id_cc);
+
 	CuentaContrato intComAD = this->cuentaContratoAD.getCuentaContratoArchivo(id_cc);
 	if (intComAD.getId_cc() == id_cc)
 		return intComAD;
