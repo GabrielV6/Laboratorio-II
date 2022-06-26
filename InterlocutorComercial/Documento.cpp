@@ -109,7 +109,12 @@ Documento::Documento()
 	}
 	string Documento::toStringDocumento()
 	{
-		return to_string(this->numero)+ "," + this->fecha.toStringFecha() + "," + to_string(this->idInter)+ "," + to_string(this->idMed)+ "," + to_string(this->idTar);
+		string cadena= "Numero: " + to_string(this->getNumero())+ 
+			", Tipo de consumo: " + this->getTipo()+
+			", Fecha creacion: " + this->getFecha().toStringFecha()+
+			", ID Inter: " + to_string(this->getIdinter())+ ", ID Medidor: " + to_string(this->idMed)
+			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Importe: $ "+ to_string(this->getImporte());
+		return  cadena;
 	}
 	Documento::~Documento()
 	{
