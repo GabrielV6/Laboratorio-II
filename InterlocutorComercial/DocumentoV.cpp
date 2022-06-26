@@ -28,6 +28,8 @@ void DocumentoV::NuevoDocumento()
 	/// </summary>
 	this->documento = Documento();
 	int id;
+	char dat;
+	bool volver = false;
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -40,17 +42,23 @@ void DocumentoV::NuevoDocumento()
 		if (!this->documentoRN.validarIdMedidor(id))
 		{
 			cout << "El ID ingresado no es valido" << endl;
-			system("pause");
-			system("cls");
-			continue;
+			cout << "Desea ingresar otro ID?" << endl;
+			dat = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dat) == 'S') {
+				system("cls");
+				continue;
+			}
+			else
+			{
+				volver == true;
+				system("cls");
+				return;
+			}
 		}
-		
-		else
-		{
+		else {
 			break;
-		}			
-			
-	} while (true);
+		}
+	} while (volver==false);
 	
 	float lecturaActual;
 	char dato;
@@ -59,8 +67,8 @@ void DocumentoV::NuevoDocumento()
 		lecturaActual= Validaciones::DatoObligarorioNum("la lectura actual:");
 		///LLAMAR A METODO CALCULAR CONSUMO
 		float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
-		if(consumo>=0)
-		{	
+		if (consumo >= 0)
+		{
 			cout << "Se va a generar una factura nueva, para el cliente: " << endl;
 			cout << this->documentoRN.getInterlocutorComercial().getNombre();
 			cout << this->documentoRN.getInterlocutorComercial().getApellido();
@@ -68,29 +76,40 @@ void DocumentoV::NuevoDocumento()
 			cout << "Desea continuar?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S')
-				///this->(!this->Documento.getActivo());
-				///generar el documento. 
-			break;
+			{	
+				float importe = this->documentoRN.CalcularImporte(consumo);
+				cout << " el importe total es: " << importe << endl;
+				//grabo Factura
+				if (this->documentoRN.AltaDocumento(this->documento)) {
+					cout << this->separador << endl;
+					cout << "SE CREO UN DOCUMENTO EXITOSAMENTE" << endl;
+					cout << this->separador << endl;
+					system("pause");
+					break;
+				}
+				else {
+					cout << this->separador << endl;
+					cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
+					cout << this->separador << endl;
+					system("pause");
+					break;
+				}
+
+			}
+			else {
+				return;
+			}
 		}
-		/// <summary>
-		/// MOSTRAR UN CARTEL QUE DIGA "SE VA GENERAR UNA FACTURA, PARA EL CLIENTE (NOMBRE APELLIDO) PARA ESTE
-		/// CONSUMO (MOSTRAR EL CALCULO DE CONSUMO). DESEA CONTINUAR? SI / NO.  
-		/// 
-		/// 
-		/// </summary>
-	
-		///FALTA METODO DE CARGA AUTOMATICA DE numero(88888888)
 
 	} while (true);
-	//string id;
-	//cout << "Id: ";
-	//cin >> id;
 
-}/////OJOOOOO
+
+}
+
 /// <summary>
 /// Funci�n global para listar todos los documentos del archivo.
 /// </summary>
-void DocumentoV::ListarDocumentos()
+/*void DocumentoV::ListarDocumentos()
 {
 	vector<Documento> documentos = this->documentoRN.VectorDocumentos();
 	for (auto doc : documentos)
@@ -98,7 +117,17 @@ void DocumentoV::ListarDocumentos()
 		cout << doc.toStringDocumento() << endl;
 	}
 }
-
+*/
+void DocumentoV::ListarDocumentos()
+{
+	vector<Documento> documentos = this->documentoRN.getDocumentos();//getDocumentos();
+	
+		for (auto doc : documentos)
+		{
+			cout << doc.toStringDocumento() << endl;
+		}
+	
+}
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de documentos.
 /// </summary>
@@ -125,6 +154,7 @@ void DocumentoV::MenuDocumento()
 			break;
 		case 2:
 			this->ListarDocumentos();
+			
 			break;
 		
 		case 3:
@@ -145,6 +175,7 @@ void DocumentoV::MenuDocumento()
 		}
 	} while (salir == false);
 }
+
 
 void DocumentoV::setNombreArchivo(string nombreArchivo)
 {

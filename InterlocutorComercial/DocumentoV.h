@@ -8,7 +8,7 @@ private:
 	Documento documento;
 	string nombreArchivo;
 	DocumentoRN documentoRN;
-	
+	string separador = "-------------------------------------------------------------------------------------------------------------";
 public:
 	DocumentoV(string nombreArchivo);
 	~DocumentoV();

@@ -30,6 +30,7 @@ public:
 	long CantidadDocumentosEnSistema();
 	string getNombreArchivo();
 	vector<Documento> VectorDocumentos();
+	vector<Documento> getDocumentos();///AGREGUE IGUAL QUE GABY MEDIDOR
 	void setNombreArchivo(string nombreArchivo);
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
 	
@@ -46,6 +47,7 @@ public:
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES
 	//Metodo que valida el id ingresado del medidor
+	float CalcularImporte(float consumo);
 	bool validarIdMedidor(int id);
 
 

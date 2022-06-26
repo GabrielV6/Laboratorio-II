@@ -37,7 +37,12 @@ string DocumentoRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-
+//AGREGUE COMO GABY EN MEDIDORES
+vector<Documento> DocumentoRN::getDocumentos()
+{
+	return this->documentoAD.getDocumentosArchivo();
+}
+//
 vector<Documento> DocumentoRN::VectorDocumentos()
 {
 	return this->documentoAD.getDocumentosArchivo();
@@ -60,7 +65,12 @@ Medidor DocumentoRN::getMedidor()
 	
 	return this->medidor;
 }
-
+//SETEAR LA LECTURA DEL MEDIDOR DEBE TOMAR LA NUEVA LECTURA
+/*void Medidor DocumentoRN::setMedidor()
+{
+	
+}
+*/
 //METODO QUE BUSQUE UN INTERLOCUTOR POR ID
 InterlocutorComercial DocumentoRN::getInterlocutorComercialArchivo(int id, string nomarch)
 {
@@ -107,7 +117,16 @@ float DocumentoRN::CalcularConsumo(float lectura)
 
 	return consumo;
 }
-
+float DocumentoRN::CalcularImporte(float consumo)
+{
+	float importe;
+	
+	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR); 
+	///FALTA DIFERENCIA EL TIPO DE TARIFA
+	
+	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);
+	
+}
 //BUSCO EL MEDIDOR Y LO VALIDO PARA SABER QUE ESTA CORRECTO
 bool DocumentoRN::validarIdMedidor(int id)
 {	
