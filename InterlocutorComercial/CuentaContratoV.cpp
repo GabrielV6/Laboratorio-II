@@ -1,5 +1,7 @@
 #include "CuentaContratoV.h"
 #include "Validaciones.h"
+#include "InterlocutorComercialV.h"
+
 
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
 {
@@ -47,7 +49,7 @@ void CuentaContratoV::MenuCuentaContrato()
 		cout << this->separador << endl;
 		int opcion;
 
-		opcion = Validaciones::DatoObligarorioNum("una opcion");
+		opcion = Validaciones::DatoObligarorioNum("una opción");
 
 		switch (opcion)
 		{
@@ -73,7 +75,7 @@ void CuentaContratoV::MenuCuentaContrato()
 			break;
 
 		default:
-			cout << "Opcion no valida" << endl;
+			cout << "Opción no valida" << endl;
 			break;
 		}
 	} while (salir == false);
@@ -82,7 +84,7 @@ void CuentaContratoV::MenuCuentaContrato()
 void CuentaContratoV::NuevaCuentaContrato()
 {
 	this->cuentaContrato = CuentaContrato();
-	int id = 0; 
+	int dni = 0; 
 	string datos; 
 	char dato;
 
@@ -90,32 +92,37 @@ void CuentaContratoV::NuevaCuentaContrato()
 	{
 		system("clear");
 		cout << this->separador << endl;
-		cout << "Nuevo ID de Cuenta Contrato asignar: " << cuentaContratoRN.IdCuentaContrato(cuentaContrato) << endl;
-		cout << this->separador << endl;
-		cout << "Dar de alta? " << endl << endl;
-		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
 
-		if (toupper(dato) == 'S')
-		{
-			if (this->cuentaContratoRN.AltaCuentaContrato(this->cuentaContrato)) {
+		InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
+		dni = Validaciones::DatoObligarorioNum("Ingrese el numero de DNI del Interlocutor Comercial: "); 
+		bool existe = interlocutorRN.ExisteInterlocutorComercial(dni);
+		
+			if(!existe){
+				cout <<"No existe Interlocutor Comercial con el DNI ingresado." << endl;
 				cout << this->separador << endl;
-				cout << "Alta realizada" << endl;
-				cout << this->separador << endl;
-				system("pause");
-				break;
-			}
+			} 
 			else {
-				cout << this->separador << endl;
-				cout << "Alta no exitosa" << endl;
-				cout << this->separador << endl;
-				system("pause");
-				break;
-			}
 
-		}
-		else {
+				this->cuentaContrato.setId_ic(dni);
+			
+				if (this->cuentaContratoRN.AltaCuentaContrato(this->cuentaContrato)) {
+					cout << this->separador << endl;
+					cout << "Alta realizada" << endl;
+					cout << this->separador << endl;
+					system("pause");
+					break;
+				}
+				else {
+					cout << this->separador << endl;
+					cout << "Alta no exitosa" << endl;
+					cout << this->separador << endl;
+					system("pause");
+					break;
+				}
+
+			}
 			return;
-		}
+		
 	} while (true);
 }
 
@@ -130,7 +137,6 @@ void CuentaContratoV::ListarCuentaContrato(bool estado)
 		}
 		
 	}
-
 	system("pause");
 }
 
@@ -172,7 +178,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
-		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		opcion = Validaciones::DatoObligarorioNum("Opción:");
 
 		string datos;
 		char dato;
@@ -181,10 +187,10 @@ void CuentaContratoV::ModificarCuentaContrato()
 		{
 		case 1:
 		{
-			cout << "Modificar estado ";
+			cout << "Modificar estado " << endl;
 			cout << "El estado de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getEstado() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			dato = Validaciones::DatoObligarorioChar(" Confirma la modificacion: 'S' o 'N'");
 			
 			if (toupper(dato) == 'S')
 				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
@@ -197,7 +203,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 
 			break;
 		default:
-			cout << "Opcion invalida." << endl;
+			cout << "Opción invalida." << endl;
 			break;
 		}
 
