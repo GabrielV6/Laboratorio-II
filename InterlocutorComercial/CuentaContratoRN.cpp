@@ -18,6 +18,12 @@ CuentaContratoRN::~CuentaContratoRN()
 
 }
 
+bool CuentaContratoRN::ExisteCuentaContrato(int id_cc)
+{
+	// desarrollar metodo para checkear que no exista el id de cc
+	return true;
+}
+
 
 CuentaContrato CuentaContratoRN::BuscarCuentaContrato(int id_cc)
 {
@@ -40,14 +46,18 @@ bool CuentaContratoRN::AltaCuentaContrato(CuentaContrato& cuentaContrato)
 	InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
 
 	interlocutor = interlocutorRN.BuscarInterlocutorComercial(cuentaContrato.getId_ic());
+
+	// llamar existeCuentaContrato() para checkear que no exista una CC con ese Id
+
+
 	if (interlocutor.getId_ic()!=0){
 		cout << "La Cuenta Contrato sera dada de alta para: " << endl;
-		interlocutor.toStringInterlocutor();
+		cout << interlocutor.toStringInterlocutor() << endl;
 		cout << endl;
 		// agregar confirmacion
 		cuentaContrato.setId_cc(interlocutor.getId_ic());
 		cuentaContrato.setId_ic(interlocutor.getId_ic());
-		cout << "El ID de la Cuenta Contrato es: " + cuentaContrato.getId_ic() << endl;
+		cout << "El ID de la Cuenta Contrato es: " << cuentaContrato.getId_ic() << endl;
 		
 		return this->cuentaContratoAD.GuardarEnArchivoCuentaContrato(cuentaContrato);;
 	}

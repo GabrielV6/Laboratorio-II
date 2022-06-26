@@ -17,6 +17,7 @@ public:
 	~CuentaContratoRN();
 	
 	CuentaContrato BuscarCuentaContrato(int id_cc);
+	bool ExisteCuentaContrato(int id_cc);
 	bool ModificarCuentaContrato(CuentaContrato& CuentaContrato);
 	bool AltaCuentaContrato(CuentaContrato& CuentaContrato);
 	int IdCuentaContrato(CuentaContrato& CuentaContrato);
