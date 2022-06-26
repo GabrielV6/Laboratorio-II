@@ -46,6 +46,7 @@ public:
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES
 	//Metodo que valida el id ingresado del medidor
+	float CalcularImporte(float consumo);
 	bool validarIdMedidor(int id);
 
 

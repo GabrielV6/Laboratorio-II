@@ -1,5 +1,6 @@
 #include "DocumentoAD.h"
 #include <vector>
+#include "Validaciones.h"
 DocumentoAD::DocumentoAD(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
@@ -39,7 +40,7 @@ bool DocumentoAD::GuardarEnArchivoDocumento(Documento& documento)
 {
 	Documento documentoAD = documento;
 	ofstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
+	archivo.open(NOMBRE_ARCH_DOC, ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
 	//Busca cuantas documentos hay en el archivo y le asigna esa cantidad a la posicion relativa de la documento en el archivo.	
