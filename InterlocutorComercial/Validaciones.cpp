@@ -86,3 +86,8 @@ string Validaciones::DatoObligarorioCad(string nombreDato)
 	} while (true);
 	return dato;
 }
+void Validaciones::SystemPause()
+{
+	cout << "Presione Enter para continuar... ";
+	cin.ignore().get();
+}
