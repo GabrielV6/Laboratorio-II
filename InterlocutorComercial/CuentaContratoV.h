@@ -21,7 +21,6 @@ public:
     void MenuCuentaContrato();
     void NuevaCuentaContrato();
     void ListarCuentaContrato(bool activo);
-    void ModificarTarifaCuentaContrato();
     void ModificarCuentaContrato();
       
 };

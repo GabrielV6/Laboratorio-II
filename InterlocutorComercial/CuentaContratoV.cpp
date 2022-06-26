@@ -178,6 +178,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << this->separador << endl;
 		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
 		cout << "2. Modificar tarifa " << endl;
+		cout << "3. Modificar medidor " << endl;
 		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
@@ -216,7 +217,20 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
 			cout << this->separador << endl;
 			break;
-		
+		case 3:
+			cout << "Modificar medidor " << endl;
+			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getId_Medidor() << endl;
+			dato = Validaciones::DatoObligarorioChar(" Desea asignarle otro medidor? 'S' o 'N'");
+
+			if (toupper(dato) == 'S')
+				this->cuentaContratoRN.ModificarMedidorCuentaContrato(this->cuentaContrato);
+
+			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getId_Medidor() << endl;
+			cout << this->separador << endl;
+			break;
+
 		case 0:
 
 			break;

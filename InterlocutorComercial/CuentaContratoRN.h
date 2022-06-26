@@ -18,6 +18,7 @@ public:
 	
 	CuentaContrato BuscarCuentaContrato(int id_cc);
 	bool ModificarTarifaCuentaContrato(CuentaContrato& CuentaContrato);
+	bool ModificarMedidorCuentaContrato(CuentaContrato& CuentaContrato);
 	bool ModificarCuentaContrato(CuentaContrato& CuentaContrato);
 	bool AltaCuentaContrato(CuentaContrato& CuentaContrato);
 	int CantidadCuentaContrato();
