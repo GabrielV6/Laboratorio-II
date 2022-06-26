@@ -167,7 +167,7 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	char dato;
 	if (opcion > 0)
 	{
-		cout << "Listar Interlocutores, para modo Resumen ingrese 'R'" << endl;
+		cout << "Listar Interlocutores, para modo Resumen ingrese 'R' o modo completo cuaquier otra" << endl;
 		dato = Validaciones::DatoObligarorioChar("Tipo");
 	}
 	switch (opcion)

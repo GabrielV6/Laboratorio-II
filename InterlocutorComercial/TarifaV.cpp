@@ -83,6 +83,8 @@ void TarifaV::MenuTarifa()
 void TarifaV::NuevaTarifa()
 {
 	char dato;
+	float valor;
+	int valor2;
 
 	this->tarifa = Tarifa();
 	do {
@@ -91,7 +93,25 @@ void TarifaV::NuevaTarifa()
 		cout << this->separador << endl;
 		cout << "Nuevo ID de tarifa asignar: " << tarifaRN.IdTarifa(tarifa) << endl;
 		cout << this->separador << endl;
-		cout << "Dar de alta " << endl << endl;
+
+		valor = Validaciones::DatoObligarorioDecimal("Ingrese Cargo fijo: ");
+		if (toupper(valor) != 0)
+			this->tarifa.setCargoFijo(valor);
+
+		valor = Validaciones::DatoObligarorioDecimal("Ingrese Cargo Variable: ");
+		if (toupper(valor) != 0)
+			this->tarifa.setCargoVariable(valor);
+
+		valor = Validaciones::DatoObligarorioDecimal("Ingrese % de impuesto: ");
+		if (toupper(valor) != 0)
+			this->tarifa.setImpuestos(valor);
+
+		valor2 = Validaciones::DatoObligarorioNum("Tipo de tarifa: (0) Domestico - (1) Industrial ");
+		if (toupper(valor) != 0)
+			this->tarifa.setTipoDeTarifa(valor2);
+
+		cout << this->separador << endl;
+		cout << "Desea dar de alta?" << endl << endl;
 		dato = Validaciones::DatoObligarorioChar("Si = 'S' || No = 'N'");
 		if (toupper(dato) == 'S')
 		{

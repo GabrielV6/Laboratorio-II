@@ -26,6 +26,32 @@ int Validaciones::DatoObligarorioNum(string nombreDato)
 	return valorRetorno;
 }
 
+float Validaciones::DatoObligarorioDecimal(string nombreDato)
+{
+	string dato = "";
+	float valorRetorno = 0;
+	do
+	{
+		cout << "Ingrese " + nombreDato + " : ";
+		cin >> dato;
+		try
+		{
+			valorRetorno = stof(dato);
+			break;
+		}
+		catch (const std::exception&)
+		{
+			cout << "Dato obligatorio " + nombreDato + " incorrecta\nPor favor, ingrese nuevamente" << endl;
+		}
+		/*if (dato.c_str() == "")
+			cout << "Dato obligatorio " + nombreDato + " no puede quedar en blanco\nPor favor, ingrese nuevamente" << endl;
+		else
+			break;*/
+	} while (true);
+	return valorRetorno;
+}
+
+
 char Validaciones::DatoObligarorioChar(string nombreDato)
 {
 	char dato;
