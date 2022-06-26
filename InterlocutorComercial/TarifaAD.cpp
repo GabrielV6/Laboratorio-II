@@ -24,7 +24,7 @@ string TarifaAD::getNombreArchivo()
 int TarifaAD::TotalTarifasEnArchivo()
 {
 	ifstream archivo;
-	archivo.open(NOMBRE_ARCH_TAR, ios::in);
+	archivo.open(this->getNombreArchivo().c_str(), ios::in);
 	if (archivo.fail())
 		return -1;
 	int cantidad = 0;
@@ -37,7 +37,7 @@ int TarifaAD::TotalTarifasEnArchivo()
 bool TarifaAD::GuardarEnArchivoTarifa(Tarifa& tarifa)
 {
 	ofstream archivo;
-	archivo.open(NOMBRE_ARCH_TAR, ios::binary | ios::app | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
 	//Busca cuantos medidores hay en el archivo y le asigna esa cantidad a la posicion relativa del medidor en el archivo.	
@@ -52,7 +52,7 @@ bool TarifaAD::GuardarEnArchivoTarifa(Tarifa& tarifa)
 bool TarifaAD::ActualizarEnArchivoTarifa(Tarifa& tarifa)
 {
 	fstream archivo;
-	archivo.open(NOMBRE_ARCH_TAR, ios::binary | ios::in | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::in | ios::out);
 	archivo.seekg(0); //se ubica en el inicio del archivo
 	if (archivo.fail())
 		return false;
@@ -70,7 +70,7 @@ Tarifa TarifaAD::getTarifaArchivo(int id)
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("tarifas.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)
 		return intComAD;
@@ -100,7 +100,7 @@ vector<Tarifa> TarifaAD::getTarifasArchivo()
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("tarifas.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)
 		return tarifas;

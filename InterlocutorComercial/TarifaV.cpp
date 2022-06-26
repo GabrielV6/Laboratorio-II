@@ -121,21 +121,21 @@ void TarifaV::NuevaTarifa()
 				cout << this->separador << endl;
 				cout << "ALTA EXITOSA" << endl;
 				cout << this->separador << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				break;
 			}
 			else {
 				cout << this->separador << endl;
 				cout << "ALTA NO EXITOSA" << endl;
 				cout << this->separador << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				break;
 			}
 
 		}
 		else {
 			system("cls");
-			system("pause");
+			Validaciones::SystemPause();
 			return;
 
 		}
@@ -153,7 +153,7 @@ void TarifaV::ListarTarifa()
 
 	}
 
-	system("pause");
+	Validaciones::SystemPause();
 }
 
 void TarifaV::ModificarTarifa()
@@ -177,7 +177,7 @@ void TarifaV::ModificarTarifa()
 		if (this->tarifa.getIdTarifa() != id) // LLamar metodo de regla de negocio que valida si existe el ID
 		{
 			cout << "ID ingresado no existe " << endl;
-			system("pause");
+			Validaciones::SystemPause();
 			system("cls");
 		}
 		else
@@ -264,6 +264,6 @@ void TarifaV::ModificarTarifa()
 			else
 				cout << "Modificación correcta" << endl;
 		}
-		system("pause");
+		Validaciones::SystemPause();
 	} while (opcion != 0);
 }
