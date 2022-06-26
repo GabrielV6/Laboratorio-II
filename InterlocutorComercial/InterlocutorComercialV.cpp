@@ -46,8 +46,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		datos = Validaciones::DatoObligarorioCad("Apellido");
 		this->interlocutorComercial.setApellido(datos);
 
-		cout << "Correo electronico: ";
-		cin >> datos;
+		datos = Validaciones::DatoObligarorioCad("Correo:");
 		this->interlocutorComercial.setEmail(datos);
 		Fecha fechaIngreso;
 		cout << "Fecha Alta: ";

@@ -5,7 +5,6 @@ Direccion::Direccion()
 {
 	this->setCalle("");
 	this->setNumero(0);
-	this->setDescripcion("");
 	this->setCodPostal("");
 	this->setLocalidad("");
 	this->setProvincia("");
@@ -20,10 +19,6 @@ void Direccion::setCalle(string calle)
 void Direccion::setNumero(unsigned int numero)
 {
 	this->numero = numero;
-}
-void Direccion::setDescripcion(string descripcion)
-{
-	strcpy(this->descripcion, descripcion.c_str());
 }
 void Direccion::setCodPostal(string codPostal)
 {
@@ -66,10 +61,7 @@ void Direccion::CargarDireccion()
 	string dato = Validaciones::DatoObligarorioCad("Calle");
 	this->setCalle(dato);
 	int num  = Validaciones::DatoObligarorioNum("Numero");
-	this->numero = num;
-	
-	dato = Validaciones::DatoObligarorioCad("Descripcion");
-	this->setDescripcion(dato);
+	this->setNumero(num);
 	
 	dato = Validaciones::DatoObligarorioCad("Codigo Postal");
 	this->setCodPostal(dato);
@@ -83,6 +75,6 @@ void Direccion::CargarDireccion()
 
 string Direccion::toStringDireccion()
 {
-	return "Calle: " + this->getCalle() + ", numero: " + to_string(this->numero) + ", Desc. Casa Dpto: " + this->getDescripcion() +
+	return "Calle: " + this->getCalle() + ", numero: " + to_string(this->numero) +
 		", Cod. Postal: " + this->getCodPostal() + ", localidad: " + this->getLocalidad() + ", provincia: " + this->getProvincia();
 }

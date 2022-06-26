@@ -18,7 +18,6 @@ public:
 	~Direccion();
 	void setCalle(string calle);
 	void setNumero(unsigned int numero);
-	void setDescripcion(string descripcion);
 	void setCodPostal(string codPostal);
 	void setLocalidad(string localidad);
 	void setProvincia(string provincia);
