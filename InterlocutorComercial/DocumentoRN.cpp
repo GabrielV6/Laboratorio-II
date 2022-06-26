@@ -3,6 +3,7 @@
 #include "TarifaAD.h"
 #include "InterlocutorComercialAD.h"
 #include "Validaciones.h"
+const int RANGO_NUMERICO = 100;
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
@@ -12,8 +13,34 @@ DocumentoRN::DocumentoRN(string nombreArchivo)
 DocumentoRN::~DocumentoRN()
 {
 }
+
+int DocumentoRN::IdDocumento(Documento& documento)
+{
+	int id = this->documentoAD.TotalDocumentosEnArchivo();
+	if (id == -1) {
+		id = 0;
+	}
+	id += RANGO_NUMERICO;
+
+	documento.setNumero(id);
+	return documento.getNumero();
+}
+
 bool DocumentoRN::AltaDocumento(Documento& documento)
 {
+
+	// generar ID y setear ID de docuemntos antes de enviar el objeto a GuardarEnDisco
+	if (documento.getNumero() != 0) {
+		int id = this->documentoAD.TotalDocumentosEnArchivo();
+		if (id == -1) {
+			id = 0;
+		}
+		id += RANGO_NUMERICO;
+
+		documento.setNumero(id);
+		return this->documentoAD.GuardarEnArchivoDocumento(documento);
+	}
+
 	return this->documentoAD.GuardarEnArchivoDocumento(documento);
 }
 Documento DocumentoRN::BuscarDocumento(int id)
@@ -65,6 +92,11 @@ Medidor DocumentoRN::getMedidor()
 	
 	return this->medidor;
 }
+Medidor DocumentoRN::setMedidor()
+{
+	return this->medidor;
+}
+
 //SETEAR LA LECTURA DEL MEDIDOR DEBE TOMAR LA NUEVA LECTURA
 /*void Medidor DocumentoRN::setMedidor()
 {
@@ -122,7 +154,7 @@ float DocumentoRN::CalcularImporte(float consumo)
 {
 	float importe;
 	
-	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR); 
+	this->tarifa = this->getTarifaArchivo(1/*this->cc.getId_Tarifa()*/, NOMBRE_ARCH_TAR);
 
 	
 	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);

@@ -22,6 +22,7 @@ private:
 public:
 	DocumentoRN(string nombreArchivo = "");
 	~DocumentoRN();
+	int IdDocumento(Documento& documento);
 	Documento BuscarDocumento(int id);///VER ESTO
 	//Documento BuscarDocumento(int id);
 	float CalcularConsumo(float lectura);
@@ -35,6 +36,9 @@ public:
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
 	
 	Medidor getMedidor();
+	Medidor setMedidor();
+
+
 	//METODO QUE BUSQUE UN INTERLOCUTOR POR ID
 	InterlocutorComercial getInterlocutorComercialArchivo(int id, string nomarch);
 	InterlocutorComercial getInterlocutorComercial();

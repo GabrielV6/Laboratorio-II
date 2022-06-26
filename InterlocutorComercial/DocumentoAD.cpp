@@ -23,7 +23,7 @@ string DocumentoAD::getNombreArchivo()
 int DocumentoAD::TotalDocumentosEnArchivo()
 {
 	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
+	archivo.open(NOMBRE_ARCH_DOC, ios::in);
 	if (archivo.fail())
 		return -1;
 	long cantidad = 0;

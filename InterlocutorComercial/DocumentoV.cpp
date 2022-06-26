@@ -4,10 +4,6 @@
 #include "MedidorV.h"
 
 
-
-
-
-
 DocumentoV::DocumentoV(string nombreArchivo)
 {
 	this->documento = Documento();
@@ -27,6 +23,7 @@ void DocumentoV::NuevoDocumento()
 	/// VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
 	/// </summary>
 	this->documento = Documento();
+	Fecha fecha;
 	int id;
 	//char dat;
 	bool volver = false;
@@ -58,18 +55,30 @@ void DocumentoV::NuevoDocumento()
 			if (consumo >= 0)
 			{	
 				cout << this->separador << endl;
-				cout << "ATENCION! Se va crear un documento nuevo" << endl;
+				cout << "ATENCION! Se va crear un documento nuevo bajo el ID: "<<documentoRN.IdDocumento(documento) << endl;
 				cout << this->separador << endl;
 				cout << "PARA EL CLIENTE | ROBERTO "<<this->documentoRN.getInterlocutorComercial().getNombre();
 				cout << ",LOPEZ"<<this->documentoRN.getInterlocutorComercial().getApellido();
 				cout << "| por un consumo de: " << consumo << endl;
 				cout << this->separador << endl;
 				cout << "Desea continuar?" << endl;
+
+			
 				dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 				if (toupper(dato) == 'S')
-				{
-					float importe = this->documentoRN.CalcularImporte(consumo);
-					cout << " el importe total es: $ " << importe << endl;
+				{	
+
+					fecha.cargarFechaActual();
+					this->documento.setFecha(fecha);
+					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
+					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
+					this->documento.setIdtar(this->documentoRN.getTarifa().getIdTarifa());
+					this->documento.setConsumo(consumo);
+					this->documento.setImporte(this->documentoRN.CalcularImporte(consumo));
+					this->documentoRN.setMedidor().setLectura(lecturaActual);
+					
+					
+					cout << " el importe total es: $ " << documento.getImporte() << endl;
 					//SE GUARDA LA FACTURA EN DISCO
 					if (this->documentoRN.AltaDocumento(this->documento)) {
 						cout << this->separador << endl;

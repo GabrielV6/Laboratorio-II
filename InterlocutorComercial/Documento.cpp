@@ -12,6 +12,7 @@ Documento::Documento()
 	this->idTar = 0;
 	this->pago = false;
 	this->importe = 0;
+	this->tipo = 'B';
 }
 
 	
@@ -110,7 +111,7 @@ Documento::Documento()
 	string Documento::toStringDocumento()
 	{
 		string cadena= "Numero: " + to_string(this->getNumero())+ 
-			", Tipo de consumo: " + this->getTipo()+
+			", Tipo de documento: " + this->getTipo()+
 			", Fecha creacion: " + this->getFecha().toStringFecha()+
 			", ID Inter: " + to_string(this->getIdinter())+ ", ID Medidor: " + to_string(this->idMed)
 			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Importe: $ "+ to_string(this->getImporte());
