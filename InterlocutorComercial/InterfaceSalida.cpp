@@ -143,7 +143,7 @@ void InterfaceSalida::MenuPrincipal()
 			{
 				system("cls");
 				cout << "GRACIAS POR USAR EL SISTEMA DE GESTION ENERGETICA!!!" << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				exit(1);
 			}
 		}
@@ -276,26 +276,68 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 			}
 		}
 	}
-
+	string cadena;
+	vector<string> datosAExportar;
 	cout << separador << endl;
-	cout << "|CONSUMOS Y PROMEDIOS DEL AÑO: " << anio << endl;
+	cadena = "|CONSUMOS Y PROMEDIOS DEL AÑO: ";
+	cout << "|" << cadena << anio << endl;
+	datosAExportar.push_back(cadena);
 	cout << separador << endl;
 	if (cantidadDocVerano > 0)
-		cout << "|VERANO - Total consumo: " << totalConsumoVerano << " Promedio: " << totalConsumoVerano / cantidadDocVerano << endl;
+	{
+		cadena = "VERANO - Total consumo: " + to_string(totalConsumoVerano) + "\t Promedio: " + to_string(totalConsumoVerano / cantidadDocVerano);
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	else
-		cout << "|VERANO - No hay consumos registrados " << endl;
+	{
+		cadena = "VERANO - No hay consumos registrados ";
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	if (cantidadDocOtonio > 0)
-		cout << "|OTOÑO - Total consumo: " << totalConsumoOtonio << " Promedio: " << totalConsumoOtonio / cantidadDocOtonio << endl;
+	{
+		cadena = "OTOÑO - Total consumo: " + to_string(totalConsumoOtonio) + "\t Promedio: " + to_string(totalConsumoOtonio / cantidadDocOtonio);
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	else
-		cout << "|OTOÑO - No hay consumos registrados " << endl;
+	{
+		cadena = "OTOÑO - No hay consumos registrados ";
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	if (cantidadDocInvierno > 0)
-		cout << "|INVIERNO - Total consumo: " << totalConsumoInvierno << " Promedio: " << totalConsumoInvierno / cantidadDocInvierno << endl;
+	{
+		cadena = "INVIERNO - Total consumo: " + to_string(totalConsumoInvierno) + "\t Promedio: " + to_string(totalConsumoInvierno / cantidadDocInvierno);
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	else
-		cout << "|INVIERNO - No hay consumos registrados " << endl;
+	{
+		cadena = "INVIERNO - No hay consumos registrados ";
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	if (cantidadDocPrimavera > 0)
-		cout << "|PRIMAVERA - Total consumo: " << totalConsumoPrimavera << " Promedio: " << totalConsumoPrimavera / cantidadDocPrimavera << endl;
+	{
+		cadena = "PRIMAVERA - Total consumo: " + to_string(totalConsumoPrimavera) + "\t Promedio: " + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	else
-		cout << "|PRIMAVERA - No hay consumos registrados " << endl;
+	{
+		cadena = "PRIMAVERA - No hay consumos registrados ";
+		cout << "|" << cadena << endl;
+		datosAExportar.push_back(cadena);
+	}
 	cout << separador << endl;
-	system("pause");
+	Validaciones::SystemPause();
+	cout << "Desea exportar los datos a un archivo formato 'csv' ?" << endl;
+	char dato = Validaciones::DatoObligarorioChar(" 'S' o cualquier otra letra para salir");
+	if (dato == 'S')
+	{
+		this->GrabarTextosSalida(datosAExportar, "ConsumosPromedios" + to_string(anio) + ".csv");
+		cout << "Datos exportados" << endl;
+	}
 }
