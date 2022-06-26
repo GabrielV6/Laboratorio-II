@@ -18,5 +18,6 @@ public:
 	static char DatoObligarorioChar(string nombreDato);
 	static string DatoObligarorioCad(string nombreDato);
 	static int DatoObligarorioNum(string nombreDato);
+	static float DatoObligarorioDecimal(string nombreDato);
 
 };
