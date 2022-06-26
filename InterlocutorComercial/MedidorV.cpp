@@ -133,13 +133,21 @@ void MedidorV::NuevoMedidor()
 void MedidorV::ListarMedidor(bool estado)
 {
 	vector<Medidor> medidores = this->medidorRN.getMedidores();
-
+	bool mostrar = false;
 	for (int i = 0; i < medidores.size(); i++) {
 		if (medidores[i].getEstado() == estado) {
 			cout << medidores[i].toStringMedidor() << endl;
+			mostrar = true;
 		}
 
 	}
+
+	if (!mostrar) {
+		cout << this->separador << endl;
+		cout << "No hay medidores instalados" << endl;
+		cout << this->separador << endl;
+	}
+
 
 	system("pause");
 
