@@ -46,8 +46,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		datos = Validaciones::DatoObligarorioCad("Apellido");
 		this->interlocutorComercial.setApellido(datos);
 
-		cout << "Correo electronico: ";
-		cin >> datos;
+		datos = Validaciones::DatoObligarorioCad("Correo:");
 		this->interlocutorComercial.setEmail(datos);
 		Fecha fechaIngreso;
 		cout << "Fecha Alta: ";
@@ -130,7 +129,7 @@ void InterlocutorComercialV::ListarInterlocutores(int opcion)
 		cout << separador << endl;
 	}
 	cout << separador << endl;
-	system("pause");
+	Validaciones::SystemPause();
 }
 
 string InterlocutorComercialV::DarDatosListado(InterlocutorComercial intLoc, int num)
@@ -213,7 +212,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		if (this->interlocutorComercial.getDni() != dni) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado no esta dado de alta!!!" << endl;
-			system("pause");
+			Validaciones::SystemPause();
 			system("cls");
 		}
 		else
@@ -291,7 +290,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			else
 				cout << "Modificación correcta" << endl;
 		}
-		system("pause");
+		Validaciones::SystemPause();
 	} while (opcion != 0);
 }
 

@@ -19,5 +19,5 @@ public:
 	static string DatoObligarorioCad(string nombreDato);
 	static int DatoObligarorioNum(string nombreDato);
 	static float DatoObligarorioDecimal(string nombreDato);
-
+	static void SystemPause();
 };

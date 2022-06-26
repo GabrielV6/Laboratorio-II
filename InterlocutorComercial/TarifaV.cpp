@@ -1,6 +1,8 @@
 #include "TarifaV.h"
 #include "Validaciones.h"
 
+
+
 TarifaV::TarifaV(string nombreArchivo)
 {
 	this->tarifa = Tarifa();
@@ -83,8 +85,8 @@ void TarifaV::MenuTarifa()
 void TarifaV::NuevaTarifa()
 {
 	char dato;
-	float valor;
-	int valor2;
+	float decimal;
+	int entero;
 
 	this->tarifa = Tarifa();
 	do {
@@ -94,21 +96,21 @@ void TarifaV::NuevaTarifa()
 		cout << "Nuevo ID de tarifa asignar: " << tarifaRN.IdTarifa(tarifa) << endl;
 		cout << this->separador << endl;
 
-		valor = Validaciones::DatoObligarorioDecimal("Ingrese Cargo fijo: ");
-		if (toupper(valor) != 0)
-			this->tarifa.setCargoFijo(valor);
+		decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo fijo: ");
+		if (decimal != 0)
+			this->tarifa.setCargoFijo(decimal);
 
-		valor = Validaciones::DatoObligarorioDecimal("Ingrese Cargo Variable: ");
-		if (toupper(valor) != 0)
-			this->tarifa.setCargoVariable(valor);
+		decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo Variable: ");
+		if (decimal != 0)
+			this->tarifa.setCargoVariable(decimal);
 
-		valor = Validaciones::DatoObligarorioDecimal("Ingrese % de impuesto: ");
-		if (toupper(valor) != 0)
-			this->tarifa.setImpuestos(valor);
+		decimal = Validaciones::DatoObligarorioDecimal("Ingrese % de impuesto: ");
+		if (decimal != 0)
+			this->tarifa.setImpuestos(decimal);
 
-		valor2 = Validaciones::DatoObligarorioNum("Tipo de tarifa: (0) Domestico - (1) Industrial ");
-		if (toupper(valor) != 0)
-			this->tarifa.setTipoDeTarifa(valor2);
+		entero = Validaciones::DatoObligarorioNum("Tipo de tarifa: (0) Domestico - (1) Industrial ");
+		if (entero != 0)
+			this->tarifa.setTipoDeTarifa(entero);
 
 		cout << this->separador << endl;
 		cout << "Desea dar de alta?" << endl << endl;
@@ -199,47 +201,48 @@ void TarifaV::ModificarTarifa()
 
 		string datos;
 		char dato;
-		float dato2;
+		int entero;
+		float decimal;
 
 		switch (opcion)
 		{
 		case 1:
 		{
 			cout << "Modificar Cargo Fijo ";
-			dato2 = Validaciones::DatoObligarorioNum("Valor");
-			if (toupper(dato2) != 0)
-				this->tarifa.setCargoFijo(dato2);
+			decimal = Validaciones::DatoObligarorioDecimal("Valor");
+			if (decimal != 0)
+				this->tarifa.setCargoFijo(decimal);
 			break;
 		}
 		case 2:
 		{
 			cout << "Modificar Cargo Variable ";
-			dato2 = Validaciones::DatoObligarorioNum("Valor");
-			if (toupper(dato2) != 0)
-				this->tarifa.setCargoVariable(dato2);
+			decimal = Validaciones::DatoObligarorioDecimal("Valor");
+			if (decimal != 0)
+				this->tarifa.setCargoVariable(decimal);
 			break;
 		}
 		case 3:
 		{
 			cout << "Modificar Cargo Impuesto ";
-			dato2 = Validaciones::DatoObligarorioNum("Valor");
-			if (toupper(dato2) != 0)
-				this->tarifa.setImpuestos(dato2);
+			decimal = Validaciones::DatoObligarorioDecimal("Valor");
+			if (decimal != 0)
+				this->tarifa.setImpuestos(decimal);
 			break;
 		}
 		case 4:
 		{
 			cout << "Modificar Tipo de Tarifa 1 - Industrial 0 - Domestico ";
-			dato2 = Validaciones::DatoObligarorioNum("Valor");
-			if (toupper(dato2) >= 0 && toupper(dato2) < 2)
-				this->tarifa.setTipoDeTarifa(dato2);
+			entero = Validaciones::DatoObligarorioNum("Valor");
+			if (entero >= 0 && entero < 2)
+				this->tarifa.setTipoDeTarifa(entero);
 			break;
 		}
 		case 5:
 		{
 			cout << "Modificar estado ";
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
-			if (toupper(dato) == 'S')
+			if (dato == 'S')
 				this->tarifa.setEstado(!this->tarifa.getEstado());
 
 			break;
