@@ -11,18 +11,18 @@ private:
 	float _cargoFijo;
 	float _cargoVariable;
 	float _impuestos;
-	bool _tipoDeTarifa; // Domestico (true) o Industrial (false)
+	int _tipoDeTarifa; // Domestico (0) o Industrial (1)
 	int _numPosicionArch;
 	bool _estado;
 public:
 
-	Tarifa(int id = 0, float cargoFijo = 0, float cargoVar = 0, float impuesto = 0, bool tipoTarifa = true, int numPosicion = 0, bool estado = false);
+	Tarifa(int id = 0, float cargoFijo = 0, float cargoVar = 0, float impuesto = 0, int tipoTarifa = 0, int numPosicion = 0, bool estado = true);
 	~Tarifa();
 	void setIdTarifa(int idTarifa);
 	void setCargoFijo(float cargoFijo);
 	void setCargoVariable(float cargoVariable);
 	void setImpuestos(float impuestos);
-	void setTipoDeTarifa(bool tipoDeTarifa);
+	void setTipoDeTarifa(int tipoDeTarifa);
 	void setNumPosicionArchivo(int numPosArch);
 	void setEstado(bool estado);
 
@@ -30,7 +30,7 @@ public:
 	float getCargoFijo();
 	float getCargoVariable();
 	float getImpuestos();
-	bool getTipoDeTarifa();
+	int getTipoDeTarifa();
 	int getNumPosicionArhivo();
 	bool getEstado();
 
