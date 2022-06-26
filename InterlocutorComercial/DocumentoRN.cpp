@@ -117,12 +117,13 @@ float DocumentoRN::CalcularConsumo(float lectura)
 
 	return consumo;
 }
+//METODO QUE DEVUELVE EL IMPORTE TOTAL A PAGAR
 float DocumentoRN::CalcularImporte(float consumo)
 {
 	float importe;
 	
 	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR); 
-	///FALTA DIFERENCIA EL TIPO DE TARIFA
+
 	
 	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);
 	
@@ -142,3 +143,5 @@ bool DocumentoRN::validarIdMedidor(int id)
 
 	return false;
 }
+///METODO QUE GENERA REPORTE SOBRE CONSUMO DE ENERGIA ESTACIONAL TRIMESTRAL  ANIO INGRESADO  
+

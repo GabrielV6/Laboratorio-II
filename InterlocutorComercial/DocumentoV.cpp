@@ -30,17 +30,16 @@ void DocumentoV::NuevoDocumento()
 	int id;
 	char dat;
 	bool volver = false;
-	do
-	{
+	float lecturaActual;
+	char dato;
+
+	do {
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del Documento " << endl;
 		cout << "--------------------------------------------------" << endl;
-		//cout << "Ingrese el Id del Medidor: ";
-		//cin >> id;
 		id = Validaciones::DatoObligarorioNum("Id del Medidor : ");
-		//VALIDA EL ID QUE EXISTA EN EL ARCHIVO MEDIDORES Y CARGA EL RESTO DE LOS OBJETOS PARA EL DOCUMENTO
-		if (!this->documentoRN.validarIdMedidor(id))
-		{
+
+		if (!this->documentoRN.validarIdMedidor(id)) {
 			cout << "El ID ingresado no es valido" << endl;
 			cout << "Desea ingresar otro ID?" << endl;
 			dat = Validaciones::DatoObligarorioChar("'S' o 'N'");
@@ -48,64 +47,77 @@ void DocumentoV::NuevoDocumento()
 				system("cls");
 				continue;
 			}
-			else
-			{
-				volver == true;
-				system("cls");
-				return;
-			}
-		}
-		else {
-			break;
-		}
-	} while (volver==false);
-	
-	float lecturaActual;
-	char dato;
-	do {
-		
-		lecturaActual= Validaciones::DatoObligarorioNum("la lectura actual:");
-		///LLAMAR A METODO CALCULAR CONSUMO
-		float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
-		if (consumo >= 0)
-		{
-			cout << "Se va a generar una factura nueva, para el cliente: " << endl;
-			cout << this->documentoRN.getInterlocutorComercial().getNombre();
-			cout << this->documentoRN.getInterlocutorComercial().getApellido();
-			cout << " con el consumo: " << consumo << endl;
-			cout << "Desea continuar?" << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
-			if (toupper(dato) == 'S')
-			{	
-				float importe = this->documentoRN.CalcularImporte(consumo);
-				cout << " el importe total es: " << importe << endl;
-				//grabo Factura
-				if (this->documentoRN.AltaDocumento(this->documento)) {
-					cout << this->separador << endl;
-					cout << "SE CREO UN DOCUMENTO EXITOSAMENTE" << endl;
-					cout << this->separador << endl;
-					system("pause");
-					break;
-				}
-				else {
-					cout << this->separador << endl;
-					cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
-					cout << this->separador << endl;
-					system("pause");
-					break;
-				}
-
-			}
 			else {
 				return;
 			}
 		}
+		else {
+			lecturaActual = Validaciones::DatoObligarorioNum("la lectura actual:");
+			///LLAMAR A METODO CALCULAR CONSUMO
+			float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
+			if (consumo >= 0)
+			{
+				cout << "Se va a generar una factura nueva, para el cliente: " << endl;
+				cout << this->documentoRN.getInterlocutorComercial().getNombre();
+				cout << this->documentoRN.getInterlocutorComercial().getApellido();
+				cout << " con el consumo: " << consumo << endl;
+				cout << "Desea continuar?" << endl;
+				dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+				if (toupper(dato) == 'S')
+				{
+					float importe = this->documentoRN.CalcularImporte(consumo);
+					cout << " el importe total es: " << importe << endl;
+					//grabo Factura
+					if (this->documentoRN.AltaDocumento(this->documento)) {
+						cout << this->separador << endl;
+						cout << "SE CREO UN DOCUMENTO EXITOSAMENTE" << endl;
+						cout << this->separador << endl;
+						system("pause");
+						cout << this->separador << endl;
+						cout << "Desea cargar otro documento con un nuevo Id de medidor?" << endl;
+						dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+						if (toupper(dato) == 'S')
+						{
+							system("cls");
+							volver = true;
+							//continue;
+						}
+						else {
+							return;
+						}
+					}
+					else {
+						cout << this->separador << endl;
+						cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
+						cout << this->separador << endl;
+						system("pause");
+						break;
+					}
 
-	} while (true);
+				}
+				else {
+					return;
+				}
+			}
+			else {
+				cout << this->separador << endl;
+				cout << "******************ATENCION EL CONSUMO CALCULADO ES NEGATIVO***************" << endl;
+				cout << "-----------POSIBLE CONEXION CLANDESTINA O DEFECTO EN LECTURA DEL INSPECTOR----------------" << endl;
+				cout << "-----------------------REPORTAR A SUPERVISOR-------------------" << endl;
+				cout << this->separador << endl;
+				system("pause");
+				break;
+			}
+		}
+		
+
+	} while (true||volver!=true);
 
 
 }
 
+//SI EL CONSUMO ES NEGATIVO O MENOR AL CONSUMO ANTERIOR
+				
 /// <summary>
 /// Funci�n global para listar todos los documentos del archivo.
 /// </summary>
