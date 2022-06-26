@@ -20,6 +20,8 @@ public:
 	void MostrarTextosSalida(vector<string> textos, string tituloTexo);
 	bool LeeTextosEntrada(string nombreArchivo);
 	void MenuPrincipal();
+	void ConsumoPorEstacion(int anio);
+	void MenuConsultas();
 private:
 	string textoSalida;
 	vector<string> textosSalida;
