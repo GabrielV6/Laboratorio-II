@@ -41,7 +41,7 @@ void DocumentoV::NuevoDocumento()
 			cout << "Desea ingresar otro ID?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S') {
-				system("cls");
+				system("cls"); 				
 				continue;
 			}
 			else {
@@ -99,7 +99,7 @@ void DocumentoV::NuevoDocumento()
 						cout << this->separador << endl;
 
 						cout << this->separador << endl;
-						system("pause");
+						Validaciones::SystemPause();
 						cout << this->separador << endl;
 						cout << "Desea cargar otro documento con un nuevo Id de medidor?" << endl;
 						dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
@@ -117,7 +117,7 @@ void DocumentoV::NuevoDocumento()
 						cout << this->separador << endl;
 						cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
 						cout << this->separador << endl;
-						system("pause");
+						Validaciones::SystemPause();
 						break;
 					}
 
@@ -133,7 +133,7 @@ void DocumentoV::NuevoDocumento()
 				cout << "-----------POSIBLE CONEXION CLANDESTINA O DEFECTO EN LECTURA DEL INSPECTOR----------------" << endl;
 				cout << "-----------------------REPORTAR A SUPERVISOR-------------------" << endl;
 				cout << this->separador << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				system("cls");
 				break;
 			}
