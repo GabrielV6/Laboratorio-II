@@ -211,7 +211,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			
 			if (toupper(dato) == 'S')
 				this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
-			
+
 			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
 			cout << this->separador << endl;

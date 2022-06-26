@@ -17,11 +17,9 @@ public:
 	~CuentaContratoRN();
 	
 	CuentaContrato BuscarCuentaContrato(int id_cc);
-	bool ExisteCuentaContrato(int id_cc);
 	bool ModificarTarifaCuentaContrato(CuentaContrato& CuentaContrato);
 	bool ModificarCuentaContrato(CuentaContrato& CuentaContrato);
 	bool AltaCuentaContrato(CuentaContrato& CuentaContrato);
-	int IdCuentaContrato(CuentaContrato& CuentaContrato);
 	int CantidadCuentaContrato();
 	string getNombreArchivo();
 	vector<CuentaContrato> getCuentaContrato();
