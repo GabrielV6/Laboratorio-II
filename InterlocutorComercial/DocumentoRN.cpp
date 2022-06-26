@@ -3,6 +3,7 @@
 #include "TarifaAD.h"
 #include "InterlocutorComercialAD.h"
 #include "Validaciones.h"
+
 const int RANGO_NUMERICO = 100;
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
@@ -98,11 +99,15 @@ Medidor DocumentoRN::setMedidor()
 }
 
 //SETEAR LA LECTURA DEL MEDIDOR DEBE TOMAR LA NUEVA LECTURA
-/*void Medidor DocumentoRN::setMedidor()
+void DocumentoRN::GuardarLectura(int id,float lecturaActual)
 {
-	
+
+	medidor = medidorRN.BuscarCMedidor(id);
+	medidor.setLectura(lecturaActual);
+	medidorRN.ModificaMedidor(medidor);
 }
-*/
+
+
 //METODO QUE BUSQUE UN INTERLOCUTOR POR ID
 InterlocutorComercial DocumentoRN::getInterlocutorComercialArchivo(int id, string nomarch)
 {
@@ -154,7 +159,7 @@ float DocumentoRN::CalcularImporte(float consumo)
 {
 	float importe;
 	
-	this->tarifa = this->getTarifaArchivo(1/*this->cc.getId_Tarifa()*/, NOMBRE_ARCH_TAR);
+	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR);
 
 	
 	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);

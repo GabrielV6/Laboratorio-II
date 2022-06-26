@@ -75,9 +75,8 @@ void DocumentoV::NuevoDocumento()
 					this->documento.setIdtar(this->documentoRN.getTarifa().getIdTarifa());
 					this->documento.setConsumo(consumo);
 					this->documento.setImporte(this->documentoRN.CalcularImporte(consumo));
-					this->documentoRN.setMedidor().setLectura(lecturaActual);
-					
-					
+					this->documentoRN.GuardarLectura(id, lecturaActual);
+		
 					cout << " el importe total es: $ " << documento.getImporte() << endl;
 					//SE GUARDA LA FACTURA EN DISCO
 					if (this->documentoRN.AltaDocumento(this->documento)) {
