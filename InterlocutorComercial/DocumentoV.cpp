@@ -49,7 +49,7 @@ void DocumentoV::NuevoDocumento()
 			}
 		}
 		else {
-			lecturaActual = Validaciones::DatoObligarorioNum("la lectura actual");
+			lecturaActual = Validaciones::DatoObligarorioDecimal("la lectura actual");
 			///SE CALCULA EL CONSUMO PARA ESTE DOCUMENTO
 			float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
 			if (consumo >= 0)
