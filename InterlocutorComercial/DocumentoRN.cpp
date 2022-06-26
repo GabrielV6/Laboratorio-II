@@ -3,6 +3,7 @@
 #include "TarifaAD.h"
 #include "InterlocutorComercialAD.h"
 #include "Validaciones.h"
+#include <vector>
 
 const int RANGO_NUMERICO = 100;
 
@@ -145,11 +146,11 @@ Tarifa DocumentoRN::getTarifa()
 float DocumentoRN::CalcularConsumo(float lectura)
 {	
 	float consumo = -1;
-	//this->medidor=getMedidor();
+	
 	if(lectura>=this->medidor.getLectura())
 	consumo = lectura - this->medidor.getLectura();
 	
-	/// cargo fijo, cargo variable, 
+ 
 
 
 	return consumo;
@@ -159,7 +160,7 @@ float DocumentoRN::CalcularImporte(float consumo)
 {
 	float importe;
 	
-	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR);
+	this->tarifa = this->getTarifaArchivo(1/*this->cc.getId_Tarifa() */ , NOMBRE_ARCH_TAR);
 
 	
 	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);
@@ -180,5 +181,18 @@ bool DocumentoRN::validarIdMedidor(int id)
 
 	return false;
 }
-///METODO QUE GENERA REPORTE SOBRE CONSUMO DE ENERGIA ESTACIONAL TRIMESTRAL  ANIO INGRESADO  
-
+///METODO QUE BUSCA POR ID SI YA SE CARGO UNA FACTURA EN ESA FECHA. SI ES EL MISMO MES DEVUELVE TRUE Y NO SE FACTURA
+bool DocumentoRN::validarFechaDocumento(int id)
+{
+	Fecha aux;
+	aux.cargarFechaActual();
+	vector <Documento> documento = this->documentoAD.getDocumentosArchivo();
+	for (int i = 0; i < documento.size(); i++)
+	{
+		if (documento[i].getFecha().getMes() == aux.getMes()&& documento[i].getIdmed()==id)
+		{
+		return true;
+		}
+}
+	return false;
+}
