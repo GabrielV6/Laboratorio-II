@@ -111,14 +111,14 @@ void MedidorV::NuevoMedidor()
 				cout << this->separador << endl;
 				cout << "ALTA EXITOSA" << endl;
 				cout << this->separador << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				break;
 			}
 			else {
 				cout << this->separador << endl;
 				cout << "ALTA NO EXITOSA" << endl;
 				cout << this->separador << endl;
-				system("pause");
+				Validaciones::SystemPause();
 				break;
 			}
 
@@ -149,7 +149,7 @@ void MedidorV::ListarMedidor(bool estado)
 	}
 
 
-	system("pause");
+	Validaciones::SystemPause();
 
 }
 
@@ -175,7 +175,7 @@ void MedidorV::ModificarMedidor()
 		if (this->medidor.getId() != id) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "ID ingresado no existe " << endl;
-			system("pause");
+			Validaciones::SystemPause();
 			system("cls");
 		}
 		else
@@ -221,6 +221,6 @@ void MedidorV::ModificarMedidor()
 			else
 				cout << "Modificación correcta" << endl;
 		}
-		system("pause");
+		Validaciones::SystemPause();
 	} while (opcion != 0);
 }
