@@ -30,6 +30,7 @@ public:
 	long CantidadDocumentosEnSistema();
 	string getNombreArchivo();
 	vector<Documento> VectorDocumentos();
+	vector<Documento> getDocumentos();///AGREGUE IGUAL QUE GABY MEDIDOR
 	void setNombreArchivo(string nombreArchivo);
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
 	

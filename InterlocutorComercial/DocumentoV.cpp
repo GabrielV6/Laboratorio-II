@@ -28,6 +28,8 @@ void DocumentoV::NuevoDocumento()
 	/// </summary>
 	this->documento = Documento();
 	int id;
+	char dat;
+	bool volver = false;
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
@@ -40,17 +42,23 @@ void DocumentoV::NuevoDocumento()
 		if (!this->documentoRN.validarIdMedidor(id))
 		{
 			cout << "El ID ingresado no es valido" << endl;
-			system("pause");
-			system("cls");
-			continue;
+			cout << "Desea ingresar otro ID?" << endl;
+			dat = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dat) == 'S') {
+				system("cls");
+				continue;
+			}
+			else
+			{
+				volver == true;
+				system("cls");
+				return;
+			}
 		}
-		
-		else
-		{
+		else {
 			break;
-		}			
-			
-	} while (true);
+		}
+	} while (volver==false);
 	
 	float lecturaActual;
 	char dato;
@@ -94,15 +102,14 @@ void DocumentoV::NuevoDocumento()
 		}
 
 	} while (true);
-	//string id;
-	//cout << "Id: ";
-	//cin >> id;
 
-}/////OJOOOOO
+
+}
+
 /// <summary>
 /// Funci�n global para listar todos los documentos del archivo.
 /// </summary>
-void DocumentoV::ListarDocumentos()
+/*void DocumentoV::ListarDocumentos()
 {
 	vector<Documento> documentos = this->documentoRN.VectorDocumentos();
 	for (auto doc : documentos)
@@ -110,7 +117,17 @@ void DocumentoV::ListarDocumentos()
 		cout << doc.toStringDocumento() << endl;
 	}
 }
-
+*/
+void DocumentoV::ListarDocumentos()
+{
+	vector<Documento> documentos = this->documentoRN.getDocumentos();//getDocumentos();
+	
+		for (auto doc : documentos)
+		{
+			cout << doc.toStringDocumento() << endl;
+		}
+	
+}
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de documentos.
 /// </summary>
@@ -137,6 +154,7 @@ void DocumentoV::MenuDocumento()
 			break;
 		case 2:
 			this->ListarDocumentos();
+			
 			break;
 		
 		case 3:
@@ -157,6 +175,7 @@ void DocumentoV::MenuDocumento()
 		}
 	} while (salir == false);
 }
+
 
 void DocumentoV::setNombreArchivo(string nombreArchivo)
 {

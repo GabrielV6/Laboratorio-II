@@ -37,7 +37,12 @@ string DocumentoRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-
+//AGREGUE COMO GABY EN MEDIDORES
+vector<Documento> DocumentoRN::getDocumentos()
+{
+	return this->documentoAD.getDocumentosArchivo();
+}
+//
 vector<Documento> DocumentoRN::VectorDocumentos()
 {
 	return this->documentoAD.getDocumentosArchivo();
