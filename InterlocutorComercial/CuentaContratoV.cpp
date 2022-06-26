@@ -88,7 +88,6 @@ void CuentaContratoV::NuevaCuentaContrato()
 	this->cuentaContrato = CuentaContrato();
 	int dni = 0; 
 	string datos; 
-	char dato;
 
 	do
 	{
