@@ -1,6 +1,7 @@
 #include "CuentaContratoRN.h"
 #include "InterlocutorComercialV.h"
 #include "Validaciones.h"
+#include "TarifaV.h"
 
 CuentaContratoRN::CuentaContratoRN(string nombreArchivo)
 {
@@ -33,6 +34,17 @@ CuentaContrato CuentaContratoRN::BuscarCuentaContrato(int id_cc)
 		return cuentaContrato;
 
 	return CuentaContrato();
+}
+bool CuentaContratoRN::ModificarTarifaCuentaContrato(CuentaContrato& cuentaContrato){
+	
+	TarifaV tarifa(NOMBRE_ARCH_TAR);
+	tarifa.ListarTarifa();
+	int tar=0;
+	tar= Validaciones::DatoObligarorioNum("Seleccione la tarifa que desea asigar: ");
+	
+	// validar que el numero ingresado corresponda con un id de tarifa
+	cuentaContrato.setId_tarifa(tar);
+	return this->cuentaContratoAD.ActualizarEnArchivoCuentaContrato(cuentaContrato);
 }
 
 bool CuentaContratoRN::ModificarCuentaContrato(CuentaContrato& cuentaContrato)

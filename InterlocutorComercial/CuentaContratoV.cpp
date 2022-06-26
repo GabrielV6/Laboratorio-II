@@ -1,6 +1,7 @@
 #include "CuentaContratoV.h"
 #include "Validaciones.h"
 #include "InterlocutorComercialV.h"
+#include "TarifaV.h"
 
 
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
@@ -80,6 +81,7 @@ void CuentaContratoV::MenuCuentaContrato()
 		}
 	} while (salir == false);
 }
+
 
 void CuentaContratoV::NuevaCuentaContrato()
 {
@@ -175,6 +177,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << "Cuenta Contrato : " << this->cuentaContrato.toStringCuentaContrato() << endl;
 		cout << this->separador << endl;
 		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "2. Modificar tarifa " << endl;
 		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
@@ -198,7 +201,22 @@ void CuentaContratoV::ModificarCuentaContrato()
 
 			cout << "El actual estado de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getEstado() << endl;
+			cout << this->separador << endl;
 		}
+		case 2:
+			cout << "Modificar tarifa " << endl;
+			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getId_Tarifa() << endl;
+			dato = Validaciones::DatoObligarorioChar(" Desea modificar la tarifa? 'S' o 'N'");
+			
+			if (toupper(dato) == 'S')
+				this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
+			
+			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
+			cout << this->cuentaContrato.getId_Tarifa() << endl;
+			cout << this->separador << endl;
+			break;
+		
 		case 0:
 
 			break;
