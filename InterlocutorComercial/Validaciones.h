@@ -3,6 +3,7 @@
 #include <string>
 #include <wchar.h>
 #include <locale.h>
+#include <limits>
 
 using namespace std;
 

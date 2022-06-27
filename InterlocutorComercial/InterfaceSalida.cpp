@@ -240,7 +240,7 @@ void InterfaceSalida::MenuConsultas()
 
 void InterfaceSalida::ConsumoPorEstacion(int anio)
 {
-	DocumentoAD documentoAD;
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 	float totalConsumoVerano = 0, totalConsumoOtonio = 0, totalConsumoInvierno = 0, totalConsumoPrimavera = 0;
