@@ -21,7 +21,7 @@ public:
 	bool LeeTextosEntrada(string nombreArchivo);
 	void MenuPrincipal();
 	void ConsumoPorEstacion(int anio);
-	void PromedioRecaudacionClientes(int id);
+	void PromedioRecaudacion();
 	void MenuConsultas();
 private:
 	string textoSalida;

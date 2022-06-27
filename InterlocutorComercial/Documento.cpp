@@ -112,11 +112,11 @@ Documento::Documento()
 	}
 	string Documento::toStringDocumento()
 	{
-		string cadena= "Numero: " + to_string(this->getNumero())+ 
-			", Tipo de documento: " + this->getTipo()+
-			", Fecha creacion: " + this->getFecha().toStringFecha()+
-			", ID Inter: " + to_string(this->getIdinter())+ ", ID Medidor: " + to_string(this->idMed)
-			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Importe: $ "+ to_string(this->getImporte());
+		string cadena= "Numero: " + to_string(this->getNumero())+ ", Tipo de documento: " + this->getTipo()
+			+ ", Fecha creacion: " + this->getFecha().toStringFecha()+", ID Inter: " + to_string(this->getIdinter())
+			+ ", ID Medidor: " + to_string(this->idMed)
+			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Estado : " +to_string(this->getPago())
+			+ ", Importe: $ " + to_string(this->getImporte());
 		return  cadena;
 	}
 	Documento::~Documento()
