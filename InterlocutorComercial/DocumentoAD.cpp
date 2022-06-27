@@ -23,7 +23,7 @@ string DocumentoAD::getNombreArchivo()
 int DocumentoAD::TotalDocumentosEnArchivo()
 {
 	ifstream archivo;
-	archivo.open(NOMBRE_ARCH_DOC, ios::in);
+	archivo.open(this->getNombreArchivo().c_str(), ios::in);
 	if (archivo.fail())
 		return -1;
 	long cantidad = 0;
@@ -40,7 +40,7 @@ bool DocumentoAD::GuardarEnArchivoDocumento(Documento& documento)
 {
 	Documento documentoAD = documento;
 	ofstream archivo;
-	archivo.open(NOMBRE_ARCH_DOC, ios::binary | ios::app | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
 	//Busca cuantas documentos hay en el archivo y le asigna esa cantidad a la posicion relativa de la documento en el archivo.	
@@ -64,7 +64,7 @@ bool DocumentoAD::ActualizarEnArchivoDocumento(Documento& documento)
 {
 
 	fstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::binary | ios::in | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::in | ios::out);
 	archivo.seekg(0);
 	if (archivo.fail())
 		return false;
@@ -84,7 +84,7 @@ Documento DocumentoAD::getDocumentoArchivo(int id)
 {
 	Documento documentoAD;
 	ifstream archivo;
-	archivo.open(NOMBRE_ARCH_DOC, ios::in);
+	archivo.open(this->getNombreArchivo().c_str(), ios::in);
 	if (archivo.fail())
 		return documentoAD;
 
@@ -112,7 +112,7 @@ vector<Documento> DocumentoAD::getDocumentosArchivo()
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("documentos.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)		
 	return documentos;
