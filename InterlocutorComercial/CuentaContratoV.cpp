@@ -2,6 +2,7 @@
 #include "Validaciones.h"
 #include "InterlocutorComercialV.h"
 #include "TarifaV.h"
+#include "MedidorV.h"
 
 
 
@@ -65,6 +66,37 @@ bool CuentaContratoV::AltaCuentaContrato(){
 		Validaciones::SystemPause();
 		return true;
 	}	
+
+}
+
+void CuentaContratoV::AsociarMedidor(){
+
+	MedidorV medidorV(NOMBRE_ARCH_MED);
+	Medidor auxMedidor;
+
+	cout << "A continuacion se muestran todos los medidores disponibles: " << endl;
+	cout << endl;
+	
+	medidorV.ListarMedidor(false); // se muestran medidores inactivos
+	
+	cout << endl;
+	int med=0;
+	med= Validaciones::DatoObligarorioNum("el medidor que desea asigar: ");
+	
+	// validar que el numero ingresado corresponda con un id de medidor
+	// poner en 0 la cc en el medidor que se cambia
+	// se asigna medidor a cc y su estado pasa a ser Activo
+	cuentaContrato.setId_medidor(med);
+	cuentaContrato.setEstado(true);
+	// buscar medidor y cargarlo
+	auxMedidor = MedidorRN().BuscarCMedidor(med);
+	// modificar la cc asociada
+	auxMedidor.setIdCuentaContrato(cuentaContrato.getId_cc());
+	auxMedidor.setEstado(true);
+	// grabar en disco medidor
+	// 
+	MedidorAD medidorAD(NOMBRE_ARCH_MED);
+	medidorAD.ActualizarEnArchivoMedidor(auxMedidor);
 
 }
 
@@ -274,7 +306,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			dato = Validaciones::DatoObligarorioChar(" Desea asignarle otro medidor? 'S' o 'N'");
 
 			if (toupper(dato) == 'S')
-				this->cuentaContratoRN.ModificarMedidorCuentaContrato(this->cuentaContrato);
+				this->AsociarMedidor();
 
 			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Medidor() << endl;
