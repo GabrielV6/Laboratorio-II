@@ -196,7 +196,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << "El estado de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getEstado() << endl;
 			dato = Validaciones::DatoObligarorioChar(" Confirma la modificacion: 'S' o 'N'");
-			
+
 			if (toupper(dato) == 'S')
 				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
 			break;
@@ -206,6 +206,9 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->separador << endl;
 		}
 		case 2:
+		{
+
+		
 			cout << "Modificar tarifa " << endl;
 			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
@@ -227,7 +230,9 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
 			cout << this->separador << endl;
 			break;
+		}
 		case 3:
+		{
 			cout << "Modificar medidor " << endl;
 			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Medidor() << endl;
@@ -240,6 +245,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getId_Medidor() << endl;
 			cout << this->separador << endl;
 			break;
+		}
 
 		case 0:
 
@@ -247,7 +253,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		default:
 			cout << "Opción invalida." << endl;
 			break;
-		}
+	}
 
 		if (opcion != 0)
 		{
