@@ -205,7 +205,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getEstado() << endl;
 			cout << this->separador << endl;
 		}
-		case 2:
+		case 2:{
 			cout << "Modificar tarifa " << endl;
 			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
@@ -227,6 +227,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
 			cout << this->separador << endl;
 			break;
+			}
 		case 3:
 			cout << "Modificar medidor " << endl;
 			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
