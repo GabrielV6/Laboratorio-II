@@ -59,10 +59,11 @@ bool CuentaContratoV::AltaCuentaContrato(){
 		cout << interlocutor.toStringInterlocutor() << endl;
 		cout << endl;
 
-		// agregar confirmacion
+		// agregar confirmacion?
 		cuentaContrato.setId_cc(interlocutor.getId_ic());
 		cuentaContrato.setId_ic(interlocutor.getId_ic());
 		cout << "El ID de la Cuenta Contrato es: " << cuentaContrato.getId_ic() << endl;
+		this->cuentaContratoRN.AltaCuentaContrato(cuentaContrato);
 		Validaciones::SystemPause();
 		return true;
 	}	
@@ -72,7 +73,10 @@ bool CuentaContratoV::AltaCuentaContrato(){
 void CuentaContratoV::AsociarMedidor(){
 
 	MedidorV medidorV(NOMBRE_ARCH_MED);
+	MedidorRN MedidorRN (NOMBRE_ARCH_MED);
 	Medidor auxMedidor;
+	InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
+	InterlocutorComercial interlocutor;
 
 	cout << "A continuacion se muestran todos los medidores disponibles: " << endl;
 	cout << endl;
@@ -89,15 +93,18 @@ void CuentaContratoV::AsociarMedidor(){
 	cuentaContrato.setId_medidor(med);
 	cuentaContrato.setEstado(true);
 	// buscar medidor y cargarlo
-	auxMedidor = MedidorRN().BuscarCMedidor(med);
+	auxMedidor = MedidorRN.BuscarCMedidor(med);
 	// modificar la cc asociada
 	auxMedidor.setIdCuentaContrato(cuentaContrato.getId_cc());
 	auxMedidor.setEstado(true);
 	// grabar en disco medidor
-	// 
 	MedidorAD medidorAD(NOMBRE_ARCH_MED);
 	medidorAD.ActualizarEnArchivoMedidor(auxMedidor);
-
+	/* cambiar Estado de IC a true ---> buscar IC por ID, settearlo y grabarlo
+	
+	interlocutor.setActivo(true);
+	interlocutorRN.ModificaInterlocutorComercial(interlocutor);
+	*/
 }
 
 void CuentaContratoV::MenuCuentaContrato()
@@ -178,7 +185,6 @@ void CuentaContratoV::NuevaCuentaContrato()
 					cout << this->separador << endl;
 					cout << "Alta realizada" << endl;
 					cout << this->separador << endl;
-					system("pause");
 					Validaciones::SystemPause();
 					break;
 				}
