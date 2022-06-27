@@ -13,6 +13,8 @@ Documento::Documento()
 	this->pago = false;
 	this->importe = 0;
 	this->tipo = 'B';
+	this->consumo = -1;
+	this->numPosicionarch = -1;
 }
 
 	

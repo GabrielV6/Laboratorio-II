@@ -56,6 +56,8 @@ public:
 	//Metodo que valida el id ingresado del medidor
 	float CalcularImporte(float consumo);
 	bool validarIdMedidor(int id);
+	bool validarFechaDocumento(int id);
+		
 
 
 };

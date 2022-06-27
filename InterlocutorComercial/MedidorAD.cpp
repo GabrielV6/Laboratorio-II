@@ -18,7 +18,7 @@ string MedidorAD::getNombreArchivo() {
 int MedidorAD::TotalMedidoresEnArchivo()
 {
 	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
+	archivo.open(this->getNombreArchivo().c_str(), ios::in);
 	if (archivo.fail())
 		return -1;
 	long cantidad = 0;
@@ -32,7 +32,7 @@ bool MedidorAD::GuardarEnArchivoMedidor(Medidor& medidor) {
     
 	//Medidor medidorAD = medidor; 
 	ofstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::binary | ios::app | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::app | ios::out);
 	if (archivo.fail())
 		return false;
 	//Busca cuantos medidores hay en el archivo y le asigna esa cantidad a la posicion relativa del medidor en el archivo.	
@@ -47,7 +47,7 @@ bool MedidorAD::GuardarEnArchivoMedidor(Medidor& medidor) {
 bool MedidorAD::ActualizarEnArchivoMedidor(Medidor& medidor)
 {
 	fstream archivo;
-	archivo.open(NOMBRE_ARCH_MED, ios::binary | ios::in | ios::out);
+	archivo.open(this->getNombreArchivo().c_str(), ios::binary | ios::in | ios::out);
 	archivo.seekg(0); //se ubica en el inicio del archivo
 	if (archivo.fail())
 		return false;
@@ -68,7 +68,7 @@ Medidor MedidorAD::getMedidorArchivo(int id)
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("medidores.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	if (archivo == NULL)
 		return intComAD;
@@ -100,7 +100,7 @@ vector<Medidor> MedidorAD::getMedidoresArchivo()
 	//ifstream archivo;
 	FILE* archivo;
 	//archivo.open(this->getNombreArchivo(), ios::in);
-	archivo = fopen("medidores.dat", "rb");
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
 	//if (archivo.fail())
 	  if(archivo==NULL)
 		return medidores;

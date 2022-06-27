@@ -84,7 +84,7 @@ Documento DocumentoAD::getDocumentoArchivo(int id)
 {
 	Documento documentoAD;
 	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
+	archivo.open(NOMBRE_ARCH_DOC, ios::in);
 	if (archivo.fail())
 		return documentoAD;
 
