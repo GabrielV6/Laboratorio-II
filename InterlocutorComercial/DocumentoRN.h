@@ -14,6 +14,7 @@ private:
 	string nombreArchivo;
 	InterlocutorComercial interlocutorComercial;
 	Medidor medidor;
+	MedidorRN medidorRN;
 	CuentaContrato cc;
 	Tarifa tarifa;
 	Medidor getMedidorArchivo(int id, string nomarch);///AGREGAR LOS GET "ARCHIVO"
@@ -22,6 +23,7 @@ private:
 public:
 	DocumentoRN(string nombreArchivo = "");
 	~DocumentoRN();
+	int IdDocumento(Documento& documento);
 	Documento BuscarDocumento(int id);///VER ESTO
 	//Documento BuscarDocumento(int id);
 	float CalcularConsumo(float lectura);
@@ -35,6 +37,11 @@ public:
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
 	
 	Medidor getMedidor();
+	Medidor setMedidor();
+
+	void GuardarLectura(int id,float lecturaActual);
+
+
 	//METODO QUE BUSQUE UN INTERLOCUTOR POR ID
 	InterlocutorComercial getInterlocutorComercialArchivo(int id, string nomarch);
 	InterlocutorComercial getInterlocutorComercial();

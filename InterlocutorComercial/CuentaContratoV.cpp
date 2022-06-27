@@ -4,6 +4,8 @@
 #include "TarifaV.h"
 
 
+
+
 CuentaContratoV::CuentaContratoV(string nombreArchivo)
 {
 	this->cuentaContrato = CuentaContrato();
@@ -212,6 +214,15 @@ void CuentaContratoV::ModificarCuentaContrato()
 			
 			if (toupper(dato) == 'S')
 				this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
+				TarifaV tarifa(NOMBRE_ARCH_TAR);
+				cout << "A continuacion se muestran las tarifas disponibles: " << endl;
+				cout << endl;
+				tarifa.ListarTarifa();
+				cout << endl;
+				int tar=0;
+				tar= Validaciones::DatoObligarorioNum(" la tarifa que desea asigar: ");
+				// validar que el numero ingresado corresponda con un id de tarifa
+				cuentaContrato.setId_tarifa(tar);
 
 			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Tarifa() << endl;

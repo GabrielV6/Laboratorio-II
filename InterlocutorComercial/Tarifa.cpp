@@ -1,6 +1,6 @@
 #include "Tarifa.h"
 
-Tarifa::Tarifa(int id, float cargoFijo, float cargoVar, float impuestos, bool tipoTarifa, int numPosicion, bool estado)
+Tarifa::Tarifa(int id, float cargoFijo, float cargoVar, float impuestos, int tipoTarifa, int numPosicion, bool estado)
 {
     this->_idTarifa = id;
     this->_cargoFijo = cargoFijo;
@@ -35,9 +35,9 @@ void Tarifa::setImpuestos(float impuestos)
     this->_impuestos = impuestos;
 }
 
-void Tarifa::setTipoDeTarifa(bool tipoDeTarifa)
+void Tarifa::setTipoDeTarifa(int tipoDeTarifa)
 {
-    this->_tipoDeTarifa = tipoDeTarifa;
+     this->_tipoDeTarifa = tipoDeTarifa;
 }
 
 void Tarifa::setNumPosicionArchivo(int numPosArch)
@@ -70,7 +70,7 @@ float Tarifa::getImpuestos()
     return this->_impuestos;
 }
 
-bool Tarifa::getTipoDeTarifa()
+int Tarifa::getTipoDeTarifa()
 {
     return this->_tipoDeTarifa;
 }

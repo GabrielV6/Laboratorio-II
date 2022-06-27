@@ -4,10 +4,6 @@
 #include "MedidorV.h"
 
 
-
-
-
-
 DocumentoV::DocumentoV(string nombreArchivo)
 {
 	this->documento = Documento();
@@ -27,104 +23,125 @@ void DocumentoV::NuevoDocumento()
 	/// VALIDAR SI EL ID ES EL MISMO QUE ME TRAE OK, SINO NO EXISTE EL MEDIDOR
 	/// </summary>
 	this->documento = Documento();
+	Fecha fecha;
 	int id;
-	char dat;
+	//char dat;
 	bool volver = false;
-	do
-	{
+	float lecturaActual;
+	char dato;
+
+	do {
 		cout << "-------------------------------------------------" << endl;
 		cout << "Nuevo ingreso de datos del Documento " << endl;
 		cout << "--------------------------------------------------" << endl;
-		//cout << "Ingrese el Id del Medidor: ";
-		//cin >> id;
-		id = Validaciones::DatoObligarorioNum("Id del Medidor : ");
-		//VALIDA EL ID QUE EXISTA EN EL ARCHIVO MEDIDORES Y CARGA EL RESTO DE LOS OBJETOS PARA EL DOCUMENTO
-		if (!this->documentoRN.validarIdMedidor(id))
-		{
+		id = Validaciones::DatoObligarorioNum("Id del Medidor");
+
+		if (!this->documentoRN.validarIdMedidor(id)) {
 			cout << "El ID ingresado no es valido" << endl;
 			cout << "Desea ingresar otro ID?" << endl;
-			dat = Validaciones::DatoObligarorioChar("'S' o 'N'");
-			if (toupper(dat) == 'S') {
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S') {
 				system("cls");
 				continue;
-			}
-			else
-			{
-				volver == true;
-				system("cls");
-				return;
-			}
-		}
-		else {
-			break;
-		}
-	} while (volver==false);
-	
-	float lecturaActual;
-	char dato;
-	do {
-		
-		lecturaActual= Validaciones::DatoObligarorioNum("la lectura actual:");
-		///LLAMAR A METODO CALCULAR CONSUMO
-		float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
-		if (consumo >= 0)
-		{
-			cout << "Se va a generar una factura nueva, para el cliente: " << endl;
-			cout << this->documentoRN.getInterlocutorComercial().getNombre();
-			cout << this->documentoRN.getInterlocutorComercial().getApellido();
-			cout << " con el consumo: " << consumo << endl;
-			cout << "Desea continuar?" << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
-			if (toupper(dato) == 'S')
-			{	
-				float importe = this->documentoRN.CalcularImporte(consumo);
-				cout << " el importe total es: " << importe << endl;
-				//grabo Factura
-				if (this->documentoRN.AltaDocumento(this->documento)) {
-					cout << this->separador << endl;
-					cout << "SE CREO UN DOCUMENTO EXITOSAMENTE" << endl;
-					cout << this->separador << endl;
-					system("pause");
-					break;
-				}
-				else {
-					cout << this->separador << endl;
-					cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
-					cout << this->separador << endl;
-					system("pause");
-					break;
-				}
-
 			}
 			else {
 				return;
 			}
 		}
+		else {
+			lecturaActual = Validaciones::DatoObligarorioDecimal("la lectura actual");
+			///SE CALCULA EL CONSUMO PARA ESTE DOCUMENTO
+			float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
+			if (consumo >= 0)
+			{	
+				cout << this->separador << endl;
+				cout << "ATENCION! Se va crear un documento nuevo bajo el ID: "<<documentoRN.IdDocumento(documento) << endl;
+				cout << this->separador << endl;
+				cout << "PARA EL CLIENTE | ROBERTO "<<this->documentoRN.getInterlocutorComercial().getNombre();
+				cout << ",LOPEZ"<<this->documentoRN.getInterlocutorComercial().getApellido();
+				cout << "| por un consumo de: " << consumo << endl;
+				cout << this->separador << endl;
+				cout << "Desea continuar?" << endl;
 
-	} while (true);
+			
+				dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+				if (toupper(dato) == 'S')
+				{	
+
+					fecha.cargarFechaActual();
+					this->documento.setFecha(fecha);
+					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
+					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
+					this->documento.setIdtar(this->documentoRN.getTarifa().getIdTarifa());
+					this->documento.setConsumo(consumo);
+					this->documento.setImporte(this->documentoRN.CalcularImporte(consumo));
+					this->documentoRN.GuardarLectura(id, lecturaActual);
+		
+					cout << " el importe total es: $ " << documento.getImporte() << endl;
+					//SE GUARDA LA FACTURA EN DISCO
+					if (this->documentoRN.AltaDocumento(this->documento)) {
+						cout << this->separador << endl;
+						cout << "SE CREO UN DOCUMENTO EXITOSAMENTE" << endl;
+						cout << this->separador << endl;
+						system("pause");
+						cout << this->separador << endl;
+						cout << "Desea cargar otro documento con un nuevo Id de medidor?" << endl;
+						dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+						if (toupper(dato) == 'S')
+						{
+							system("cls");
+							volver = true;
+							
+						}
+						else {
+							return;
+						}
+					}
+					else {
+						cout << this->separador << endl;
+						cout << "ATENCION NO SE CREO EL DOCUMENTO" << endl;
+						cout << this->separador << endl;
+						system("pause");
+						break;
+					}
+
+				}
+				else {
+					return;
+				}
+			}
+			//SI EL CONSUMO DA NEGATIVO. INGRESO UNA LECTURA ACTUAL MENOR A LA ANTERIOR O UNA LECTURA NEGATIVA
+			else {
+				cout << this->separador << endl;
+				cout << "******************ATENCION EL CONSUMO CALCULADO ES NEGATIVO***************" << endl;
+				cout << "-----------POSIBLE CONEXION CLANDESTINA O DEFECTO EN LECTURA DEL INSPECTOR----------------" << endl;
+				cout << "-----------------------REPORTAR A SUPERVISOR-------------------" << endl;
+				cout << this->separador << endl;
+				system("pause");
+				system("cls");
+				break;
+			}
+		}
+		
+
+	} while (true||volver!=true);
 
 
 }
 
+//SI EL CONSUMO ES NEGATIVO O MENOR AL CONSUMO ANTERIOR
+				
 /// <summary>
 /// Funci�n global para listar todos los documentos del archivo.
 /// </summary>
-/*void DocumentoV::ListarDocumentos()
-{
-	vector<Documento> documentos = this->documentoRN.VectorDocumentos();
-	for (auto doc : documentos)
-	{
-		cout << doc.toStringDocumento() << endl;
-	}
-}
-*/
+
 void DocumentoV::ListarDocumentos()
 {
 	vector<Documento> documentos = this->documentoRN.getDocumentos();//getDocumentos();
 	
-		for (auto doc : documentos)
+	for (int i = 0; i < documentos.size(); i++) 
 		{
-			cout << doc.toStringDocumento() << endl;
+			cout << documentos[i].toStringDocumento() << endl;
 		}
 	
 }

@@ -1,4 +1,5 @@
 #include "MedidorAD.h"
+#include "Validaciones.h"
 
 MedidorAD::~MedidorAD() {
     this->_medidores.clear();
@@ -46,7 +47,7 @@ bool MedidorAD::GuardarEnArchivoMedidor(Medidor& medidor) {
 bool MedidorAD::ActualizarEnArchivoMedidor(Medidor& medidor)
 {
 	fstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::binary | ios::in | ios::out);
+	archivo.open(NOMBRE_ARCH_MED, ios::binary | ios::in | ios::out);
 	archivo.seekg(0); //se ubica en el inicio del archivo
 	if (archivo.fail())
 		return false;

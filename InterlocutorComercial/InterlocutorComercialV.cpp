@@ -46,8 +46,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		datos = Validaciones::DatoObligarorioCad("Apellido");
 		this->interlocutorComercial.setApellido(datos);
 
-		cout << "Correo electronico: ";
-		cin >> datos;
+		datos = Validaciones::DatoObligarorioCad("Correo:");
 		this->interlocutorComercial.setEmail(datos);
 		Fecha fechaIngreso;
 		cout << "Fecha Alta: ";
@@ -167,7 +166,7 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	char dato;
 	if (opcion > 0)
 	{
-		cout << "Listar Interlocutores, para modo Resumen ingrese 'R'" << endl;
+		cout << "Listar Interlocutores, para modo Resumen ingrese 'R' o modo completo cuaquier otra" << endl;
 		dato = Validaciones::DatoObligarorioChar("Tipo");
 	}
 	switch (opcion)

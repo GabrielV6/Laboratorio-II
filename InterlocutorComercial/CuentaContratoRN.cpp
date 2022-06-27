@@ -63,18 +63,6 @@ bool CuentaContratoRN::ModificarMedidorCuentaContrato(CuentaContrato& cuentaCont
 
 bool CuentaContratoRN::ModificarTarifaCuentaContrato(CuentaContrato& cuentaContrato){
 	
-	TarifaV tarifa(NOMBRE_ARCH_TAR);
-	cout << "A continuacion se muestran las tarifas disponibles: " << endl;
-	cout << endl;
-
-	tarifa.ListarTarifa();
-	
-	cout << endl;
-	int tar=0;
-	tar= Validaciones::DatoObligarorioNum("Seleccione la tarifa que desea asigar: ");
-	
-	// validar que el numero ingresado corresponda con un id de tarifa
-	cuentaContrato.setId_tarifa(tar);
 	return this->cuentaContratoAD.ActualizarEnArchivoCuentaContrato(cuentaContrato);
 }
 
