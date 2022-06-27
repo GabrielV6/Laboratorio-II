@@ -32,7 +32,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		if (this->interlocutorComercialRN.ExisteInterlocutorComercial(dni)) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
 			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
-			system("cls");
+			system("cls||clear");
 		}
 		else
 			break;
@@ -74,7 +74,7 @@ void InterlocutorComercialV::NuevoInterlocutor()
 void InterlocutorComercialV::ListarInterlocutores(int opcion)
 {
 	vector<InterlocutorComercial> interlocutores = this->interlocutorComercialRN.VectorInterlocutores();
-	system("cls");
+	system("cls||clear");
 	string tipo = "";
 	if (opcion == 1 || opcion == 5)
 		tipo = "Todos";
@@ -148,7 +148,7 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	int opcion;
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Opciones de Listado de Interlocutor Comercial" << endl;
 		cout << this->separador << endl;
@@ -213,14 +213,14 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		{
 			cout << "Documento ingresado no esta dado de alta!!!" << endl;
 			Validaciones::SystemPause();
-			system("cls");
+			system("cls||clear");
 		}
 		else
 			break;
 	} while (true);
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Interlocutor: " << this->interlocutorComercial.toStringInterlocutor(false, true) << endl;
 		cout << this->separador << endl;
@@ -306,7 +306,7 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 	bool salir = false;
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Menu Interlocutor Comercial" << endl;
 		cout << this->separador << endl;
@@ -339,7 +339,7 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 			break;
 		}
 		case 0:
-			system("cls");
+			system("cls||clear");
 			salir = true;
 			break;
 		default:
