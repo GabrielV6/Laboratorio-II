@@ -360,7 +360,7 @@ void InterfaceSalida::PromedioRecaudacionClientes(int dni)
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 
-	for(int i=0;)
+	
 
 
 }
