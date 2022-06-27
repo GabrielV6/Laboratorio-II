@@ -54,7 +54,6 @@ bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArc
 
 bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 {
-
 	ifstream archivo;
 	archivo.open(nombreArchivo, ios::in);
 
@@ -86,7 +85,7 @@ bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 				medArch.setEstado(splitted == "true" ? true : false);
 				break;
 			case 3:
-				medArch.setLectura(stoi(splitted));
+				medArch.setLectura(stof(splitted));
 				break;
 			case 4:
 				medArch.setNumPosicionArchivo(stoi(splitted));
@@ -141,54 +140,54 @@ void InterfaceSalida::MenuPrincipal()
 			salir = Validaciones::DatoObligarorioChar(" S para salir");
 			if (toupper(salir) == 'S')
 			{
-				system("cls");
+				system("cls||clear");
 				cout << "GRACIAS POR USAR EL SISTEMA DE GESTION ENERGETICA!!!" << endl;
 				Validaciones::SystemPause();
 				exit(1);
 			}
 		}
 
-
-		system("cls");
+		system("cls||clear");
 		switch (opcion)
 		{
 		case 1:
 		{
-			system("cls");
+			system("cls||clear");
 			InterlocutorComercialV interVista(NOMBRE_ARCH_IC);
 			interVista.MenuInterlocutorComecial();
-
-
-
 			break;
 		}
 		case 2:
 		{
-			system("cls");
+			system("cls||clear");
 			CuentaContratoV cuentaContratoV(NOMBRE_ARCH_CC);
 			cuentaContratoV.MenuCuentaContrato();
 			break;
 		}
 		case 3:
 		{
+			system("cls||clear");
 			MedidorV medidor(NOMBRE_ARCH_MED);
 			medidor.MenuMedidor();
 			break;
 		}
 		case 4:
 		{
+			system("cls||clear");
 			TarifaV tarifa(NOMBRE_ARCH_TAR);
 			tarifa.MenuTarifa();
 			break;
 		}
 		case 5:
 		{
+			system("cls||clear");
 			DocumentoV documento(NOMBRE_ARCH_DOC);
 			documento.MenuDocumento();
 			break;
 		}
 		case 6:
 		{
+			system("cls||clear");
 			this->MenuConsultas();
 			break;
 		}
@@ -212,21 +211,32 @@ void InterfaceSalida::MenuConsultas()
 	{
 		cout << this->separador << endl;
 		cout << "***CONSULTAS DE GESTION ENERGETICA***" << endl;
+		cout << "**********REPORTES**********" << endl;
 		cout << this->separador << endl;
 		cout << "|1. Consulta energia estacionaria" << endl;
+		cout << "|2. Promedio de recaudacion por cliente" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
 
-		system("cls");
+		system("cls||clear");
 		switch (opcion)
 		{
 		case 1:
 		{
-			system("cls");
+			system("cls||clear");
 			int anio;
-			anio = Validaciones::DatoObligarorioNum("Año a consultar ");
+			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
 			ConsumoPorEstacion(anio);
+			break;
+		}
+		case 2:
+		{
+			system("cls||clear");
+			int dni;
+
+			dni = Validaciones::DatoObligarorioNum("Dni del cliente a consultar: ");
+			PromedioRecaudacionClientes(dni);
 			break;
 		}
 		case 0:
@@ -241,7 +251,7 @@ void InterfaceSalida::MenuConsultas()
 
 void InterfaceSalida::ConsumoPorEstacion(int anio)
 {
-	DocumentoAD documentoAD;
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 	float totalConsumoVerano = 0, totalConsumoOtonio = 0, totalConsumoInvierno = 0, totalConsumoPrimavera = 0;
@@ -340,4 +350,17 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 		this->GrabarTextosSalida(datosAExportar, "ConsumosPromedios" + to_string(anio) + ".csv");
 		cout << "Datos exportados" << endl;
 	}
+}
+
+
+void InterfaceSalida::PromedioRecaudacionClientes(int dni)
+{
+	//por cada cliente sumar el importe y dividirlo por la cantidad de documentos pagos 
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
+	vector<Documento> documentos;
+	documentos = documentoAD.getDocumentosArchivo();
+
+	
+
+
 }
