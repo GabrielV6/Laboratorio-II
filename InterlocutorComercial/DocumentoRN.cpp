@@ -9,6 +9,7 @@ const int RANGO_NUMERICO = 100;
 
 DocumentoRN::DocumentoRN(string nombreArchivo)
 {
+	this->documentoAD = DocumentoAD(nombreArchivo);
 	this->nombreArchivo = nombreArchivo;
 	
 }

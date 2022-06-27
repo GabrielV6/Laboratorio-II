@@ -4,6 +4,7 @@
 
 TarifaAD::TarifaAD(string nombreArchivo)
 {
+	this->nombreArchivo = nombreArchivo;
 }
 
 TarifaAD::~TarifaAD()

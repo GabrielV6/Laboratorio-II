@@ -8,7 +8,7 @@ private:
 	string nombreArchivo;
 	vector<Tarifa> _tarifas;
 public:
-	TarifaAD(string nombreArchivo = "");
+	TarifaAD(string nombreArchivo="");
 	~TarifaAD();
 	void setNombreArchivo(string nombreArchivo);
 	string getNombreArchivo();
