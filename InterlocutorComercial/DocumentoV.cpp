@@ -41,7 +41,7 @@ void DocumentoV::NuevoDocumento()
 			cout << "Desea ingresar otro ID?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S') {
-				system("cls"); 				
+				system("cls||clear");
 				continue;
 			}
 			else {
@@ -105,7 +105,7 @@ void DocumentoV::NuevoDocumento()
 						dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 						if (toupper(dato) == 'S')
 						{
-							system("cls");
+							system("cls||clear");
 							volver = true;
 
 						}
@@ -134,7 +134,7 @@ void DocumentoV::NuevoDocumento()
 				cout << "-----------------------REPORTAR A SUPERVISOR-------------------" << endl;
 				cout << this->separador << endl;
 				Validaciones::SystemPause();
-				system("cls");
+				system("cls||clear");
 				break;
 			}
 		}
@@ -200,7 +200,7 @@ void DocumentoV::MenuDocumento()
 		}
 		case 0:
 			salir = true;
-			system("cls");
+			system("cls||clear");
 			break;
 		default:
 			cout << "Opcion no valida" << endl;
