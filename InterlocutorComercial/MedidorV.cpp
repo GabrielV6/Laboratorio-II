@@ -39,7 +39,7 @@ void MedidorV::MenuMedidor()
 	bool salir = false;
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Menu Medidor" << endl;
 		cout << this->separador << endl;
@@ -80,7 +80,7 @@ void MedidorV::MenuMedidor()
 		}
 		case 0:
 			salir = true;
-			system("cls");
+			system("cls||clear");
 			break;
 		default:
 			cout << "Opcion no valida" << endl;
@@ -99,7 +99,7 @@ void MedidorV::NuevoMedidor()
 
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Nuevo ID Medidor asignar: " << medidorRN.IdMedidor(medidor) << endl;
 		cout << this->separador << endl;
@@ -161,7 +161,7 @@ void MedidorV::ModificarMedidor()
 	do
 	{
 		int id = 0;
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Modificar datos del Medidor " << endl;
 		cout << this->separador << endl;
@@ -176,14 +176,14 @@ void MedidorV::ModificarMedidor()
 		{
 			cout << "ID ingresado no existe " << endl;
 			Validaciones::SystemPause();
-			system("cls");
+			system("cls||clear");
 		}
 		else
 			break;
 	} while (true);
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Medidor : " << this->medidor.toStringMedidor() << endl;
 		cout << this->separador << endl;

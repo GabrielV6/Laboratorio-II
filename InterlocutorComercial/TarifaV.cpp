@@ -39,7 +39,7 @@ void TarifaV::MenuTarifa()
 	bool salir = false;
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Menu Tarifas" << endl;
 		cout << this->separador << endl;
@@ -73,7 +73,7 @@ void TarifaV::MenuTarifa()
 		}
 		case 0:
 			salir = true;
-			system("cls");
+			system("cls||clear");
 			break;
 		default:
 			cout << "Opcion no valida" << endl;
@@ -91,7 +91,7 @@ void TarifaV::NuevaTarifa()
 	this->tarifa = Tarifa();
 	do {
 
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Nuevo ID de tarifa asignar: " << tarifaRN.IdTarifa(tarifa) << endl;
 		cout << this->separador << endl;
@@ -134,7 +134,7 @@ void TarifaV::NuevaTarifa()
 
 		}
 		else {
-			system("cls");
+			system("cls||clear");
 			Validaciones::SystemPause();
 			return;
 
@@ -163,7 +163,7 @@ void TarifaV::ModificarTarifa()
 	do
 	{
 		int id = 0;
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Modificar datos de la Tarifa " << endl;
 		cout << this->separador << endl;
@@ -178,14 +178,14 @@ void TarifaV::ModificarTarifa()
 		{
 			cout << "ID ingresado no existe " << endl;
 			Validaciones::SystemPause();
-			system("cls");
+			system("cls||clear");
 		}
 		else
 			break;
 	} while (true);
 	do
 	{
-		system("cls");
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Tarifa - " << this->tarifa.toStringTarifa() << endl;
 		cout << this->separador << endl;
