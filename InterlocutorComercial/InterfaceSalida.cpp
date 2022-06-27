@@ -211,8 +211,10 @@ void InterfaceSalida::MenuConsultas()
 	{
 		cout << this->separador << endl;
 		cout << "***CONSULTAS DE GESTION ENERGETICA***" << endl;
+		cout << "**********REPORTES**********" << endl;
 		cout << this->separador << endl;
 		cout << "|1. Consulta energia estacionaria" << endl;
+		cout << "|2. Promedio de recaudacion por cliente" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -224,8 +226,17 @@ void InterfaceSalida::MenuConsultas()
 		{
 			system("cls||clear");
 			int anio;
-			anio = Validaciones::DatoObligarorioNum("Año a consultar ");
+			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
 			ConsumoPorEstacion(anio);
+			break;
+		}
+		case 2:
+		{
+			system("cls||clear");
+			int dni;
+
+			dni = Validaciones::DatoObligarorioNum("Dni del cliente a consultar: ");
+			PromedioRecaudacionClientes(dni);
 			break;
 		}
 		case 0:
@@ -240,7 +251,7 @@ void InterfaceSalida::MenuConsultas()
 
 void InterfaceSalida::ConsumoPorEstacion(int anio)
 {
-	DocumentoAD documentoAD;
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 	float totalConsumoVerano = 0, totalConsumoOtonio = 0, totalConsumoInvierno = 0, totalConsumoPrimavera = 0;
@@ -339,4 +350,17 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 		this->GrabarTextosSalida(datosAExportar, "ConsumosPromedios" + to_string(anio) + ".csv");
 		cout << "Datos exportados" << endl;
 	}
+}
+
+
+void InterfaceSalida::PromedioRecaudacionClientes(int dni)
+{
+	//por cada cliente sumar el importe y dividirlo por la cantidad de documentos pagos 
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
+	vector<Documento> documentos;
+	documentos = documentoAD.getDocumentosArchivo();
+
+	for(int i=0;)
+
+
 }
