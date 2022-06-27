@@ -214,7 +214,7 @@ void InterfaceSalida::MenuConsultas()
 		cout << "**********REPORTES**********" << endl;
 		cout << this->separador << endl;
 		cout << "|1. Consulta energia estacionaria" << endl;
-		cout << "|2. Promedio de recaudacion por cliente" << endl;
+		cout << "|2. Promedio de recaudacion" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -232,11 +232,9 @@ void InterfaceSalida::MenuConsultas()
 		}
 		case 2:
 		{
-			system("cls||clear");
-			int dni;
-
-			dni = Validaciones::DatoObligarorioNum("Dni del cliente a consultar: ");
-			PromedioRecaudacionClientes(dni);
+			
+			
+			PromedioRecaudacion();
 			break;
 		}
 		case 0:
@@ -352,15 +350,127 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 	}
 }
 
+//Funcion de promedio
+float CalRecaudacion(int dni, int opcion);
 
-void InterfaceSalida::PromedioRecaudacionClientes(int dni)
+void InterfaceSalida::PromedioRecaudacion()
 {
-	//por cada cliente sumar el importe y dividirlo por la cantidad de documentos pagos 
+	//Promedio de recaudacion por cada cliente -> solo documentos pagos
+	//Promedio de recaudacion anual ->  para todos los clientes con documentos pagos
+
+	int opcion;
+
+	system("cls||clear");
+	do {
+		int dni = -1;
+		float retorno = 0;
+
+		cout << this->separador << endl;
+		cout << "***CONSULTAS DE GESTION ENERGETICA***" << endl;
+		cout << "**********REPORTES**********" << endl;
+		cout << this->separador << endl;
+		cout << "|1. Promedio de recaudacion Anual (Para todos los clientes)" << endl;
+		cout << "|2. Promedio de recaudacion Anual (Por cliente)" << endl;
+		cout << "|0. Para volver" << endl;
+		cout << this->separador << endl;
+		opcion = Validaciones::DatoObligarorioNum("Opcion: ");
+
+		switch (opcion) {
+			case 1: {
+				cout << endl;
+				cout << this->separador << endl;
+				retorno = CalRecaudacion(dni, opcion);
+				if (retorno == -1) {
+					retorno = 0;
+				}
+				cout << "El promedio total todos los cliente es : $" << retorno <<endl;
+				cout << this->separador << endl;
+				Validaciones::SystemPause();
+				break;
+			}
+			case 2: {
+				
+				dni = Validaciones::DatoObligarorioNum("Ingrese DNI: ");
+				cout << endl;
+				cout << this->separador << endl;
+				retorno = CalRecaudacion(dni, opcion);
+				if (retorno == -1) {
+					cout << "El cliente no existe" << endl;
+					Validaciones::SystemPause();
+					break;
+				}
+				//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
+				cout<<"El promedio total para el cliente #"<<dni<<" es : $"<< retorno <<endl;
+				cout << this->separador << endl;
+				Validaciones::SystemPause();
+				break;
+			}
+			case 0:
+			{
+				system("cls||clear");
+				return;
+			}
+			default: {
+				break;
+			}
+				
+		}
+		system("cls||clear");
+
+	} while (true);
+
+}
+
+float CalRecaudacion(int dni, int opcion) {
+
 	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 
+	const bool PAGO = true; // Si el pago es false (esta pendiente) y no se cuenta
+	const int VAR = 1;
+	bool salida = true;
+	float promedioCliente = 0, promedioAnual = 0;
+	int contadorCliente = 0, contadorAnual = 0;
+
+	if (dni != -1) {
+
+		for (int i = 0; i < documentos.size(); i++) {
+			if (documentos[i].getIdinter()==dni) {
+				salida = false;
+			}
+		}
+
+		if (salida == true && opcion != VAR)
+			return -1;
+	}
+
+	for (int i = 0; i < documentos.size(); i++) {
+
+		if (documentos[i].getPago() == PAGO && opcion == VAR) {
+			promedioAnual += documentos[i].getImporte();
+			contadorAnual++;
+		}
+		else {
+			if (documentos[i].getPago() == PAGO && documentos[i].getIdinter() == dni) {
+				promedioCliente += documentos[i].getImporte();
+				contadorCliente++;
+			}
+		}
+		
+	}
+
+
+	if (opcion == VAR) {
+
+		if (promedioAnual != 0 && contadorAnual != 0) {
+			return float(promedioAnual / contadorAnual);
+		}
+		return -1;
+		
+	}
+	else {
+		return float(promedioCliente / contadorCliente);
+	}
 	
-
-
 }
