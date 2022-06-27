@@ -8,7 +8,7 @@ InterlocutorComercialRN::~InterlocutorComercialRN()
 {}
 bool InterlocutorComercialRN::AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
-	//Ver si se hace una busqueda en el archivo de interlocutores para asignar el númerador de id
+	//Ver si se hace una busqueda en el archivo de interlocutores para asignar el nï¿½merador de id
 	//Busca el total de interlocuteres, lo incrementa en 1 y le suma 1000 
 	int id = this->interlocutorComercialAD.TotalInterlocutoresEnArchivo();
 	if (id == -1)
@@ -32,6 +32,13 @@ InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(int d
 {
 	InterlocutorComercial intComAD = this->interlocutorComercialAD.getInterlocutorArchivo(dni);
 	if (intComAD.getDni() == dni)
+		return intComAD;
+	return InterlocutorComercial();
+}
+InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercialPorID(int id_ic)
+{
+	InterlocutorComercial intComAD = this->interlocutorComercialAD.getInterlocutorArchivoId(id_ic);
+	if (intComAD.getId_ic() == id_ic)
 		return intComAD;
 	return InterlocutorComercial();
 }

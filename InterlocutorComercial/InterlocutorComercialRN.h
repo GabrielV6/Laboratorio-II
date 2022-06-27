@@ -10,6 +10,7 @@ public:
 	~InterlocutorComercialRN();
 	bool ExisteInterlocutorComercial(int dni);
 	InterlocutorComercial BuscarInterlocutorComercial(int dni);
+	InterlocutorComercial BuscarInterlocutorComercialPorID(int id_ic);
 	bool AltaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
 	bool ModificaInterlocutorComercial(InterlocutorComercial& interlocutorComercial);
 	int CantidadInterlocutoresEnSistema();

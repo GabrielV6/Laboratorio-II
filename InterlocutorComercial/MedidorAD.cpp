@@ -56,6 +56,7 @@ bool MedidorAD::ActualizarEnArchivoMedidor(Medidor& medidor)
 
 	//cout << "Posicion: " << to_string(archivo.tellp()) << endl;
 	archivo.write((char*)&medidor, sizeof(Medidor));
+
 	archivo.close();
 	return true;
 }

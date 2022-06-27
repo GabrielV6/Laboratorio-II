@@ -100,11 +100,11 @@ void CuentaContratoV::AsociarMedidor(){
 	// grabar en disco medidor
 	MedidorAD medidorAD(NOMBRE_ARCH_MED);
 	medidorAD.ActualizarEnArchivoMedidor(auxMedidor);
-	/* cambiar Estado de IC a true ---> buscar IC por ID, settearlo y grabarlo
-	
+	// cambiar Estado de IC a true ---> buscar IC por ID, settearlo y grabarlo
+	interlocutor = interlocutorRN.BuscarInterlocutorComercialPorID(cuentaContrato.getId_ic());
 	interlocutor.setActivo(true);
 	interlocutorRN.ModificaInterlocutorComercial(interlocutor);
-	*/
+	
 }
 
 void CuentaContratoV::MenuCuentaContrato()
