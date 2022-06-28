@@ -16,37 +16,46 @@ DocumentoRN::DocumentoRN(string nombreArchivo)
 DocumentoRN::~DocumentoRN()
 {
 }
-
+Documento DocumentoRN::getDocumento()
+{
+	return documento;
+}
+void DocumentoRN::setDocumento(Documento& documento)
+{
+	this->documento = documento;
+}
+//GENERA EL NUMERO DE FACTURA INICIANDO EN 100 POR LA CONSTANTE
 int DocumentoRN::IdDocumento(Documento& documento)
 {
-	int id = this->documentoAD.TotalDocumentosEnArchivo();
-	if (id == -1) {
-		id = 0;
+	int numero = this->documentoAD.TotalDocumentosEnArchivo();
+	if (numero == -1) {
+		numero = 0;
 	}
-	id += RANGO_NUMERICO;
+	numero += RANGO_NUMERICO;
 
-	documento.setNumero(id);
+	documento.setNumero(numero);
 	return documento.getNumero();
 }
-
+//GUARDA EL DOCUMENTO EN EL ARCHIVO  
 bool DocumentoRN::AltaDocumento(Documento& documento)
 {
 
 	// generar ID y setear ID de docuemntos antes de enviar el objeto a GuardarEnDisco
 	if (documento.getNumero() != 0) {
-		int id = this->documentoAD.TotalDocumentosEnArchivo();
-		if (id == -1) {
-			id = 0;
+		int numero = this->documentoAD.TotalDocumentosEnArchivo();
+		if (numero == -1) {
+			numero = 0;
 		}
-		this->documento.setPosicionarch(id);
-		id += RANGO_NUMERICO;
+		documento.setPosicionarch(numero);
+		numero += RANGO_NUMERICO;
 
-		documento.setNumero(id);
+		documento.setNumero(numero);
 		return this->documentoAD.GuardarEnArchivoDocumento(documento);
 	}
 
 	return this->documentoAD.GuardarEnArchivoDocumento(documento);
 }
+//RECIBE UN NUMERO DE FACTURA Y DEVUELVE UN DOCUMENTO
 Documento DocumentoRN::BuscarDocumento(int numero)
 {
 	Documento documentoAD = this->documentoAD.getDocumentoArchivo(numero);
@@ -55,7 +64,7 @@ Documento DocumentoRN::BuscarDocumento(int numero)
 	return Documento();
 }
 
-
+//VALIDA QUE EL NUMERO DE FACTURA EXISTA
 bool DocumentoRN::ValidarDocumentoNumero(int numero)
 {
 	this->documento = DocumentoAD(NOMBRE_ARCH_DOC).getDocumentoArchivo(numero);
@@ -109,15 +118,15 @@ Medidor DocumentoRN::getMedidor()
 
 	return this->medidor;
 }
-Medidor DocumentoRN::setMedidor()
+void DocumentoRN::setMedidor(Medidor& medidor)
 {
-	return this->medidor;
+	this->medidor = medidor;
 }
 
 //SETEAR LA LECTURA DEL MEDIDOR DEBE TOMAR LA NUEVA LECTURA
 void DocumentoRN::GuardarLectura(int id, float lecturaActual)
 {
-
+	this->medidorRN.setNombreArchivo(NOMBRE_ARCH_MED);
 	medidor = medidorRN.BuscarCMedidor(id);
 	medidor.setLectura(lecturaActual);
 	medidorRN.ModificaMedidor(medidor);
@@ -211,3 +220,4 @@ bool DocumentoRN::validarFechaDocumento(int id)
 	}
 	return false;
 }
+

@@ -27,27 +27,32 @@ void DocumentoV::RegistrarPago()
 		cout << "--------------------------------------------------" << endl;
 		numero = Validaciones::DatoObligarorioNum("Numero del Documento");
 		//VALIDAR QUE EL NUMERO DE FACTURA EXISTA 
-		
+
 		if (!this->documentoRN.ValidarDocumentoNumero(numero)) {
 			cout << "El numero ingresado no es valido " << endl;
-			
+
 		}
 		//seteo que se pago la factura y guardo en archivo
-		else 
+		else
 		{
-			
-			this->documento.setPago(true);
-			if (this->documentoRN.ControlModificaciones(documento))
-				cout << "EL PAGO FUE REGISTRADO EXITOSAMENTE" << endl;
-					
+			this->documento = this->documentoRN.getDocumento();
+			if (this->documento.getPago() == true)
+			{
+				cout << "EL DOCUMENTO YA ESTA PAGO" << endl << endl;
+			}
+			else {
+				this->documento.setPago(true);
+				if (this->documentoRN.ControlModificaciones(documento))
+					cout << "EL PAGO FUE REGISTRADO EXITOSAMENTE" << endl;
+			}
 		}
 		cout << "Desea cargar otro numero de documento?" << endl;
 		dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 		if (toupper(dato) != 'S') {
 			return;
 		}
-	}while (true);
-	
+	} while (true);
+
 }
 
 /// 
@@ -74,7 +79,7 @@ void DocumentoV::NuevoDocumento()
 		cout << "--------------------------------------------------" << endl;
 		id = Validaciones::DatoObligarorioNum("Id del Medidor");
 
-		if (!this->documentoRN.validarIdMedidor(id)|| this->documentoRN.validarFechaDocumento(id)) {
+		if (!this->documentoRN.validarIdMedidor(id) || this->documentoRN.validarFechaDocumento(id)) {
 			cout << "El ID ingresado no es valido o documento ya generado" << endl;
 			cout << "Desea ingresar otro ID?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
@@ -95,13 +100,13 @@ void DocumentoV::NuevoDocumento()
 				cout << this->separador << endl;
 				cout << "\t\t\t\t\tATENCION! " << endl;
 				cout << this->separador << endl;
-				cout << "ESTA CREANDO UN NUEVO DOCUMENTO CON EL NUMERO "<<documentoRN.IdDocumento(documento) << endl;
-				cout << "PARA EL CLIENTE | ROBERTO" << this->documentoRN.getInterlocutorComercial().getNombre();
-				cout << ", LOPEZ" << this->documentoRN.getInterlocutorComercial().getApellido() << endl;
+				cout << "ESTA CREANDO UN NUEVO DOCUMENTO CON EL NUMERO " << documentoRN.IdDocumento(documento) << endl;
+				cout << "PARA EL CLIENTE | NOMBRE: " << this->documentoRN.getInterlocutorComercial().getNombre();
+				cout << "\tAPELLIDO: " << this->documentoRN.getInterlocutorComercial().getApellido() << endl;
 				cout << this->separador << endl;
 				cout << "\t\t\t\t\t\t\t\t\t\tLectura anterior: " << documentoRN.getMedidor().getLectura() << endl;
 				cout << "\t\t\t\t\t\t\t\t\t\tLectura actual: " << lecturaActual << endl;
-				cout << "\t\t\t\t\t\t\t\t\t\tPor un consumo de: " << consumo <<" KWH"<< endl;
+				cout << "\t\t\t\t\t\t\t\t\t\tPor un consumo de: " << consumo << " KWH" << endl;
 				cout << this->separador << endl;
 				cout << "Desea continuar?" << endl;
 
@@ -124,9 +129,8 @@ void DocumentoV::NuevoDocumento()
 					if (this->documentoRN.AltaDocumento(this->documento)) {
 						cout << this->separador << endl;
 						cout << "\t\t\t\tSE CREO EL SIGUIENTE DOCUMENTO EXITOSAMENTE" << endl;
-						//cout << "Fecha de creacion: "<< documento.getFecha()<<"\t Cliente: ";
 						cout << this->separador << endl;
-						cout << "NUMERO DE DOCUMENTO: " << documento.getNumero() << "\t\tDATOS DEL CLIENTE : ROBERTO LOPEZ" << "\tFecha de creacion: 26/6/2022" << endl;
+						cout << "NUMERO DE DOCUMENTO: " << documento.getNumero() << "\t\tNUMERO DE CLIENTE: " << documento.getIdinter() << "\t\t\tFecha de creacion:" << documento.getFecha().toStringFecha() << endl;
 						cout << this->separador << endl;
 						cout << "\t\t\t\t\t\t\t\t\t\tCargo Fijo:\t $ " << this->documentoRN.getTarifa().getCargoFijo() << endl;
 						cout << "\t\t\t\t\t\t\t\t\t\tCargo Variable:\t $ " << this->documentoRN.getTarifa().getCargoVariable() << endl;
@@ -183,15 +187,15 @@ void DocumentoV::NuevoDocumento()
 
 }
 
-//SI EL CONSUMO ES NEGATIVO O MENOR AL CONSUMO ANTERIOR
 
 /// <summary>
 /// Funci�n global para listar todos los documentos del archivo.
 /// </summary>
 
+
 void DocumentoV::ListarDocumentos()
 {
-	vector<Documento> documentos = this->documentoRN.getDocumentos();//getDocumentos();
+	vector<Documento> documentos = this->documentoRN.getDocumentos();
 
 	for (int i = 0; i < documentos.size(); i++)
 	{
@@ -199,7 +203,30 @@ void DocumentoV::ListarDocumentos()
 	}
 
 }
+//LISTAR DOCUMENTOS IMPAGOS
 
+void DocumentoV::ListarDocumentosImpagos()
+{
+	vector<Documento> documentos = this->documentoRN.getDocumentos();
+
+	for (int i = 0; i < documentos.size(); i++)
+	{
+		if(documentos[i].getPago()==false)
+		cout << documentos[i].toStringDocumento() << endl;
+	}
+}
+//listar DOCUMENTOS PAGOS
+
+void DocumentoV::ListarDocumentosPagos()
+{
+	vector<Documento> documentos = this->documentoRN.getDocumentos();
+
+	for (int i = 0; i < documentos.size(); i++)
+	{
+		if (documentos[i].getPago() == true)
+			cout << documentos[i].toStringDocumento() << endl;
+	}
+}
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de documentos.
 /// </summary>
@@ -212,9 +239,11 @@ void DocumentoV::MenuDocumento()
 		cout << "Menu Documento" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "1. Nuevo Documento" << endl;
-		cout << "2. Listar Documentos" << endl;
-		cout << "3. Listar medidores disponibles" << endl;
-		cout << "4. Registrar el Pago de Documento" << endl;
+		cout << "2. Registrar el Pago de Documento" << endl;
+		cout << "3. Listar Documentos" << endl;
+		cout << "4. Listar Documentos Pagos" << endl;
+		cout << "5. Listar Documentos Impagos" << endl;
+		cout << "6. Listar Medidores disponibles" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
@@ -226,23 +255,29 @@ void DocumentoV::MenuDocumento()
 			this->NuevoDocumento();
 			break;
 		case 2:
-			this->ListarDocumentos();
-
-			break;
-
-		case 3:
-		{
-			MedidorV medidorV("medidores.dat");
-			//Le pasas false para traer los medidores desinstalados=Disponibles
-			medidorV.ListarMedidor(false);
-
-			break;
-		}
-		case 4:
-			
 			this->RegistrarPago();
 			break;
 
+		case 3:
+			this->ListarDocumentos();
+			
+			break;
+		
+		case 4:
+			this->ListarDocumentosPagos();
+			break;
+
+		case 5:
+			this->ListarDocumentosImpagos();
+			break;
+		
+		case 6:
+			{
+			MedidorV medidorV("medidores.dat");
+			//Le pasas false para traer los medidores desinstalados=Disponibles
+			medidorV.ListarMedidor(true);
+			break;
+			}
 		case 0:
 			salir = true;
 			system("cls||clear");

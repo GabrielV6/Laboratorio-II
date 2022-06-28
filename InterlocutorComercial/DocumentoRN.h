@@ -36,9 +36,12 @@ public:
 	vector<Documento> getDocumentos();///AGREGUE IGUAL QUE GABY MEDIDOR
 	void setNombreArchivo(string nombreArchivo);
 	//METODO QUE BUSQUE UN MEDIDOR POR ID 
-	
+	Documento getDocumento();
+	void setDocumento(Documento& documento);
+	//void ListarDocumentosImpagos();
+	//void ListarDocumentosPagos();
 	Medidor getMedidor();
-	Medidor setMedidor();
+	void setMedidor(Medidor& medidor);
 
 	void GuardarLectura(int id,float lecturaActual);
 
