@@ -85,6 +85,7 @@ void CuentaContratoV::ModificarTarifa(){
 	// validar que el numero ingresado corresponda con un id de tarifa
 	this->cuentaContrato.setId_tarifa(tar);
 
+
 	this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
 
 	cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
@@ -127,6 +128,7 @@ void CuentaContratoV::AsociarMedidor(){
 	interlocutor.setActivo(true);
 	interlocutorRN.ModificaInterlocutorComercial(interlocutor);
 	
+	this->ModificarTarifa();
 	
 }
 
@@ -282,8 +284,6 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << this->separador << endl;
 
 		opcion = Validaciones::DatoObligarorioNum("Opción:");
-
-
 
 		string datos;
 		char dato;
