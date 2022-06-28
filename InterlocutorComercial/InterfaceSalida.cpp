@@ -549,6 +549,11 @@ void InterfaceSalida::PromedioRecaudacion()
 				Validaciones::SystemPause();
 				break;
 			}
+			else {
+				if (retorno == -2) {
+					retorno = 0;
+				}
+			}
 			//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
 			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
 			cout << this->separador << endl;
@@ -620,7 +625,12 @@ float CalRecaudacion(int dni, int opcion) {
 
 	}
 	else {
-		return float(promedioCliente / contadorCliente);
+
+		if (promedioCliente != 0 && contadorCliente != 0) {
+				return float(promedioCliente / contadorCliente);
+			}
+		return -2;
+			
 	}
 }
 
