@@ -70,6 +70,28 @@ bool CuentaContratoV::AltaCuentaContrato(){
 
 }
 
+void CuentaContratoV::ModificarTarifa(){
+
+	TarifaV tarifa(NOMBRE_ARCH_TAR);
+	int tar=0;
+
+	cout << "A continuacion se muestran las tarifas disponibles: " << endl;
+	cout << endl;
+	tarifa.ListarTarifa();
+	cout << endl;
+	
+			
+	tar= Validaciones::DatoObligarorioNum(" la tarifa que desea asigar: ");
+	// validar que el numero ingresado corresponda con un id de tarifa
+	this->cuentaContrato.setId_tarifa(tar);
+
+	this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
+
+	cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
+	cout << this->cuentaContrato.getId_Tarifa() << endl;
+	cout << this->separador << endl;
+
+}
 void CuentaContratoV::AsociarMedidor(){
 
 	MedidorV medidorV(NOMBRE_ARCH_MED);
@@ -104,6 +126,7 @@ void CuentaContratoV::AsociarMedidor(){
 	interlocutor = interlocutorRN.BuscarInterlocutorComercialPorID(cuentaContrato.getId_ic());
 	interlocutor.setActivo(true);
 	interlocutorRN.ModificaInterlocutorComercial(interlocutor);
+	
 	
 }
 
@@ -142,6 +165,8 @@ void CuentaContratoV::MenuCuentaContrato()
 
 		case 4:
 			this->ModificarCuentaContrato();
+
+
 			break;
 
 		case 0:
@@ -258,6 +283,8 @@ void CuentaContratoV::ModificarCuentaContrato()
 
 		opcion = Validaciones::DatoObligarorioNum("Opción:");
 
+
+
 		string datos;
 		char dato;
 
@@ -286,22 +313,11 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
 			dato = Validaciones::DatoObligarorioChar(" Desea modificar la tarifa? 'S' o 'N'");
-			
-			if (toupper(dato) == 'S')
-				this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
-				TarifaV tarifa(NOMBRE_ARCH_TAR);
-				cout << "A continuacion se muestran las tarifas disponibles: " << endl;
-				cout << endl;
-				tarifa.ListarTarifa();
-				cout << endl;
-				int tar=0;
-				tar= Validaciones::DatoObligarorioNum(" la tarifa que desea asigar: ");
-				// validar que el numero ingresado corresponda con un id de tarifa
-				cuentaContrato.setId_tarifa(tar);
 
-			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
-			cout << this->cuentaContrato.getId_Tarifa() << endl;
-			cout << this->separador << endl;
+				if (toupper(dato) == 'S')
+					this->ModificarTarifa();
+			
+
 			break;
 		}
 		case 3:
