@@ -76,22 +76,18 @@ bool InterlocutorComercialAD::ActualizarEnArchivoIneterlocurtor(InterlocutorCome
 /// <returns>InterlocutorComercial</returns>
 InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(int dni)
 {
-	InterlocutorComercial intComAD;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
-		return intComAD;
+	InterlocutorComercial intComAD;	
 
-	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
+	vector<InterlocutorComercial> interlocutores = this->getInterlocutoresArchivo();
+	for (auto &interlocutor : interlocutores)
 	{
-		if (!archivo.eof())
-			if (intComAD.getDni() == dni)
-			{
-				archivo.close();
-				return intComAD;
-			}
+		if (interlocutor.getDni() == dni)
+		{
+			intComAD = interlocutor;
+			return intComAD;
+		}
 	}
-	archivo.close();
+	
 	intComAD = InterlocutorComercial();
 	return intComAD;
 }
@@ -103,21 +99,15 @@ InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivo(int dni)
 InterlocutorComercial InterlocutorComercialAD::getInterlocutorArchivoId(int id)
 {
 	InterlocutorComercial intComAD;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo(), ios::in);
-	if (archivo.fail())
-		return intComAD;
-
-	while (archivo.read((char*)&intComAD, sizeof(InterlocutorComercial)))
+	vector<InterlocutorComercial> interlocutores = this->getInterlocutoresArchivo();
+	for (auto& interlocutor : interlocutores)
 	{
-		if (!archivo.eof())
-			if (intComAD.getId_ic() == id)
-			{
-				archivo.close();
-				return intComAD;
-			}
+		if (interlocutor.getId_ic() == id)
+		{
+			intComAD = interlocutor;
+			return intComAD;
+		}
 	}
-	archivo.close();
 	intComAD = InterlocutorComercial();
 	return intComAD;
 }
