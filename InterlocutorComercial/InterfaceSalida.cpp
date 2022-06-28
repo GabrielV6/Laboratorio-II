@@ -62,7 +62,7 @@ bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 	if (archivo.fail())
 		return false;
 	string str = "";
-	char pattern = ',';
+	char pattern = ';';
 	int posInit = 0;
 	vector<string> results;
 	while (getline(archivo, str))
@@ -93,49 +93,52 @@ bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 				// medArch.setEstado(splitted == "true" ? true : false);
 				break;
 			case 3:
-				interlocutorArch.setEmail(splitted);
+				interlocutorArch.setDni(stoi(splitted));
 				break;
 			case 4:
+				interlocutorArch.setEmail(splitted);				
+				break;
+			case 5:
 			{
 				anio = stoi(splitted);
 				fecha.setAnio(anio);
 				break;
 			}
-			case 5:
+			case 6:
 			{
 				mes = stoi(splitted);
 				fecha.setMes(stoi(splitted));
 				break;
 			}
-			case 6:
+			case 7:
 			{
 				dia = stoi(splitted);
 				fecha.setDia(dia);
 				interlocutorArch.setFechaIngresoId(fecha);
 				break;
 			}
-			case 7:
+			case 8:
 				direccion.setCalle(splitted);
 				break;
-			case 8:
+			case 9:
 				direccion.setNumero(stoi(splitted));
 				break;
-			case 9:
+			case 10:
 				direccion.setCodPostal(splitted);
 				break;
-			case 10:
+			case 11:
 				direccion.setLocalidad(splitted);
 				break;
-			case 11:
+			case 12:
 			{
 				direccion.setProvincia(splitted);
 				interlocutorArch.setDireccionId(direccion);
 				break;
 			}
-			case 12:
-				interlocutorArch.setId_ic(stoi(splitted));
-				break;
 			case 13:
+				interlocutorArch.setNumPosicionArchivo(stoi(splitted));
+				break;
+			case 14:
 				interlocutorArch.setActivo(splitted == "true" ? true : false);
 				break;
 			default:
