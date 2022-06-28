@@ -55,6 +55,104 @@ bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArc
 	return true;
 }
 
+
+bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
+{
+	ifstream archivo;
+	archivo.open(nombreArchivo, ios::in);
+
+	if (archivo.fail())
+		return false;
+	string str = "";
+	char pattern = ',';
+	int posInit = 0;
+	vector<string> results;
+	while (getline(archivo, str))
+	{
+		InterlocutorComercial interlocutorArch;
+		string splitted;
+		Direccion direccion;
+		Fecha fecha;
+		int indice = 0;
+		int posFound = 0;
+
+		while (posFound >= 0)
+		{
+			
+			int dia, mes, anio;
+			posFound = str.find(pattern, posInit);
+			splitted = str.substr(posInit, posFound - posInit);
+			switch (indice)
+			{
+			case 0:
+				interlocutorArch.setId_ic(stoi(splitted));
+				break;
+			case 1:
+				interlocutorArch.setNombre(splitted);
+				break;
+			case 2:
+				interlocutorArch.setApellido(splitted);
+				// medArch.setEstado(splitted == "true" ? true : false);
+				break;
+			case 3:
+				interlocutorArch.setEmail(splitted);
+				break;
+			case 4:
+			{
+				anio = stoi(splitted);
+				fecha.setAnio(anio);
+				break;
+			}
+			case 5:
+			{
+				mes = stoi(splitted);
+				fecha.setMes(stoi(splitted));
+				break;
+			}
+			case 6:
+			{
+				dia = stoi(splitted);
+				fecha.setDia(dia);
+				interlocutorArch.setFechaIngresoId(fecha);
+				break;
+			}
+			case 7:
+				direccion.setCalle(splitted);
+				break;
+			case 8:
+				direccion.setNumero(stoi(splitted));
+				break;
+			case 9:
+				direccion.setCodPostal(splitted);
+				break;
+			case 10:
+				direccion.setLocalidad(splitted);
+				break;
+			case 11:
+			{
+				direccion.setProvincia(splitted);
+				interlocutorArch.setDireccionId(direccion);
+				break;
+			}
+			case 12:
+				interlocutorArch.setId_ic(stoi(splitted));
+				break;
+			case 13:
+				interlocutorArch.setActivo(splitted == "true" ? true : false);
+				break;
+			default:
+				break;
+			}
+			indice++;
+			posInit = posFound + 1;
+		}
+		InterlocutorComercialAD interlocutorAD(NOMBRE_ARCH_IC);
+		interlocutorAD.GuardarEnArchivoInterlocutor(interlocutorArch);
+	}
+	archivo.close();
+	return true;
+}
+
 bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 {
 	ifstream archivo;

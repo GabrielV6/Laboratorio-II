@@ -40,10 +40,6 @@ unsigned int Direccion::getNumero()
 {
 	return this->numero;
 }
-string Direccion::getDescripcion()
-{
-	return this->descripcion;
-}
 string Direccion::getCodPostal()
 {
 	return this->codPostal;
