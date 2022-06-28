@@ -40,6 +40,12 @@ void InterlocutorComercialV::NuevoInterlocutor()
 	this->interlocutorComercial.setDni(dni);
 	do
 	{
+		Fecha fechaIngreso;
+		cout << "Fecha Alta: ";
+		fechaIngreso.cargarFechaActual();
+		cout << fechaIngreso.toStringFecha() << endl;
+		this->interlocutorComercial.setFechaIngresoId(fechaIngreso);
+
 		datos = Validaciones::DatoObligarorioCad("Nombre");
 		this->interlocutorComercial.setNombre(datos);
 
@@ -47,16 +53,13 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		this->interlocutorComercial.setApellido(datos);
 
 		datos = Validaciones::DatoObligarorioCad("Correo:");
-		this->interlocutorComercial.setEmail(datos);
-		Fecha fechaIngreso;
-		cout << "Fecha Alta: ";
-		fechaIngreso.cargarFechaActual();
-		cout << fechaIngreso.toStringFecha() << endl;
-		this->interlocutorComercial.setFechaIngresoId(fechaIngreso);
+		this->interlocutorComercial.setEmail(datos);		
+		
 		Direccion direccion;
 		cout << "Direccion: ";
 		direccion.CargarDireccion();
 		this->interlocutorComercial.setDireccionId(direccion);
+
 		cout << "Datos ingresados:" << endl;
 		cout << interlocutorComercial.toStringInterlocutor(false, true) << endl << endl;
 		cout << "Dar de alta " << endl;
@@ -150,15 +153,14 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	{
 		system("cls||clear");
 		cout << this->separador << endl;
-		cout << "Opciones de Listado de Interlocutor Comercial" << endl;
+		cout << "|\tOPCIONES DE INTERLOCUTOR COMERCIAL" << endl;
 		cout << this->separador << endl;
-		cout << "1. Listar todos los Interlocutroes" << endl;
-		cout << "2. Listar Interlocutores activos" << endl;
-		cout << "3. Listar Interlocutores inactivos" << endl;
-		cout << "0. Salir de las opciones de interlocutor" << endl;
+		cout << "|\t1. Listar todos los Interlocutroes" << endl;
+		cout << "|\t2. Listar Interlocutores activos" << endl;
+		cout << "|\t3. Listar Interlocutores inactivos" << endl;
+		cout << "|\t0. Salir de las opciones de interlocutor" << endl;
 		cout << this->separador << endl;
-		cout << "Ingrese una opcion: ";
-		opcion = Validaciones::DatoObligarorioNum("Opcion");
+		opcion = Validaciones::DatoObligarorioNum("una opcion");
 		if (opcion >= 0 && opcion <= 4)
 			break;
 
@@ -166,7 +168,7 @@ int InterlocutorComercialV::MenuListarInerlocutor()
 	char dato;
 	if (opcion > 0)
 	{
-		cout << "Listar Interlocutores, para modo Resumen ingrese 'R' o modo completo cuaquier otra" << endl;
+		cout << "Para ver solo resumen ingrese 'R', modo completo cuaquier otra" << endl;
 		dato = Validaciones::DatoObligarorioChar("Tipo");
 	}
 	switch (opcion)
@@ -203,7 +205,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 	do
 	{
 		cout << this->separador << endl;
-		cout << "Modificar datos del Interlocutor comercial" << endl;
+		cout << "|\tModificar datos del Interlocutor comercial" << endl;
 		cout << this->separador << endl;
 		cout << "Documento ";
 		dni = Validaciones::DatoObligarorioNum("Nro");
@@ -224,15 +226,15 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << this->separador << endl;
 		cout << "Interlocutor: " << this->interlocutorComercial.toStringInterlocutor(false, true) << endl;
 		cout << this->separador << endl;
-		cout << "1. Modificar nombre" << endl;
-		cout << "2. Modificar apellido" << endl;
-		cout << "3. Modificar e-mail" << endl;
-		cout << "4. Modificar estado (Activo/Inactivo)" << endl;
-		cout << "5. Modificar direccion" << endl;
-		cout << "0. Volver al menú anteriror" << endl;
+		cout << "|\t1. Modificar nombre" << endl;
+		cout << "|\t2. Modificar apellido" << endl;
+		cout << "|\t3. Modificar e-mail" << endl;
+		cout << "|\t4. Modificar direccion" << endl;
+		cout << "|\t5. Modificar estado (Activo/Inactivo)" << endl;		
+		cout << "|\t0. Volver al menú anteriror" << endl;
 		cout << this->separador << endl;
 		//cout << "Opcion: ";
-		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		opcion = Validaciones::DatoObligarorioNum("Opcion");
 		//cin >> opcion;
 		string datos;
 		char dato;
@@ -259,20 +261,20 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		}
 		case 4:
 		{
-			cout << "Modificar estado ";
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
-			if (toupper(dato) == 'S')
-				this->interlocutorComercial.setActivo(!this->interlocutorComercial.getActivo());
-			break;
-		}
-		case 5:
-		{
 			cout << "Direccion actual: ";
 			cout << this->interlocutorComercial.getDireccionId().toStringDireccion() << endl;
 			cout << separador << endl;
 			Direccion direc;
 			direc.CargarDireccion();
 			this->interlocutorComercial.setDireccionId(direc);
+			break;			
+		}
+		case 5:
+		{
+			cout << "Modificar estado ";
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S')
+				this->interlocutorComercial.setActivo(!this->interlocutorComercial.getActivo());
 			break;
 		}
 		case 0:
@@ -308,12 +310,12 @@ void InterlocutorComercialV::MenuInterlocutorComecial()
 	{
 		system("cls||clear");
 		cout << this->separador << endl;
-		cout << "Menu Interlocutor Comercial" << endl;
+		cout << "|\tMenu Interlocutor Comercial" << endl;
 		cout << this->separador << endl;
-		cout << "1. Nuevo Interlocutor" << endl;
-		cout << "2. Listar Interlocutores" << endl;
-		cout << "3. Modificar Interlocutor" << endl;
-		cout << "0. Salir del menu interlocutor" << endl;
+		cout << "|\t1. Nuevo Interlocutor" << endl;
+		cout << "|\t2. Listar Interlocutores" << endl;
+		cout << "|\t3. Modificar Interlocutor" << endl;
+		cout << "|\t0. Salir del menu interlocutor" << endl;
 		cout << this->separador << endl;
 		int opcion;
 		//cout << "Ingrese una opcion: ";

@@ -15,7 +15,7 @@ public:
 	void setTextoSalida(string texto);
 	string getTextoSalida();
 	void setTextosSalida(vector<string> textos);
-	vector<string> getTestoSalida();
+	vector<string> getTestosSalida();
 	bool GrabarTextosSalida(vector<string> textos, string nombreArchivo);
 	void MostrarTextosSalida(vector<string> textos, string tituloTexo);
 	bool LeeTextosEntrada(string nombreArchivo);
@@ -23,6 +23,9 @@ public:
 	void ConsumoPorEstacion(int anio);
 	void PromedioRecaudacion();
 	void MenuConsultas();
+	void MenuExportacion();
+	int ExportarIC();
+	void ClienteDatosComerciales(int dni);
 private:
 	string textoSalida;
 	vector<string> textosSalida;
