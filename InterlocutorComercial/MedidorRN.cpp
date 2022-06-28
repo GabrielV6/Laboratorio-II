@@ -1,4 +1,5 @@
 #include "MedidorRN.h"
+#include "Validaciones.h"
 const int Rango_Numerico = 10001;
 
 MedidorRN::MedidorRN(string nombreArchivo)
@@ -20,6 +21,7 @@ MedidorRN::~MedidorRN()
 
 Medidor MedidorRN::BuscarCMedidor(int idMedidor)
 {
+	medidorAD.setNombreArchivo(NOMBRE_ARCH_MED);
 	Medidor intComAD = this->medidorAD.getMedidorArchivo(idMedidor);
 	if (intComAD.getId() == idMedidor)
 		return intComAD;
