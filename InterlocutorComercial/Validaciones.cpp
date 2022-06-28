@@ -91,5 +91,6 @@ void Validaciones::SystemPause()
 	cout << "Presione Enter para continuar... ";
 	cin.ignore().get();
 	cin.clear();
+	fflush(stdin);
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

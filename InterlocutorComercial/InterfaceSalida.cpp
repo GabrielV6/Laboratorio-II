@@ -4,34 +4,37 @@
 #include "Validaciones.h"
 #include "InterlocutorComercialV.h"
 #include "MedidorV.h"
-#include "Validaciones.h"
+//#include "Validaciones.h"
 #include "DocumentoV.h"
 #include "TarifaV.h"
 #include "CuentaContratoV.h"
 
 
-
 InterfaceSalida::InterfaceSalida()
 {}
+
 InterfaceSalida::~InterfaceSalida()
 {}
+
 void InterfaceSalida::setTextoSalida(string texto)
 {
 	this->textoSalida = texto;
 }
+
 string InterfaceSalida::getTextoSalida()
 {
 	return this->textoSalida;
 }
+
 void InterfaceSalida::setTextosSalida(vector<string> textos)
 {
 	this->textosSalida = textos;
 }
-vector<string> InterfaceSalida::getTestoSalida()
+
+vector<string> InterfaceSalida::getTestosSalida()
 {
 	return this->textosSalida;
 }
-
 
 /// <summary>
 /// M�todo que graba el texto que estan en el vecotr dentro de archivo indicado en el parametro nombreArchivo.
@@ -120,16 +123,16 @@ void InterfaceSalida::MenuPrincipal()
 	do
 	{
 		cout << this->separador << endl;
-		cout << "CONSULTAS DE GESTION ENERGETICA" << endl;
+		cout << "\t\tCONSULTAS DE GESTION ENERGETICA" << endl;
 		cout << this->separador << endl;
-		cout << "|1. Para menu Interlocutor Comercial" << endl;
-		cout << "|2. Para menu Cuenta Contrato" << endl;
-		cout << "|3. Para menu Medidor" << endl;
-		cout << "|4. Para menu Tarifa" << endl;
-		cout << "|5. Para menu Facturacion" << endl;
-		cout << "|6. Para menu Consultas" << endl;
-		cout << "|7. Para generar archiv CVS" << endl;
-		cout << "|0. Para Salir" << endl;
+		cout << "|\t1. Para menu Interlocutor Comercial" << endl;
+		cout << "|\t2. Para menu Cuenta Contrato" << endl;
+		cout << "|\t3. Para menu Medidor" << endl;
+		cout << "|\t4. Para menu Tarifa" << endl;
+		cout << "|\t5. Para menu Facturacion" << endl;
+		cout << "|\t6. Para menu Consultas" << endl;
+		cout << "|\t7. Para menu Exportacion CVS" << endl;
+		cout << "|\t0. Para Salir" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion:");
 
@@ -193,10 +196,48 @@ void InterfaceSalida::MenuPrincipal()
 		}
 		case 7:
 		{
-			//GENERA LOS ARCHIVOS CSV Y LOS GUARDA EN .DAT
-			//InterfaceSalida intSal;
-			//intSal.LeeTextosEntrada("MedidorCsv.csv");
+			system("cls||clear");
+			this->MenuExportacion();
+			break;
+		}
+		default:
+			break;
+		}
+	} while (true);
+}
 
+void InterfaceSalida::MenuExportacion()
+{
+	int opcion = 0;
+	do
+	{
+		system("cls||clear");
+		cout << this->separador << endl;
+		cout << "\t*** EXPORTACION DE DATOS FORMATO CSV ***" << endl;
+		cout << this->separador << endl;
+		cout << "|1. Exportacion de Interlocutores Comerciales" << endl;
+		cout << "|0. Para volver" << endl;
+		cout << this->separador << endl;
+		opcion = Validaciones::DatoObligarorioNum("Opcion");
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls||clear");
+			int ok = this->ExportarIC();
+			if (this->ExportarIC() == 0)
+				cout << "\tExportación correcta" << endl;
+			Validaciones::SystemPause();
+			break;
+		}
+		case 2:
+		{
+
+			break;
+		}
+		case 0:
+		{
+			return;
 		}
 		default:
 			break;
@@ -210,12 +251,12 @@ void InterfaceSalida::MenuConsultas()
 	do
 	{
 		cout << this->separador << endl;
-		cout << "***CONSULTAS DE GESTION ENERGETICA***" << endl;
-		cout << "**********REPORTES**********" << endl;
+		cout << "\t***CONSULTAS DE GESTION ENERGETICA***" << endl;
+		cout << "\t**********REPORTES**********" << endl;
 		cout << this->separador << endl;
-		cout << "|1. Consulta energia estacionaria" << endl;
-		cout << "|2. Promedio de recaudacion" << endl;
-		cout << "|0. Para volver" << endl;
+		cout << "|\t1. Consulta energia estacionaria" << endl;
+		cout << "|\t2. Promedio de recaudacion" << endl;
+		cout << "|\t0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
 
@@ -232,8 +273,8 @@ void InterfaceSalida::MenuConsultas()
 		}
 		case 2:
 		{
-			
-			
+
+
 			PromedioRecaudacion();
 			break;
 		}
@@ -284,6 +325,7 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 			}
 		}
 	}
+	system("cls||clear");
 	string cadena;
 	vector<string> datosAExportar;
 	cout << separador << endl;
@@ -376,44 +418,44 @@ void InterfaceSalida::PromedioRecaudacion()
 		opcion = Validaciones::DatoObligarorioNum("Opcion: ");
 
 		switch (opcion) {
-			case 1: {
-				cout << endl;
-				cout << this->separador << endl;
-				retorno = CalRecaudacion(dni, opcion);
-				if (retorno == -1) {
-					retorno = 0;
-				}
-				cout << "El promedio total todos los cliente es : $" << retorno <<endl;
-				cout << this->separador << endl;
+		case 1: {
+			cout << endl;
+			cout << this->separador << endl;
+			retorno = CalRecaudacion(dni, opcion);
+			if (retorno == -1) {
+				retorno = 0;
+			}
+			cout << "El promedio total todos los cliente es : $" << retorno << endl;
+			cout << this->separador << endl;
+			Validaciones::SystemPause();
+			break;
+		}
+		case 2: {
+
+			dni = Validaciones::DatoObligarorioNum("Ingrese DNI: ");
+			cout << endl;
+			cout << this->separador << endl;
+			retorno = CalRecaudacion(dni, opcion);
+			if (retorno == -1) {
+				cout << "El cliente no existe" << endl;
 				Validaciones::SystemPause();
 				break;
 			}
-			case 2: {
-				
-				dni = Validaciones::DatoObligarorioNum("Ingrese DNI: ");
-				cout << endl;
-				cout << this->separador << endl;
-				retorno = CalRecaudacion(dni, opcion);
-				if (retorno == -1) {
-					cout << "El cliente no existe" << endl;
-					Validaciones::SystemPause();
-					break;
-				}
-				//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
-				cout<<"El promedio total para el cliente #"<<dni<<" es : $"<< retorno <<endl;
-				cout << this->separador << endl;
-				Validaciones::SystemPause();
-				break;
-			}
-			case 0:
-			{
-				system("cls||clear");
-				return;
-			}
-			default: {
-				break;
-			}
-				
+			//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
+			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
+			cout << this->separador << endl;
+			Validaciones::SystemPause();
+			break;
+		}
+		case 0:
+		{
+			system("cls||clear");
+			return;
+		}
+		default: {
+			break;
+		}
+
 		}
 		system("cls||clear");
 
@@ -436,7 +478,7 @@ float CalRecaudacion(int dni, int opcion) {
 	if (dni != -1) {
 
 		for (int i = 0; i < documentos.size(); i++) {
-			if (documentos[i].getIdinter()==dni) {
+			if (documentos[i].getIdinter() == dni) {
 				salida = false;
 			}
 		}
@@ -457,7 +499,7 @@ float CalRecaudacion(int dni, int opcion) {
 				contadorCliente++;
 			}
 		}
-		
+
 	}
 
 
@@ -467,10 +509,27 @@ float CalRecaudacion(int dni, int opcion) {
 			return float(promedioAnual / contadorAnual);
 		}
 		return -1;
-		
+
 	}
 	else {
 		return float(promedioCliente / contadorCliente);
 	}
-	
+}
+
+int InterfaceSalida::ExportarIC()
+{
+	InterlocutorComercialAD interComAD(NOMBRE_ARCH_IC);
+	vector<InterlocutorComercial> interlocutores = interComAD.getInterlocutoresArchivo();
+	vector<string> salidaInterlocutor;
+	for (auto& interlocutor : interlocutores)
+		salidaInterlocutor.push_back(interlocutor.toStringInterlocutor(true, true));
+	try
+	{
+		this->GrabarTextosSalida(salidaInterlocutor, "ExpoInterlocutoresComerciales.csv");
+	}
+	catch (const std::exception&)
+	{
+		return -1;
+	}
+	return 0;
 }
