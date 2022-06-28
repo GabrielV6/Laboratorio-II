@@ -256,6 +256,7 @@ void InterfaceSalida::MenuConsultas()
 		cout << this->separador << endl;
 		cout << "|\t1. Consulta energia estacionaria" << endl;
 		cout << "|\t2. Promedio de recaudacion" << endl;
+		cout << "|\t3. Consulta clientes datos comerciales" << endl;
 		cout << "|\t0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -276,6 +277,11 @@ void InterfaceSalida::MenuConsultas()
 
 
 			PromedioRecaudacion();
+			break;
+		}
+		case 3:
+		{
+			
 			break;
 		}
 		case 0:
