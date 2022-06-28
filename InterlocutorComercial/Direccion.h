@@ -9,7 +9,6 @@ class Direccion
 private:
 	char calle[30];
 	unsigned int numero;
-	char descripcion[50];
 	char codPostal[20];
 	char loclidad[30];
 	char provincia[30];
@@ -23,7 +22,6 @@ public:
 	void setProvincia(string provincia);
 	string getCalle();
 	unsigned int getNumero();
-	string getDescripcion();
 	string getCodPostal();
 	string getLocalidad();
 	string getProvincia();

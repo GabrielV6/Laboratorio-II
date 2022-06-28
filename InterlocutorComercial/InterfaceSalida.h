@@ -19,6 +19,7 @@ public:
 	bool GrabarTextosSalida(vector<string> textos, string nombreArchivo);
 	void MostrarTextosSalida(vector<string> textos, string tituloTexo);
 	bool LeeTextosEntrada(string nombreArchivo);
+	bool LeeTextosEntradaInterlocutor(string nombreArchivo);
 	void MenuPrincipal();
 	void ConsumoPorEstacion(int anio);
 	void PromedioRecaudacion();
