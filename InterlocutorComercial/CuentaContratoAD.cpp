@@ -27,14 +27,13 @@ int CuentaContratoAD::TotalCuentaContratoEnArchivo()
 	if (archivo.fail())
 		return -1;
 	
-	CuentaContrato cuenta;
 	int cantidad = 0;
 	
 	archivo.seekg(0, ios::end);
 	
 	int pos = archivo.tellg();
 	
-	cantidad = pos / sizeof(cuenta);
+	cantidad = pos / sizeof(CuentaContrato);
 	
 	archivo.close();
 	
@@ -52,18 +51,11 @@ bool CuentaContratoAD::GuardarEnArchivoCuentaContrato(CuentaContrato& contrato)
 	//if (archivo.fail())
 	if (archivo == NULL)
 		return false;
-	bool primerRegistro= true;
-
-	if(primerRegistro==false){
-		
-		int posArchivo = TotalCuentaContratoEnArchivo();
-		contrato.setNumPosicionArchivo(posArchivo);
-
-	} else {
-		contrato.setNumPosicionArchivo(1);
-		primerRegistro= false;
-	}
 	
+	int posArchivo = TotalCuentaContratoEnArchivo();
+
+	contrato.setNumPosicionArchivo(posArchivo);
+		
 	//archivo.write((char*)&contrato, sizeof(CuentaContrato));
 	fwrite(&contrato, sizeof contrato , 1, archivo);
 	//archivo.close();
