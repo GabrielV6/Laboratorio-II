@@ -24,7 +24,8 @@ public:
 	DocumentoRN(string nombreArchivo = "");
 	~DocumentoRN();
 	int IdDocumento(Documento& documento);
-	Documento BuscarDocumento(int id);///VER ESTO
+	Documento BuscarDocumento(int numero);
+	bool ValidarDocumentoNumero(int numero);
 	//Documento BuscarDocumento(int id);
 	float CalcularConsumo(float lectura);
 	bool ControlModificaciones(Documento& documento);

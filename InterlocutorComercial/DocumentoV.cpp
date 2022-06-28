@@ -13,6 +13,45 @@ DocumentoV::DocumentoV(string nombreArchivo)
 DocumentoV::~DocumentoV()
 {
 }
+///
+void DocumentoV::RegistrarPago()
+{
+	this->documento = Documento();
+	int numero;
+	char dato;
+
+	do {
+		system("cls||clear");
+		cout << "-------------------------------------------------" << endl;
+		cout << "Nuevo Registro de pago de Documento " << endl;
+		cout << "--------------------------------------------------" << endl;
+		numero = Validaciones::DatoObligarorioNum("Numero del Documento");
+		//VALIDAR QUE EL NUMERO DE FACTURA EXISTA 
+		
+		if (!this->documentoRN.ValidarDocumentoNumero(numero)) {
+			cout << "El numero ingresado no es valido " << endl;
+			
+		}
+		//seteo que se pago la factura y guardo en archivo
+		else 
+		{
+			
+			this->documento.setPago(true);
+			if (this->documentoRN.ControlModificaciones(documento))
+				cout << "EL PAGO FUE REGISTRADO EXITOSAMENTE" << endl;
+					
+		}
+		cout << "Desea cargar otro numero de documento?" << endl;
+		dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+		if (toupper(dato) != 'S') {
+			return;
+		}
+	}while (true);
+	
+}
+
+/// 
+/// 
 /// <summary>
 /// M�todo que permite dar de alta un Documento y lo graba en el archivo que contiene los documentos.
 /// </summary>
@@ -25,7 +64,6 @@ void DocumentoV::NuevoDocumento()
 	this->documento = Documento();
 	Fecha fecha;
 	int id;
-	//char dat;
 	bool volver = false;
 	float lecturaActual;
 	char dato;
@@ -161,6 +199,7 @@ void DocumentoV::ListarDocumentos()
 	}
 
 }
+
 /// <summary>
 /// Metodo que muestra un menu de opciones para las altas bajas y modificaciones de documentos.
 /// </summary>
@@ -175,6 +214,7 @@ void DocumentoV::MenuDocumento()
 		cout << "1. Nuevo Documento" << endl;
 		cout << "2. Listar Documentos" << endl;
 		cout << "3. Listar medidores disponibles" << endl;
+		cout << "4. Registrar el Pago de Documento" << endl;
 		cout << "0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
@@ -198,6 +238,11 @@ void DocumentoV::MenuDocumento()
 
 			break;
 		}
+		case 4:
+			
+			this->RegistrarPago();
+			break;
+
 		case 0:
 			salir = true;
 			system("cls||clear");

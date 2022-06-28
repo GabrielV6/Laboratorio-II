@@ -11,7 +11,7 @@ DocumentoRN::DocumentoRN(string nombreArchivo)
 {
 	this->documentoAD = DocumentoAD(nombreArchivo);
 	this->nombreArchivo = nombreArchivo;
-	
+
 }
 DocumentoRN::~DocumentoRN()
 {
@@ -38,6 +38,7 @@ bool DocumentoRN::AltaDocumento(Documento& documento)
 		if (id == -1) {
 			id = 0;
 		}
+		this->documento.setPosicionarch(id);
 		id += RANGO_NUMERICO;
 
 		documento.setNumero(id);
@@ -46,18 +47,31 @@ bool DocumentoRN::AltaDocumento(Documento& documento)
 
 	return this->documentoAD.GuardarEnArchivoDocumento(documento);
 }
-Documento DocumentoRN::BuscarDocumento(int id)
+Documento DocumentoRN::BuscarDocumento(int numero)
 {
-	Documento documentoAD = this->documentoAD.getDocumentoArchivo(id);
-	if (documentoAD.getNumero() == id)
+	Documento documentoAD = this->documentoAD.getDocumentoArchivo(numero);
+	if (documentoAD.getNumero() == numero)
 		return documentoAD;
 	return Documento();
 }
 
-bool DocumentoRN::ControlModificaciones(Documento& documento)
+
+bool DocumentoRN::ValidarDocumentoNumero(int numero)
 {
-	/// Hacer la validadciones correspondientes al Documento pasado por parametro
-	return true;
+	this->documento = DocumentoAD(NOMBRE_ARCH_DOC).getDocumentoArchivo(numero);
+
+	if (this->documento.getNumero() == numero)
+		return true;
+
+	return false;
+
+
+}
+bool DocumentoRN::ControlModificaciones(Documento& documento)
+{	
+	this->documentoAD.setNombreArchivo(NOMBRE_ARCH_DOC);
+	return this->documentoAD.ActualizarEnArchivoDocumento(documento);
+
 }
 long DocumentoRN::CantidadDocumentosEnSistema()
 {
@@ -67,7 +81,7 @@ string DocumentoRN::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
-//AGREGUE COMO GABY EN MEDIDORES
+
 vector<Documento> DocumentoRN::getDocumentos()
 {
 	return this->documentoAD.getDocumentosArchivo();
@@ -92,7 +106,7 @@ Medidor DocumentoRN::getMedidorArchivo(int id, string nomarch)
 }
 Medidor DocumentoRN::getMedidor()
 {
-	
+
 	return this->medidor;
 }
 Medidor DocumentoRN::setMedidor()
@@ -101,7 +115,7 @@ Medidor DocumentoRN::setMedidor()
 }
 
 //SETEAR LA LECTURA DEL MEDIDOR DEBE TOMAR LA NUEVA LECTURA
-void DocumentoRN::GuardarLectura(int id,float lecturaActual)
+void DocumentoRN::GuardarLectura(int id, float lecturaActual)
 {
 
 	medidor = medidorRN.BuscarCMedidor(id);
@@ -118,7 +132,7 @@ InterlocutorComercial DocumentoRN::getInterlocutorComercialArchivo(int id, strin
 }
 InterlocutorComercial DocumentoRN::getInterlocutorComercial()
 {
-	
+
 	return this->interlocutorComercial;
 }
 //MERTODO QUE BUSCA INTERLOCUTOR POR ID Y DEVUELVE EL NOMBRE
@@ -126,16 +140,16 @@ InterlocutorComercial DocumentoRN::getInterlocutorComercial()
 
 //METODO QUE BUSCA UNA CUENTA CONTRATO POR ID
 CuentaContrato DocumentoRN::getCuentaContratoArchivo(int id, string nomarch)
-{	
+{
 	CuentaContratoAD cuentaContratoAD(nomarch);
 	return cuentaContratoAD.getCuentaContratoArchivo(id);
 }
 CuentaContrato DocumentoRN::getCuentaContrato()
-{	
+{
 	return this->cc;
 }
-Tarifa DocumentoRN::getTarifaArchivo(int id, string nomarch )
-{ 
+Tarifa DocumentoRN::getTarifaArchivo(int id, string nomarch)
+{
 	TarifaAD tarifaAD(nomarch);
 	return tarifaAD.getTarifaArchivo(id);
 }
@@ -145,13 +159,13 @@ Tarifa DocumentoRN::getTarifa()
 }
 
 float DocumentoRN::CalcularConsumo(float lectura)
-{	
+{
 	float consumo = -1;
-	
-	if(lectura>=this->medidor.getLectura())
-	consumo = lectura - this->medidor.getLectura();
-	
- 
+
+	if (lectura >= this->medidor.getLectura())
+		consumo = lectura - this->medidor.getLectura();
+
+
 
 
 	return consumo;
@@ -160,17 +174,17 @@ float DocumentoRN::CalcularConsumo(float lectura)
 float DocumentoRN::CalcularImporte(float consumo)
 {
 	float importe;
-	
+
 	this->tarifa = this->getTarifaArchivo(this->cc.getId_Tarifa(), NOMBRE_ARCH_TAR);
 
-	
-	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo()+(tarifa.getCargoVariable() * consumo);
-	
+
+	return importe = tarifa.getImpuestos() + tarifa.getCargoFijo() + (tarifa.getCargoVariable() * consumo);
+
 }
 //BUSCO EL MEDIDOR Y LO VALIDO PARA SABER QUE ESTA CORRECTO
 bool DocumentoRN::validarIdMedidor(int id)
-{	
-	 
+{
+
 	this->medidor = this->getMedidorArchivo(id, NOMBRE_ARCH_MED);
 
 	if (this->medidor.getId() == id && this->medidor.getIdCuentaContrato() != 0) {
@@ -190,10 +204,10 @@ bool DocumentoRN::validarFechaDocumento(int id)
 	vector <Documento> documento = this->documentoAD.getDocumentosArchivo();
 	for (int i = 0; i < documento.size(); i++)
 	{
-		if (documento[i].getFecha().getMes() == aux.getMes()&& documento[i].getIdmed()==id)
+		if (documento[i].getFecha().getMes() == aux.getMes() && documento[i].getIdmed() == id)
 		{
-		return true;
+			return true;
 		}
-}
+	}
 	return false;
 }

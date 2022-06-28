@@ -17,7 +17,7 @@ public:
 	/// <returns>entero largo</returns>
 	int TotalDocumentosEnArchivo();
 	/// <summary>
-	/// M�todo que guarda el documento en el archivo de datos y devuelve verdadero cuando resulta correto la grabaci�n.
+	/// M�todo que guarda el documento en el archivo de datos y devuelve verdadero cuando resulta correto la grabacion.
 	/// </summary>
 	/// <returns>Booleano</returns>
 	bool GuardarEnArchivoDocumento(Documento& documento);
@@ -32,7 +32,7 @@ public:
 	/// </summary>
 	/// <param name="posicion"></param>
 	/// <returns>Documento</returns>
-	Documento getDocumentoArchivo(int id);
+	Documento getDocumentoArchivo(int numero);
 	/// <summary>
 	/// Funci�n que devuleve todos los documentos del archivo en un vector
 	/// </summary>
