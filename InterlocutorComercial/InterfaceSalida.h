@@ -25,6 +25,7 @@ public:
 	void MenuConsultas();
 	void MenuExportacion();
 	int ExportarIC();
+	void ClienteDatosComerciales(int dni);
 private:
 	string textoSalida;
 	vector<string> textosSalida;
