@@ -23,16 +23,18 @@ void InterlocutorComercialV::NuevoInterlocutor()
 	char dato;
 	do
 	{
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "Nuevo ingreso de datos del Interlocutor comercial" << endl;
 		cout << this->separador << endl;
-		cout << "Documento Nr.: ";
-		cin >> datos;
-		dni = stoi(datos);//Usar para pasar de string a int
+		dni = Validaciones::DatoObligarorioNum("Documento Nro");
 		if (this->interlocutorComercialRN.ExisteInterlocutorComercial(dni)) // LLamar metodo de regla de negocio que valida si existe el DNI
 		{
-			cout << "Documento ingresado ya esta dado de alta!!!" << endl;
-			system("cls||clear");
+			cout << "Documento mal ingresado o ya esta dado de alta!!!" << endl;
+			cout << "Cargar un nuevo ";
+			dato = Validaciones::DatoObligarorioChar("'S' o cualquier otra letra para salir");
+			if (toupper(dato) != 'S')
+				return;
 		}
 		else
 			break;
@@ -53,8 +55,8 @@ void InterlocutorComercialV::NuevoInterlocutor()
 		this->interlocutorComercial.setApellido(datos);
 
 		datos = Validaciones::DatoObligarorioCad("Correo:");
-		this->interlocutorComercial.setEmail(datos);		
-		
+		this->interlocutorComercial.setEmail(datos);
+
 		Direccion direccion;
 		cout << "Direccion: ";
 		direccion.CargarDireccion();
@@ -88,7 +90,7 @@ void InterlocutorComercialV::ListarInterlocutores(int opcion)
 	cout << separador << endl;
 	cout << "Listado de Interlocutor Comercial " + tipo << endl;
 	cout << separador << endl;
-	for (auto &intLoc : interlocutores)
+	for (auto& intLoc : interlocutores)
 	{
 		switch (opcion)
 		{
@@ -128,7 +130,7 @@ void InterlocutorComercialV::ListarInterlocutores(int opcion)
 		}
 		default:
 			break;
-		}		
+		}
 	}
 	cout << separador << endl;
 	Validaciones::SystemPause();
@@ -140,8 +142,32 @@ string InterlocutorComercialV::DarDatosListado(InterlocutorComercial intLoc, int
 	if (num == 0)
 		datos = intLoc.toStringInterlocutor(true, true);
 	if (num == 1)
-		datos = to_string(intLoc.getId_ic()) + "\t" + intLoc.getNombre() + "\t" + intLoc.getApellido() + "\t" + to_string(intLoc.getDni()) +
-		"\t" + intLoc.getEmail() + "\t" + intLoc.getFechaIngresoId().toStringFecha();
+	{
+		string espacios = "                                       ";
+		string dato = espacios;
+		dato = dato.insert(0, to_string(intLoc.getId_ic()));
+		datos = dato.erase(10);
+
+		dato = espacios;
+		dato = dato.insert(0, intLoc.getNombre());
+		datos += dato.erase(16);
+
+		dato = espacios;
+		dato = dato.insert(0, intLoc.getApellido());
+		datos += dato.erase(16);
+
+		dato = espacios;
+		dato = dato.insert(0, to_string(intLoc.getDni()));
+		datos += dato.erase(20);
+
+		dato = espacios;
+		dato = dato.insert(0, intLoc.getEmail());
+		datos += dato.erase(36);
+
+		dato = espacios;
+		dato = dato.insert(0, intLoc.getFechaIngresoId().toStringFecha());
+		datos += dato.erase(10);
+	}
 	return datos;
 }
 
@@ -229,7 +255,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "|\t2. Modificar apellido" << endl;
 		cout << "|\t3. Modificar e-mail" << endl;
 		cout << "|\t4. Modificar direccion" << endl;
-		cout << "|\t5. Modificar estado (Activo/Inactivo)" << endl;		
+		cout << "|\t5. Modificar estado (Activo/Inactivo)" << endl;
 		cout << "|\t0. Volver al menú anteriror" << endl;
 		cout << this->separador << endl;
 		//cout << "Opcion: ";
@@ -266,7 +292,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			Direccion direc;
 			direc.CargarDireccion();
 			this->interlocutorComercial.setDireccionId(direc);
-			break;			
+			break;
 		}
 		case 5:
 		{
@@ -354,10 +380,12 @@ void InterlocutorComercialV::setNombreArchivo(string nombreArchivo)
 {
 	this->nombreArchivo = nombreArchivo;
 }
+
 string InterlocutorComercialV::getNombreArchivo()
 {
 	return this->nombreArchivo;
 }
+
 void InterlocutorComercialV::setInterlocutorComercial(InterlocutorComercial& interlocutorComercial)
 {
 	this->interlocutorComercial = interlocutorComercial;

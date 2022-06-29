@@ -74,20 +74,26 @@ bool CuentaContratoV::AltaCuentaContrato(){
 
 void CuentaContratoV::ModificarTarifa(){
 
-	TarifaV tarifa(NOMBRE_ARCH_TAR);
+	TarifaV tarifaV(NOMBRE_ARCH_TAR);
+	TarifaAD tarifaAD(NOMBRE_ARCH_TAR);
+	Tarifa tarifa;
 	int tar=0;
 
 	cout << "A continuacion se muestran las tarifas disponibles: " << endl;
 	cout << endl;
-	tarifa.ListarTarifa();
+	tarifaV.ListarTarifa();
 	cout << endl;
 	
-			
-	tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
-	// validar que el numero ingresado corresponda con un id de tarifa
+	do{	
+
+		tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
+		// validar que el numero ingresado corresponda con un id de tarifa
+
+		tarifa = tarifaAD.getTarifaArchivo(tar);
+
+	} while ( tarifa.getIdTarifa()==0 || tarifa.getEstado()==false );
+	
 	this->cuentaContrato.setId_tarifa(tar);
-
-
 	this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
 
 	cout << "La tarifa actual de la Cuenta Contrato es: ";
@@ -130,17 +136,17 @@ void CuentaContratoV::AsociarMedidor(){
 
 	}while (nuevoMedidor.getId() == 0);
 	
-	// poner en 0 la cc en el medidor que se cambia
 	// se asigna medidor a cc y su estado pasa a ser Activo
 	cuentaContrato.setId_medidor(med);
 	cuentaContrato.setEstado(true);
 	
-	// modificar la cc asociada
+	// modificar el medidor asociado
 	nuevoMedidor.setIdCuentaContrato(cuentaContrato.getId_cc());
 	nuevoMedidor.setEstado(true);
-	// grabar en disco medidor
 	
+	// grabar en disco medidor
 	medidorAD.ActualizarEnArchivoMedidor(nuevoMedidor);
+	
 	// cambiar Estado de IC a true ---> buscar IC por ID, settearlo y grabarlo
 	interlocutor = interlocutorRN.BuscarInterlocutorComercialPorID(cuentaContrato.getId_ic());
 	interlocutor.setActivo(true);
@@ -272,7 +278,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << this->separador << endl;
 		cout << "Modificar Cuenta Contrato " << endl;
 		cout << this->separador << endl;
-		id = Validaciones::DatoObligarorioNum(" el ID de la Cuenta Contrato o 0 - Para salir");
+		id = Validaciones::DatoObligarorioNum(" el ID de la Cuenta Contrato o 0 para salir");
 
 		if (id == 0) {
 			return;
@@ -344,7 +350,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << "Asociar medidor " << endl;
 			cout << "El medidor actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Medidor() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N' para seleccionar otro: ");
+			dato = Validaciones::DatoObligarorioChar("'S' para seleccionar otro o 'N' para cancelar : ");
 
 			if (toupper(dato) == 'S')
 				this->AsociarMedidor();
