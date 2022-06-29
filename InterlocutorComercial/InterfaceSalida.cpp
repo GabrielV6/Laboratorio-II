@@ -391,18 +391,19 @@ void InterfaceSalida::MenuConsultas()
 		int anio;
 		int pago;
 		float porcentaje;
-		anio = Validaciones::DatoObligarorioNum("Anio a consultar");
-
+		cout << this->separador << endl << endl;
+		anio = Validaciones::DatoObligarorioNum("anio a consultar");
+		cout << this->separador << endl << endl;
 		pago = Validaciones::DatoObligarorioNum("Pagas (1) o Impagas (0)");
 
 		if (pago == 1 || pago == 0)
 		{
 			porcentaje = FacturasPorcentaje(anio, pago);
-			string pagos = pago ? "Pago" : "Impago";
+			string pagos = pago ? "pagos" : "impagos";
 			if (porcentaje > -1)
 			{	
 				cout << this->separador << endl << endl;
-				cout << "|\tEl porcentaje es del anio "<<pagos<<": % " << porcentaje << endl << endl;
+				cout << "|\tEl porcentaje del anio |"<<anio<<"| de los documentos "<<"|" << pagos <<"|" << " es |" << porcentaje << "%|" << endl << endl;
 				cout << this->separador << endl;
 			}
 			Validaciones::SystemPause();
@@ -762,8 +763,10 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 			}
 		}
 		else {
-			cout << this->separador << endl << endl;
-			cout << "\t\t|| No hay registro de facturacion en el anio elegido ||"<<endl;
+			cout << this->separador << endl;
+			cout<<"\t\t\t\t\t|| ATENCION ||" << endl;
+			cout << this->separador << endl;
+			cout << "\t\t|| No hay registro de documentos facturados en el anio ingresado ||"<<endl;
 			cout << this->separador << endl << endl;
 			return -1;
 		}
@@ -790,3 +793,5 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 	}
 
 }
+
+//

@@ -19,7 +19,7 @@ void DocumentoV::RegistrarPago()
 	this->documento = Documento();
 	int numero;
 	char dato;
-
+	int rangoDocumentos = 100;
 	do {
 		system("cls||clear");
 		cout << "-------------------------------------------------" << endl;
@@ -27,8 +27,8 @@ void DocumentoV::RegistrarPago()
 		cout << "--------------------------------------------------" << endl;
 		numero = Validaciones::DatoObligarorioNum("Numero del Documento");
 		//VALIDAR QUE EL NUMERO DE FACTURA EXISTA 
-
-		if (!this->documentoRN.ValidarDocumentoNumero(numero)) {
+		
+		if (!this->documentoRN.ValidarDocumentoNumero(numero)||numero<rangoDocumentos) {
 			cout << "El numero ingresado no es valido " << endl;
 
 		}
@@ -47,7 +47,7 @@ void DocumentoV::RegistrarPago()
 			}
 		}
 		cout << "Desea cargar otro numero de documento?" << endl;
-		dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+		dato = Validaciones::DatoObligarorioChar("'S' o 'N' para volver al menu");
 		if (toupper(dato) != 'S') {
 			return;
 		}
@@ -79,13 +79,33 @@ void DocumentoV::NuevoDocumento()
 		cout << "--------------------------------------------------" << endl;
 		id = Validaciones::DatoObligarorioNum("Id del Medidor");
 
-		if (!this->documentoRN.validarIdMedidor(id) || this->documentoRN.validarFechaDocumento(id)) {
-			cout << "El ID ingresado no es valido o documento ya generado" << endl;
+		if (!this->documentoRN.validarIdMedidor(id) ) {
+			cout << "El ID del medidor ingresado no es valido" << endl;
+			cout << "Desea ingresar otro ID?" << endl;
+			
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+			if (toupper(dato) == 'S') {
+				system("cls||clear");
+				continue;
+			}
+			else {
+				return;
+			}
+		}
+		if (this->documentoRN.validarFechaDocumento(id)) {
+			cout << this->separador << endl;
+			cout << "\t\t\t\t\t\tATENCION: " << endl;
+			cout << this->separador << endl;
+			cout << "\t\tEL ID DEL MEDIDOR INGRESADO YA TIENE UN DOCUMENTO GENERADO EN ESTE PERIDO" << endl;
+			cout << this->separador << endl;
+			cout<<"|Lo sentimos pero por regla de la empresa no puede generar mas de un documento por mes para el mismo ID|" << endl; 
+			cout << this->separador << endl;
 			cout << "Desea ingresar otro ID?" << endl;
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S') {
 				system("cls||clear");
 				continue;
+				volver = true;
 			}
 			else {
 				return;
@@ -111,13 +131,13 @@ void DocumentoV::NuevoDocumento()
 				cout << "\t\t\t\t\t\t\t\t\t\tLectura actual: " << lecturaActual << endl;
 				cout << "\t\t\t\t\t\t\t\t\t\tPor un consumo de: " << consumo << " KWH" << endl;
 				cout << this->separador << endl;
-				cout << "Desea continuar?" << endl;
+				cout << "Desea continuar creando el documento?" << endl;
+				cout << this->separador << endl;
 
-
-				dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+				dato = Validaciones::DatoObligarorioChar("'S' para crear el documento o 'N' para cancelar y volver al menu principal");
 				if (toupper(dato) == 'S')
 				{
-
+					//fecha.cargarFecha();
 					fecha.cargarFechaActual();
 					this->documento.setFecha(fecha);
 					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
@@ -148,7 +168,7 @@ void DocumentoV::NuevoDocumento()
 						Validaciones::SystemPause();
 						cout << this->separador << endl;
 						cout << "Desea cargar otro documento con un nuevo Id de medidor?" << endl;
-						dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
+						dato = Validaciones::DatoObligarorioChar("'S' o 'N' para volver al menu principal");
 						if (toupper(dato) == 'S')
 						{
 							system("cls||clear");
@@ -240,7 +260,7 @@ void DocumentoV::MenuDocumento()
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
-		cout << "|\t\tMenu Documento" << endl;
+		cout << "|\t\tMenu Principal de Documento" << endl;
 		cout << "-------------------------------------------------" << endl;
 		cout << "|\t1. Nuevo Documento" << endl;
 		cout << "|\t2. Registrar el Pago de Documento" << endl;
