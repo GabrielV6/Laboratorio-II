@@ -74,20 +74,26 @@ bool CuentaContratoV::AltaCuentaContrato(){
 
 void CuentaContratoV::ModificarTarifa(){
 
-	TarifaV tarifa(NOMBRE_ARCH_TAR);
+	TarifaV tarifaV(NOMBRE_ARCH_TAR);
+	TarifaAD tarifaAD(NOMBRE_ARCH_TAR);
+	Tarifa tarifa;
 	int tar=0;
 
 	cout << "A continuacion se muestran las tarifas disponibles: " << endl;
 	cout << endl;
-	tarifa.ListarTarifa();
+	tarifaV.ListarTarifa();
 	cout << endl;
 	
-			
-	tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
-	// validar que el numero ingresado corresponda con un id de tarifa
+	do{	
+
+		tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
+		// validar que el numero ingresado corresponda con un id de tarifa
+
+		tarifa = tarifaAD.getTarifaArchivo(tar);
+
+	} while ( tarifa.getIdTarifa()==0 || tarifa.getEstado()==false );
+	
 	this->cuentaContrato.setId_tarifa(tar);
-
-
 	this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
 
 	cout << "La tarifa actual de la Cuenta Contrato es: ";
