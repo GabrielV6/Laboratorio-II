@@ -96,7 +96,7 @@ bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 				interlocutorArch.setDni(stoi(splitted));
 				break;
 			case 4:
-				interlocutorArch.setEmail(splitted);				
+				interlocutorArch.setEmail(splitted);
 				break;
 			case 5:
 			{
@@ -388,24 +388,27 @@ void InterfaceSalida::MenuConsultas()
 		}
 		case 4:
 		{	system("cls||clear");
-			int anio;
-			int pago;
-			float porcentaje;
-			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
-			
-			pago = Validaciones::DatoObligarorioNum("Pagas (1) o Impagas (0)");
-			if (pago == 1 || pago == 0)
+		int anio;
+		int pago;
+		float porcentaje;
+		anio = Validaciones::DatoObligarorioNum("Anio a consultar");
+
+		pago = Validaciones::DatoObligarorioNum("Pagas (1) o Impagas (0)");
+		if (pago == 1 || pago == 0)
+		{
+			porcentaje = FacturasPorcentaje(anio, pago);
+			if (porcentaje > -1)
 			{
-				porcentaje = FacturasPorcentaje(anio, pago);
+				cout << this->separador << endl << endl;
+				cout << "|\tEl porcentaje es: % " << porcentaje << endl << endl;
 				cout << this->separador << endl;
-				cout << "El porcentaje es: % " << porcentaje << endl;
-				cout << this->separador << endl;
-				Validaciones::SystemPause();
-				break;
 			}
-			else {
-				break;
-			}
+			Validaciones::SystemPause();
+			break;
+		}
+		else {
+			break;
+		}
 		}
 		case 0:
 		{
@@ -652,10 +655,10 @@ float CalRecaudacion(int dni, int opcion) {
 	else {
 
 		if (promedioCliente != 0 && contadorCliente != 0) {
-				return float(promedioCliente / contadorCliente);
-			}
+			return float(promedioCliente / contadorCliente);
+		}
 		return -2;
-			
+
 	}
 }
 
@@ -732,7 +735,7 @@ void InterfaceSalida::ClienteDatosComerciales(int dni)
 }
 
 ///REPORTE DE PORCENTAJE DE FACTURAS PAGAS O IMPAGAS POR ANIO
-float  InterfaceSalida :: FacturasPorcentaje(int anio, bool pago) {
+float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 
 	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
@@ -740,40 +743,47 @@ float  InterfaceSalida :: FacturasPorcentaje(int anio, bool pago) {
 
 	// Si el pago es false (esta pendiente) y no se cuenta
 	int contadorNopago = 0, contadorPago = 0, contadorDocumentos = 0;
-	float porcenPago, porcenNoPago;
+	float porcenPago = 0, porcenNoPago = 0;
 
 	for (int i = 0; i < documentos.size(); i++) {
-
-		if (documentos[i].getPago() == true && documentos[i].getFecha().getAnio() == anio)
+		if (documentos[i].getFecha().getAnio() == anio)
 		{
+			if (documentos[i].getPago() == true)
+			{
 				contadorPago++;
-		}
-		if (documentos[i].getPago() == false && documentos[i].getFecha().getAnio() == anio) {
+			}
+			else
+
+			{
 				contadorNopago++;
 
-			
+			}
 		}
-
+		else {
+			cout << this->separador << endl << endl;
+			cout << "\t\t|| No hay registro de facturacion en el anio elegido ||"<<endl;
+			cout << this->separador << endl << endl;
+			return -1;
+		}
 	}
-	
 	contadorDocumentos = contadorPago + contadorNopago;
 	porcenPago = float(contadorPago * 100) / contadorDocumentos;
 	porcenNoPago = float(contadorNopago * 100) / contadorDocumentos;
-	if(porcenPago<0||porcenNoPago<0)
+	if (porcenPago < 0 || porcenNoPago < 0)
 	{
 		porcenPago = 0;
 		porcenNoPago = 0;
-		return 0;
+		return -1;
 	}
-			
+
 	if (pago == true)
 	{
-		//cout << "El porcentaje de facturas pagas es %: ";
+
 		return porcenPago;
 	}
 	else
 	{
-		//cout << "El porcentaje de facturas impagas es %: ";
+
 		return porcenNoPago;
 	}
 

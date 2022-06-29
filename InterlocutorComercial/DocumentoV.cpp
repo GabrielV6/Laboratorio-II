@@ -75,7 +75,7 @@ void DocumentoV::NuevoDocumento()
 
 	do {
 		cout << "-------------------------------------------------" << endl;
-		cout << "Nuevo ingreso de datos del Documento " << endl;
+		cout << "\tNuevo ingreso de datos del Documento " << endl;
 		cout << "--------------------------------------------------" << endl;
 		id = Validaciones::DatoObligarorioNum("Id del Medidor");
 
@@ -97,12 +97,15 @@ void DocumentoV::NuevoDocumento()
 			float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
 			if (consumo >= 0)
 			{
+				system("cls||clear");
 				cout << this->separador << endl;
 				cout << "\t\t\t\t\tATENCION! " << endl;
 				cout << this->separador << endl;
-				cout << "ESTA CREANDO UN NUEVO DOCUMENTO CON EL NUMERO " << documentoRN.IdDocumento(documento) << endl;
-				cout << "PARA EL CLIENTE | NOMBRE: " << this->documentoRN.getInterlocutorComercial().getNombre();
-				cout << "\tAPELLIDO: " << this->documentoRN.getInterlocutorComercial().getApellido() << endl;
+				cout << "\t\t\tESTA CREANDO UN NUEVO DOCUMENTO CON EL NUMERO | " << documentoRN.IdDocumento(documento)<<" |" << endl;
+				cout << this->separador << endl;
+				cout << "PARA EL CLIENTE" << endl;				
+				cout <<"\t\t\t|APELLIDO:\t" << this->documentoRN.getInterlocutorComercial().getApellido()<<"|"<< endl;
+				cout << "\t\t\t|NOMBRE: \t" << this->documentoRN.getInterlocutorComercial().getNombre() << "|" << endl;				
 				cout << this->separador << endl;
 				cout << "\t\t\t\t\t\t\t\t\t\tLectura anterior: " << documentoRN.getMedidor().getLectura() << endl;
 				cout << "\t\t\t\t\t\t\t\t\t\tLectura actual: " << lecturaActual << endl;
@@ -128,7 +131,7 @@ void DocumentoV::NuevoDocumento()
 					//SE GUARDA LA FACTURA EN DISCO
 					if (this->documentoRN.AltaDocumento(this->documento)) {
 						cout << this->separador << endl;
-						cout << "\t\t\t\tSE CREO EL SIGUIENTE DOCUMENTO EXITOSAMENTE" << endl;
+						cout << "\t\t\t\tDOCUMENTO CREADO EXITOSAMENTE" << endl;
 						cout << this->separador << endl;
 						cout << "NUMERO DE DOCUMENTO: " << documento.getNumero() << "\t\tNUMERO DE CLIENTE: " << documento.getIdinter() << "\t\t\tFecha de creacion:" << documento.getFecha().toStringFecha() << endl;
 						cout << this->separador << endl;
@@ -236,19 +239,24 @@ void DocumentoV::MenuDocumento()
 	do
 	{
 		cout << "-------------------------------------------------" << endl;
-		cout << "Menu Documento" << endl;
+		cout << "|\t\tMenu Documento" << endl;
 		cout << "-------------------------------------------------" << endl;
-		cout << "1. Nuevo Documento" << endl;
-		cout << "2. Registrar el Pago de Documento" << endl;
-		cout << "3. Listar Documentos" << endl;
-		cout << "4. Listar Documentos Pagos" << endl;
-		cout << "5. Listar Documentos Impagos" << endl;
-		cout << "6. Listar Medidores disponibles" << endl;
-		cout << "0. Salir" << endl;
+		cout << "|\t1. Nuevo Documento" << endl;
+		cout << "|\t2. Registrar el Pago de Documento" << endl;
+		cout << "|\t3. Listar Documentos" << endl;
+		cout << "|\t4. Listar Documentos Pagos" << endl;
+		cout << "|\t5. Listar Documentos Impagos" << endl;
+		cout << "|\t6. Listar Medidores disponibles" << endl;
+		cout << "|\t0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;
-		cout << "Ingrese una opcion: ";
+		cout << "-------------------------------------------------" << endl;
+		cout << "\t   Ingrese una opcion: ";
+		//cout << this->separador << endl;
 		cin >> opcion;
+		
+		cout << "-------------------------------------------------" << endl;
+		
 		switch (opcion)
 		{
 		case 1:
