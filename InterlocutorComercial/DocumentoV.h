@@ -14,6 +14,9 @@ public:
 	~DocumentoV();
 	void NuevoDocumento();
 	void ListarDocumentos();
+	void RegistrarPago();
+	void ListarDocumentosImpagos();
+	void ListarDocumentosPagos();
 	//void ModificarDocumento();
 	//void MenuModificarDocumento();
 	void MenuDocumento();

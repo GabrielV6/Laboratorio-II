@@ -1,10 +1,8 @@
 #include "InterfaceSalida.h"
 #include "CuentaContratoAD.h"
 #include "MedidorAD.h"
-#include "Validaciones.h"
 #include "InterlocutorComercialV.h"
 #include "MedidorV.h"
-//#include "Validaciones.h"
 #include "DocumentoV.h"
 #include "TarifaV.h"
 #include "CuentaContratoV.h"
@@ -51,6 +49,107 @@ bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArc
 	for (auto& texto : textos)
 		archivo << texto + "\n";
 
+	archivo.close();
+	return true;
+}
+
+
+bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
+{
+	ifstream archivo;
+	archivo.open(nombreArchivo, ios::in);
+
+	if (archivo.fail())
+		return false;
+	string str = "";
+	char pattern = ';';
+	int posInit = 0;
+	vector<string> results;
+	while (getline(archivo, str))
+	{
+		InterlocutorComercial interlocutorArch;
+		string splitted;
+		Direccion direccion;
+		Fecha fecha;
+		int indice = 0;
+		int posFound = 0;
+
+		while (posFound >= 0)
+		{
+			
+			int dia, mes, anio;
+			posFound = str.find(pattern, posInit);
+			splitted = str.substr(posInit, posFound - posInit);
+			switch (indice)
+			{
+			case 0:
+				interlocutorArch.setId_ic(stoi(splitted));
+				break;
+			case 1:
+				interlocutorArch.setNombre(splitted);
+				break;
+			case 2:
+				interlocutorArch.setApellido(splitted);
+				// medArch.setEstado(splitted == "true" ? true : false);
+				break;
+			case 3:
+				interlocutorArch.setDni(stoi(splitted));
+				break;
+			case 4:
+				interlocutorArch.setEmail(splitted);				
+				break;
+			case 5:
+			{
+				anio = stoi(splitted);
+				fecha.setAnio(anio);
+				break;
+			}
+			case 6:
+			{
+				mes = stoi(splitted);
+				fecha.setMes(stoi(splitted));
+				break;
+			}
+			case 7:
+			{
+				dia = stoi(splitted);
+				fecha.setDia(dia);
+				interlocutorArch.setFechaIngresoId(fecha);
+				break;
+			}
+			case 8:
+				direccion.setCalle(splitted);
+				break;
+			case 9:
+				direccion.setNumero(stoi(splitted));
+				break;
+			case 10:
+				direccion.setCodPostal(splitted);
+				break;
+			case 11:
+				direccion.setLocalidad(splitted);
+				break;
+			case 12:
+			{
+				direccion.setProvincia(splitted);
+				interlocutorArch.setDireccionId(direccion);
+				break;
+			}
+			case 13:
+				interlocutorArch.setNumPosicionArchivo(stoi(splitted));
+				break;
+			case 14:
+				interlocutorArch.setActivo(splitted == "true" ? true : false);
+				break;
+			default:
+				break;
+			}
+			indice++;
+			posInit = posFound + 1;
+		}
+		InterlocutorComercialAD interlocutorAD(NOMBRE_ARCH_IC);
+		interlocutorAD.GuardarEnArchivoInterlocutor(interlocutorArch);
+	}
 	archivo.close();
 	return true;
 }
@@ -453,6 +552,11 @@ void InterfaceSalida::PromedioRecaudacion()
 				Validaciones::SystemPause();
 				break;
 			}
+			else {
+				if (retorno == -2) {
+					retorno = 0;
+				}
+			}
 			//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
 			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
 			cout << this->separador << endl;
@@ -524,7 +628,12 @@ float CalRecaudacion(int dni, int opcion) {
 
 	}
 	else {
-		return float(promedioCliente / contadorCliente);
+
+		if (promedioCliente != 0 && contadorCliente != 0) {
+				return float(promedioCliente / contadorCliente);
+			}
+		return -2;
+			
 	}
 }
 
