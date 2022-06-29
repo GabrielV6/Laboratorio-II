@@ -26,6 +26,7 @@ public:
 	void MenuConsultas();
 	void MenuExportacion();
 	int ExportarIC();
+	int ExportarPromedioRecaudacion();
 	void ClienteDatosComerciales(int dni);
 	float FacturasPorcentaje(int anio, bool pago);
 

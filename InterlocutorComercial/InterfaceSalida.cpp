@@ -315,6 +315,7 @@ void InterfaceSalida::MenuExportacion()
 		cout << "\t*** EXPORTACION DE DATOS FORMATO CSV ***" << endl;
 		cout << this->separador << endl;
 		cout << "|1. Exportacion de Interlocutores Comerciales" << endl;
+		cout << "|2. Exportacion de Promedio de recaudacion Anual/Clientes" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -331,7 +332,11 @@ void InterfaceSalida::MenuExportacion()
 		}
 		case 2:
 		{
-
+			system("cls||clear");
+			int ok = this->ExportarPromedioRecaudacion(); //FALTA POR GENERAR
+			if (this->ExportarPromedioRecaudacion() == 0)
+				cout << "\tExportación correcta" << endl;
+			Validaciones::SystemPause();
 			break;
 		}
 		case 0:
@@ -674,6 +679,12 @@ int InterfaceSalida::ExportarIC()
 	{
 		return -1;
 	}
+	return 0;
+}
+
+int InterfaceSalida::ExportarPromedioRecaudacion()
+{
+	//FALTA GENERAR LOGICA 
 	return 0;
 }
 
