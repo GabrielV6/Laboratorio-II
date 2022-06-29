@@ -98,8 +98,9 @@ void CuentaContratoV::ModificarTarifa(){
 void CuentaContratoV::AsociarMedidor(){
 
 	MedidorV medidorV(NOMBRE_ARCH_MED);
-	MedidorRN MedidorRN (NOMBRE_ARCH_MED);
-	Medidor auxMedidor;
+	MedidorRN medidorRN (NOMBRE_ARCH_MED);
+	MedidorAD medidorAD(NOMBRE_ARCH_MED);
+	Medidor nuevoMedidor, medidorAnterior;
 	InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
 	InterlocutorComercial interlocutor;
 
@@ -107,6 +108,7 @@ void CuentaContratoV::AsociarMedidor(){
 	cout << endl;
 	
 	medidorV.ListarMedidor(false); // se muestran medidores inactivos
+	cout << endl;
 	
 	cout << endl;
 	int med=0;
@@ -114,24 +116,31 @@ void CuentaContratoV::AsociarMedidor(){
 		med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar: ");
 	
 		// validar que el numero ingresado corresponda con un id de medidor
-		auxMedidor = MedidorRN.BuscarCMedidor(med);
+		// si existe queda cargado en auxMedidor
+		nuevoMedidor = medidorRN.BuscarCMedidor(med);
+		
 
-	}while (auxMedidor.getId() == 0);
+		if(nuevoMedidor.getId()!=0){ // si existe, modifico el estado del medidor anterior y lo grabo
+			
+			medidorAnterior = medidorRN.BuscarCMedidor(this->cuentaContrato.getId_Medidor());
+			medidorAnterior.setIdCuentaContrato(0);
+	        medidorAnterior.setEstado(false);
+			medidorAD.ActualizarEnArchivoMedidor(medidorAnterior);
+		}
+
+	}while (nuevoMedidor.getId() == 0);
 	
-	
-	if(auxMedidor.getId())
 	// poner en 0 la cc en el medidor que se cambia
 	// se asigna medidor a cc y su estado pasa a ser Activo
 	cuentaContrato.setId_medidor(med);
 	cuentaContrato.setEstado(true);
-	// buscar medidor y cargarlo
-	auxMedidor = MedidorRN.BuscarCMedidor(med);
+	
 	// modificar la cc asociada
-	auxMedidor.setIdCuentaContrato(cuentaContrato.getId_cc());
-	auxMedidor.setEstado(true);
+	nuevoMedidor.setIdCuentaContrato(cuentaContrato.getId_cc());
+	nuevoMedidor.setEstado(true);
 	// grabar en disco medidor
-	MedidorAD medidorAD(NOMBRE_ARCH_MED);
-	medidorAD.ActualizarEnArchivoMedidor(auxMedidor);
+	
+	medidorAD.ActualizarEnArchivoMedidor(nuevoMedidor);
 	// cambiar Estado de IC a true ---> buscar IC por ID, settearlo y grabarlo
 	interlocutor = interlocutorRN.BuscarInterlocutorComercialPorID(cuentaContrato.getId_ic());
 	interlocutor.setActivo(true);
