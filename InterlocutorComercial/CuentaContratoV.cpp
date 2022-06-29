@@ -88,7 +88,7 @@ void CuentaContratoV::ModificarTarifa(){
 
 	this->cuentaContratoRN.ModificarTarifaCuentaContrato(this->cuentaContrato);
 
-	cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
+	cout << "La tarifa actual de la Cuenta Contrato es: ";
 	cout << this->cuentaContrato.getId_Tarifa() << endl;
 	cout << this->separador << endl;
 
@@ -149,7 +149,7 @@ void CuentaContratoV::MenuCuentaContrato()
 		cout << this->separador << endl;
 		int opcion;
 
-		opcion = Validaciones::DatoObligarorioNum("una opción");
+		opcion = Validaciones::DatoObligarorioNum("una opcion");
 
 		switch (opcion)
 		{
@@ -177,7 +177,7 @@ void CuentaContratoV::MenuCuentaContrato()
 			break;
 
 		default:
-			cout << "Opción no valida" << endl;
+			cout << "Opcion no valida" << endl;
 			break;
 		}
 	} while (salir == false);
@@ -265,7 +265,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		{
 			cout << "No existe Cuenta Contrato con ese ID " << endl;
 			system("pause");
-			system("cls");
+			system("cls || clear");
 		}
 		else
 			break;
@@ -283,7 +283,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
-		opcion = Validaciones::DatoObligarorioNum("Opción:");
+		opcion = Validaciones::DatoObligarorioNum("una opcion:");
 
 		string datos;
 		char dato;
@@ -293,15 +293,15 @@ void CuentaContratoV::ModificarCuentaContrato()
 		case 1:
 		{
 			cout << "Modificar estado " << endl;
-			cout << "El estado de la Cuenta Contrato es: " << endl;
+			cout << "El estado de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getEstado() << endl;
-			dato = Validaciones::DatoObligarorioChar(" Confirma la modificacion: 'S' o 'N'");
+			dato = Validaciones::DatoObligarorioChar("'S' para confirmar la modificacion o 'N' para no hacerlo.");
 
 			if (toupper(dato) == 'S')
 				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
 			break;
 
-			cout << "El actual estado de la Cuenta Contrato es: " << endl;
+			cout << "El actual estado de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getEstado() << endl;
 			cout << this->separador << endl;
 		}
@@ -310,9 +310,9 @@ void CuentaContratoV::ModificarCuentaContrato()
 
 		
 			cout << "Modificar tarifa " << endl;
-			cout << "La tarifa actual de la Cuenta Contrato es: " << endl;
+			cout << "La tarifa actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Tarifa() << endl;
-			dato = Validaciones::DatoObligarorioChar(" Desea modificar la tarifa? 'S' o 'N'");
+			dato = Validaciones::DatoObligarorioChar(" 'S' para modificar la tarifa o 'N' para conservala.");
 
 				if (toupper(dato) == 'S')
 					this->ModificarTarifa();
@@ -323,14 +323,14 @@ void CuentaContratoV::ModificarCuentaContrato()
 		case 3:
 		{
 			cout << "Modificar medidor " << endl;
-			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
+			cout << "El medidor actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Medidor() << endl;
-			dato = Validaciones::DatoObligarorioChar(" Desea asignarle otro medidor? 'S' o 'N'");
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N' para no modificarlo. ");
 
 			if (toupper(dato) == 'S')
 				this->AsociarMedidor();
 
-			cout << "El medidor actual de la Cuenta Contrato es: " << endl;
+			cout << "El medidor actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Medidor() << endl;
 			cout << this->separador << endl;
 			break;
