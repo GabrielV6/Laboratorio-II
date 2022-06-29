@@ -24,9 +24,9 @@ bool InterlocutorComercialRN::ModificaInterlocutorComercial(InterlocutorComercia
 bool InterlocutorComercialRN::ExisteInterlocutorComercial(int dni)
 {
 	InterlocutorComercial intlocutorExiste = this->BuscarInterlocutorComercial(dni);
-	if (intlocutorExiste.getNombre() == "" && intlocutorExiste.getApellido() == "")
-		return false;
-	return true;
+	if (intlocutorExiste.getId_ic() > 0 || dni <= 0)
+		return true;
+	return false;
 }
 InterlocutorComercial InterlocutorComercialRN::BuscarInterlocutorComercial(int dni)
 {

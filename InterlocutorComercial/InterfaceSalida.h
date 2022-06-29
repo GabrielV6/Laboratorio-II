@@ -21,11 +21,12 @@ public:
 	bool LeeTextosEntrada(string nombreArchivo);
 	bool LeeTextosEntradaInterlocutor(string nombreArchivo);
 	void MenuPrincipal();
-	void ConsumoPorEstacion(int anio);
+	void ConsumoTrimestralPorAnio(int anio);
 	void PromedioRecaudacion();
 	void MenuConsultas();
 	void MenuExportacion();
 	int ExportarIC();
+	int ExportarPromedioRecaudacion();
 	void ClienteDatosComerciales(int dni);
 	float FacturasPorcentaje(int anio, bool pago);
 
