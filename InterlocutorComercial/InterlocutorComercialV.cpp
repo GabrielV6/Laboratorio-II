@@ -128,8 +128,7 @@ void InterlocutorComercialV::ListarInterlocutores(int opcion)
 		}
 		default:
 			break;
-		}
-		cout << separador << endl;
+		}		
 	}
 	cout << separador << endl;
 	Validaciones::SystemPause();
