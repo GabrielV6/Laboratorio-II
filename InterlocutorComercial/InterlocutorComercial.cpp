@@ -1,5 +1,6 @@
 #include "InterlocutorComercial.h"
 
+
 InterlocutorComercial::InterlocutorComercial()
 {
 	this->id_ic = 0;

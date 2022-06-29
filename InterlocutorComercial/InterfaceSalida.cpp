@@ -1,6 +1,6 @@
 #include "InterfaceSalida.h"
-#include "CuentaContratoAD.h"
-#include "MedidorAD.h"
+#include "CuentaContratoV.h"
+#include "MedidorV.h"
 #include "InterlocutorComercialV.h"
 #include "MedidorV.h"
 #include "DocumentoV.h"
