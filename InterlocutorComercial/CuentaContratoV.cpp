@@ -56,6 +56,7 @@ bool CuentaContratoV::AltaCuentaContrato(){
 	} else {
 		
 		cout << "La Cuenta Contrato sera dada de alta para: " << endl;
+		cout << endl;
 		cout << interlocutor.toStringInterlocutor() << endl;
 		cout << endl;
 
@@ -63,6 +64,7 @@ bool CuentaContratoV::AltaCuentaContrato(){
 		cuentaContrato.setId_cc(interlocutor.getId_ic());
 		cuentaContrato.setId_ic(interlocutor.getId_ic());
 		cout << "El ID de la Cuenta Contrato es: " << cuentaContrato.getId_ic() << endl;
+		cout << endl;
 		this->cuentaContratoRN.AltaCuentaContrato(cuentaContrato);
 		Validaciones::SystemPause();
 		return true;
@@ -81,7 +83,7 @@ void CuentaContratoV::ModificarTarifa(){
 	cout << endl;
 	
 			
-	tar= Validaciones::DatoObligarorioNum(" la tarifa que desea asigar: ");
+	tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
 	// validar que el numero ingresado corresponda con un id de tarifa
 	this->cuentaContrato.setId_tarifa(tar);
 
@@ -108,7 +110,7 @@ void CuentaContratoV::AsociarMedidor(){
 	
 	cout << endl;
 	int med=0;
-	med= Validaciones::DatoObligarorioNum("el medidor que desea asigar: ");
+	med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar: ");
 	
 	// validar que el numero ingresado corresponda con un id de medidor
 	// poner en 0 la cc en el medidor que se cambia
@@ -196,7 +198,7 @@ void CuentaContratoV::NuevaCuentaContrato()
 		cout << this->separador << endl;
 
 		InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
-		dni = Validaciones::DatoObligarorioNum("Ingrese el numero de DNI del Interlocutor Comercial: "); 
+		dni = Validaciones::DatoObligarorioNum(" el numero de DNI del Interlocutor Comercial: "); 
 		bool existe = interlocutorRN.ExisteInterlocutorComercial(dni);
 		
 			if(!existe){
@@ -254,7 +256,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << this->separador << endl;
 		cout << "Modificar Cuenta Contrato " << endl;
 		cout << this->separador << endl;
-		id = Validaciones::DatoObligarorioNum("ID o 0 - Para salir");
+		id = Validaciones::DatoObligarorioNum(" el ID de la Cuenta Contrato o 0 - Para salir");
 
 		if (id == 0) {
 			return;
@@ -264,7 +266,8 @@ void CuentaContratoV::ModificarCuentaContrato()
 		if (this->cuentaContrato.getId_cc() != id) // Valida si existe una CC con ese Id
 		{
 			cout << "No existe Cuenta Contrato con ese ID " << endl;
-			system("pause");
+			cout << endl;
+			Validaciones::SystemPause();
 			system("cls || clear");
 		}
 		else
@@ -279,7 +282,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << this->separador << endl;
 		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
 		cout << "2. Modificar tarifa " << endl;
-		cout << "3. Modificar medidor " << endl;
+		cout << "3. Asociar medidor " << endl;
 		cout << "0. Volver al menú anterior" << endl;
 		cout << this->separador << endl;
 
@@ -295,7 +298,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << "Modificar estado " << endl;
 			cout << "El estado de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getEstado() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' para confirmar la modificacion o 'N' para no hacerlo.");
+			dato = Validaciones::DatoObligarorioChar("'S' para confirmar la modificacion o 'N' para cancelar.");
 
 			if (toupper(dato) == 'S')
 				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
@@ -322,10 +325,10 @@ void CuentaContratoV::ModificarCuentaContrato()
 		}
 		case 3:
 		{
-			cout << "Modificar medidor " << endl;
+			cout << "Asociar medidor " << endl;
 			cout << "El medidor actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Medidor() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' o 'N' para no modificarlo. ");
+			dato = Validaciones::DatoObligarorioChar("'S' o 'N' para seleccionar otro: ");
 
 			if (toupper(dato) == 'S')
 				this->AsociarMedidor();
@@ -343,14 +346,6 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << "Opción invalida." << endl;
 			break;
 	}
-
-		if (opcion != 0)
-		{
-			if (!this->cuentaContratoRN.ModificarCuentaContrato(this->cuentaContrato))
-				cout << "Falló la modificación, intente nuevamante" << endl;
-			else
-				cout << "Modificación realizada correctamente" << endl;
-		}
 
 		Validaciones::SystemPause();
 
