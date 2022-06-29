@@ -53,7 +53,6 @@ bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArc
 	return true;
 }
 
-
 bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 {
 	ifstream archivo;
@@ -354,7 +353,7 @@ void InterfaceSalida::MenuConsultas()
 		cout << "\t***CONSULTAS DE GESTION ENERGETICA***" << endl;
 		cout << "\t**********REPORTES**********" << endl;
 		cout << this->separador << endl;
-		cout << "|\t1. Consulta energia estacionaria" << endl;
+		cout << "|\t1. Consulta energia trimestral anual" << endl;
 		cout << "|\t2. Promedio de recaudacion" << endl;
 		cout << "|\t3. Consulta cliente datos comerciales" << endl;
 		cout << "|\t4. Reporte Anual de Documentos Pagos e Impagos" << endl;
@@ -370,7 +369,7 @@ void InterfaceSalida::MenuConsultas()
 			system("cls||clear");
 			int anio;
 			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
-			ConsumoPorEstacion(anio);
+			ConsumoTrimestralPorAnio(anio);
 			break;
 		}
 		case 2:
@@ -422,7 +421,7 @@ void InterfaceSalida::MenuConsultas()
 	} while (true);
 }
 
-void InterfaceSalida::ConsumoPorEstacion(int anio)
+void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 {
 	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
@@ -433,26 +432,26 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 	{
 		if (doc.getFecha().getAnio() == anio)
 		{
-			// Verano
-			if (doc.getFecha().getMes() >= 12 && doc.getFecha().getDia() >= 21 && doc.getFecha().getMes() <= 3 && doc.getFecha().getDia() <= 20)
+			// Priemr Trimestre
+			if (doc.getFecha().getMes() >= 1 && doc.getFecha().getMes() <= 3)
 			{
 				totalConsumoVerano += doc.getConsumo();
 				cantidadDocVerano++;
 			}
-			// Otoño
-			if (doc.getFecha().getMes() >= 4 && doc.getFecha().getDia() >= 21 && doc.getFecha().getMes() <= 6 && doc.getFecha().getDia() <= 20)
+			// Segundo Trimestre
+			if (doc.getFecha().getMes() >= 4 && doc.getFecha().getMes() <= 6)
 			{
 				totalConsumoOtonio += doc.getConsumo();
 				cantidadDocOtonio++;
 			}
-			// Invierno
-			if (doc.getFecha().getMes() >= 7 && doc.getFecha().getDia() >= 21 && doc.getFecha().getMes() <= 9 && doc.getFecha().getDia() <= 20)
+			// Tercero
+			if (doc.getFecha().getMes() >= 7 && doc.getFecha().getMes() <= 9)
 			{
 				totalConsumoInvierno += doc.getConsumo();
 				cantidadDocInvierno++;
 			}
-			// Primavera
-			if (doc.getFecha().getMes() >= 10 && doc.getFecha().getDia() >= 21 && doc.getFecha().getMes() <= 12 && doc.getFecha().getDia() <= 20)
+			// Cuarto
+			if (doc.getFecha().getMes() >= 10 && doc.getFecha().getMes() <= 12)
 			{
 				totalConsumoPrimavera += doc.getConsumo();
 				cantidadDocPrimavera++;
@@ -469,53 +468,53 @@ void InterfaceSalida::ConsumoPorEstacion(int anio)
 	cout << separador << endl;
 	if (cantidadDocVerano > 0)
 	{
-		cadena = "VERANO - Total consumo: " + to_string(totalConsumoVerano) + "\t Promedio: " + to_string(totalConsumoVerano / cantidadDocVerano);
+		cadena = "1er Trimestre - Total consumo: " + to_string(totalConsumoVerano) + "\t Promedio: " + to_string(totalConsumoVerano / cantidadDocVerano);
 		cout << "|" << cadena << endl;
-		cadena = "Verano," + to_string(totalConsumoVerano) + "," + to_string(totalConsumoVerano / cantidadDocVerano);
+		cadena = "1er Trimestre," + to_string(totalConsumoVerano) + "," + to_string(totalConsumoVerano / cantidadDocVerano);
 		datosAExportar.push_back(cadena);
 	}
 	else
 	{
-		cadena = "VERANO - No hay consumos registrados ";
+		cadena = "1er Trimestre - No hay consumos registrados ";
 		cout << "|" << cadena << endl;
 		datosAExportar.push_back(cadena);
 	}
 	if (cantidadDocOtonio > 0)
 	{
-		cadena = "OTOÑO - Total consumo: " + to_string(totalConsumoOtonio) + "\t Promedio: " + to_string(totalConsumoOtonio / cantidadDocOtonio);
+		cadena = "2do Trimestre - Total consumo: " + to_string(totalConsumoOtonio) + "\t Promedio: " + to_string(totalConsumoOtonio / cantidadDocOtonio);
 		cout << "|" << cadena << endl;
-		cadena = "Otoño," + to_string(totalConsumoOtonio) + "," + to_string(totalConsumoOtonio / cantidadDocOtonio);
+		cadena = "2do Trimestre," + to_string(totalConsumoOtonio) + "," + to_string(totalConsumoOtonio / cantidadDocOtonio);
 		datosAExportar.push_back(cadena);
 	}
 	else
 	{
-		cadena = "OTOÑO - No hay consumos registrados ";
+		cadena = "2do Trimestre - No hay consumos registrados ";
 		cout << "|" << cadena << endl;
 		datosAExportar.push_back(cadena);
 	}
 	if (cantidadDocInvierno > 0)
 	{
-		cadena = "INVIERNO - Total consumo: " + to_string(totalConsumoInvierno) + "\t Promedio: " + to_string(totalConsumoInvierno / cantidadDocInvierno);
+		cadena = "3ro Trimestre - Total consumo: " + to_string(totalConsumoInvierno) + "\t Promedio: " + to_string(totalConsumoInvierno / cantidadDocInvierno);
 		cout << "|" << cadena << endl;
-		cadena = "Invierno," + to_string(totalConsumoInvierno) + "," + to_string(totalConsumoInvierno / cantidadDocInvierno);
+		cadena = "3ro Trimestre," + to_string(totalConsumoInvierno) + "," + to_string(totalConsumoInvierno / cantidadDocInvierno);
 		datosAExportar.push_back(cadena);
 	}
 	else
 	{
-		cadena = "INVIERNO - No hay consumos registrados ";
+		cadena = "3ro Trimestre - No hay consumos registrados ";
 		cout << "|" << cadena << endl;
 		datosAExportar.push_back(cadena);
 	}
 	if (cantidadDocPrimavera > 0)
 	{
-		cadena = "PRIMAVERA - Total consumo: " + to_string(totalConsumoPrimavera) + "\t Promedio: " + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
+		cadena = "4to Trimestre - Total consumo: " + to_string(totalConsumoPrimavera) + "\t Promedio: " + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
 		cout << "|" << cadena << endl;
-		cadena = "Primavera," + to_string(totalConsumoPrimavera) + "," + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
+		cadena = "4to Trimestre," + to_string(totalConsumoPrimavera) + "," + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
 		datosAExportar.push_back(cadena);
 	}
 	else
 	{
-		cadena = "PRIMAVERA - No hay consumos registrados ";
+		cadena = "4to Trimestre - No hay consumos registrados ";
 		cout << "|" << cadena << endl;
 		datosAExportar.push_back(cadena);
 	}
@@ -688,9 +687,9 @@ void InterfaceSalida::ClienteDatosComerciales(int dni)
 	string cadena;
 	vector<string> datosAExportar;
 	cout << separador << endl;
-	cadena = "|\t\tCONSULTA DE CLINETE DATOS COMERCIALES DOCUMENTO NRO: " + to_string(dni);
+	cadena = "|\t\tCONSULTA DE CLIENTE DATOS COMERCIALES DOCUMENTO NRO: " + to_string(dni);
 	cout << cadena << endl;
-	cadena = "CONSULTA DE CLINETE DATOS COMERCIALES DOCUMENTO NRO: " + to_string(dni);
+	cadena = "CONSULTA DE CLIENTE DATOS COMERCIALES DOCUMENTO NRO: " + to_string(dni);
 	datosAExportar.push_back(cadena);
 
 	InterlocutorComercial intLoc = InterlocutorComercialAD(NOMBRE_ARCH_IC).getInterlocutorArchivo(dni);
