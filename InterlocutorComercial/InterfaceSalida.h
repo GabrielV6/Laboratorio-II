@@ -27,6 +27,8 @@ public:
 	void MenuExportacion();
 	int ExportarIC();
 	void ClienteDatosComerciales(int dni);
+	float FacturasPorcentaje(int anio, bool pago);
+
 private:
 	string textoSalida;
 	vector<string> textosSalida;

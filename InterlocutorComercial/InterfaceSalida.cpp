@@ -78,7 +78,7 @@ bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 
 		while (posFound >= 0)
 		{
-			
+
 			int dia, mes, anio;
 			posFound = str.find(pattern, posInit);
 			splitted = str.substr(posInit, posFound - posInit);
@@ -356,6 +356,7 @@ void InterfaceSalida::MenuConsultas()
 		cout << "|\t1. Consulta energia estacionaria" << endl;
 		cout << "|\t2. Promedio de recaudacion" << endl;
 		cout << "|\t3. Consulta cliente datos comerciales" << endl;
+		cout << "|\t4. Reporte Anual de Documentos Pagos e Impagos" << endl;
 		cout << "|\t0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -383,6 +384,27 @@ void InterfaceSalida::MenuConsultas()
 			dni = Validaciones::DatoObligarorioNum("DNI a consultar: ");
 			this->ClienteDatosComerciales(dni);
 			break;
+		}
+		case 4:
+		{	system("cls||clear");
+			int anio;
+			int pago;
+			float porcentaje;
+			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
+			
+			pago = Validaciones::DatoObligarorioNum("Pagas (1) o Impagas (0)");
+			if (pago == 1 || pago == 0)
+			{
+				porcentaje = FacturasPorcentaje(anio, pago);
+				cout << this->separador << endl;
+				cout << "El porcentaje es: % " << porcentaje << endl;
+				cout << this->separador << endl;
+				Validaciones::SystemPause();
+				break;
+			}
+			else {
+				break;
+			}
 		}
 		case 0:
 		{
@@ -674,11 +696,11 @@ void InterfaceSalida::ClienteDatosComerciales(int dni)
 	cout << separador << endl;
 	string activo = intLoc.getActivo() ? "Activo" : "Inactivo";
 	cadena = "|Cliente Nro: " + to_string(intLoc.getId_ic()) + "\tEstado: " + activo +
-		"\t\tNombre y Apellido: " + intLoc.getNombre() + ", " + intLoc.getApellido();	
+		"\t\tNombre y Apellido: " + intLoc.getNombre() + ", " + intLoc.getApellido();
 	cout << cadena << endl;
 	cadena = "Cliente," + to_string(intLoc.getId_ic()) + "," + to_string(intLoc.getDni()) + "," + activo + "," + intLoc.getNombre() + "," + intLoc.getApellido();
 	datosAExportar.push_back(cadena);
-	cadena = "\tTarifa: " + to_string(tarifa.getIdTarifa()) + "\tCargo Fijo: " + to_string(tarifa.getCargoFijo()) + 
+	cadena = "\tTarifa: " + to_string(tarifa.getIdTarifa()) + "\tCargo Fijo: " + to_string(tarifa.getCargoFijo()) +
 		"\tCargo Variable: " + to_string(tarifa.getCargoVariable()) + "\tImpuesto: " + to_string(tarifa.getImpuestos());
 	cout << cadena << endl;
 	cadena = "Tarifa," + to_string(tarifa.getIdTarifa()) + "," + to_string(tarifa.getCargoFijo()) + "," + to_string(tarifa.getCargoVariable()) + "," + to_string(tarifa.getImpuestos());
@@ -696,4 +718,47 @@ void InterfaceSalida::ClienteDatosComerciales(int dni)
 		this->GrabarTextosSalida(datosAExportar, "DatosComerciales" + to_string(dni) + ".csv");
 		cout << "Datos exportados" << endl;
 	}
+}
+
+///REPORTE DE PORCENTAJE DE FACTURAS PAGAS O IMPAGAS POR ANIO
+float  InterfaceSalida :: FacturasPorcentaje(int anio, bool pago) {
+
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
+	vector<Documento> documentos;
+	documentos = documentoAD.getDocumentosArchivo();
+
+	// Si el pago es false (esta pendiente) y no se cuenta
+	int contadorNopago = 0, contadorPago = 0, contadorDocumentos = 0;
+	float porcenPago, porcenNoPago;
+
+	for (int i = 0; i < documentos.size(); i++) {
+
+		if (documentos[i].getPago() == true && documentos[i].getFecha().getAnio() == anio)
+		{
+				contadorPago++;
+		}
+		if (documentos[i].getPago() == false && documentos[i].getFecha().getAnio() == anio) {
+				contadorNopago++;
+
+			
+		}
+
+	}
+	//if (contadorDocumentos <= 0)
+		//return 0;
+	contadorDocumentos = contadorPago + contadorNopago;
+	porcenPago = float(contadorPago * 100) / contadorDocumentos;
+	porcenNoPago = float(contadorNopago * 100) / contadorDocumentos;
+
+	if (pago == true)
+	{
+		//cout << "El porcentaje de facturas pagas es %: ";
+		return porcenPago;
+	}
+	else
+	{
+		//cout << "El porcentaje de facturas impagas es %: ";
+		return porcenNoPago;
+	}
+
 }
