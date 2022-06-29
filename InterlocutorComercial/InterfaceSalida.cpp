@@ -755,12 +755,17 @@ float  InterfaceSalida :: FacturasPorcentaje(int anio, bool pago) {
 		}
 
 	}
-	//if (contadorDocumentos <= 0)
-		//return 0;
+	
 	contadorDocumentos = contadorPago + contadorNopago;
 	porcenPago = float(contadorPago * 100) / contadorDocumentos;
 	porcenNoPago = float(contadorNopago * 100) / contadorDocumentos;
-
+	if(porcenPago<0||porcenNoPago<0)
+	{
+		porcenPago = 0;
+		porcenNoPago = 0;
+		return 0;
+	}
+			
 	if (pago == true)
 	{
 		//cout << "El porcentaje de facturas pagas es %: ";
