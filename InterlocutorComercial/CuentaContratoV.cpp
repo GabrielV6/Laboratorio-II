@@ -110,9 +110,16 @@ void CuentaContratoV::AsociarMedidor(){
 	
 	cout << endl;
 	int med=0;
-	med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar: ");
+	do{
+		med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar: ");
 	
-	// validar que el numero ingresado corresponda con un id de medidor
+		// validar que el numero ingresado corresponda con un id de medidor
+		auxMedidor = MedidorRN.BuscarCMedidor(med);
+
+	}while (auxMedidor.getId() == 0);
+	
+	
+	if(auxMedidor.getId())
 	// poner en 0 la cc en el medidor que se cambia
 	// se asigna medidor a cc y su estado pasa a ser Activo
 	cuentaContrato.setId_medidor(med);
