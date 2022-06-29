@@ -123,6 +123,7 @@ void DocumentoV::NuevoDocumento()
 					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
 					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
 					this->documento.setIdtar(this->documentoRN.getTarifa().getIdTarifa());
+					this->documento.setIdmed(id);
 					this->documento.setConsumo(consumo);
 					this->documento.setImporte(this->documentoRN.CalcularImporte(consumo));
 					this->documentoRN.GuardarLectura(id, lecturaActual);

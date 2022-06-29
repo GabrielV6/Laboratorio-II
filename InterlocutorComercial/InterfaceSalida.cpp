@@ -394,13 +394,15 @@ void InterfaceSalida::MenuConsultas()
 		anio = Validaciones::DatoObligarorioNum("Anio a consultar");
 
 		pago = Validaciones::DatoObligarorioNum("Pagas (1) o Impagas (0)");
+
 		if (pago == 1 || pago == 0)
 		{
 			porcentaje = FacturasPorcentaje(anio, pago);
+			string pagos = pago ? "Pago" : "Impago";
 			if (porcentaje > -1)
-			{
+			{	
 				cout << this->separador << endl << endl;
-				cout << "|\tEl porcentaje es: % " << porcentaje << endl << endl;
+				cout << "|\tEl porcentaje es del anio "<<pagos<<": % " << porcentaje << endl << endl;
 				cout << this->separador << endl;
 			}
 			Validaciones::SystemPause();
