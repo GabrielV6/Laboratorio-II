@@ -154,11 +154,11 @@ string InterlocutorComercialV::DarDatosListado(InterlocutorComercial intLoc, int
 
 		dato = espacios;
 		dato = dato.insert(0, intLoc.getApellido());
-		datos += dato.erase(16);
+		datos += dato.erase(20);
 
 		dato = espacios;
 		dato = dato.insert(0, to_string(intLoc.getDni()));
-		datos += dato.erase(20);
+		datos += dato.erase(12);
 
 		dato = espacios;
 		dato = dato.insert(0, intLoc.getEmail());
