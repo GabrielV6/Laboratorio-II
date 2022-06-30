@@ -88,8 +88,17 @@ bool Tarifa::getEstado()
 string Tarifa::toStringTarifa()
 {
     string valor = this->getEstado() ? "Activa" : "No Activa";
-    string cadena = "ID: " + to_string(this->getIdTarifa()) + ", Cargo Fijo: " + to_string(this->getCargoFijo())
-        + ", Cargo Variable: " + to_string(this->getCargoVariable()) + ", Impuesto: " + to_string(this->getImpuestos())
+    cout << "------------------------------------------------------------------------------------------------------------" << endl;
+
+    float CargoFijo = this->getCargoFijo();
+    float CargoVariable = this->getCargoVariable();
+    float Impuesto = this->getImpuestos();
+    stringstream stream;
+
+    stream << fixed << setprecision(2) << CargoFijo << ", Cargo Variable: " << CargoVariable << ", Impuesto: " << Impuesto;
+    string cf = stream.str();
+
+    string cadena = "ID: " + to_string(this->getIdTarifa()) + ", Cargo Fijo: " + cf
         + ", Tipo de Tarifa: " + to_string(this->getTipoDeTarifa()) + " Estado: " + valor;
 
     return cadena;

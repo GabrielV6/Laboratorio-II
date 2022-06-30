@@ -11,7 +11,7 @@ Medidor::Medidor(int id, int idCuentaContrato, bool estado, int lectura, int nPo
 
 }
 
-Medidor::Medidor()
+/*Medidor::Medidor()
 {
     this->_id = 0;
     this->_idCuentaContrato = 0;
@@ -19,6 +19,7 @@ Medidor::Medidor()
     this->_lectura = 0;
     this->_numPosicionArch = 0;
 }
+*/
 
 Medidor::~Medidor() {
    

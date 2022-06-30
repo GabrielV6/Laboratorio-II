@@ -15,8 +15,8 @@ private:
     int _lectura;
     int _numPosicionArch;
 public:
-    Medidor(int id, int idCuentaContrato, bool estado, int lectura, int nPosicion);
-    Medidor();
+    Medidor(int id= 0, int idCuentaContrato =0, bool estado = false, int lectura=0, int nPosicion=0);
+    //Medidor();
     ~Medidor();
     void setId(int id);
     void setIdCuentaContrato(int idCuentaContrato);

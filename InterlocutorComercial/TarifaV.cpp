@@ -152,7 +152,7 @@ void TarifaV::ListarTarifa()
 		cout << tarifas[i].toStringTarifa() << endl;
 
 	}
-
+	cout << endl;
 	Validaciones::SystemPause();
 }
 

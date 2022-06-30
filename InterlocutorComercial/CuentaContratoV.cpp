@@ -43,7 +43,14 @@ bool CuentaContratoV::AltaCuentaContrato(){
 	CuentaContrato cuenta;
 	// busca el id del  Interlocutor comercial
 	interlocutor = interlocutorRN.BuscarInterlocutorComercial(cuentaContrato.getId_ic());
-	
+	if (interlocutor.getId_ic() <= 0) {
+		cout << endl;
+		cout<< this->separador<<endl;
+		cout << "No existe un Interlocutor comercial " << endl;
+		cout << endl;
+		Validaciones::SystemPause();
+		return false;
+	}
 	// busca si ya existe una CC con ese Id (id de cc y ic son iguales)
 	cuenta = this->cuentaContratoRN.BuscarCuentaContrato(interlocutor.getId_ic());
 
