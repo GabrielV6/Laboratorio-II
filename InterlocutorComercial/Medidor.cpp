@@ -2,7 +2,7 @@
 
 
 
-Medidor::Medidor(int id, int idCuentaContrato, bool estado, float lectura, int nPosicion)
+Medidor::Medidor(int id, int idCuentaContrato, bool estado, int lectura, int nPosicion)
 {
     this->_id = id;
     this->_idCuentaContrato = idCuentaContrato;
@@ -40,7 +40,7 @@ void Medidor::setEstado(bool estado) {
     this->_estado = estado;
 }
 
-void Medidor::setLectura(float lectura) {
+void Medidor::setLectura(int lectura) {
     this->_lectura = lectura;
 }
 
@@ -70,7 +70,7 @@ bool Medidor::getEstado() {
     return this->_estado;
 }
 
-float Medidor::getLectura() {
+int Medidor::getLectura() {
     return this->_lectura;
 }
 
