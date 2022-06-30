@@ -1,6 +1,6 @@
 #include "Documento.h"
 #include <iomanip>
-
+#include <sstream>
 Documento::Documento()
 {
 	
@@ -57,7 +57,7 @@ Documento::Documento()
 	{
 		this->importe = i;
 	}
-	void Documento::setConsumo(float c)
+	void Documento::setConsumo(int c)
 	{
 		this->consumo = c;
 	}
@@ -102,7 +102,7 @@ Documento::Documento()
 	{
 		return this->importe;
 	}
-	float Documento::getConsumo()
+	int Documento::getConsumo()
 	{
 		return this->consumo;
 	}
@@ -112,14 +112,17 @@ Documento::Documento()
 	}
 	string Documento::toStringDocumento()
 	{
-		
+		float pi = this->getImporte();
+		stringstream aux;
+		aux << fixed << setprecision(2) << pi;
+		string s = aux.str();
 
 		string valor = this->getPago() ? "Pago" : "Impago";
 		string cadena = "Numero: " + to_string(this->getNumero()) + ", Tipo de documento: " + this->getTipo()
 			+ ", Fecha creacion: " + this->getFecha().toStringFecha() + ", ID Inter: " + to_string(this->getIdinter())
 			+ ", ID Medidor: " + to_string(this->idMed)
 			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Estado : " + valor 
-			+ ", Importe: $ " + to_string(this->getImporte());
+			+ ", Importe: $ " + s;
 		return  cadena;
 	}
 	Documento::~Documento()

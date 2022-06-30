@@ -26,7 +26,7 @@ public:
 	int IdDocumento(Documento& documento);
 	Documento BuscarDocumento(int numero);
 	bool ValidarDocumentoNumero(int numero);
-	float CalcularConsumo(float lectura);
+	int CalcularConsumo(int lectura);
 	bool ControlModificaciones(Documento& documento);
 	bool AltaDocumento(Documento& documento);
 	long CantidadDocumentosEnSistema();
@@ -55,7 +55,7 @@ public:
 	//CARGO POR PANTALLA LECTURA ACTUAL 
 	///LISTAR MEDIDORES
 	//Metodo que valida el id ingresado del medidor
-	float CalcularImporte(float consumo);
+	float CalcularImporte(int consumo);
 	bool validarIdMedidor(int id);
 	bool validarFechaDocumento(int id);
 		

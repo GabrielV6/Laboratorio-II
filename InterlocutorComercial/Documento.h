@@ -16,7 +16,7 @@ private:
 	int numPosicionarch;
 	bool pago = false; ///nace en false
 	float importe;
-	float consumo;
+	int consumo;
 	char tipo; //FACTURA A O B (COMERCIAL A, RESIDENCIAL B )
 	
 public:
@@ -31,7 +31,7 @@ public:
 	void setPosicionarch(int pos);
 	void setPago(bool pago);
 	void setImporte(float importe);
-	void setConsumo(float consumo);
+	void setConsumo(int consumo);
 	void setTipo(char tipo);
 	int getNumero();
 	Fecha getFecha();
@@ -42,7 +42,7 @@ public:
 	int getPosicionarch();
 	bool getPago();
 	float getImporte();
-	float getConsumo();
+	int getConsumo();
 	char getTipo();
 	string toStringDocumento();
 

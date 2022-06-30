@@ -115,7 +115,7 @@ void DocumentoV::NuevoDocumento()
 		else {
 			lecturaActual = Validaciones::DatoObligarorioDecimal("la lectura actual");
 			///SE CALCULA EL CONSUMO PARA ESTE DOCUMENTO
-			float consumo = this->documentoRN.CalcularConsumo(lecturaActual);
+			int consumo = this->documentoRN.CalcularConsumo(lecturaActual);
 			if (consumo >= 0)
 			{
 				system("cls||clear");
@@ -138,8 +138,8 @@ void DocumentoV::NuevoDocumento()
 				dato = Validaciones::DatoObligarorioChar("'S' para crear el documento o 'N' para cancelar y volver al menu principal");
 				if (toupper(dato) == 'S')
 				{
-					fecha.cargarFecha();
-					//fecha.cargarFechaActual();
+					//fecha.cargarFecha();
+					fecha.cargarFechaActual();
 					this->documento.setFecha(fecha);
 					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
 					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
