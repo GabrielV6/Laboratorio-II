@@ -63,12 +63,14 @@ void MedidorV::MenuMedidor()
 		case 2:
 		{
 			ListarMedidor(true);
+			cout << this->separador << endl;
 
 			break;
 		}
 		case 3:
 		{
 			ListarMedidor(false);
+			cout << this->separador << endl;
 
 			break;
 		}
@@ -141,13 +143,13 @@ void MedidorV::ListarMedidor(bool estado)
 		}
 
 	}
+	cout << this->separador << endl;
 
 	if (!mostrar) {
 		cout << this->separador << endl;
 		cout << "No hay medidores instalados" << endl;
 		cout << this->separador << endl;
 	}
-
 
 	Validaciones::SystemPause();
 
