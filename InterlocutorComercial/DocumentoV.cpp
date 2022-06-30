@@ -93,7 +93,7 @@ void DocumentoV::NuevoDocumento()
 				return;
 			}
 		}
-		if (id==0/*this->documentoRN.validarFechaDocumento(id)*/) { ///CAMBIAR LUEGO DE LA CARGA MANUAL 
+		if (this->documentoRN.validarFechaDocumento(id)) { 
 			cout << this->separador << endl;
 			cout << "\t\t\t\t\t\tATENCION: " << endl;
 			cout << this->separador << endl;
@@ -138,8 +138,8 @@ void DocumentoV::NuevoDocumento()
 				dato = Validaciones::DatoObligarorioChar("'S' para crear el documento o 'N' para cancelar y volver al menu principal");
 				if (toupper(dato) == 'S')
 				{
-					fecha.cargarFecha();
-					//fecha.cargarFechaActual();
+					//fecha.cargarFecha();
+					fecha.cargarFechaActual();
 					this->documento.setFecha(fecha);
 					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
 					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
