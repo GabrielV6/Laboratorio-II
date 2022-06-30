@@ -574,12 +574,23 @@ void InterfaceSalida::PromedioRecaudacion()
 			}
 			cout << "El promedio total todos los cliente es : $" << retorno << endl;
 			cout << this->separador << endl;
+
 			Validaciones::SystemPause();
+			cout << separador << endl;
+
+			cout << "Desea exportar los datos a un archivo formato 'csv' ?" << endl;
+			char dato = Validaciones::DatoObligarorioChar(" 'S' o cualquier otra letra para salir");
+			if (dato == 'S')
+			{
+				InterfaceSalida::ExportarPromedioRecaudacion();
+				cout << "Datos exportados" << endl;
+			}
+
 			break;
 		}
 		case 2: {
 
-			dni = Validaciones::DatoObligarorioNum("Ingrese DNI: ");
+			dni = Validaciones::DatoObligarorioNum("ID Interlocutor Comercial: ");
 			cout << endl;
 			cout << this->separador << endl;
 			retorno = CalRecaudacion(dni, opcion);
@@ -753,8 +764,28 @@ int InterfaceSalida::ExportarIC()
 
 int InterfaceSalida::ExportarPromedioRecaudacion()
 {
-	//FALTA GENERAR LOGICA 
+	DocumentoAD documentoAD(NOMBRE_ARCH_IC);
+	vector<Documento> DocumentosPagos = documentoAD.getDocumentosArchivo();
+	vector<string> salidaClientesPagos;
+	const bool PAGO = 1; 
+
+	for (auto& documento : DocumentosPagos) {
+		if (documento.getPago() == PAGO) {
+			salidaClientesPagos.push_back(documento.toStringDocumento());
+		}
+	}
+		
+	try
+	{
+		this->GrabarTextosSalida(salidaClientesPagos, "PromedioClientesPagos.csv");
+	}
+	catch (const std::exception&)
+	{
+		return -1;
+	}
 	return 0;
+
+	
 }
 
 void InterfaceSalida::ClienteDatosComerciales(int dni)
