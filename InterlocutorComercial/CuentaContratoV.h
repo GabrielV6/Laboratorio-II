@@ -19,6 +19,7 @@ public:
     CuentaContrato getCuentaContrato();
 
     bool AltaCuentaContrato();
+    bool BajaCuentaContrato();
     void ModificarTarifa();
     void AsociarMedidor();
     void MenuCuentaContrato();

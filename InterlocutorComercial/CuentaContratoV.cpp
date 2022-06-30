@@ -83,6 +83,49 @@ bool CuentaContratoV::AltaCuentaContrato(){
 	return false;
 }
 
+bool CuentaContratoV::BajaCuentaContrato(){
+
+	InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
+	InterlocutorComercial interlocutor;
+	MedidorRN MedidorRN(NOMBRE_ARCH_MED);
+	Medidor medidor;
+
+	cout << "Importante: " << endl;
+	cout << "Cuando se dan de baja una Cuenta Contrato ";
+	cout << "tambien lo hacen el Interlocutor comercial y el medidor asociado." << endl;
+	cout << "A continuacion se dara de baja la Cuenta Contrato de: "<< endl;
+
+	interlocutor = interlocutorRN.BuscarInterlocutorComercialPorID(cuentaContrato.getId_ic());
+	cout << interlocutor.toStringInterlocutor() << endl;
+
+	string confirmacion;
+	confirmacion = Validaciones::DatoObligarorioChar("'S' para continuar o cualquier otra tecla para cancelar");
+
+	if (confirmacion == "S" || confirmacion == "s"){
+		
+		medidor = MedidorRN.BuscarCMedidor(cuentaContrato.getId_Medidor());
+		medidor.setEstado(false);
+		medidor.setIdCuentaContrato(0);
+		MedidorRN.ModificaMedidor(medidor);
+
+		interlocutor.setActivo(false);
+		interlocutorRN.ModificaInterlocutorComercial(interlocutor);
+
+		cuentaContrato.setEstado(false);
+		cuentaContrato.setId_medidor(0);
+		cuentaContratoRN.ModificarCuentaContrato(cuentaContrato);
+
+		cout << "Baja exitosa " << endl;
+		Validaciones::SystemPause();
+		return true;
+
+	} else {
+		cout << "Operacion cancelada" << endl;
+		Validaciones::SystemPause();
+		return false;
+	}	
+}	
+
 void CuentaContratoV::ModificarTarifa(){
 
 	TarifaV tarifaV(NOMBRE_ARCH_TAR);
@@ -315,6 +358,7 @@ void CuentaContratoV::ModificarCuentaContrato()
 		cout << "1. Asociar medidor " << endl;
 		cout << "2. Modificar tarifa " << endl;
 		cout << "3. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "4. Dar de baja " << endl;
 		cout << "0. Volver al menu anterior" << endl;
 		cout << this->separador << endl;
 
@@ -367,6 +411,11 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->cuentaContrato.getEstado() << endl;
 			cout << this->separador << endl;
 		}
+		case 4:
+		{	
+			this->BajaCuentaContrato();
+			break;
+		}	
 
 		case 0:
 			break;
