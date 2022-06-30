@@ -86,7 +86,7 @@ void CuentaContratoV::ModificarTarifa(){
 	
 	do{	
 
-		tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa que desea asigar: ");
+		tar= Validaciones::DatoObligarorioNum("el ID de la tarifa que desea asigar");
 		// validar que el numero ingresado corresponda con un id de tarifa
 
 		tarifa = tarifaAD.getTarifaArchivo(tar);
@@ -110,16 +110,17 @@ void CuentaContratoV::AsociarMedidor(){
 	InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
 	InterlocutorComercial interlocutor;
 
-	cout << "A continuacion se muestran todos los medidores disponibles: " << endl;
+	cout << "A continuacion se listaran todos los medidores disponibles: " << endl;
 	cout << endl;
-	
+	Validaciones::SystemPause();
+
 	medidorV.ListarMedidor(false); // se muestran medidores inactivos
 	cout << endl;
 	
 	cout << endl;
 	int med=0;
 	do{
-		med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar: ");
+		med= Validaciones::DatoObligarorioNum("el ID del medidor que desea asigar");
 	
 		// validar que el numero ingresado corresponda con un id de medidor
 		// si existe queda cargado en auxMedidor
@@ -165,10 +166,10 @@ void CuentaContratoV::MenuCuentaContrato()
 		cout << this->separador << endl;
 		cout << "Menu Cuenta Contrato" << endl;
 		cout << this->separador << endl;
-		cout << "1. Nueva Cuenta Contrato" << endl;
+		cout << "1. Asociar Cuenta Contrato a un Interlocutor Comercial" << endl;
 		cout << "2. Listar Cuentas Contrato Activas" << endl;
 		cout << "3. Listar Cuentas Contrato Inactivas" << endl;
-		cout << "4. Modificar Cuenta Contrato" << endl;
+		cout << "4. Modificar Cuenta Contrato | Alta de medidores | Cambio de tarifa" << endl;
 		cout << "0. Salir" << endl;
 		cout << this->separador << endl;
 		int opcion;
@@ -191,8 +192,6 @@ void CuentaContratoV::MenuCuentaContrato()
 
 		case 4:
 			this->ModificarCuentaContrato();
-
-
 			break;
 
 		case 0:
@@ -220,7 +219,7 @@ void CuentaContratoV::NuevaCuentaContrato()
 		cout << this->separador << endl;
 
 		InterlocutorComercialRN interlocutorRN(NOMBRE_ARCH_IC);
-		dni = Validaciones::DatoObligarorioNum(" el numero de DNI del Interlocutor Comercial: "); 
+		dni = Validaciones::DatoObligarorioNum(" el numero de DNI del Interlocutor Comercial"); 
 		bool existe = interlocutorRN.ExisteInterlocutorComercial(dni);
 		
 			if(!existe){
@@ -298,17 +297,17 @@ void CuentaContratoV::ModificarCuentaContrato()
 
 	do
 	{
-		system("clear");
+		system("clear||cls");
 		cout << this->separador << endl;
 		cout << "Cuenta Contrato : " << this->cuentaContrato.toStringCuentaContrato() << endl;
 		cout << this->separador << endl;
-		cout << "1. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "1. Asociar medidor " << endl;
 		cout << "2. Modificar tarifa " << endl;
-		cout << "3. Asociar medidor " << endl;
-		cout << "0. Volver al menú anterior" << endl;
+		cout << "3. Modificar estado (Activo/Inactivo)" << endl;
+		cout << "0. Volver al menu anterior" << endl;
 		cout << this->separador << endl;
 
-		opcion = Validaciones::DatoObligarorioNum("una opcion:");
+		opcion = Validaciones::DatoObligarorioNum("una opcion");
 
 		string datos;
 		char dato;
@@ -317,40 +316,10 @@ void CuentaContratoV::ModificarCuentaContrato()
 		{
 		case 1:
 		{
-			cout << "Modificar estado " << endl;
-			cout << "El estado de la Cuenta Contrato es: ";
-			cout << this->cuentaContrato.getEstado() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' para confirmar la modificacion o 'N' para cancelar.");
-
-			if (toupper(dato) == 'S')
-				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
-			break;
-
-			cout << "El actual estado de la Cuenta Contrato es: ";
-			cout << this->cuentaContrato.getEstado() << endl;
-			cout << this->separador << endl;
-		}
-		case 2:
-		{
-
-		
-			cout << "Modificar tarifa " << endl;
-			cout << "La tarifa actual de la Cuenta Contrato es: ";
-			cout << this->cuentaContrato.getId_Tarifa() << endl;
-			dato = Validaciones::DatoObligarorioChar(" 'S' para modificar la tarifa o 'N' para conservala.");
-
-				if (toupper(dato) == 'S')
-					this->ModificarTarifa();
-			
-
-			break;
-		}
-		case 3:
-		{
 			cout << "Asociar medidor " << endl;
 			cout << "El medidor actual de la Cuenta Contrato es: ";
 			cout << this->cuentaContrato.getId_Medidor() << endl;
-			dato = Validaciones::DatoObligarorioChar("'S' para seleccionar otro o 'N' para cancelar : ");
+			dato = Validaciones::DatoObligarorioChar("'S' para seleccionar otro o cualquier otra tecla para cancelar");
 
 			if (toupper(dato) == 'S')
 				this->AsociarMedidor();
@@ -360,12 +329,39 @@ void CuentaContratoV::ModificarCuentaContrato()
 			cout << this->separador << endl;
 			break;
 		}
+		case 2:
+		{
+			cout << "Modificar tarifa " << endl;
+			cout << "La tarifa actual de la Cuenta Contrato es: ";
+			cout << this->cuentaContrato.getId_Tarifa() << endl;
+			dato = Validaciones::DatoObligarorioChar(" 'S' para modificar la tarifa o cualquier otra tecla para conservala");
+
+				if (toupper(dato) == 'S')
+					this->ModificarTarifa();
+			
+			break;
+		}
+		case 3:
+		{
+			cout << "Modificar estado " << endl;
+			cout << "El estado de la Cuenta Contrato es: ";
+			cout << this->cuentaContrato.getEstado() << endl;
+			dato = Validaciones::DatoObligarorioChar("'S' para confirmar la modificacion o cualquier otra tecla para cancelar");
+
+			if (toupper(dato) == 'S')
+				this->cuentaContrato.setEstado(!this->cuentaContrato.getEstado());
+			break;
+
+			cout << "El actual estado de la Cuenta Contrato es: ";
+			cout << this->cuentaContrato.getEstado() << endl;
+			cout << this->separador << endl;
+		}
 
 		case 0:
-
 			break;
+
 		default:
-			cout << "Opción invalida." << endl;
+			cout << "Opcion invalida." << endl;
 			break;
 	}
 

@@ -7,6 +7,8 @@
 #include "TarifaV.h"
 #include "CuentaContratoV.h"
 
+#include <iomanip>
+
 
 InterfaceSalida::InterfaceSalida()
 {}
@@ -560,7 +562,7 @@ void InterfaceSalida::PromedioRecaudacion()
 		cout << "|3. Promedio de recaudacion Anual (Por tarifa)" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
-		opcion = Validaciones::DatoObligarorioNum("Opcion: ");
+		opcion = Validaciones::DatoObligarorioNum("opcion");
 
 		switch (opcion) {
 		case 1: {
@@ -616,14 +618,14 @@ void InterfaceSalida::PromedioRecaudacion()
 			
 			do{	
 				
-				tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa: ");
+				tar= Validaciones::DatoObligarorioNum("el ID de la tarifa");
 				// validar que el numero ingresado corresponda con un id de tarifa
 				tarifa = tarifaAD.getTarifaArchivo(tar);
 
 			} while ( tarifa.getIdTarifa()==0);
 
 			cout << endl;
-			int anio= Validaciones::DatoObligarorioNum(" el anio: ");
+			int anio= Validaciones::DatoObligarorioNum("el anio");
 			cout << endl;
 			cout << endl;
 			cout << this->separador << endl;
@@ -632,8 +634,12 @@ void InterfaceSalida::PromedioRecaudacion()
 			if (retorno == -1) {
 				retorno = 0;
 			}
+
+			stringstream stream;
+			stream << fixed << setprecision(2) << retorno;
+			string s = stream.str();
 			
-			cout << "El promedio total por la tarifa es : $" << retorno << endl;
+			cout << "El promedio total por la tarifa es : $" << s << endl;
 			cout << this->separador << endl;
 			Validaciones::SystemPause();
 			break;
