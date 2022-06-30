@@ -87,9 +87,10 @@ bool Tarifa::getEstado()
 
 string Tarifa::toStringTarifa()
 {
+    string valor = this->getEstado() ? "Activa" : "No Activa";
     string cadena = "ID: " + to_string(this->getIdTarifa()) + ", Cargo Fijo: " + to_string(this->getCargoFijo())
         + ", Cargo Variable: " + to_string(this->getCargoVariable()) + ", Impuesto: " + to_string(this->getImpuestos())
-        + ", Tipo de Tarifa: " + to_string(this->getTipoDeTarifa()) + " Estado: " + to_string(this->getEstado());
+        + ", Tipo de Tarifa: " + to_string(this->getTipoDeTarifa()) + " Estado: " + valor;
 
     return cadena;
 }

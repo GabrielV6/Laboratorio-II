@@ -49,14 +49,24 @@ void Medidor::setNumPosicionArchivo(int numPosArch)
 }
 
 string Medidor::toStringMedidor()
-{
-    string valor = this->getEstado() ? "Instalado" : "Desinstalado";
-    cout << "------------------------------------------------------------------------------------------------------------"<<endl;
-    string cadena = "ID " + to_string(this->getId()) + "\t, Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
-        + "\t, Lectura: " + to_string(this->getLectura()) + "\t, Estado: " + valor;
- 
-    return cadena;
- 
+{   
+    if (this->getIdCuentaContrato() == 0) {
+        string aux = "Sin Asignacion";
+        string valor = this->getEstado() ? "Instalado" : "Desinstalado";
+        cout << "------------------------------------------------------------------------------------------------------------" << endl;
+        string cadena = "ID " + to_string(this->getId()) + "\t, Cuenta Contrato: " + aux
+            + "\t, Lectura: " + to_string(this->getLectura()) + "\t, Estado: " + valor;
+   
+        return cadena;
+    }
+	else {
+		string aux = to_string(this->getIdCuentaContrato());
+		string valor = this->getEstado() ? "Instalado" : "Desinstalado";
+		cout << "------------------------------------------------------------------------------------------------------------" << endl;
+		string cadena = "ID " + to_string(this->getId()) + "\t, Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
+			+ "\t, Lectura: " + to_string(this->getLectura()) + "\t, Estado: " + valor;
+		return cadena;
+	}
 }
 
 int Medidor::getId() {
