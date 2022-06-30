@@ -29,7 +29,7 @@ void DocumentoV::RegistrarPago()
 		numero = Validaciones::DatoObligarorioNum("Numero del Documento");
 		//VALIDAR QUE EL NUMERO DE FACTURA EXISTA 
 		
-		if (!this->documentoRN.ValidarDocumentoNumero(numero)||numero<rangoDocumentos) {
+		if (!this->documentoRN.ValidarDocumentoNumero(numero)|| numero<rangoDocumentos) {
 			cout << "El numero ingresado no es valido " << endl;
 
 		}
@@ -93,7 +93,7 @@ void DocumentoV::NuevoDocumento()
 				return;
 			}
 		}
-		if (this->documentoRN.validarFechaDocumento(id)) {
+		if (id==0/*this->documentoRN.validarFechaDocumento(id)*/) { ///CAMBIAR LUEGO DE LA CARGA MANUAL 
 			cout << this->separador << endl;
 			cout << "\t\t\t\t\t\tATENCION: " << endl;
 			cout << this->separador << endl;
@@ -268,7 +268,7 @@ void DocumentoV::MenuDocumento()
 		cout << "|\t3. Listar Documentos" << endl;
 		cout << "|\t4. Listar Documentos Pagos" << endl;
 		cout << "|\t5. Listar Documentos Impagos" << endl;
-		cout << "|\t6. Listar Medidores disponibles" << endl;
+		cout << "|\t6. Listar Medidores Instalados" << endl;
 		cout << "|\t0. Salir" << endl;
 		cout << "-------------------------------------------------" << endl;
 		int opcion;

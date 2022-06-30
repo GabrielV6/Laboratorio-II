@@ -83,22 +83,35 @@ bool DocumentoAD::ActualizarEnArchivoDocumento(Documento& documento)
 Documento DocumentoAD::getDocumentoArchivo(int numero)
 {
 	Documento documentoAD;
-	ifstream archivo;
-	archivo.open(this->getNombreArchivo().c_str(), ios::in);
-	if (archivo.fail())
+	vector<Documento> documentos;
+
+	//ifstream archivo;
+	FILE* archivo;
+	//archivo.open(this->getNombreArchivo().c_str(), ios::in);
+	archivo = fopen(this->getNombreArchivo().c_str(), "rb");
+
+	/*if (archivo.fail())
+		return documentoAD;*/
+	if (archivo == NULL)
 		return documentoAD;
 
-	while (archivo.read((char*)&documentoAD, sizeof(Documento)))
+	//while (archivo.read((char*)&documentoAD, sizeof(Documento)))
+	while (fread((char*)&documentoAD, sizeof(Documento), 1, archivo))
 	{
-		if (!archivo.eof())
+		//if (!archivo.eof())
+		if (!(archivo == NULL))
+		{
 			if (documentoAD.getNumero() == numero)
 			{
-				archivo.close();
+				//archivo.close();
 				return documentoAD;
 			}
+		}
 	}
-	archivo.close();
+	/*archivo.close();
 	documentoAD = Documento();
+	return documentoAD;*/
+	fclose(archivo);
 	return documentoAD;
 }
 
