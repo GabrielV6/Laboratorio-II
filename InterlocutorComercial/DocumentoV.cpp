@@ -2,6 +2,7 @@
 #include "Fecha.h"
 #include "Validaciones.h"
 #include "MedidorV.h"
+#include <iomanip>
 
 
 DocumentoV::DocumentoV(string nombreArchivo)
@@ -137,8 +138,8 @@ void DocumentoV::NuevoDocumento()
 				dato = Validaciones::DatoObligarorioChar("'S' para crear el documento o 'N' para cancelar y volver al menu principal");
 				if (toupper(dato) == 'S')
 				{
-					//fecha.cargarFecha();
-					fecha.cargarFechaActual();
+					fecha.cargarFecha();
+					//fecha.cargarFechaActual();
 					this->documento.setFecha(fecha);
 					this->documento.setIdinter(this->documentoRN.getInterlocutorComercial().getId_ic());
 					this->documento.setIdcc(this->documentoRN.getCuentaContrato().getId_cc());
@@ -161,7 +162,7 @@ void DocumentoV::NuevoDocumento()
 						cout << "\t\t\t\t\t\t\t\t\t\tImpuestos:\t $ " << this->documentoRN.getTarifa().getImpuestos() << endl;
 						cout << "\t\t\t\t\t\t\t\t\t\tTotal consumo:\t " << this->documento.getConsumo() << " KWH" << endl;
 						cout << this->separador << endl;
-						cout << "\t\t\t\t\t\t\t\t\t\tTotal a Pagar:\t $" << documento.getImporte() << endl;
+						cout << "\t\t\t\t\t\t\t\t\t\tTotal a Pagar:\t $ " << fixed <<setprecision(2) << documento.getImporte() << endl;
 						cout << this->separador << endl;
 
 						cout << this->separador << endl;

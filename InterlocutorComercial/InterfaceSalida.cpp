@@ -232,7 +232,7 @@ void InterfaceSalida::MenuPrincipal()
 		cout << "|\t7. Para menu Exportacion CVS" << endl;
 		cout << "|\t0. Para Salir" << endl;
 		cout << this->separador << endl;
-		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		opcion = Validaciones::DatoObligarorioNum("Opcion");
 
 		if (opcion == 0)
 		{
@@ -772,7 +772,9 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 
 			}
 		}
-		else {
+		
+	}
+	if (contadorPago==0 && contadorNopago==0) {
 			cout << this->separador << endl;
 			cout<<"\t\t\t\t\t|| ATENCION ||" << endl;
 			cout << this->separador << endl;
@@ -780,7 +782,6 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 			cout << this->separador << endl << endl;
 			return -1;
 		}
-	}
 	contadorDocumentos = contadorPago + contadorNopago;
 	porcenPago = float(contadorPago * 100) / contadorDocumentos;
 	porcenNoPago = float(contadorNopago * 100) / contadorDocumentos;
@@ -804,4 +805,3 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 
 }
 
-//

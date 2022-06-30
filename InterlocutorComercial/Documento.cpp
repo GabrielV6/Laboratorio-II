@@ -1,5 +1,5 @@
 #include "Documento.h"
-
+#include <iomanip>
 
 Documento::Documento()
 {
@@ -113,6 +113,7 @@ Documento::Documento()
 	string Documento::toStringDocumento()
 	{
 		
+
 		string valor = this->getPago() ? "Pago" : "Impago";
 		string cadena = "Numero: " + to_string(this->getNumero()) + ", Tipo de documento: " + this->getTipo()
 			+ ", Fecha creacion: " + this->getFecha().toStringFecha() + ", ID Inter: " + to_string(this->getIdinter())
