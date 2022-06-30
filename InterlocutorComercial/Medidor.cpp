@@ -1,7 +1,6 @@
 #include "Medidor.h"
 
 
-
 Medidor::Medidor(int id, int idCuentaContrato, bool estado, int lectura, int nPosicion)
 {
     this->_id = id;
@@ -51,9 +50,11 @@ void Medidor::setNumPosicionArchivo(int numPosArch)
 
 string Medidor::toStringMedidor()
 {
-    string cadena = "ID: " + to_string(this->getId()) + ", Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
-        + ", Lectura: " + to_string(this->getLectura()) + ", Estado: " + to_string(this->getEstado());
-
+    string valor = this->getEstado() ? "Instalado" : "Desinstalado";
+    cout << "------------------------------------------------------------------------------------------------------------"<<endl;
+    string cadena = "ID " + to_string(this->getId()) + "\t, Cuenta Contrato: " + to_string(this->getIdCuentaContrato())
+        + "\t, Lectura: " + to_string(this->getLectura()) + "\t, Estado: " + valor;
+ 
     return cadena;
  
 }

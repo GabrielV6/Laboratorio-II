@@ -35,6 +35,10 @@ vector<string> InterfaceSalida::getTestosSalida()
 	return this->textosSalida;
 }
 
+//Funcion de promedio
+float CalRecaudacion(int dni, int opcion, int anioConsulta, bool pago);
+float CalcularPromedioPorTarifa(int tar, int anio);
+
 /// <summary>
 /// M�todo que graba el texto que estan en el vecotr dentro de archivo indicado en el parametro nombreArchivo.
 /// </summary>
@@ -54,6 +58,7 @@ bool InterfaceSalida::GrabarTextosSalida(vector<string> textos, string nombreArc
 	return true;
 }
 
+// Lee el archivo masivo CSV para generar un .DAT de Interlocutores.
 bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 {
 	ifstream archivo;
@@ -154,6 +159,7 @@ bool InterfaceSalida::LeeTextosEntradaInterlocutor(string nombreArchivo)
 	return true;
 }
 
+// Lee el archivo masivo CSV para generar un .DAT de Medidores
 bool InterfaceSalida::LeeTextosEntrada(string nombreArchivo)
 {
 	ifstream archivo;
@@ -300,14 +306,21 @@ void InterfaceSalida::MenuPrincipal()
 			break;
 		}
 		default:
+			system("cls||clear");
 			break;
 		}
+		system("cls||clear");
 	} while (true);
 }
 
 void InterfaceSalida::MenuExportacion()
 {
 	int opcion = 0;
+	int retorno = 0;
+	int anioConsulta = 0;
+	int dni = 0;
+	const int VAL1 = 1;
+	
 	do
 	{
 		system("cls||clear");
@@ -315,7 +328,8 @@ void InterfaceSalida::MenuExportacion()
 		cout << "\t*** EXPORTACION DE DATOS FORMATO CSV ***" << endl;
 		cout << this->separador << endl;
 		cout << "|1. Exportacion de Interlocutores Comerciales" << endl;
-		cout << "|2. Exportacion de Promedio de recaudacion Anual/Clientes" << endl;
+		cout << "|2. Exportacion de Detalle de Facturas + Promedio Anual/Clientes (PAGOS)" << endl;
+		cout << "|3. Exportacion de Detalle de Facturas + Promedio Anual/Clientes (IMPAGOS)" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion");
@@ -323,21 +337,68 @@ void InterfaceSalida::MenuExportacion()
 		{
 		case 1:
 		{
-			system("cls||clear");
+		
 			int ok = this->ExportarIC();
 			if (this->ExportarIC() == 0)
-				cout << "\tExportación correcta" << endl;
+				cout << endl;
+				cout << "\tExportacion correcta" << endl;
+				cout << endl;
 			Validaciones::SystemPause();
 			break;
 		}
 		case 2:
+		{	
+			
+			cout << this->separador << endl;
+			anioConsulta = Validaciones::DatoObligarorioNum("Ingrese año de consulta o (0) para volver al menu anterior");
+			if (anioConsulta <=0) {
+
+				break;
+			}
+
+			retorno = CalRecaudacion(dni, VAL1, anioConsulta,true);
+
+			if (retorno < 0) {
+
+				retorno = 0;
+			}
+
+			if (this->ExportarPromedioRecaudacion(anioConsulta, retorno,true)) {
+				cout << endl;
+				cout << "\tExportacion correcta" << endl;
+				cout << endl;
+				Validaciones::SystemPause();
+				break;
+			}
+				
+			cout << "\tExportación fallida" << endl;
+		}
+		case 3:
 		{
-			system("cls||clear");
-			int ok = this->ExportarPromedioRecaudacion(); //FALTA POR GENERAR
-			if (this->ExportarPromedioRecaudacion() == 0)
-				cout << "\tExportación correcta" << endl;
-			Validaciones::SystemPause();
-			break;
+
+			cout << this->separador << endl;
+			anioConsulta = Validaciones::DatoObligarorioNum("Ingrese año de consulta o (0) para volver al menu anterior");
+			if (anioConsulta <= 0) {
+
+				break;
+			}
+
+			retorno = CalRecaudacion(dni, VAL1, anioConsulta,false);
+
+			if (retorno < 0) {
+
+				retorno = 0;
+			}
+
+			if (this->ExportarPromedioRecaudacion(anioConsulta, retorno,false)) {
+				cout << endl;
+				cout << "\tExportacion correcta" << endl;
+				cout << endl;
+				Validaciones::SystemPause();
+				break;
+			}
+
+			cout << "\tExportación fallida" << endl;
 		}
 		case 0:
 		{
@@ -374,7 +435,7 @@ void InterfaceSalida::MenuConsultas()
 		{
 			system("cls||clear");
 			int anio;
-			anio = Validaciones::DatoObligarorioNum("Anio a consultar: ");
+			anio = Validaciones::DatoObligarorioNum("Anio a consultar ");
 			ConsumoTrimestralPorAnio(anio);
 			break;
 		}
@@ -387,7 +448,11 @@ void InterfaceSalida::MenuConsultas()
 		{
 			system("cls||clear");
 			int dni;
-			dni = Validaciones::DatoObligarorioNum("DNI a consultar: ");
+			dni = Validaciones::DatoObligarorioNum("DNI a consultar o (0) para volver al menu");
+			if (dni == 0) {
+				break;
+			}
+
 			this->ClienteDatosComerciales(dni);
 			break;
 		}
@@ -536,14 +601,13 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 	}
 }
 
-//Funcion de promedio
-float CalRecaudacion(int dni, int opcion);
-float CalcularPromedioPorTarifa(int tar, int anio);
 
 void InterfaceSalida::PromedioRecaudacion()
 {
-	//Promedio de recaudacion por cada cliente -> solo documentos pagos
+	
 	//Promedio de recaudacion anual ->  para todos los clientes con documentos pagos
+	//Promedio de recaudacion por cada cliente -> solo documentos pagos
+	//Promedio de recaudacion por tarifa 
 
 	int opcion;
 
@@ -551,15 +615,15 @@ void InterfaceSalida::PromedioRecaudacion()
 	do {
 		int dni = -1;
 		float retorno = 0;
-
+		int anioConsulta;
 		cout << this->separador << endl;
-		cout << "***CONSULTAS DE GESTION ENERGETICA***" << endl;
-		cout << "**********REPORTES**********" << endl;
+		cout << "\t***CONSULTAS DE GESTION ENERGETICA***" << endl;
+		cout << "\t**********REPORTES**********" << endl;
 		cout << this->separador << endl;
-		cout << "|1. Promedio de recaudacion Anual (Para todos los clientes)" << endl;
-		cout << "|2. Promedio de recaudacion Anual (Por cliente)" << endl;
-		cout << "|3. Promedio de recaudacion Anual (Por tarifa)" << endl;
-		cout << "|0. Para volver" << endl;
+		cout << "|\t1. Promedio de recaudacion Anual (Para todos los clientes)" << endl;
+		cout << "|\t2. Promedio de recaudacion Anual (Por cliente)" << endl;
+		cout << "|\t3. Promedio de recaudacion Anual (Por tarifa)" << endl;
+		cout << "|\t0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("opcion");
 
@@ -567,32 +631,57 @@ void InterfaceSalida::PromedioRecaudacion()
 		case 1: {
 			cout << endl;
 			cout << this->separador << endl;
-			retorno = CalRecaudacion(dni, opcion);
+			anioConsulta = Validaciones::DatoObligarorioNum("Ingrese año de consulta o (0) para volver al menu anterior");
+
+			if (anioConsulta <= 0) {
+				break;
+			}
+
+			retorno = CalRecaudacion(dni, opcion, anioConsulta,true);
+
 			if (retorno == -1) {
 				retorno = 0;
 			}
-			cout << "El promedio total todos los cliente es : $" << retorno << endl;
+
+			//Transforma a 2 decimales cualquier float.
+			stringstream stream;
+			stream << fixed << setprecision(2) << retorno;
+			string DecimalRetorno = stream.str();
+
+			cout << "El promedio total todos los cliente es : $" << DecimalRetorno << endl;
 			cout << this->separador << endl;
 
 			Validaciones::SystemPause();
 			cout << separador << endl;
 
-			cout << "Desea exportar los datos a un archivo formato 'csv' ?" << endl;
+			cout << "Desea exportar el detalle en formato 'csv' ?" << endl;
 			char dato = Validaciones::DatoObligarorioChar(" 'S' o cualquier otra letra para salir");
 			if (dato == 'S')
 			{
-				InterfaceSalida::ExportarPromedioRecaudacion();
+				InterfaceSalida::ExportarPromedioRecaudacion(anioConsulta,retorno,true);
 				cout << "Datos exportados" << endl;
+				Validaciones::SystemPause();
 			}
 
 			break;
 		}
 		case 2: {
 
-			dni = Validaciones::DatoObligarorioNum("ID Interlocutor Comercial: ");
-			cout << endl;
+			anioConsulta = Validaciones::DatoObligarorioNum("Ingrese año de consulta ");
 			cout << this->separador << endl;
-			retorno = CalRecaudacion(dni, opcion);
+
+			if (anioConsulta <= 0) {
+				break;
+			}
+
+			dni = Validaciones::DatoObligarorioNum("ID Interlocutor Comercial o (0) para volver al menu anterior");
+			cout << endl;
+			if (dni <= 0) {
+				break;
+			}
+			
+			retorno = CalRecaudacion(dni, opcion,anioConsulta,true);
+
 			if (retorno == -1) {
 				cout << "El cliente no existe" << endl;
 				Validaciones::SystemPause();
@@ -604,7 +693,12 @@ void InterfaceSalida::PromedioRecaudacion()
 				}
 			}
 
-			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
+			//Transforma a 2 decimales cualquier float.
+			stringstream stream;
+			stream << fixed << setprecision(2) << retorno;
+			string DecimalRetorno = stream.str();
+
+			cout << "El promedio total para el cliente #" << dni << " es : $" << DecimalRetorno << endl;
 			cout << this->separador << endl;
 			Validaciones::SystemPause();
 			break;
@@ -659,13 +753,13 @@ void InterfaceSalida::PromedioRecaudacion()
 
 }
 
-float CalRecaudacion(int dni, int opcion) {
+float CalRecaudacion(int dni, int opcion,int anioConsulta,bool pago) {
 
 	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
 
-	const bool PAGO = true; // Si el pago es false (esta pendiente) y no se cuenta
+	// Si el pago es false (esta pendiente) y no se cuenta
 	const int VAR = 1;
 	bool salida = true;
 	float promedioCliente = 0, promedioAnual = 0;
@@ -685,12 +779,12 @@ float CalRecaudacion(int dni, int opcion) {
 
 	for (int i = 0; i < documentos.size(); i++) {
 
-		if (documentos[i].getPago() == PAGO && opcion == VAR) {
+		if (documentos[i].getPago() == pago && opcion == VAR && documentos[i].getFecha().getAnio() == anioConsulta) {
 			promedioAnual += documentos[i].getImporte();
 			contadorAnual++;
 		}
 		else {
-			if (documentos[i].getPago() == PAGO && documentos[i].getIdinter() == dni) {
+			if (documentos[i].getPago() == pago && documentos[i].getIdinter() == dni && documentos[i].getFecha().getAnio()==anioConsulta) {
 				promedioCliente += documentos[i].getImporte();
 				contadorCliente++;
 			}
@@ -761,28 +855,44 @@ int InterfaceSalida::ExportarIC()
 	return 0;
 }
 
-int InterfaceSalida::ExportarPromedioRecaudacion()
+int InterfaceSalida::ExportarPromedioRecaudacion(int anio,float promedio,bool pago)
 {
-	DocumentoAD documentoAD(NOMBRE_ARCH_IC);
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> DocumentosPagos = documentoAD.getDocumentosArchivo();
-	vector<string> salidaClientesPagos;
-	const bool PAGO = 1; 
+	vector<string> salidaClientesPagos; 
+
+	Fecha fechaActual;
+	fechaActual.cargarFechaActual();
+	salidaClientesPagos.push_back(this->separador);
+	salidaClientesPagos.push_back("#Detalle de las facturas paga para todos los clientes#");
+	salidaClientesPagos.push_back(this->separador);
+	salidaClientesPagos.push_back("Fecha de consulta: " + fechaActual.toStringFecha());
 
 	for (auto& documento : DocumentosPagos) {
-		if (documento.getPago() == PAGO) {
+		if (documento.getPago() == pago && documento.getFecha().getAnio() == anio) {
 			salidaClientesPagos.push_back(documento.toStringDocumento());
 		}
 	}
-		
+	if (pago) {
+		salidaClientesPagos.push_back("#Promedio de Recaudacion# $" + to_string(promedio));
+	}
+	else {
+		salidaClientesPagos.push_back("#Promedio a Recaudar# $" + to_string(promedio));
+	}
+	
+	salidaClientesPagos.push_back("#Anio consultado: " + to_string(anio));
+
+	salidaClientesPagos.push_back(this->separador);
+
 	try
 	{
-		this->GrabarTextosSalida(salidaClientesPagos, "PromedioClientesPagos.csv");
+		this->GrabarTextosSalida(salidaClientesPagos, "DetalleDeRecaudacionClientes.csv");
 	}
 	catch (const std::exception&)
 	{
 		return -1;
 	}
-	return 0;
+	return 1;
 
 	
 }
