@@ -232,7 +232,7 @@ void InterfaceSalida::MenuPrincipal()
 		cout << "|\t7. Para menu Exportacion CVS" << endl;
 		cout << "|\t0. Para Salir" << endl;
 		cout << this->separador << endl;
-		opcion = Validaciones::DatoObligarorioNum("Opcion:");
+		opcion = Validaciones::DatoObligarorioNum("Opcion");
 
 		if (opcion == 0)
 		{
@@ -537,6 +537,7 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 
 //Funcion de promedio
 float CalRecaudacion(int dni, int opcion);
+float CalcularPromedioPorTarifa(int tar, int anio);
 
 void InterfaceSalida::PromedioRecaudacion()
 {
@@ -556,6 +557,7 @@ void InterfaceSalida::PromedioRecaudacion()
 		cout << this->separador << endl;
 		cout << "|1. Promedio de recaudacion Anual (Para todos los clientes)" << endl;
 		cout << "|2. Promedio de recaudacion Anual (Por cliente)" << endl;
+		cout << "|3. Promedio de recaudacion Anual (Por tarifa)" << endl;
 		cout << "|0. Para volver" << endl;
 		cout << this->separador << endl;
 		opcion = Validaciones::DatoObligarorioNum("Opcion: ");
@@ -602,6 +604,36 @@ void InterfaceSalida::PromedioRecaudacion()
 			}
 			//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
 			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
+			cout << this->separador << endl;
+			Validaciones::SystemPause();
+			break;
+		}
+		case 3: {
+
+			TarifaAD tarifaAD(NOMBRE_ARCH_TAR);
+			Tarifa tarifa;
+			int tar;
+			
+			do{	
+				
+				tar= Validaciones::DatoObligarorioNum(" el ID de la tarifa: ");
+				// validar que el numero ingresado corresponda con un id de tarifa
+				tarifa = tarifaAD.getTarifaArchivo(tar);
+
+			} while ( tarifa.getIdTarifa()==0);
+
+			cout << endl;
+			int anio= Validaciones::DatoObligarorioNum(" el anio: ");
+			cout << endl;
+			cout << endl;
+			cout << this->separador << endl;
+			float retorno = CalcularPromedioPorTarifa(tar, anio);
+			
+			if (retorno == -1) {
+				retorno = 0;
+			}
+			
+			cout << "El promedio total por la tarifa es : $" << retorno << endl;
 			cout << this->separador << endl;
 			Validaciones::SystemPause();
 			break;
@@ -678,6 +710,32 @@ float CalRecaudacion(int dni, int opcion) {
 		return -2;
 
 	}
+}
+
+float CalcularPromedioPorTarifa(int tar, int anio){
+	
+	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
+	Documento documento;
+	vector<Documento> documentos;
+	documentos = documentoAD.getDocumentosArchivo();
+
+	float cantidadDeFacturas=0;
+	float montoAcumulado=0;
+
+	for(int i =0; i < documentos.size(); i++){
+
+		if(documentos[i].getFecha().getAnio()==anio && documentos[i].getIdtar()==tar && documentos[i].getPago()){
+			montoAcumulado+=documentos[i].getConsumo();
+			cantidadDeFacturas++;
+		}
+
+	}
+	if (montoAcumulado == 0){
+		return 0;
+	} else {
+		return montoAcumulado/cantidadDeFacturas;
+	}
+	
 }
 
 int InterfaceSalida::ExportarIC()
@@ -803,7 +861,9 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 
 			}
 		}
-		else {
+		
+	}
+	if (contadorPago==0 && contadorNopago==0) {
 			cout << this->separador << endl;
 			cout<<"\t\t\t\t\t|| ATENCION ||" << endl;
 			cout << this->separador << endl;
@@ -811,7 +871,6 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 			cout << this->separador << endl << endl;
 			return -1;
 		}
-	}
 	contadorDocumentos = contadorPago + contadorNopago;
 	porcenPago = float(contadorPago * 100) / contadorDocumentos;
 	porcenNoPago = float(contadorNopago * 100) / contadorDocumentos;
@@ -835,4 +894,3 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 
 }
 
-//
