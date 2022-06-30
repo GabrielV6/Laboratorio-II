@@ -257,7 +257,6 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		cout << "|\t2. Modificar apellido" << endl;
 		cout << "|\t3. Modificar e-mail" << endl;
 		cout << "|\t4. Modificar direccion" << endl;
-		cout << "|\t5. Modificar estado (Activo/Inactivo)" << endl;
 		cout << "|\t0. Volver al menú anteriror" << endl;
 		cout << this->separador << endl;
 		//cout << "Opcion: ";
@@ -296,14 +295,14 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 			this->interlocutorComercial.setDireccionId(direc);
 			break;
 		}
-		case 5:
+		/*case 5:
 		{
 			cout << "Modificar estado ";
 			dato = Validaciones::DatoObligarorioChar("'S' o 'N'");
 			if (toupper(dato) == 'S')
 				this->interlocutorComercial.setActivo(!this->interlocutorComercial.getActivo());
 			break;
-		}
+		}*/
 		case 0:
 
 			break;
