@@ -602,7 +602,7 @@ void InterfaceSalida::PromedioRecaudacion()
 					retorno = 0;
 				}
 			}
-			//PENDIENTE: ME FALTA BAJAR A CSV EL REPORTE DEL CLIENTE CON TODAS SUS FACTURAS ....
+
 			cout << "El promedio total para el cliente #" << dni << " es : $" << retorno << endl;
 			cout << this->separador << endl;
 			Validaciones::SystemPause();
