@@ -167,9 +167,9 @@ Tarifa DocumentoRN::getTarifa()
 	return this->tarifa;
 }
 
-float DocumentoRN::CalcularConsumo(float lectura)
+int DocumentoRN::CalcularConsumo(int lectura)
 {
-	float consumo = -1;
+	int consumo = -1;
 
 	if (lectura >= this->medidor.getLectura())
 		consumo = lectura - this->medidor.getLectura();
@@ -180,7 +180,7 @@ float DocumentoRN::CalcularConsumo(float lectura)
 	return consumo;
 }
 //METODO QUE DEVUELVE EL IMPORTE TOTAL A PAGAR
-float DocumentoRN::CalcularImporte(float consumo)
+float DocumentoRN::CalcularImporte(int consumo)
 {
 	float importe;
 
