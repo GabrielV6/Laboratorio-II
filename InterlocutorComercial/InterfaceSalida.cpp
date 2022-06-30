@@ -498,7 +498,7 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 	DocumentoAD documentoAD(NOMBRE_ARCH_DOC);
 	vector<Documento> documentos;
 	documentos = documentoAD.getDocumentosArchivo();
-	float totalConsumoVerano = 0, totalConsumoOtonio = 0, totalConsumoInvierno = 0, totalConsumoPrimavera = 0;
+	int totalConsumoVerano = 0, totalConsumoOtonio = 0, totalConsumoInvierno = 0, totalConsumoPrimavera = 0;
 	int cantidadDocVerano = 0, cantidadDocOtonio = 0, cantidadDocInvierno = 0, cantidadDocPrimavera = 0;
 	for (auto& doc : documentos)
 	{
@@ -531,18 +531,23 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 		}
 	}
 	system("cls||clear");
-	string cadena;
+	string cadena, promedio;
 	vector<string> datosAExportar;
+	
 	cout << separador << endl;
-	cadena = "|CONSUMOS Y PROMEDIOS DEL AÑO: ";
+	cadena = "|CONSUMOS Y PROMEDIOS DEL ANIO: ";
 	cout << "|" << cadena << anio << endl;
 	datosAExportar.push_back(cadena);
 	cout << separador << endl;
 	if (cantidadDocVerano > 0)
-	{
-		cadena = "1er Trimestre - Total consumo: " + to_string(totalConsumoVerano) + "\t Promedio: " + to_string(totalConsumoVerano / cantidadDocVerano);
+	{		
+		stringstream stream;
+		stream << fixed << setprecision(2) <<(float) totalConsumoVerano / cantidadDocVerano;
+		promedio = stream.str();
+
+		cadena = "1er Trimestre (Enero Febrero Marzo)\t\t Total consumo: " + to_string(totalConsumoVerano) + "\t Promedio: " + promedio;
 		cout << "|" << cadena << endl;
-		cadena = "1er Trimestre," + to_string(totalConsumoVerano) + "," + to_string(totalConsumoVerano / cantidadDocVerano);
+		cadena = "1er Trimestre," + to_string(totalConsumoVerano) + "," + promedio;
 		datosAExportar.push_back(cadena);
 	}
 	else
@@ -553,9 +558,13 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 	}
 	if (cantidadDocOtonio > 0)
 	{
-		cadena = "2do Trimestre - Total consumo: " + to_string(totalConsumoOtonio) + "\t Promedio: " + to_string(totalConsumoOtonio / cantidadDocOtonio);
+		stringstream stream;
+		stream << fixed << setprecision(2) << (float)totalConsumoOtonio / cantidadDocOtonio;
+		promedio = stream.str();
+
+		cadena = "2do Trimestre (Abril Mayo Junio)\t\t Total consumo: " + to_string(totalConsumoOtonio) + "KWH\t Promedio: " + promedio;
 		cout << "|" << cadena << endl;
-		cadena = "2do Trimestre," + to_string(totalConsumoOtonio) + "," + to_string(totalConsumoOtonio / cantidadDocOtonio);
+		cadena = "2do Trimestre," + to_string(totalConsumoOtonio) + "," + promedio;
 		datosAExportar.push_back(cadena);
 	}
 	else
@@ -566,9 +575,13 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 	}
 	if (cantidadDocInvierno > 0)
 	{
-		cadena = "3ro Trimestre - Total consumo: " + to_string(totalConsumoInvierno) + "\t Promedio: " + to_string(totalConsumoInvierno / cantidadDocInvierno);
+		stringstream stream;
+		stream << fixed << setprecision(2) << (float)totalConsumoInvierno / cantidadDocInvierno;
+		promedio = stream.str();
+
+		cadena = "3ro Trimestre (Julio Agosto Septiembre)\t Total consumo: " + to_string(totalConsumoInvierno) + "KWH\t Promedio: " + promedio;
 		cout << "|" << cadena << endl;
-		cadena = "3ro Trimestre," + to_string(totalConsumoInvierno) + "," + to_string(totalConsumoInvierno / cantidadDocInvierno);
+		cadena = "3ro Trimestre," + to_string(totalConsumoInvierno) + "," + promedio;
 		datosAExportar.push_back(cadena);
 	}
 	else
@@ -579,9 +592,13 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 	}
 	if (cantidadDocPrimavera > 0)
 	{
-		cadena = "4to Trimestre - Total consumo: " + to_string(totalConsumoPrimavera) + "\t Promedio: " + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
+		stringstream stream;
+		stream << fixed << setprecision(2) << (float)totalConsumoPrimavera / cantidadDocPrimavera;
+		promedio = stream.str();
+
+		cadena = "4to Trimestre (Octubre Noviembre Diciembre)\t Total consumo: " + to_string(totalConsumoPrimavera) + "KWH\t Promedio: " + promedio;
 		cout << "|" << cadena << endl;
-		cadena = "4to Trimestre," + to_string(totalConsumoPrimavera) + "," + to_string(totalConsumoPrimavera / cantidadDocPrimavera);
+		cadena = "4to Trimestre," + to_string(totalConsumoPrimavera) + "," + promedio;
 		datosAExportar.push_back(cadena);
 	}
 	else
@@ -600,7 +617,6 @@ void InterfaceSalida::ConsumoTrimestralPorAnio(int anio)
 		cout << "Datos exportados" << endl;
 	}
 }
-
 
 void InterfaceSalida::PromedioRecaudacion()
 {
@@ -1008,4 +1024,3 @@ float  InterfaceSalida::FacturasPorcentaje(int anio, bool pago) {
 	}
 
 }
-

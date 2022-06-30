@@ -121,7 +121,7 @@ Documento::Documento()
 		string cadena = "Numero: " + to_string(this->getNumero()) + ", Tipo de documento: " + this->getTipo()
 			+ ", Fecha creacion: " + this->getFecha().toStringFecha() + ", ID Inter: " + to_string(this->getIdinter())
 			+ ", ID Medidor: " + to_string(this->idMed)
-			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Estado : " + valor 
+			+ ", Id Tarifa: " + to_string(this->getIdtar()) + ", Consumo: " +to_string(this->getConsumo()) + "KWH, Estado : " + valor
 			+ ", Importe: $ " + s;
 		return  cadena;
 	}
