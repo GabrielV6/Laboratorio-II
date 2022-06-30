@@ -68,8 +68,10 @@ bool CuentaContrato::getEstado()
 
 string CuentaContrato::toStringCuentaContrato()
 {
+
+	string valor = this->getEstado() ? "Activo" : "Inactivo";
 	string cadena = "ID Cuenta Contrato: " + to_string(this->getId_cc()) + ", ID Interlocutor Comercial: " + to_string(this->getId_ic())
-		+ ", ID Tarifa: " + to_string(this->getId_Tarifa()) + ", ID Medidor: " + to_string(this->getId_Medidor()) + ", Estado: " + to_string(this->getEstado());
+		+ ", ID Tarifa: " + to_string(this->getId_Tarifa()) + ", ID Medidor: " + to_string(this->getId_Medidor()) + ", Estado: " + valor;
 
 	return cadena;
 }
