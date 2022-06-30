@@ -60,16 +60,27 @@ bool CuentaContratoV::AltaCuentaContrato(){
 		cout << interlocutor.toStringInterlocutor() << endl;
 		cout << endl;
 
-		// agregar confirmacion?
-		cuentaContrato.setId_cc(interlocutor.getId_ic());
-		cuentaContrato.setId_ic(interlocutor.getId_ic());
-		cout << "El ID de la Cuenta Contrato es: " << cuentaContrato.getId_ic() << endl;
-		cout << endl;
-		this->cuentaContratoRN.AltaCuentaContrato(cuentaContrato);
-		Validaciones::SystemPause();
-		return true;
+		string confirmacion;
+		confirmacion = Validaciones::DatoObligarorioChar("'S' para continuar o cualquier otra tecla para cancelar");
+
+		if (confirmacion == "S" || confirmacion == "s"){
+				
+			cuentaContrato.setId_cc(interlocutor.getId_ic());
+			cuentaContrato.setId_ic(interlocutor.getId_ic());
+			cout << "El ID de la Cuenta Contrato es: " << cuentaContrato.getId_ic() << endl;
+			cout << endl;
+			this->cuentaContratoRN.AltaCuentaContrato(cuentaContrato);
+			Validaciones::SystemPause();
+
+			return true;
+		
+		} else {
+			
+			return false;
+		}
 	}	
 
+	return false;
 }
 
 void CuentaContratoV::ModificarTarifa(){
