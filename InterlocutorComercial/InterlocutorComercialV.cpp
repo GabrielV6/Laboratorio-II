@@ -229,6 +229,7 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 
 	do
 	{
+		system("cls||clear");
 		cout << this->separador << endl;
 		cout << "|\tModificar datos del Interlocutor comercial" << endl;
 		cout << this->separador << endl;
@@ -236,11 +237,12 @@ void InterlocutorComercialV::MenuModificarInterlocutor()
 		dni = Validaciones::DatoObligarorioNum("Nro");
 		//cin >> dni;
 		this->interlocutorComercial = this->interlocutorComercialRN.BuscarInterlocutorComercial(dni);
-		if (this->interlocutorComercial.getDni() != dni) // LLamar metodo de regla de negocio que valida si existe el DNI
+		if (dni == 0 || this->interlocutorComercial.getDni() != dni ) 
 		{
-			cout << "Documento ingresado no esta dado de alta!!!" << endl;
-			Validaciones::SystemPause();
-			system("cls||clear");
+			cout << "Documento ingresado no esta dado de alta, ";
+			char dato = Validaciones::DatoObligarorioChar("'M' para modificar o cualquier otra letra para salir");
+			if (toupper(dato) != 'M')
+				return;			
 		}
 		else
 			break;
