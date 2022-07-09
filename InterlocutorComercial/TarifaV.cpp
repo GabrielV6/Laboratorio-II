@@ -96,21 +96,42 @@ void TarifaV::NuevaTarifa()
 		cout << "Nuevo ID de tarifa asignar: " << tarifaRN.IdTarifa(tarifa) << endl;
 		cout << this->separador << endl;
 
-		decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo fijo: ");
-		if (decimal != 0)
+		do {
+			decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo fijo: ");
 			this->tarifa.setCargoFijo(decimal);
+			if (decimal < 1)
+				cout << "Valor incorrecto, intente de nuevo" << endl;
+				cout << endl;
 
-		decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo Variable: ");
-		if (decimal != 0)
+		} while (decimal < 1);
+		
+		do {
+			decimal = Validaciones::DatoObligarorioDecimal("Ingrese Cargo Variable: ");
 			this->tarifa.setCargoVariable(decimal);
-
-		decimal = Validaciones::DatoObligarorioDecimal("Ingrese % de impuesto: ");
-		if (decimal != 0)
+			if (decimal < 1)
+				cout << "Valor incorrecto, intente de nuevo" << endl;
+				cout << endl;
+				
+		} while (decimal < 1);
+		
+		do {
+			decimal = Validaciones::DatoObligarorioDecimal("Ingrese % de impuesto: ");
 			this->tarifa.setImpuestos(decimal);
+			if (decimal < 1)
+				cout << "Valor incorrecto, intente de nuevo" << endl;
+				cout << endl;
 
-		entero = Validaciones::DatoObligarorioNum("Tipo de tarifa: (0) Domestico - (1) Industrial ");
-		if (entero != 0)
+		} while (decimal < 1);
+		
+		do {
+			entero = Validaciones::DatoObligarorioNum("Tipo de tarifa: (0) Domestico - (1) Industrial ");
 			this->tarifa.setTipoDeTarifa(entero);
+			if (entero < 0)
+				cout << "Valor incorrecto, intente de nuevo" << endl;
+				cout << endl;
+				
+		} while (entero < 0);
+		
 
 		cout << this->separador << endl;
 		cout << "Desea dar de alta?" << endl << endl;

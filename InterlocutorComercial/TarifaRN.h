@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Tarifa.h"
+
 #include "TarifaAD.h"
 
 class TarifaRN {
