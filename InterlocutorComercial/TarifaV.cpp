@@ -251,7 +251,7 @@ void TarifaV::ModificarTarifa()
 					cout << "Valor incorrecto, intente de nuevo" << endl;
 				cout << endl;
 
-			} while (decimal < 1);
+			} while (decimal < 0);
 			break;
 		}
 		case 3:
